@@ -10,8 +10,9 @@ MIN_SUPPORT_RATIO = 0.70
 PLATEAU_TOLERANCE = 5.0  # mm tolerance for considering surfaces to be the "same height"
 
 # --- HEURISTIC WEIGHTS ---
-# Weights determine how the algorithm prioritizes candidate positions.
-WEIGHT_CENTER_START = 1000000.0  # Massive bonus to guarantee first box is centered
-WEIGHT_PLATEAU = 10.0            # Multiplier for plateau area (max ~9.6M)
-WEIGHT_MODULO = 1000.0           # Penalty multiplier for waste gaps (max ~1M penalty)
-WEIGHT_ZDENSITY = 1.0            # Tie-breaker for Z-density (usually evaluates to ~0.1 to 1.0)
+# The scale of these weights mathematically guarantees the priority order:
+WEIGHT_CENTER_START = 1000000.0  # Overrides everything for the 1st box
+WEIGHT_ZDENSITY = 10000.0        # Priority 1: Force boxes to lie flat (Max ~1000)
+WEIGHT_PLATEAU = 1000.0          # Priority 2: Cluster boxes of same height (Max 1000)
+WEIGHT_MODULO = 100.0            # Priority 3: Align to minimize waste space (Max 200)
+WEIGHT_GRAVITY = 0.5             # Tie-breaker: Prefer lower Z levels
