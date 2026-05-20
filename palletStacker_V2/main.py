@@ -7,6 +7,7 @@ import json
 from models import Box
 from algorithm import pack_boxes
 from visualization_plotly import write_layout_html
+from diagnostics import print_packing_report
 
 def load_json():
     """Opens a graphical file dialog to select the grocery boxes JSON file."""
@@ -53,6 +54,9 @@ def main():
     pallets = pack_boxes(boxes)
     
     print(f"Algorithm finished. Packed {len(boxes)} boxes into {len(pallets)} pallet(s).")
+
+    # --- Print Terminal Diagnostics ---
+    print_packing_report(pallets)
     
     # Render the interactive 3D HTML output
     out_file = "pallet_layout.html"
