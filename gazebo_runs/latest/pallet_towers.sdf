@@ -1,0 +1,6075 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="pallet_towers">
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="pallet_physics" type="ignored">
+      <max_step_size>0.005</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>200</real_time_update_rate>
+      <max_contacts>30</max_contacts>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.2 -0.9</direction>
+    </light>
+
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.65 0.65 0.65 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="pallet_01_1">
+      <static>false</static>
+      <pose>0.6 0.4 0.072 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.37653333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.0432</iyy>
+            <iyz>0</iyz>
+            <izz>4.33333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.34 0.16 1</ambient>
+            <diffuse>0.5 0.34 0.16 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0001_BREAD_002_BREAD">
+      <static>false</static>
+      <pose>0.9 0.6 0.244 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.075</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.195</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0002_EGGS_010_EGGS">
+      <static>false</static>
+      <pose>0.15 0.565 0.284 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.28095</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.2526</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0003_POTATO_073_POTATO">
+      <static>false</static>
+      <pose>0.9 0.2 0.244 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.416666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.833333333</iyy>
+            <iyz>0</iyz>
+            <izz>1.08333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.854901961 0.541176471 0.71372549 1</ambient>
+            <diffuse>0.854901961 0.541176471 0.71372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0004_SUGAR_034_SUGAR">
+      <static>false</static>
+      <pose>0.41 0.555 0.259 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.124166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0844166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.120416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.22 0.31 0.23</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.22 0.31 0.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.419607843 0.392156863 0.564705882 1</ambient>
+            <diffuse>0.419607843 0.392156863 0.564705882 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0005_POTATO_071_POTATO">
+      <static>false</static>
+      <pose>0.3 0.2 0.244 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.416666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.833333333</iyy>
+            <iyz>0</iyz>
+            <izz>1.08333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.854901961 0.541176471 0.71372549 1</ambient>
+            <diffuse>0.854901961 0.541176471 0.71372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0006_EGGS_011_EGGS">
+      <static>false</static>
+      <pose>0.75 0.565 0.484 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.28095</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.2526</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0007_BREAD_008_BREAD">
+      <static>false</static>
+      <pose>0.9 0.2 0.444 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.075</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.195</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0008_RICE_038_RICE">
+      <static>false</static>
+      <pose>0.22 0.15 0.444 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>20</mass>
+          <inertia>
+            <ixx>0.216666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.389333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.472666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.564705882 0.494117647 0.741176471 1</ambient>
+            <diffuse>0.564705882 0.494117647 0.741176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0009_BREAD_003_BREAD">
+      <static>false</static>
+      <pose>0.74 0.2 0.644 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.075</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.195</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0010_SUGAR_031_SUGAR">
+      <static>false</static>
+      <pose>1.015 0.555 0.454 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.120416667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0844166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.124166667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.23 0.31 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.23 0.31 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.419607843 0.392156863 0.564705882 1</ambient>
+            <diffuse>0.419607843 0.392156863 0.564705882 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0011_BREAD_006_BREAD">
+      <static>false</static>
+      <pose>0.74 0.2 0.844 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.075</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.195</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0012_EGGS_009_EGGS">
+      <static>false</static>
+      <pose>0.165 0.55 0.564 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.2526</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.28095</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0013_BREAD_007_BREAD">
+      <static>false</static>
+      <pose>0.74 0.2 1.044 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.075</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.195</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0014_BUTTER_042_BUTTER">
+      <static>false</static>
+      <pose>0.12 0.18 0.599 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.118083333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0580833333</iyy>
+            <iyz>0</iyz>
+            <izz>0.156</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.51372549 0.509803922 0.466666667 1</ambient>
+            <diffuse>0.51372549 0.509803922 0.466666667 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0015_POTATO_074_POTATO">
+      <static>false</static>
+      <pose>0.74 0.2 1.244 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.416666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.833333333</iyy>
+            <iyz>0</iyz>
+            <izz>1.08333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.854901961 0.541176471 0.71372549 1</ambient>
+            <diffuse>0.854901961 0.541176471 0.71372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0016_BEER24_089_BEER24">
+      <static>false</static>
+      <pose>0.7975 0.5325 0.689 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.06534375</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.12969375</iyy>
+            <iyz>0</iyz>
+            <izz>0.1696875</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.395 0.265 0.13</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.395 0.265 0.13</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.62745098 0.737254902 1</ambient>
+            <diffuse>0.741176471 0.62745098 0.737254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0017_ICECRM_081_ICECRM">
+      <static>false</static>
+      <pose>0.34 0.15 0.744 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.166666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.133333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.0866666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 0.3 0.4</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.3 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.403921569 0.482352941 1</ambient>
+            <diffuse>0.643137255 0.403921569 0.482352941 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0018_RICE_037_RICE">
+      <static>false</static>
+      <pose>0.22 0.55 0.804 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>20</mass>
+          <inertia>
+            <ixx>0.216666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.389333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.472666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.564705882 0.494117647 0.741176471 1</ambient>
+            <diffuse>0.564705882 0.494117647 0.741176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0019_FLOUR_027_FLOUR">
+      <static>false</static>
+      <pose>0.24 0.56 1.014 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>15</mass>
+          <inertia>
+            <ixx>0.1885</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.3485</iyy>
+            <iyz>0</iyz>
+            <izz>0.416</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.411764706 0.380392157 0.341176471 1</ambient>
+            <diffuse>0.411764706 0.380392157 0.341176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0020_BANANA_069_BANANA">
+      <static>false</static>
+      <pose>0.25 0.6 1.239 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.31935</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.45435</iyy>
+            <iyz>0</iyz>
+            <izz>0.615</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.462745098 0.635294118 0.584313725 1</ambient>
+            <diffuse>0.462745098 0.635294118 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0021_BREAD_001_BREAD">
+      <static>false</static>
+      <pose>0.8 0.5 1.054 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.15</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.195</iyy>
+            <iyz>0</iyz>
+            <izz>0.075</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.2 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.2 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0022_CHIPS_056_CHIPS">
+      <static>false</static>
+      <pose>0.74 0.2 1.519 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>3.5</mass>
+          <inertia>
+            <ixx>0.0823958333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.140729167</iyy>
+            <iyz>0</iyz>
+            <izz>0.151666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.360784314 0.388235294 1</ambient>
+            <diffuse>0.643137255 0.360784314 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0023_CHOCO_053_CHOCO">
+      <static>false</static>
+      <pose>0.12 0.1 0.799 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.06205</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.07085</iyy>
+            <iyz>0</iyz>
+            <izz>0.0488</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.2 0.29</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.2 0.29</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.337254902 0.419607843 0.835294118 1</ambient>
+            <diffuse>0.337254902 0.419607843 0.835294118 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0024_SUGAR_033_SUGAR">
+      <static>false</static>
+      <pose>0.155 0.115 1.054 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.0844166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.120416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.124166667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.31 0.23 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.31 0.23 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.419607843 0.392156863 0.564705882 1</ambient>
+            <diffuse>0.419607843 0.392156863 0.564705882 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0025_HONEY_090_HONEY">
+      <static>false</static>
+      <pose>0.165 0.13 1.249 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0643333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0918666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.117666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.752941176 0.623529412 0.443137255 1</ambient>
+            <diffuse>0.752941176 0.623529412 0.443137255 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0026_EGGS_013_EGGS">
+      <static>false</static>
+      <pose>0.165 0.15 1.474 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.2526</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.28095</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0027_BUTTER_043_BUTTER">
+      <static>false</static>
+      <pose>0.78 0.52 1.409 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.0580833333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.118083333</iyy>
+            <iyz>0</iyz>
+            <izz>0.156</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.36 0.24 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.36 0.24 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.51372549 0.509803922 0.466666667 1</ambient>
+            <diffuse>0.51372549 0.509803922 0.466666667 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0028_TEA_024_TEA">
+      <static>false</static>
+      <pose>0.12 0.58 1.454 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0706666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0406666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.078</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.478431373 0.788235294 0.388235294 1</ambient>
+            <diffuse>0.478431373 0.788235294 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0029_BEER24_088_BEER24">
+      <static>false</static>
+      <pose>1.105 0.1325 0.7415 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.1696875</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.12969375</iyy>
+            <iyz>0</iyz>
+            <izz>0.06534375</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.13 0.265 0.395</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.13 0.265 0.395</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.62745098 0.737254902 1</ambient>
+            <diffuse>0.741176471 0.62745098 0.737254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0030_DETERG_060_DETERG">
+      <static>false</static>
+      <pose>0.4 0.6 1.494 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>7</mass>
+          <inertia>
+            <ixx>0.139066667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.105466667</iyy>
+            <iyz>0</iyz>
+            <izz>0.153066667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.32 0.4 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.32 0.4 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.517647059 0.803921569 0.615686275 1</ambient>
+            <diffuse>0.517647059 0.803921569 0.615686275 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0031_ICECRM_080_ICECRM">
+      <static>false</static>
+      <pose>0.8 0.55 1.564 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0866666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.133333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.166666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.403921569 0.482352941 1</ambient>
+            <diffuse>0.643137255 0.403921569 0.482352941 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pallet_02_2">
+      <static>false</static>
+      <pose>2.3 0.4 0.072 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.37653333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.0432</iyy>
+            <iyz>0</iyz>
+            <izz>4.33333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.34 0.16 1</ambient>
+            <diffuse>0.5 0.34 0.16 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0001_COFFEE_016_COFFEE">
+      <static>false</static>
+      <pose>2.45 0.6 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0002_COFFEE_019_COFFEE">
+      <static>false</static>
+      <pose>2.45 0.2 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0003_COFFEE_017_COFFEE">
+      <static>false</static>
+      <pose>1.85 0.6 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0004_COFFEE_023_COFFEE">
+      <static>false</static>
+      <pose>1.85 0.2 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0005_COFFEE_022_COFFEE">
+      <static>false</static>
+      <pose>2.75 0.6 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0006_COFFEE_020_COFFEE">
+      <static>false</static>
+      <pose>2.15 0.2 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0007_COFFEE_021_COFFEE">
+      <static>false</static>
+      <pose>2.75 0.2 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0008_RICE_040_RICE">
+      <static>false</static>
+      <pose>2.52 0.55 0.494 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>20</mass>
+          <inertia>
+            <ixx>0.216666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.389333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.472666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.564705882 0.494117647 0.741176471 1</ambient>
+            <diffuse>0.564705882 0.494117647 0.741176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0009_FLOUR_030_FLOUR">
+      <static>false</static>
+      <pose>2.54 0.16 0.504 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>15</mass>
+          <inertia>
+            <ixx>0.1885</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.3485</iyy>
+            <iyz>0</iyz>
+            <izz>0.416</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.411764706 0.380392157 0.341176471 1</ambient>
+            <diffuse>0.411764706 0.380392157 0.341176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0010_ONION_075_ONION">
+      <static>false</static>
+      <pose>1.95 0.175 0.519 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.154166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.260416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.310416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.411764706 0.376470588 1</ambient>
+            <diffuse>0.741176471 0.411764706 0.376470588 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0011_BANANA_068_BANANA">
+      <static>false</static>
+      <pose>2.55 0.2 0.729 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.31935</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.45435</iyy>
+            <iyz>0</iyz>
+            <izz>0.615</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.462745098 0.635294118 0.584313725 1</ambient>
+            <diffuse>0.462745098 0.635294118 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0012_POTATO_072_POTATO">
+      <static>false</static>
+      <pose>2 0.2 0.744 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.416666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.833333333</iyy>
+            <iyz>0</iyz>
+            <izz>1.08333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.854901961 0.541176471 0.71372549 1</ambient>
+            <diffuse>0.854901961 0.541176471 0.71372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0013_CHIPS_057_CHIPS">
+      <static>false</static>
+      <pose>1.9 0.575 0.694 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>3.5</mass>
+          <inertia>
+            <ixx>0.140729167</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.151666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0823958333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.35 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.35 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.360784314 0.388235294 1</ambient>
+            <diffuse>0.643137255 0.360784314 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0014_CHOCO_052_CHOCO">
+      <static>false</static>
+      <pose>2.145 0.5 0.264 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.0488</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.07085</iyy>
+            <iyz>0</iyz>
+            <izz>0.06205</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.29 0.2 0.24</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.29 0.2 0.24</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.337254902 0.419607843 0.835294118 1</ambient>
+            <diffuse>0.337254902 0.419607843 0.835294118 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0015_SUGAR_035_SUGAR">
+      <static>false</static>
+      <pose>2.455 0.515 0.704 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.0844166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.120416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.124166667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.31 0.23 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.31 0.23 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.419607843 0.392156863 0.564705882 1</ambient>
+            <diffuse>0.419607843 0.392156863 0.564705882 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0016_HONEY_092_HONEY">
+      <static>false</static>
+      <pose>2.465 0.53 0.899 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0643333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0918666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.117666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.752941176 0.623529412 0.443137255 1</ambient>
+            <diffuse>0.752941176 0.623529412 0.443137255 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0017_EGGS_012_EGGS">
+      <static>false</static>
+      <pose>1.865 0.15 0.984 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.2526</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.28095</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.3 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0018_DOGFOOD_093_DOGFOOD">
+      <static>false</static>
+      <pose>2.2 0.115 0.899 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0433333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0851333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.112333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.34 0.23 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.34 0.23 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.498039216 0.545098039 0.607843137 1</ambient>
+            <diffuse>0.498039216 0.545098039 0.607843137 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0019_BUTTER_041_BUTTER">
+      <static>false</static>
+      <pose>2.49 0.18 0.899 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.118083333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0580833333</iyy>
+            <iyz>0</iyz>
+            <izz>0.156</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.51372549 0.509803922 0.466666667 1</ambient>
+            <diffuse>0.51372549 0.509803922 0.466666667 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0020_TEA_025_TEA">
+      <static>false</static>
+      <pose>2.73 0.18 0.944 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0706666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0406666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.078</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.478431373 0.788235294 0.388235294 1</ambient>
+            <diffuse>0.478431373 0.788235294 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0021_YOGURT_050_YOGURT">
+      <static>false</static>
+      <pose>2.495 0.75 0.524 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0323333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0915416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0675416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.39 0.1 0.26</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.39 0.1 0.26</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0022_YOGURT_046_YOGURT">
+      <static>false</static>
+      <pose>2.79 0.595 0.524 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0915416667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0323333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.0675416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 0.39 0.26</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 0.39 0.26</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0023_YOGURT_048_YOGURT">
+      <static>false</static>
+      <pose>2.225 0.13 1.004 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0323333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0675416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0915416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0024_YOGURT_045_YOGURT">
+      <static>false</static>
+      <pose>2.495 0.53 1.034 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0323333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0675416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0915416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0025_YOGURT_047_YOGURT">
+      <static>false</static>
+      <pose>1.895 0.53 1.044 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0323333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0675416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0915416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0026_BEER24_086_BEER24">
+      <static>false</static>
+      <pose>2.7425 0.1975 1.109 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.12969375</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.06534375</iyy>
+            <iyz>0</iyz>
+            <izz>0.1696875</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.265 0.395 0.13</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.265 0.395 0.13</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.62745098 0.737254902 1</ambient>
+            <diffuse>0.741176471 0.62745098 0.737254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0027_DETERG_059_DETERG">
+      <static>false</static>
+      <pose>2.23 0.16 1.194 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>7</mass>
+          <inertia>
+            <ixx>0.105466667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.139066667</iyy>
+            <iyz>0</iyz>
+            <izz>0.153066667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.32 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.32 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.517647059 0.803921569 0.615686275 1</ambient>
+            <diffuse>0.517647059 0.803921569 0.615686275 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0028_ICECRM_078_ICECRM">
+      <static>false</static>
+      <pose>2.5 0.55 1.184 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0866666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.133333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.166666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.403921569 0.482352941 1</ambient>
+            <diffuse>0.643137255 0.403921569 0.482352941 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0029_COFFEE_018_COFFEE">
+      <static>false</static>
+      <pose>1.9 0.55 1.219 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.165208333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.241041667</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.3 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0030_RICE_039_RICE">
+      <static>false</static>
+      <pose>2.52 0.55 1.384 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>20</mass>
+          <inertia>
+            <ixx>0.216666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.389333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.472666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.564705882 0.494117647 0.741176471 1</ambient>
+            <diffuse>0.564705882 0.494117647 0.741176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0031_FLOUR_028_FLOUR">
+      <static>false</static>
+      <pose>2.27 0.16 1.444 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>15</mass>
+          <inertia>
+            <ixx>0.1885</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.3485</iyy>
+            <iyz>0</iyz>
+            <izz>0.416</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.411764706 0.380392157 0.341176471 1</ambient>
+            <diffuse>0.411764706 0.380392157 0.341176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0032_ONION_077_ONION">
+      <static>false</static>
+      <pose>2.55 0.575 1.609 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.154166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.260416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.310416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.411764706 0.376470588 1</ambient>
+            <diffuse>0.741176471 0.411764706 0.376470588 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0033_BANANA_067_BANANA">
+      <static>false</static>
+      <pose>2.28 0.2 1.669 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.31935</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.45435</iyy>
+            <iyz>0</iyz>
+            <izz>0.615</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.462745098 0.635294118 0.584313725 1</ambient>
+            <diffuse>0.462745098 0.635294118 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0034_BREAD_005_BREAD">
+      <static>false</static>
+      <pose>1.8 0.2 1.424 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.195</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.075</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 0.4 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.4 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0035_DIAPER_095_DIAPER">
+      <static>false</static>
+      <pose>2.735 0.2 1.474 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>7</mass>
+          <inertia>
+            <ixx>0.303333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.246458333</iyy>
+            <iyz>0</iyz>
+            <izz>0.129791667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.25 0.4 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.25 0.4 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.337254902 0.780392157 0.584313725 1</ambient>
+            <diffuse>0.337254902 0.780392157 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pallet_03_3">
+      <static>false</static>
+      <pose>4 0.4 0.072 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.37653333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.0432</iyy>
+            <iyz>0</iyz>
+            <izz>4.33333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.34 0.16 1</ambient>
+            <diffuse>0.5 0.34 0.16 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0001_CHIPS_054_CHIPS">
+      <static>false</static>
+      <pose>4.3 0.6 0.319 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>3.5</mass>
+          <inertia>
+            <ixx>0.0823958333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.140729167</iyy>
+            <iyz>0</iyz>
+            <izz>0.151666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.360784314 0.388235294 1</ambient>
+            <diffuse>0.643137255 0.360784314 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0002_CHOCO_051_CHOCO">
+      <static>false</static>
+      <pose>3.52 0.545 0.244 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.06205</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0488</iyy>
+            <iyz>0</iyz>
+            <izz>0.07085</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.29 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.29 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.337254902 0.419607843 0.835294118 1</ambient>
+            <diffuse>0.337254902 0.419607843 0.835294118 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0003_SUGAR_032_SUGAR">
+      <static>false</static>
+      <pose>3.755 0.555 0.254 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.120416667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0844166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.124166667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.23 0.31 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.23 0.31 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.419607843 0.392156863 0.564705882 1</ambient>
+            <diffuse>0.419607843 0.392156863 0.564705882 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0004_HONEY_091_HONEY">
+      <static>false</static>
+      <pose>3.565 0.13 0.229 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0643333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0918666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.117666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.33 0.26 0.17</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.752941176 0.623529412 0.443137255 1</ambient>
+            <diffuse>0.752941176 0.623529412 0.443137255 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0005_EGGS_014_EGGS">
+      <static>false</static>
+      <pose>4.15 0.165 0.284 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.28095</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.2526</iyy>
+            <iyz>0</iyz>
+            <izz>0.29835</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.33 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.725490196 0.494117647 0.537254902 1</ambient>
+            <diffuse>0.725490196 0.494117647 0.537254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0006_DOGFOOD_094_DOGFOOD">
+      <static>false</static>
+      <pose>4.415 0.17 0.199 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.0851333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0433333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.112333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.23 0.34 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.23 0.34 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.498039216 0.545098039 0.607843137 1</ambient>
+            <diffuse>0.498039216 0.545098039 0.607843137 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0007_WINE_085_WINE">
+      <static>false</static>
+      <pose>3.86 0.17 0.304 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.327</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.255</iyy>
+            <iyz>0</iyz>
+            <izz>0.2748</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.26 0.34 0.32</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.26 0.34 0.32</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.654901961 0.450980392 0.541176471 1</ambient>
+            <diffuse>0.654901961 0.450980392 0.541176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0008_WINE_083_WINE">
+      <static>false</static>
+      <pose>3.56 0.17 0.444 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.2748</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.255</iyy>
+            <iyz>0</iyz>
+            <izz>0.327</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.32 0.34 0.26</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.32 0.34 0.26</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.654901961 0.450980392 0.541176471 1</ambient>
+            <diffuse>0.654901961 0.450980392 0.541176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0009_WINE_084_WINE">
+      <static>false</static>
+      <pose>4.43 0.17 0.414 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.327</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.255</iyy>
+            <iyz>0</iyz>
+            <izz>0.2748</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.26 0.34 0.32</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.26 0.34 0.32</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.654901961 0.450980392 0.541176471 1</ambient>
+            <diffuse>0.654901961 0.450980392 0.541176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0010_WINE_082_WINE">
+      <static>false</static>
+      <pose>3.9 0.16 0.594 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.255</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.2748</iyy>
+            <iyz>0</iyz>
+            <izz>0.327</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.34 0.32 0.26</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.34 0.32 0.26</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.654901961 0.450980392 0.541176471 1</ambient>
+            <diffuse>0.654901961 0.450980392 0.541176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0011_BUTTER_044_BUTTER">
+      <static>false</static>
+      <pose>3.52 0.58 0.399 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.118083333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0580833333</iyy>
+            <iyz>0</iyz>
+            <izz>0.156</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.11</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.51372549 0.509803922 0.466666667 1</ambient>
+            <diffuse>0.51372549 0.509803922 0.466666667 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0012_TEA_026_TEA">
+      <static>false</static>
+      <pose>3.76 0.58 0.464 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0706666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0406666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.078</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.24 0.36 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.478431373 0.788235294 0.388235294 1</ambient>
+            <diffuse>0.478431373 0.788235294 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0013_YOGURT_049_YOGURT">
+      <static>false</static>
+      <pose>4.195 0.53 0.544 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0323333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0675416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0915416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.39 0.26 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.329411765 0.803921569 0.31372549 1</ambient>
+            <diffuse>0.329411765 0.803921569 0.31372549 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0014_BEER24_087_BEER24">
+      <static>false</static>
+      <pose>4.1975 0.5325 0.659 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.06534375</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.12969375</iyy>
+            <iyz>0</iyz>
+            <izz>0.1696875</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.395 0.265 0.13</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.395 0.265 0.13</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.62745098 0.737254902 1</ambient>
+            <diffuse>0.741176471 0.62745098 0.737254902 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0015_DETERG_058_DETERG">
+      <static>false</static>
+      <pose>3.56 0.2 0.714 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>7</mass>
+          <inertia>
+            <ixx>0.139066667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.105466667</iyy>
+            <iyz>0</iyz>
+            <izz>0.153066667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.32 0.4 0.28</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.32 0.4 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.517647059 0.803921569 0.615686275 1</ambient>
+            <diffuse>0.517647059 0.803921569 0.615686275 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0016_ICECRM_079_ICECRM">
+      <static>false</static>
+      <pose>3.79 0.6 0.664 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.133333333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0866666667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.403921569 0.482352941 1</ambient>
+            <diffuse>0.643137255 0.403921569 0.482352941 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0017_COFFEE_015_COFFEE">
+      <static>false</static>
+      <pose>4.45 0.2 0.699 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>13</mass>
+          <inertia>
+            <ixx>0.241041667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.165208333</iyy>
+            <iyz>0</iyz>
+            <izz>0.270833333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.505882353 0.631372549 0.419607843 1</ambient>
+            <diffuse>0.505882353 0.631372549 0.419607843 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0018_RICE_036_RICE">
+      <static>false</static>
+      <pose>4.22 0.55 0.824 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>20</mass>
+          <inertia>
+            <ixx>0.216666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.389333333</iyy>
+            <iyz>0</iyz>
+            <izz>0.472666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.44 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.564705882 0.494117647 0.741176471 1</ambient>
+            <diffuse>0.564705882 0.494117647 0.741176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0019_FLOUR_029_FLOUR">
+      <static>false</static>
+      <pose>3.97 0.16 0.834 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>15</mass>
+          <inertia>
+            <ixx>0.1885</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.3485</iyy>
+            <iyz>0</iyz>
+            <izz>0.416</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.48 0.32 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.411764706 0.380392157 0.341176471 1</ambient>
+            <diffuse>0.411764706 0.380392157 0.341176471 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0020_ONION_076_ONION">
+      <static>false</static>
+      <pose>4.25 0.575 1.049 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.154166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.260416667</iyy>
+            <iyz>0</iyz>
+            <izz>0.310416667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.741176471 0.411764706 0.376470588 1</ambient>
+            <diffuse>0.741176471 0.411764706 0.376470588 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0021_BANANA_070_BANANA">
+      <static>false</static>
+      <pose>3.98 0.2 1.059 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>18</mass>
+          <inertia>
+            <ixx>0.31935</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.45435</iyy>
+            <iyz>0</iyz>
+            <izz>0.615</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.462745098 0.635294118 0.584313725 1</ambient>
+            <diffuse>0.462745098 0.635294118 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0022_BREAD_004_BREAD">
+      <static>false</static>
+      <pose>3.5 0.6 0.754 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>4.5</mass>
+          <inertia>
+            <ixx>0.195</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.15</iyy>
+            <iyz>0</iyz>
+            <izz>0.075</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 0.4 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.4 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.756862745 0.498039216 0.839215686 1</ambient>
+            <diffuse>0.756862745 0.498039216 0.839215686 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0023_APPLES_063_APPLES">
+      <static>false</static>
+      <pose>4.3 0.6 1.284 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.2084</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.52</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0024_APPLES_061_APPLES">
+      <static>false</static>
+      <pose>4.03 0.2 1.284 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.2084</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.52</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0025_APPLES_064_APPLES">
+      <static>false</static>
+      <pose>4.3 0.6 1.504 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.2084</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.52</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0026_APPLES_066_APPLES">
+      <static>false</static>
+      <pose>4.03 0.2 1.504 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.2084</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.52</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0027_APPLES_062_APPLES">
+      <static>false</static>
+      <pose>3.75 0.6 1.064 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.52</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.2084</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.22 0.4 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.22 0.4 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p03_0028_APPLES_065_APPLES">
+      <static>false</static>
+      <pose>3.51 0.2 1.154 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>12</mass>
+          <inertia>
+            <ixx>0.52</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.4084</iyy>
+            <iyz>0</iyz>
+            <izz>0.2084</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.22 0.4 0.6</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.22 0.4 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.635294118 0.68627451 1</ambient>
+            <diffuse>0.4 0.635294118 0.68627451 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pallet_04_4">
+      <static>false</static>
+      <pose>5.7 0.4 0.072 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.37653333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.0432</iyy>
+            <iyz>0</iyz>
+            <izz>4.33333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.144</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.34 0.16 1</ambient>
+            <diffuse>0.5 0.34 0.16 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p04_0001_DIAPER_096_DIAPER">
+      <static>false</static>
+      <pose>6 0.6 0.269 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>7</mass>
+          <inertia>
+            <ixx>0.129791667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.246458333</iyy>
+            <iyz>0</iyz>
+            <izz>0.303333333</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.25</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.337254902 0.780392157 0.584313725 1</ambient>
+            <diffuse>0.337254902 0.780392157 0.584313725 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p04_0002_CHIPS_055_CHIPS">
+      <static>false</static>
+      <pose>6 0.2 0.319 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>3.5</mass>
+          <inertia>
+            <ixx>0.0823958333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.140729167</iyy>
+            <iyz>0</iyz>
+            <izz>0.151666667</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.35</mu>
+                <mu2>0.35</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.4 0.35</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.643137255 0.360784314 0.388235294 1</ambient>
+            <diffuse>0.643137255 0.360784314 0.388235294 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

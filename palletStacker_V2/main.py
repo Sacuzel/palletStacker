@@ -8,6 +8,7 @@ from models import Box
 from algorithm import pack_boxes
 from visualization_plotly import write_layout_html
 from diagnostics import print_packing_report
+from gazebo_exporter import write_layout_sdf
 
 def load_json():
     """Opens a graphical file dialog to select the grocery boxes JSON file."""
@@ -62,6 +63,15 @@ def main():
     out_file = "pallet_layout.html"
     print(f"Generating 3D interactive layout -> {out_file}")
     write_layout_html(pallets, output_path=out_file, show_box_labels=True, open_in_browser=True)
+
+    # Render the Gazebo physics world
+    sdf_path = write_layout_sdf(
+        pallets,
+        run_name="latest",
+        overwrite=True,
+    )
+
+    print(f"Generating Gazebo physics world -> {sdf_path}")
 
 if __name__ == "__main__":
     main()
