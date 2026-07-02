@@ -1,0 +1,11 @@
+parameters:
+  # General parameters
+  k_global_states: 5
+  k_local_states: 5
+  pallette_size: 20
+  # local criterion weights
+  weight_base_supports: 0.2
+  weight_sides_supported: 0.2
+  weight_surface_support_area: 0.3
+  weight_base_height: 0.2
+  weight_volume_ratio: 0.1
