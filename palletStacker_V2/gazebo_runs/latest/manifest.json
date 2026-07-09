@@ -1,0 +1,6967 @@
+{
+  "sdf_file": "pallet_towers.sdf",
+  "pallet_count": 10,
+  "box_count": 300,
+  "items": [
+    {
+      "type": "pallet",
+      "model_name": "pallet_01_1",
+      "pallet_id": "1",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0001_WINE_001_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-001",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        340,
+        320,
+        260
+      ],
+      "world_position_m": [
+        0.77,
+        0.56,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0002_WINE_002_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-002",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        340,
+        320,
+        260
+      ],
+      "world_position_m": [
+        0.17,
+        0.56,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0003_WINE_003_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-003",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        340,
+        320,
+        260
+      ],
+      "world_position_m": [
+        0.17,
+        0.16,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0004_WINE_004_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-004",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        340.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        340,
+        320,
+        260
+      ],
+      "world_position_m": [
+        0.51,
+        0.16,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0005_WINE_005_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-005",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        680.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        320,
+        340,
+        260
+      ],
+      "world_position_m": [
+        0.8400000000000001,
+        0.17,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0006_WINE_006_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-006",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        940.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        260,
+        340,
+        320
+      ],
+      "world_position_m": [
+        1.07,
+        0.5700000000000001,
+        0.30400000000000005
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0007_WINE_007_WINE",
+      "pallet_id": "1",
+      "identifier": "WINE-007",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        340.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        260,
+        340,
+        320
+      ],
+      "world_position_m": [
+        0.47000000000000003,
+        0.5700000000000001,
+        0.30400000000000005
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0008_DETERG_001_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-001",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        260.0
+      ],
+      "size_mm": [
+        400,
+        320,
+        280
+      ],
+      "world_position_m": [
+        0.2,
+        0.16,
+        0.544
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0009_DETERG_002_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-002",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        260.0
+      ],
+      "size_mm": [
+        400,
+        320,
+        280
+      ],
+      "world_position_m": [
+        0.6000000000000001,
+        0.16,
+        0.544
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0010_DETERG_003_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-003",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        260.0
+      ],
+      "size_mm": [
+        320,
+        400,
+        280
+      ],
+      "world_position_m": [
+        0.16,
+        0.6000000000000001,
+        0.544
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0011_DETERG_004_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-004",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        260.0
+      ],
+      "size_mm": [
+        320,
+        400,
+        280
+      ],
+      "world_position_m": [
+        0.76,
+        0.6000000000000001,
+        0.544
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0012_DETERG_005_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-005",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        540.0
+      ],
+      "size_mm": [
+        400,
+        320,
+        280
+      ],
+      "world_position_m": [
+        0.2,
+        0.56,
+        0.8240000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0013_DETERG_006_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-006",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        540.0
+      ],
+      "size_mm": [
+        400,
+        320,
+        280
+      ],
+      "world_position_m": [
+        0.6000000000000001,
+        0.16,
+        0.8240000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0014_DETERG_007_DETERG",
+      "pallet_id": "1",
+      "identifier": "DETERG-007",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        540.0
+      ],
+      "size_mm": [
+        400,
+        320,
+        280
+      ],
+      "world_position_m": [
+        0.2,
+        0.16,
+        0.8240000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0015_APPLES_001_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-001",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        820.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        1.074
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0016_APPLES_002_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-002",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        800.0,
+        0.0,
+        260.0
+      ],
+      "size_mm": [
+        220,
+        400,
+        600
+      ],
+      "world_position_m": [
+        0.91,
+        0.2,
+        0.704
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0017_APPLES_003_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-003",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1040.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        1.2940000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0018_APPLES_004_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-004",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1260.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        1.514
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0019_APPLES_005_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-005",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        540.0
+      ],
+      "size_mm": [
+        220,
+        400,
+        600
+      ],
+      "world_position_m": [
+        0.71,
+        0.6000000000000001,
+        0.984
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0020_APPLES_006_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-006",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        940.0,
+        400.0,
+        320.0
+      ],
+      "size_mm": [
+        220,
+        400,
+        600
+      ],
+      "world_position_m": [
+        1.05,
+        0.6000000000000001,
+        0.764
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0021_APPLES_007_APPLES",
+      "pallet_id": "1",
+      "identifier": "APPLES-007",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        820.0
+      ],
+      "size_mm": [
+        400,
+        220,
+        600
+      ],
+      "world_position_m": [
+        0.2,
+        0.51,
+        1.264
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0022_EGGS_001_EGGS",
+      "pallet_id": "1",
+      "identifier": "EGGS-001",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        800.0,
+        0.0,
+        860.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        0.9500000000000001,
+        0.165,
+        1.1440000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0023_EGGS_002_EGGS",
+      "pallet_id": "1",
+      "identifier": "EGGS-002",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        1140.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        0.75,
+        0.5650000000000001,
+        1.4240000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0024_EGGS_003_EGGS",
+      "pallet_id": "1",
+      "identifier": "EGGS-003",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        800.0,
+        0.0,
+        1140.0
+      ],
+      "size_mm": [
+        330,
+        300,
+        280
+      ],
+      "world_position_m": [
+        0.9650000000000001,
+        0.15,
+        1.4240000000000004
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_02_2",
+      "pallet_id": "2",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0001_EGGS_004_EGGS",
+      "pallet_id": "2",
+      "identifier": "EGGS-004",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        2.4499999999999997,
+        0.5650000000000001,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0002_EGGS_005_EGGS",
+      "pallet_id": "2",
+      "identifier": "EGGS-005",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        1.8499999999999999,
+        0.5650000000000001,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0003_EGGS_006_EGGS",
+      "pallet_id": "2",
+      "identifier": "EGGS-006",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        2.75,
+        0.5650000000000001,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0004_EGGS_007_EGGS",
+      "pallet_id": "2",
+      "identifier": "EGGS-007",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        330,
+        280
+      ],
+      "world_position_m": [
+        2.15,
+        0.5650000000000001,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0005_SUGAR_001_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-001",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        230,
+        310,
+        220
+      ],
+      "world_position_m": [
+        1.815,
+        0.155,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0006_SUGAR_002_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-002",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        230.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        2.085,
+        0.115,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0007_SUGAR_003_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-003",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        540.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        2.395,
+        0.115,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0008_SUGAR_004_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-004",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        850.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        2.7049999999999996,
+        0.115,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0009_SUGAR_005_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-005",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        1.855,
+        0.115,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0010_SUGAR_006_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-006",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        310.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        2.1649999999999996,
+        0.115,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0011_SUGAR_007_SUGAR",
+      "pallet_id": "2",
+      "identifier": "SUGAR-007",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        620.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        310,
+        230,
+        220
+      ],
+      "world_position_m": [
+        2.4749999999999996,
+        0.115,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0012_FLOUR_001_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-001",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        280.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        1.94,
+        0.56,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0013_FLOUR_002_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-002",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        480.0,
+        400.0,
+        280.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        2.42,
+        0.56,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0014_FLOUR_003_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-003",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        1.94,
+        0.16,
+        0.6940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0015_FLOUR_004_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-004",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        480.0,
+        400.0,
+        500.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        2.42,
+        0.56,
+        0.754
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0016_FLOUR_005_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-005",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        500.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        1.94,
+        0.56,
+        0.754
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0017_FLOUR_006_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-006",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        660.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        1.94,
+        0.16,
+        0.914
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0018_FLOUR_007_FLOUR",
+      "pallet_id": "2",
+      "identifier": "FLOUR-007",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        480.0,
+        400.0,
+        720.0
+      ],
+      "size_mm": [
+        480,
+        320,
+        220
+      ],
+      "world_position_m": [
+        2.42,
+        0.56,
+        0.974
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0019_BREAD_001_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-001",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        960.0,
+        400.0,
+        280.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        600
+      ],
+      "world_position_m": [
+        2.7600000000000002,
+        0.6000000000000001,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0020_BREAD_002_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-002",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        480.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        600,
+        200,
+        400
+      ],
+      "world_position_m": [
+        2.4799999999999995,
+        0.1,
+        0.784
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0021_BREAD_003_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-003",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        480.0,
+        0.0,
+        840.0
+      ],
+      "size_mm": [
+        600,
+        200,
+        400
+      ],
+      "world_position_m": [
+        2.4799999999999995,
+        0.1,
+        1.184
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0022_BREAD_004_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-004",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        720.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        600
+      ],
+      "world_position_m": [
+        1.8,
+        0.6000000000000001,
+        1.164
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0023_BREAD_005_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-005",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        200.0,
+        400.0,
+        720.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        600
+      ],
+      "world_position_m": [
+        2.0,
+        0.6000000000000001,
+        1.164
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0024_BREAD_006_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-006",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        480.0,
+        400.0,
+        940.0
+      ],
+      "size_mm": [
+        600,
+        200,
+        400
+      ],
+      "world_position_m": [
+        2.4799999999999995,
+        0.5,
+        1.284
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0025_BREAD_007_BREAD",
+      "pallet_id": "2",
+      "identifier": "BREAD-007",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        880.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        600
+      ],
+      "world_position_m": [
+        1.8,
+        0.2,
+        1.324
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0026_BANANA_001_BANANA",
+      "pallet_id": "2",
+      "identifier": "BANANA-001",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        880.0
+      ],
+      "size_mm": [
+        230,
+        400,
+        500
+      ],
+      "world_position_m": [
+        2.015,
+        0.2,
+        1.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0027_BANANA_002_BANANA",
+      "pallet_id": "2",
+      "identifier": "BANANA-002",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        480.0,
+        0.0,
+        1240.0
+      ],
+      "size_mm": [
+        500,
+        230,
+        400
+      ],
+      "world_position_m": [
+        2.4299999999999997,
+        0.115,
+        1.5839999999999999
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_03_3",
+      "pallet_id": "3",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0001_BANANA_003_BANANA",
+      "pallet_id": "3",
+      "identifier": "BANANA-003",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        4.25,
+        0.6000000000000001,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0002_BANANA_004_BANANA",
+      "pallet_id": "3",
+      "identifier": "BANANA-004",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        4.25,
+        0.2,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0003_BANANA_005_BANANA",
+      "pallet_id": "3",
+      "identifier": "BANANA-005",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        3.65,
+        0.6000000000000001,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0004_BANANA_006_BANANA",
+      "pallet_id": "3",
+      "identifier": "BANANA-006",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        3.65,
+        0.2,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0005_BANANA_007_BANANA",
+      "pallet_id": "3",
+      "identifier": "BANANA-007",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        4.25,
+        0.2,
+        0.489
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0006_COFFEE_001_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-001",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        4.15,
+        0.6000000000000001,
+        0.499
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0007_COFFEE_002_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-002",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        3.55,
+        0.2,
+        0.499
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0008_COFFEE_003_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-003",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        3.55,
+        0.6000000000000001,
+        0.499
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0009_COFFEE_004_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-004",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        250,
+        400,
+        300
+      ],
+      "world_position_m": [
+        4.425,
+        0.6000000000000001,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0010_COFFEE_005_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-005",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        250,
+        400,
+        300
+      ],
+      "world_position_m": [
+        3.8249999999999997,
+        0.2,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0011_COFFEE_006_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-006",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        250,
+        400,
+        300
+      ],
+      "world_position_m": [
+        3.8249999999999997,
+        0.6000000000000001,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0012_COFFEE_007_COFFEE",
+      "pallet_id": "3",
+      "identifier": "COFFEE-007",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        460.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        4.15,
+        0.2,
+        0.7290000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0013_CHOCO_001_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-001",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        460.0
+      ],
+      "size_mm": [
+        240,
+        290,
+        200
+      ],
+      "world_position_m": [
+        4.42,
+        0.145,
+        0.7040000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0014_CHOCO_002_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-002",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        480.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        4.145,
+        0.52,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0015_CHOCO_003_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-003",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        480.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        3.545,
+        0.12,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0016_CHOCO_004_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-004",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        480.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        3.545,
+        0.36,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0017_CHOCO_005_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-005",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        480.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        3.545,
+        0.6,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0018_CHOCO_006_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-006",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        530.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        4.444999999999999,
+        0.52,
+        0.774
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0019_CHOCO_007_CHOCO",
+      "pallet_id": "3",
+      "identifier": "CHOCO-007",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        530.0
+      ],
+      "size_mm": [
+        290,
+        240,
+        200
+      ],
+      "world_position_m": [
+        3.8449999999999998,
+        0.52,
+        0.774
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0020_ONION_001_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-001",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        680.0
+      ],
+      "size_mm": [
+        250,
+        500,
+        350
+      ],
+      "world_position_m": [
+        3.525,
+        0.49,
+        0.9990000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0021_ONION_002_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-002",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        530.0
+      ],
+      "size_mm": [
+        250,
+        350,
+        500
+      ],
+      "world_position_m": [
+        3.8249999999999997,
+        0.17500000000000002,
+        0.924
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0022_ONION_003_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-003",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        1030.0
+      ],
+      "size_mm": [
+        350,
+        500,
+        250
+      ],
+      "world_position_m": [
+        3.5749999999999997,
+        0.49,
+        1.299
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0023_ONION_004_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-004",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        710.0
+      ],
+      "size_mm": [
+        250,
+        500,
+        350
+      ],
+      "world_position_m": [
+        4.125,
+        0.25,
+        1.029
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0024_ONION_005_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-005",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1060.0
+      ],
+      "size_mm": [
+        350,
+        500,
+        250
+      ],
+      "world_position_m": [
+        4.175,
+        0.25,
+        1.3290000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0025_ONION_006_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-006",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        1280.0
+      ],
+      "size_mm": [
+        500,
+        350,
+        250
+      ],
+      "world_position_m": [
+        3.65,
+        0.41500000000000004,
+        1.549
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0026_ONION_007_ONION",
+      "pallet_id": "3",
+      "identifier": "ONION-007",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1310.0
+      ],
+      "size_mm": [
+        500,
+        350,
+        250
+      ],
+      "world_position_m": [
+        4.25,
+        0.17500000000000002,
+        1.5790000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0027_HONEY_001_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-001",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        660.0
+      ],
+      "size_mm": [
+        260,
+        330,
+        170
+      ],
+      "world_position_m": [
+        4.43,
+        0.165,
+        0.889
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0028_HONEY_002_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-002",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        730.0
+      ],
+      "size_mm": [
+        260,
+        330,
+        170
+      ],
+      "world_position_m": [
+        3.8299999999999996,
+        0.5650000000000001,
+        0.959
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0029_HONEY_003_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-003",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        730.0
+      ],
+      "size_mm": [
+        260,
+        330,
+        170
+      ],
+      "world_position_m": [
+        4.43,
+        0.5650000000000001,
+        0.959
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0030_HONEY_004_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-004",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        830.0
+      ],
+      "size_mm": [
+        260,
+        330,
+        170
+      ],
+      "world_position_m": [
+        4.43,
+        0.165,
+        1.0590000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0031_HONEY_005_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-005",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        680.0
+      ],
+      "size_mm": [
+        260,
+        170,
+        330
+      ],
+      "world_position_m": [
+        3.53,
+        0.085,
+        0.9890000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0032_HONEY_006_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-006",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1010.0
+      ],
+      "size_mm": [
+        260,
+        170,
+        330
+      ],
+      "world_position_m": [
+        3.53,
+        0.085,
+        1.319
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0033_HONEY_007_HONEY",
+      "pallet_id": "3",
+      "identifier": "HONEY-007",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1030.0
+      ],
+      "size_mm": [
+        260,
+        170,
+        330
+      ],
+      "world_position_m": [
+        3.8299999999999996,
+        0.085,
+        1.339
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0034_YOGURT_001_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-001",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        1100.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        100,
+        390,
+        260
+      ],
+      "world_position_m": [
+        4.55,
+        0.195,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0035_YOGURT_002_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-002",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        900.0
+      ],
+      "size_mm": [
+        260,
+        390,
+        100
+      ],
+      "world_position_m": [
+        3.8299999999999996,
+        0.595,
+        1.094
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0036_YOGURT_003_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-003",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        900.0
+      ],
+      "size_mm": [
+        260,
+        390,
+        100
+      ],
+      "world_position_m": [
+        4.43,
+        0.595,
+        1.094
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0037_YOGURT_004_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-004",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        600.0,
+        640.0,
+        480.0
+      ],
+      "size_mm": [
+        260,
+        100,
+        390
+      ],
+      "world_position_m": [
+        4.13,
+        0.6900000000000001,
+        0.819
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0038_YOGURT_005_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-005",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        1530.0
+      ],
+      "size_mm": [
+        390,
+        260,
+        100
+      ],
+      "world_position_m": [
+        3.5949999999999998,
+        0.37,
+        1.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0039_YOGURT_006_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-006",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        600.0,
+        640.0,
+        870.0
+      ],
+      "size_mm": [
+        260,
+        100,
+        390
+      ],
+      "world_position_m": [
+        4.13,
+        0.6900000000000001,
+        1.209
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0040_YOGURT_007_YOGURT",
+      "pallet_id": "3",
+      "identifier": "YOGURT-007",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        590.0,
+        1280.0
+      ],
+      "size_mm": [
+        390,
+        100,
+        260
+      ],
+      "world_position_m": [
+        3.5949999999999998,
+        0.64,
+        1.5539999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0041_BUTTER_001_BUTTER",
+      "pallet_id": "3",
+      "identifier": "BUTTER-001",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        350.0,
+        1310.0
+      ],
+      "size_mm": [
+        360,
+        110,
+        240
+      ],
+      "world_position_m": [
+        4.18,
+        0.405,
+        1.5740000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0042_BUTTER_002_BUTTER",
+      "pallet_id": "3",
+      "identifier": "BUTTER-002",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        640.0,
+        1260.0
+      ],
+      "size_mm": [
+        240,
+        110,
+        360
+      ],
+      "world_position_m": [
+        4.12,
+        0.6950000000000001,
+        1.5839999999999999
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_04_4",
+      "pallet_id": "4",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0001_BUTTER_003_BUTTER",
+      "pallet_id": "4",
+      "identifier": "BUTTER-003",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        110
+      ],
+      "world_position_m": [
+        5.82,
+        0.5800000000000001,
+        0.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0002_BUTTER_004_BUTTER",
+      "pallet_id": "4",
+      "identifier": "BUTTER-004",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        110
+      ],
+      "world_position_m": [
+        5.220000000000001,
+        0.5800000000000001,
+        0.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0003_BUTTER_005_BUTTER",
+      "pallet_id": "4",
+      "identifier": "BUTTER-005",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        110
+      ],
+      "world_position_m": [
+        5.460000000000001,
+        0.5800000000000001,
+        0.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0004_BUTTER_006_BUTTER",
+      "pallet_id": "4",
+      "identifier": "BUTTER-006",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        110
+      ],
+      "world_position_m": [
+        5.220000000000001,
+        0.18,
+        0.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0005_BUTTER_007_BUTTER",
+      "pallet_id": "4",
+      "identifier": "BUTTER-007",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        240.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        110
+      ],
+      "world_position_m": [
+        5.460000000000001,
+        0.18,
+        0.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0006_CHIPS_001_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-001",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        6.0,
+        0.2,
+        0.31900000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0007_CHIPS_002_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-002",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        840.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        350,
+        400,
+        600
+      ],
+      "world_position_m": [
+        6.115,
+        0.6000000000000001,
+        0.444
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0008_CHIPS_003_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-003",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        110.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        5.640000000000001,
+        0.6000000000000001,
+        0.42900000000000005
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0009_CHIPS_004_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-004",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        110.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        5.4,
+        0.2,
+        0.42900000000000005
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0010_CHIPS_005_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-005",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        350.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        6.0,
+        0.2,
+        0.669
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0011_CHIPS_006_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-006",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        460.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        5.640000000000001,
+        0.6000000000000001,
+        0.7790000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0012_CHIPS_007_CHIPS",
+      "pallet_id": "4",
+      "identifier": "CHIPS-007",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        460.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        350
+      ],
+      "world_position_m": [
+        5.4,
+        0.2,
+        0.7790000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0013_POTATO_001_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-001",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        6.0,
+        0.2,
+        0.9440000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0014_POTATO_002_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-002",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        810.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.4,
+        0.2,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0015_POTATO_003_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-003",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        810.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.640000000000001,
+        0.6000000000000001,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0016_POTATO_004_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-004",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        900.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        6.0,
+        0.2,
+        1.1440000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0017_POTATO_005_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-005",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1010.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.4,
+        0.2,
+        1.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0018_POTATO_006_POTATO",
+      "pallet_id": "4",
+      "identifier": "POTATO-006",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        1010.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.640000000000001,
+        0.6000000000000001,
+        1.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0019_ICECRM_001_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-001",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        840.0,
+        400.0,
+        600.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        300
+      ],
+      "world_position_m": [
+        6.04,
+        0.6000000000000001,
+        0.894
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0020_ICECRM_002_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-002",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        110.0
+      ],
+      "size_mm": [
+        200,
+        400,
+        300
+      ],
+      "world_position_m": [
+        5.2,
+        0.6000000000000001,
+        0.404
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0021_ICECRM_003_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-003",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        410.0
+      ],
+      "size_mm": [
+        200,
+        300,
+        400
+      ],
+      "world_position_m": [
+        5.2,
+        0.55,
+        0.754
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0022_ICECRM_004_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-004",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        810.0
+      ],
+      "size_mm": [
+        200,
+        300,
+        400
+      ],
+      "world_position_m": [
+        5.2,
+        0.55,
+        1.1540000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0023_ICECRM_005_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-005",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1210.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.250000000000001,
+        0.6000000000000001,
+        1.4540000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0024_ICECRM_006_ICECRM",
+      "pallet_id": "4",
+      "identifier": "ICECRM-006",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        1210.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        200
+      ],
+      "world_position_m": [
+        5.550000000000001,
+        0.6000000000000001,
+        1.4540000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0025_RICE_001_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-001",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1210.0
+      ],
+      "size_mm": [
+        440,
+        300,
+        200
+      ],
+      "world_position_m": [
+        5.32,
+        0.15,
+        1.4540000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0026_RICE_002_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-002",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1100.0
+      ],
+      "size_mm": [
+        440,
+        300,
+        200
+      ],
+      "world_position_m": [
+        5.92,
+        0.15,
+        1.3440000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0027_RICE_003_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-003",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        440,
+        300,
+        200
+      ],
+      "world_position_m": [
+        5.92,
+        0.15,
+        1.544
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0028_RICE_004_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-004",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1410.0
+      ],
+      "size_mm": [
+        440,
+        300,
+        200
+      ],
+      "world_position_m": [
+        5.32,
+        0.55,
+        1.654
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0029_RICE_005_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-005",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1410.0
+      ],
+      "size_mm": [
+        440,
+        300,
+        200
+      ],
+      "world_position_m": [
+        5.32,
+        0.15,
+        1.654
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0030_RICE_006_RICE",
+      "pallet_id": "4",
+      "identifier": "RICE-006",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        1210.0
+      ],
+      "size_mm": [
+        300,
+        200,
+        440
+      ],
+      "world_position_m": [
+        5.8500000000000005,
+        0.5,
+        1.574
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_05_5",
+      "pallet_id": "5",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0001_DIAPER_001_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-001",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.699999999999999,
+        0.6000000000000001,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0002_DIAPER_002_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-002",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.699999999999999,
+        0.2,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0003_DIAPER_003_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-003",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.1,
+        0.6000000000000001,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0004_DIAPER_004_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-004",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.1,
+        0.2,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0005_DIAPER_005_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-005",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        250.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.699999999999999,
+        0.6000000000000001,
+        0.519
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0006_DIAPER_006_DIAPER",
+      "pallet_id": "5",
+      "identifier": "DIAPER-006",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        250.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.699999999999999,
+        0.2,
+        0.519
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0007_TEA_001_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-001",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        250.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        200
+      ],
+      "world_position_m": [
+        6.92,
+        0.5800000000000001,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0008_TEA_002_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-002",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        240.0,
+        400.0,
+        250.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        200
+      ],
+      "world_position_m": [
+        7.16,
+        0.5800000000000001,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0009_TEA_003_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-003",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        250.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        200
+      ],
+      "world_position_m": [
+        6.92,
+        0.18,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0010_TEA_004_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-004",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        240.0,
+        0.0,
+        250.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        200
+      ],
+      "world_position_m": [
+        7.16,
+        0.18,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0011_TEA_005_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-005",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        450.0
+      ],
+      "size_mm": [
+        360,
+        240,
+        200
+      ],
+      "world_position_m": [
+        6.9799999999999995,
+        0.12,
+        0.6940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0012_TEA_006_TEA",
+      "pallet_id": "5",
+      "identifier": "TEA-006",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        450.0
+      ],
+      "size_mm": [
+        360,
+        240,
+        200
+      ],
+      "world_position_m": [
+        6.9799999999999995,
+        0.36,
+        0.6940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0013_BEER24_001_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-001",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        450.0
+      ],
+      "size_mm": [
+        395,
+        265,
+        130
+      ],
+      "world_position_m": [
+        6.9975,
+        0.6125,
+        0.659
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0014_BEER24_002_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-002",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        265,
+        395,
+        130
+      ],
+      "world_position_m": [
+        7.5325,
+        0.1975,
+        0.7090000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0015_BEER24_003_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-003",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        865.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        265,
+        395,
+        130
+      ],
+      "world_position_m": [
+        7.7975,
+        0.1975,
+        0.7090000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0016_BEER24_004_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-004",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        500.0
+      ],
+      "size_mm": [
+        395,
+        265,
+        130
+      ],
+      "world_position_m": [
+        7.597499999999999,
+        0.5325,
+        0.7090000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0017_BEER24_005_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-005",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        580.0
+      ],
+      "size_mm": [
+        395,
+        265,
+        130
+      ],
+      "world_position_m": [
+        6.9975,
+        0.6125,
+        0.7889999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0018_BEER24_006_BEER24",
+      "pallet_id": "5",
+      "identifier": "BEER24-006",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        630.0
+      ],
+      "size_mm": [
+        395,
+        265,
+        130
+      ],
+      "world_position_m": [
+        7.597499999999999,
+        0.1325,
+        0.839
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0019_DOGFOOD_001_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-001",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        650.0
+      ],
+      "size_mm": [
+        230,
+        340,
+        110
+      ],
+      "world_position_m": [
+        6.915,
+        0.17,
+        0.8490000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0020_DOGFOOD_002_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-002",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        265.0,
+        630.0
+      ],
+      "size_mm": [
+        340,
+        230,
+        110
+      ],
+      "world_position_m": [
+        7.569999999999999,
+        0.38,
+        0.8290000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0021_DOGFOOD_003_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-003",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        495.0,
+        630.0
+      ],
+      "size_mm": [
+        340,
+        230,
+        110
+      ],
+      "world_position_m": [
+        7.569999999999999,
+        0.61,
+        0.8290000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0022_DOGFOOD_004_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-004",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        710.0
+      ],
+      "size_mm": [
+        340,
+        230,
+        110
+      ],
+      "world_position_m": [
+        6.97,
+        0.595,
+        0.909
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0023_DOGFOOD_005_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-005",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        265.0,
+        740.0
+      ],
+      "size_mm": [
+        230,
+        340,
+        110
+      ],
+      "world_position_m": [
+        7.515,
+        0.43500000000000005,
+        0.9390000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0024_DOGFOOD_006_DOGFOOD",
+      "pallet_id": "5",
+      "identifier": "DOGFOOD-006",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        760.0
+      ],
+      "size_mm": [
+        230,
+        340,
+        110
+      ],
+      "world_position_m": [
+        6.915,
+        0.17,
+        0.9590000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0025_MILK12_001_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-001",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        760.0
+      ],
+      "size_mm": [
+        400,
+        250,
+        300
+      ],
+      "world_position_m": [
+        7.6,
+        0.125,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0026_MILK12_002_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-002",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        820.0
+      ],
+      "size_mm": [
+        400,
+        250,
+        300
+      ],
+      "world_position_m": [
+        7.0,
+        0.605,
+        1.114
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0027_MILK12_003_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-003",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        600.0,
+        265.0,
+        850.0
+      ],
+      "size_mm": [
+        250,
+        400,
+        300
+      ],
+      "world_position_m": [
+        7.5249999999999995,
+        0.465,
+        1.144
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0028_MILK12_004_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-004",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        870.0
+      ],
+      "size_mm": [
+        250,
+        400,
+        300
+      ],
+      "world_position_m": [
+        6.925,
+        0.2,
+        1.164
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0029_MILK12_005_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-005",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        1120.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        250
+      ],
+      "world_position_m": [
+        7.0,
+        0.63,
+        1.3890000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0030_MILK12_006_MILK12",
+      "pallet_id": "5",
+      "identifier": "MILK12-006",
+      "sku": "MILK12",
+      "mass_kg": 12.5,
+      "local_position_mm": [
+        600.0,
+        265.0,
+        1150.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        7.55,
+        0.465,
+        1.419
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0031_WATER24_001_WATER24",
+      "pallet_id": "5",
+      "identifier": "WATER24-001",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1170.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        270
+      ],
+      "world_position_m": [
+        6.95,
+        0.2,
+        1.449
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0032_WATER24_002_WATER24",
+      "pallet_id": "5",
+      "identifier": "WATER24-002",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        1370.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        270
+      ],
+      "world_position_m": [
+        7.0,
+        0.63,
+        1.6490000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_06_6",
+      "pallet_id": "6",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0001_WATER24_003_WATER24",
+      "pallet_id": "6",
+      "identifier": "WATER24-003",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        270
+      ],
+      "world_position_m": [
+        9.25,
+        0.6000000000000001,
+        0.279
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0002_WATER24_004_WATER24",
+      "pallet_id": "6",
+      "identifier": "WATER24-004",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        270
+      ],
+      "world_position_m": [
+        9.25,
+        0.2,
+        0.279
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0003_WATER24_005_WATER24",
+      "pallet_id": "6",
+      "identifier": "WATER24-005",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        270
+      ],
+      "world_position_m": [
+        8.65,
+        0.6000000000000001,
+        0.279
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0004_WATER24_006_WATER24",
+      "pallet_id": "6",
+      "identifier": "WATER24-006",
+      "sku": "WATER24",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        270
+      ],
+      "world_position_m": [
+        8.65,
+        0.2,
+        0.279
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0005_COLA24_001_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-001",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        9.55,
+        0.6000000000000001,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0006_COLA24_002_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-002",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.2,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0007_COLA24_003_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-003",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.6000000000000001,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0008_COLA24_004_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-004",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        9.55,
+        0.2,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0009_COLA24_005_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-005",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        260.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.2,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0010_COLA24_006_COLA24",
+      "pallet_id": "6",
+      "identifier": "COLA24-006",
+      "sku": "COLA24",
+      "mass_kg": 13.5,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        260.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        260
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.6000000000000001,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0011_PASTA_001_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-001",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        260.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        9.545,
+        0.195,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0012_PASTA_002_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-002",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        900.0,
+        390.0,
+        260.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        9.545,
+        0.585,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0013_PASTA_003_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-003",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        270.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        9.245,
+        0.195,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0014_PASTA_004_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-004",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        390.0,
+        270.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        9.245,
+        0.585,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0015_PASTA_005_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-005",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        270.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        8.645,
+        0.195,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0016_PASTA_006_PASTA",
+      "pallet_id": "6",
+      "identifier": "PASTA-006",
+      "sku": "PASTA",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        390.0,
+        270.0
+      ],
+      "size_mm": [
+        290,
+        390,
+        240
+      ],
+      "world_position_m": [
+        8.645,
+        0.585,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0017_TOMATO_001_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-001",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        9.540000000000001,
+        0.19,
+        0.749
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0018_TOMATO_002_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-002",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        900.0,
+        380.0,
+        500.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        9.540000000000001,
+        0.5700000000000001,
+        0.749
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0019_TOMATO_003_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-003",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        390.0,
+        510.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        9.24,
+        0.5800000000000001,
+        0.759
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0020_TOMATO_004_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-004",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        510.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        9.24,
+        0.19,
+        0.759
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0021_TOMATO_005_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-005",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        390.0,
+        510.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        8.64,
+        0.5800000000000001,
+        0.759
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0022_TOMATO_006_TOMATO",
+      "pallet_id": "6",
+      "identifier": "TOMATO-006",
+      "sku": "TOMATO",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        510.0
+      ],
+      "size_mm": [
+        280,
+        380,
+        210
+      ],
+      "world_position_m": [
+        8.64,
+        0.19,
+        0.759
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0023_CEREAL_001_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-001",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        520.0
+      ],
+      "size_mm": [
+        300,
+        600,
+        400
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.3,
+        0.8640000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0024_CEREAL_002_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-002",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        710.0
+      ],
+      "size_mm": [
+        300,
+        600,
+        400
+      ],
+      "world_position_m": [
+        9.55,
+        0.3,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0025_CEREAL_003_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-003",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        720.0
+      ],
+      "size_mm": [
+        300,
+        600,
+        400
+      ],
+      "world_position_m": [
+        9.25,
+        0.3,
+        1.064
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0026_CEREAL_004_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-004",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        720.0
+      ],
+      "size_mm": [
+        300,
+        600,
+        400
+      ],
+      "world_position_m": [
+        8.65,
+        0.3,
+        1.064
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0027_CEREAL_005_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-005",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        920.0
+      ],
+      "size_mm": [
+        300,
+        600,
+        400
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.3,
+        1.264
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0028_CEREAL_006_CEREAL",
+      "pallet_id": "6",
+      "identifier": "CEREAL-006",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1120.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        300
+      ],
+      "world_position_m": [
+        9.299999999999999,
+        0.3,
+        1.4140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0029_OATS_001_OATS",
+      "pallet_id": "6",
+      "identifier": "OATS-001",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1120.0
+      ],
+      "size_mm": [
+        240,
+        400,
+        300
+      ],
+      "world_position_m": [
+        8.62,
+        0.2,
+        1.4140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0030_OATS_002_OATS",
+      "pallet_id": "6",
+      "identifier": "OATS-002",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1320.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        240
+      ],
+      "world_position_m": [
+        8.950000000000001,
+        0.2,
+        1.584
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0031_OATS_003_OATS",
+      "pallet_id": "6",
+      "identifier": "OATS-003",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1120.0
+      ],
+      "size_mm": [
+        300,
+        240,
+        400
+      ],
+      "world_position_m": [
+        8.65,
+        0.52,
+        1.4640000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_07_7",
+      "pallet_id": "7",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0001_OATS_004_OATS",
+      "pallet_id": "7",
+      "identifier": "OATS-004",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        240
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.6000000000000001,
+        0.264
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0002_OATS_005_OATS",
+      "pallet_id": "7",
+      "identifier": "OATS-005",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        240
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.2,
+        0.264
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0003_OATS_006_OATS",
+      "pallet_id": "7",
+      "identifier": "OATS-006",
+      "sku": "OATS",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        240
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        0.264
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0004_CHEESE_001_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-001",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.2,
+        0.22400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0005_CHEESE_002_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-002",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        11.250000000000002,
+        0.6000000000000001,
+        0.22400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0006_CHEESE_003_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-003",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        10.650000000000002,
+        0.2,
+        0.22400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0007_CHEESE_004_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-004",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        10.650000000000002,
+        0.6000000000000001,
+        0.22400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0008_CHEESE_005_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-005",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        11.250000000000002,
+        0.2,
+        0.22400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0009_CHEESE_006_CHEESE",
+      "pallet_id": "7",
+      "identifier": "CHEESE-006",
+      "sku": "CHEESE",
+      "mass_kg": 9.5,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        160.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        160
+      ],
+      "world_position_m": [
+        10.650000000000002,
+        0.6000000000000001,
+        0.38400000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0010_FRZVEG_001_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-001",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        160.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        10.650000000000002,
+        0.2,
+        0.41400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0011_FRZVEG_002_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-002",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        160.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.2,
+        0.41400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0012_FRZVEG_003_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-003",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        160.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        11.250000000000002,
+        0.2,
+        0.41400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0013_FRZVEG_004_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-004",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        160.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        11.250000000000002,
+        0.6000000000000001,
+        0.41400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0014_FRZVEG_005_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-005",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        240.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.2,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0015_FRZVEG_006_FRZVEG",
+      "pallet_id": "7",
+      "identifier": "FRZVEG-006",
+      "sku": "FRZVEG",
+      "mass_kg": 7.5,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        240.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.6000000000000001,
+        0.494
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0016_PIZZA_001_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-001",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        380.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.500000000000002,
+        0.2,
+        0.614
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0017_PIZZA_002_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-002",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        460.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        180
+      ],
+      "world_position_m": [
+        11.0,
+        0.3,
+        0.6940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0018_PIZZA_003_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-003",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        560.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.500000000000002,
+        0.2,
+        0.794
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0019_PIZZA_004_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-004",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        640.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        180
+      ],
+      "world_position_m": [
+        11.0,
+        0.3,
+        0.874
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0020_PIZZA_005_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-005",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        740.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.500000000000002,
+        0.2,
+        0.974
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0021_PIZZA_006_PIZZA",
+      "pallet_id": "7",
+      "identifier": "PIZZA-006",
+      "sku": "PIZZA",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        320.0
+      ],
+      "size_mm": [
+        180,
+        400,
+        600
+      ],
+      "world_position_m": [
+        10.590000000000002,
+        0.6000000000000001,
+        0.764
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0022_SALMON_001_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-001",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        240.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0023_SALMON_002_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-002",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        420.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        0.654
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0024_SALMON_003_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-003",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        0.834
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0025_SALMON_004_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-004",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        780.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        1.014
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0026_SALMON_005_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-005",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        820.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.2,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0027_SALMON_006_SALMON",
+      "pallet_id": "7",
+      "identifier": "SALMON-006",
+      "sku": "SALMON",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        920.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.2,
+        1.1540000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0028_CHICKEN_001_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-001",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        920.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        180
+      ],
+      "world_position_m": [
+        10.650000000000002,
+        0.25,
+        1.1540000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0029_CHICKEN_002_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-002",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        180
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.25,
+        1.2340000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0030_CHICKEN_003_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-003",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1100.0
+      ],
+      "size_mm": [
+        500,
+        300,
+        180
+      ],
+      "world_position_m": [
+        10.450000000000001,
+        0.15,
+        1.3340000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0031_CHICKEN_004_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-004",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        460.0
+      ],
+      "size_mm": [
+        300,
+        180,
+        500
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.69,
+        0.8540000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0032_CHICKEN_005_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-005",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1180.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        180
+      ],
+      "world_position_m": [
+        10.950000000000001,
+        0.25,
+        1.414
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0033_CHICKEN_006_CHICKEN",
+      "pallet_id": "7",
+      "identifier": "CHICKEN-006",
+      "sku": "CHICKEN",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1280.0
+      ],
+      "size_mm": [
+        500,
+        300,
+        180
+      ],
+      "world_position_m": [
+        10.450000000000001,
+        0.15,
+        1.514
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0034_BEEF_001_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-001",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        960.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        170
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.6000000000000001,
+        1.189
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0035_BEEF_002_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-002",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1130.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        170
+      ],
+      "world_position_m": [
+        10.4,
+        0.55,
+        1.359
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0036_BEEF_003_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-003",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1300.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        170
+      ],
+      "world_position_m": [
+        10.4,
+        0.55,
+        1.529
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0037_BEEF_004_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-004",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1360.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        170
+      ],
+      "world_position_m": [
+        11.0,
+        0.15,
+        1.589
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0038_BEEF_005_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-005",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1460.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        170
+      ],
+      "world_position_m": [
+        10.350000000000001,
+        0.2,
+        1.689
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0039_BEEF_006_BEEF",
+      "pallet_id": "7",
+      "identifier": "BEEF-006",
+      "sku": "BEEF",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1470.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        170
+      ],
+      "world_position_m": [
+        10.4,
+        0.55,
+        1.6989999999999998
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_08_8",
+      "pallet_id": "8",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0001_CARROT_001_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-001",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.75,
+        0.6000000000000001,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0002_CARROT_002_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-002",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.75,
+        0.2,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0003_CARROT_003_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-003",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.15,
+        0.6000000000000001,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0004_CARROT_004_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-004",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.15,
+        0.2,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0005_CARROT_005_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-005",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.75,
+        0.2,
+        0.489
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0006_CARROT_006_CARROT",
+      "pallet_id": "8",
+      "identifier": "CARROT-006",
+      "sku": "CARROT",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        230
+      ],
+      "world_position_m": [
+        12.75,
+        0.6000000000000001,
+        0.489
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0007_CUCUMBER_001_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-001",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        220
+      ],
+      "world_position_m": [
+        12.05,
+        0.25,
+        0.484
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0008_CUCUMBER_002_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-002",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        230.0
+      ],
+      "size_mm": [
+        500,
+        300,
+        220
+      ],
+      "world_position_m": [
+        12.15,
+        0.65,
+        0.484
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0009_CUCUMBER_003_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-003",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        230.0
+      ],
+      "size_mm": [
+        220,
+        500,
+        300
+      ],
+      "world_position_m": [
+        12.31,
+        0.25,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0010_CUCUMBER_004_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-004",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        460.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        220
+      ],
+      "world_position_m": [
+        12.65,
+        0.25,
+        0.7140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0011_CUCUMBER_005_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-005",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        500.0,
+        460.0
+      ],
+      "size_mm": [
+        500,
+        300,
+        220
+      ],
+      "world_position_m": [
+        12.75,
+        0.65,
+        0.7140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0012_CUCUMBER_006_CUCUMBER",
+      "pallet_id": "8",
+      "identifier": "CUCUMBER-006",
+      "sku": "CUCUMBER",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        450.0
+      ],
+      "size_mm": [
+        300,
+        500,
+        220
+      ],
+      "world_position_m": [
+        12.05,
+        0.25,
+        0.7040000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0013_LETTUCE_001_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-001",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        680.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        250
+      ],
+      "world_position_m": [
+        12.7,
+        0.3,
+        0.9490000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0014_LETTUCE_002_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-002",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        530.0
+      ],
+      "size_mm": [
+        250,
+        600,
+        400
+      ],
+      "world_position_m": [
+        12.325000000000001,
+        0.3,
+        0.8740000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0015_LETTUCE_003_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-003",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        930.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        250
+      ],
+      "world_position_m": [
+        12.4,
+        0.3,
+        1.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0016_LETTUCE_004_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-004",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        700.0,
+        0.0,
+        930.0
+      ],
+      "size_mm": [
+        400,
+        600,
+        250
+      ],
+      "world_position_m": [
+        12.799999999999999,
+        0.3,
+        1.199
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0017_LETTUCE_005_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-005",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        670.0
+      ],
+      "size_mm": [
+        250,
+        600,
+        400
+      ],
+      "world_position_m": [
+        12.025,
+        0.3,
+        1.014
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0018_LETTUCE_006_LETTUCE",
+      "pallet_id": "8",
+      "identifier": "LETTUCE-006",
+      "sku": "LETTUCE",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1180.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        250
+      ],
+      "world_position_m": [
+        12.500000000000002,
+        0.2,
+        1.4489999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0019_ORANGE_001_ORANGE",
+      "pallet_id": "8",
+      "identifier": "ORANGE-001",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1430.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        12.500000000000002,
+        0.2,
+        1.684
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0020_ORANGE_002_ORANGE",
+      "pallet_id": "8",
+      "identifier": "ORANGE-002",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1070.0
+      ],
+      "size_mm": [
+        220,
+        600,
+        400
+      ],
+      "world_position_m": [
+        12.01,
+        0.3,
+        1.414
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0021_ORANGE_003_ORANGE",
+      "pallet_id": "8",
+      "identifier": "ORANGE-003",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        1180.0
+      ],
+      "size_mm": [
+        600,
+        220,
+        400
+      ],
+      "world_position_m": [
+        12.500000000000002,
+        0.51,
+        1.5239999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0022_ORANGE_004_ORANGE",
+      "pallet_id": "8",
+      "identifier": "ORANGE-004",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        1180.0
+      ],
+      "size_mm": [
+        220,
+        600,
+        400
+      ],
+      "world_position_m": [
+        12.91,
+        0.3,
+        1.5239999999999998
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_09_9",
+      "pallet_id": "9",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0001_ORANGE_005_ORANGE",
+      "pallet_id": "9",
+      "identifier": "ORANGE-005",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        14.5,
+        0.6000000000000001,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0002_ORANGE_006_ORANGE",
+      "pallet_id": "9",
+      "identifier": "ORANGE-006",
+      "sku": "ORANGE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        220
+      ],
+      "world_position_m": [
+        14.5,
+        0.2,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0003_PEAR_001_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-001",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        13.85,
+        0.6000000000000001,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0004_PEAR_002_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-002",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        13.85,
+        0.2,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0005_PEAR_003_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-003",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        14.45,
+        0.2,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0006_PEAR_004_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-004",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        14.45,
+        0.6000000000000001,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0007_PEAR_005_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-005",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        220.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        13.85,
+        0.6000000000000001,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0008_PEAR_006_PEAR",
+      "pallet_id": "9",
+      "identifier": "PEAR-006",
+      "sku": "PEAR",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        500,
+        400,
+        220
+      ],
+      "world_position_m": [
+        13.85,
+        0.2,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0009_AVOCADO_001_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-001",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        440.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        14.35,
+        0.6000000000000001,
+        0.674
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0010_AVOCADO_002_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-002",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        14.35,
+        0.2,
+        0.674
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0011_AVOCADO_003_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-003",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        13.75,
+        0.2,
+        0.674
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0012_AVOCADO_004_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-004",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        440.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        13.75,
+        0.6000000000000001,
+        0.674
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0013_AVOCADO_005_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-005",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        180,
+        400,
+        300
+      ],
+      "world_position_m": [
+        13.99,
+        0.2,
+        0.7340000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0014_AVOCADO_006_AVOCADO",
+      "pallet_id": "9",
+      "identifier": "AVOCADO-006",
+      "sku": "AVOCADO",
+      "mass_kg": 6.5,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        440.0
+      ],
+      "size_mm": [
+        180,
+        400,
+        300
+      ],
+      "world_position_m": [
+        13.99,
+        0.6000000000000001,
+        0.7340000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0015_SOUP_001_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-001",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        440.0
+      ],
+      "size_mm": [
+        190,
+        400,
+        300
+      ],
+      "world_position_m": [
+        14.595,
+        0.6000000000000001,
+        0.7340000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0016_SOUP_002_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-002",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        190,
+        400,
+        300
+      ],
+      "world_position_m": [
+        14.595,
+        0.2,
+        0.7340000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0017_SOUP_003_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-003",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        620.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        190
+      ],
+      "world_position_m": [
+        14.35,
+        0.6000000000000001,
+        0.859
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0018_SOUP_004_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-004",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        620.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        190
+      ],
+      "world_position_m": [
+        14.35,
+        0.2,
+        0.859
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0019_SOUP_005_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-005",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        620.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        190
+      ],
+      "world_position_m": [
+        13.75,
+        0.2,
+        0.859
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0020_SOUP_006_SOUP",
+      "pallet_id": "9",
+      "identifier": "SOUP-006",
+      "sku": "SOUP",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        620.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        190
+      ],
+      "world_position_m": [
+        13.75,
+        0.6000000000000001,
+        0.859
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0021_BEANS_001_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-001",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        810.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        180
+      ],
+      "world_position_m": [
+        13.799999999999999,
+        0.15,
+        1.044
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0022_BEANS_002_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-002",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        810.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        180
+      ],
+      "world_position_m": [
+        13.799999999999999,
+        0.44999999999999996,
+        1.044
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0023_BEANS_003_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-003",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        810.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        180
+      ],
+      "world_position_m": [
+        14.399999999999999,
+        0.15,
+        1.044
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0024_BEANS_004_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-004",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        600.0,
+        300.0,
+        810.0
+      ],
+      "size_mm": [
+        400,
+        300,
+        180
+      ],
+      "world_position_m": [
+        14.399999999999999,
+        0.44999999999999996,
+        1.044
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0025_BEANS_005_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-005",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        990.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        13.75,
+        0.2,
+        1.224
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0026_BEANS_006_BEANS",
+      "pallet_id": "9",
+      "identifier": "BEANS-006",
+      "sku": "BEANS",
+      "mass_kg": 11.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        990.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        180
+      ],
+      "world_position_m": [
+        14.35,
+        0.2,
+        1.224
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0027_TUNA_001_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-001",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        990.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        14.37,
+        0.53,
+        1.214
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0028_TUNA_002_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-002",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        990.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        13.77,
+        0.53,
+        1.214
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0029_TUNA_003_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-003",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        1150.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        14.37,
+        0.53,
+        1.374
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0030_TUNA_004_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-004",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1150.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        13.77,
+        0.53,
+        1.374
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0031_TUNA_005_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-005",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1170.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        13.77,
+        0.13,
+        1.3940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0032_TUNA_006_TUNA",
+      "pallet_id": "9",
+      "identifier": "TUNA-006",
+      "sku": "TUNA",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1170.0
+      ],
+      "size_mm": [
+        340,
+        260,
+        160
+      ],
+      "world_position_m": [
+        14.37,
+        0.13,
+        1.3940000000000001
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_10_10",
+      "pallet_id": "10",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0001_PAPER_001_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-001",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        16.2,
+        0.6000000000000001,
+        0.29400000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0002_PAPER_002_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-002",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        16.2,
+        0.2,
+        0.29400000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0003_PAPER_003_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-003",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        15.600000000000001,
+        0.6000000000000001,
+        0.29400000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0004_PAPER_004_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-004",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        15.600000000000001,
+        0.2,
+        0.29400000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0005_PAPER_005_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-005",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        16.2,
+        0.2,
+        0.594
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0006_PAPER_006_PAPER",
+      "pallet_id": "10",
+      "identifier": "PAPER-006",
+      "sku": "PAPER",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        300.0
+      ],
+      "size_mm": [
+        600,
+        400,
+        300
+      ],
+      "world_position_m": [
+        16.2,
+        0.6000000000000001,
+        0.594
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0007_OLIVEOIL_001_OLIVEOIL",
+      "pallet_id": "10",
+      "identifier": "OLIVEOIL-001",
+      "sku": "OLIVEOIL",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        220,
+        260,
+        300
+      ],
+      "world_position_m": [
+        15.41,
+        0.13,
+        0.594
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0008_VINEGAR_001_VINEGAR",
+      "pallet_id": "10",
+      "identifier": "VINEGAR-001",
+      "sku": "VINEGAR",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        260.0,
+        300.0
+      ],
+      "size_mm": [
+        220,
+        250,
+        300
+      ],
+      "world_position_m": [
+        15.41,
+        0.385,
+        0.594
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0009_MAYO_001_MAYO",
+      "pallet_id": "10",
+      "identifier": "MAYO-001",
+      "sku": "MAYO",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        220.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        170
+      ],
+      "world_position_m": [
+        15.64,
+        0.18,
+        0.529
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0010_KETCHUP_001_KETCHUP",
+      "pallet_id": "10",
+      "identifier": "KETCHUP-001",
+      "sku": "KETCHUP",
+      "mass_kg": 8.5,
+      "local_position_mm": [
+        220.0,
+        360.0,
+        300.0
+      ],
+      "size_mm": [
+        240,
+        360,
+        180
+      ],
+      "world_position_m": [
+        15.64,
+        0.54,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0011_SPICES_001_SPICES",
+      "pallet_id": "10",
+      "identifier": "SPICES-001",
+      "sku": "SPICES",
+      "mass_kg": 4.0,
+      "local_position_mm": [
+        0.0,
+        510.0,
+        300.0
+      ],
+      "size_mm": [
+        160,
+        220,
+        300
+      ],
+      "world_position_m": [
+        15.38,
+        0.62,
+        0.594
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0012_NUTS_001_NUTS",
+      "pallet_id": "10",
+      "identifier": "NUTS-001",
+      "sku": "NUTS",
+      "mass_kg": 5.5,
+      "local_position_mm": [
+        0.0,
+        260.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        220,
+        180
+      ],
+      "world_position_m": [
+        15.450000000000001,
+        0.37,
+        0.834
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0013_JAM_001_JAM",
+      "pallet_id": "10",
+      "identifier": "JAM-001",
+      "sku": "JAM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        600.0
+      ],
+      "size_mm": [
+        260,
+        330,
+        170
+      ],
+      "world_position_m": [
+        16.03,
+        0.5650000000000001,
+        0.829
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0014_CANDY_001_CANDY",
+      "pallet_id": "10",
+      "identifier": "CANDY-001",
+      "sku": "CANDY",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        16.05,
+        0.2,
+        0.854
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0015_BISCUIT_001_BISCUIT",
+      "pallet_id": "10",
+      "identifier": "BISCUIT-001",
+      "sku": "BISCUIT",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        250
+      ],
+      "world_position_m": [
+        16.349999999999998,
+        0.2,
+        0.869
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0016_SOAP_001_SOAP",
+      "pallet_id": "10",
+      "identifier": "SOAP-001",
+      "sku": "SOAP",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        900.0,
+        400.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        400,
+        220
+      ],
+      "world_position_m": [
+        16.349999999999998,
+        0.6000000000000001,
+        0.854
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0017_SHAMPOO_001_SHAMPOO",
+      "pallet_id": "10",
+      "identifier": "SHAMPOO-001",
+      "sku": "SHAMPOO",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        300,
+        240,
+        400
+      ],
+      "world_position_m": [
+        15.450000000000001,
+        0.12,
+        0.944
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0018_TOOTHP_001_TOOTHP",
+      "pallet_id": "10",
+      "identifier": "TOOTHP-001",
+      "sku": "TOOTHP",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        480.0,
+        600.0
+      ],
+      "size_mm": [
+        180,
+        300,
+        220
+      ],
+      "world_position_m": [
+        15.39,
+        0.63,
+        0.854
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0019_NAPKINS_001_NAPKINS",
+      "pallet_id": "10",
+      "identifier": "NAPKINS-001",
+      "sku": "NAPKINS",
+      "mass_kg": 3.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        770.0
+      ],
+      "size_mm": [
+        260,
+        400,
+        600
+      ],
+      "world_position_m": [
+        16.03,
+        0.6000000000000001,
+        1.214
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0020_PETLIT_001_PETLIT",
+      "pallet_id": "10",
+      "identifier": "PETLIT-001",
+      "sku": "PETLIT",
+      "mass_kg": 14.0,
+      "local_position_mm": [
+        900.0,
+        0.0,
+        850.0
+      ],
+      "size_mm": [
+        300,
+        450,
+        250
+      ],
+      "world_position_m": [
+        16.349999999999998,
+        0.225,
+        1.119
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p10_0021_BABYFOOD_001_BABYFOOD",
+      "pallet_id": "10",
+      "identifier": "BABYFOOD-001",
+      "sku": "BABYFOOD",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        820.0
+      ],
+      "size_mm": [
+        260,
+        340,
+        180
+      ],
+      "world_position_m": [
+        16.03,
+        0.17,
+        1.054
+      ]
+    }
+  ]
+}

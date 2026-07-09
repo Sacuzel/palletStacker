@@ -4,9 +4,9 @@
     <gravity>0 0 -9.81</gravity>
 
     <physics name="pallet_physics" type="ignored">
-      <max_step_size>0.5</max_step_size>
-      <real_time_factor>1</real_time_factor>
-      <real_time_update_rate>0</real_time_update_rate>
+      <max_step_size>0.005</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>200</real_time_update_rate>
       <max_contacts>30</max_contacts>
     </physics>
 
@@ -73,7 +73,7 @@
 
     <model name="pallet_01_P01">
       <static>false</static>
-      <pose>0.4 0.6 0.072 0 0 0</pose>
+      <pose>0.4 0.6 0.074 0 0 0</pose>
       <link name="body">
         <gravity>true</gravity>
         <inertial>
@@ -2233,7 +2233,7 @@
     </model>
     <model name="pallet_02_P02">
       <static>false</static>
-      <pose>1.7 0.6 0.072 0 0 0</pose>
+      <pose>1.7 0.6 0.074 0 0 0</pose>
       <link name="body">
         <gravity>true</gravity>
         <inertial>
@@ -5053,7 +5053,7 @@
     </model>
     <model name="pallet_03_P03">
       <static>false</static>
-      <pose>3 0.6 0.072 0 0 0</pose>
+      <pose>3 0.6 0.074 0 0 0</pose>
       <link name="body">
         <gravity>true</gravity>
         <inertial>
@@ -7393,7 +7393,7 @@
     </model>
     <model name="pallet_04_P04">
       <static>false</static>
-      <pose>4.3 0.6 0.072 0 0 0</pose>
+      <pose>4.3 0.6 0.074 0 0 0</pose>
       <link name="body">
         <gravity>true</gravity>
         <inertial>
