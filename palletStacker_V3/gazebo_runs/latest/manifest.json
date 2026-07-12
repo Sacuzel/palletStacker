@@ -1,0 +1,3320 @@
+{
+  "sdf_file": "pallet_towers.sdf",
+  "pallet_count": 4,
+  "box_count": 143,
+  "items": [
+    {
+      "type": "pallet",
+      "model_name": "pallet_01_P01",
+      "pallet_id": "P01",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0001_APPLES_001_APPLES",
+      "pallet_id": "P01",
+      "identifier": "APPLES-001",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0002_APPLES_002_APPLES",
+      "pallet_id": "P01",
+      "identifier": "APPLES-002",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.6000000000000001,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0003_APPLES_003_APPLES",
+      "pallet_id": "P01",
+      "identifier": "APPLES-003",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        0.3,
+        1.0,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0004_APPLES_004_APPLES",
+      "pallet_id": "P01",
+      "identifier": "APPLES-004",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        220.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0005_BANANA_001_BANANA",
+      "pallet_id": "P01",
+      "identifier": "BANANA-001",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        220.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        230.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.6000000000000001,
+        0.479
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0006_BANANA_002_BANANA",
+      "pallet_id": "P01",
+      "identifier": "BANANA-002",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        220.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        230.0
+      ],
+      "world_position_m": [
+        0.25,
+        1.0,
+        0.479
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0007_BANANA_003_BANANA",
+      "pallet_id": "P01",
+      "identifier": "BANANA-003",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        450.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        230.0
+      ],
+      "world_position_m": [
+        0.25,
+        1.0,
+        0.7090000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0008_BEER24_001_BEER24",
+      "pallet_id": "P01",
+      "identifier": "BEER24-001",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        130.0,
+        400.0,
+        265.0
+      ],
+      "world_position_m": [
+        0.665,
+        0.2,
+        0.2765
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0009_BEER24_002_BEER24",
+      "pallet_id": "P01",
+      "identifier": "BEER24-002",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        130.0,
+        400.0,
+        265.0
+      ],
+      "world_position_m": [
+        0.665,
+        0.6000000000000001,
+        0.2765
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0010_BEER24_003_BEER24",
+      "pallet_id": "P01",
+      "identifier": "BEER24-003",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        130.0,
+        400.0,
+        265.0
+      ],
+      "world_position_m": [
+        0.665,
+        1.0,
+        0.2765
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0011_BREAD_001_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-001",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        440.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        0.684
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0012_BREAD_002_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-002",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        450.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.6000000000000001,
+        0.6940000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0013_BREAD_003_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-003",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        640.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        0.884
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0014_BREAD_004_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-004",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        650.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.6000000000000001,
+        0.894
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0015_BREAD_005_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-005",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        265.0
+      ],
+      "size_mm": [
+        200.0,
+        600.0,
+        400.0
+      ],
+      "world_position_m": [
+        0.7,
+        0.3,
+        0.609
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0016_BREAD_006_BREAD",
+      "pallet_id": "P01",
+      "identifier": "BREAD-006",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        265.0
+      ],
+      "size_mm": [
+        200.0,
+        600.0,
+        400.0
+      ],
+      "world_position_m": [
+        0.7,
+        0.8999999999999999,
+        0.609
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0017_BUTTER_001_BUTTER",
+      "pallet_id": "P01",
+      "identifier": "BUTTER-001",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        680.0
+      ],
+      "size_mm": [
+        360.0,
+        240.0,
+        110.0
+      ],
+      "world_position_m": [
+        0.18,
+        0.92,
+        0.8790000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0018_BUTTER_002_BUTTER",
+      "pallet_id": "P01",
+      "identifier": "BUTTER-002",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        790.0
+      ],
+      "size_mm": [
+        360.0,
+        240.0,
+        110.0
+      ],
+      "world_position_m": [
+        0.18,
+        0.92,
+        0.9890000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0019_BUTTER_003_BUTTER",
+      "pallet_id": "P01",
+      "identifier": "BUTTER-003",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        500.0,
+        800.0,
+        665.0
+      ],
+      "size_mm": [
+        240.0,
+        360.0,
+        110.0
+      ],
+      "world_position_m": [
+        0.62,
+        0.98,
+        0.8640000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0020_CHIPS_001_CHIPS",
+      "pallet_id": "P01",
+      "identifier": "CHIPS-001",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        840.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.2,
+        1.159
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0021_CHIPS_002_CHIPS",
+      "pallet_id": "P01",
+      "identifier": "CHIPS-002",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        850.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_position_m": [
+        0.3,
+        0.6000000000000001,
+        1.169
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0022_CHIPS_003_CHIPS",
+      "pallet_id": "P01",
+      "identifier": "CHIPS-003",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        900.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_position_m": [
+        0.3,
+        1.0,
+        1.219
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0023_CHOCO_001_CHOCO",
+      "pallet_id": "P01",
+      "identifier": "CHOCO-001",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        665.0
+      ],
+      "size_mm": [
+        200.0,
+        290.0,
+        240.0
+      ],
+      "world_position_m": [
+        0.7,
+        0.145,
+        0.929
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0024_CHOCO_002_CHOCO",
+      "pallet_id": "P01",
+      "identifier": "CHOCO-002",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        600.0,
+        290.0,
+        665.0
+      ],
+      "size_mm": [
+        200.0,
+        290.0,
+        240.0
+      ],
+      "world_position_m": [
+        0.7,
+        0.43499999999999994,
+        0.929
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0025_COFFEE_001_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-001",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1190.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.15,
+        0.2,
+        1.459
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0026_COFFEE_002_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-002",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1190.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.44999999999999996,
+        0.2,
+        1.459
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0027_COFFEE_003_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-003",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.15,
+        0.6000000000000001,
+        1.4689999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0028_COFFEE_004_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-004",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.44999999999999996,
+        0.6000000000000001,
+        1.4689999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0029_COFFEE_005_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-005",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1440.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.15,
+        0.2,
+        1.709
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0030_COFFEE_006_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-006",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1440.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.44999999999999996,
+        0.2,
+        1.709
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0031_COFFEE_007_COFFEE",
+      "pallet_id": "P01",
+      "identifier": "COFFEE-007",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1450.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.15,
+        0.6000000000000001,
+        1.7189999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0032_DETERG_001_DETERG",
+      "pallet_id": "P01",
+      "identifier": "DETERG-001",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        1250.0
+      ],
+      "size_mm": [
+        320.0,
+        400.0,
+        280.0
+      ],
+      "world_position_m": [
+        0.16,
+        1.0,
+        1.5340000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0033_DETERG_002_DETERG",
+      "pallet_id": "P01",
+      "identifier": "DETERG-002",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        1450.0
+      ],
+      "size_mm": [
+        320.0,
+        400.0,
+        280.0
+      ],
+      "world_position_m": [
+        0.45999999999999996,
+        0.6000000000000001,
+        1.734
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0034_DIAPER_001_DIAPER",
+      "pallet_id": "P01",
+      "identifier": "DIAPER-001",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        1530.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        0.3,
+        1.0,
+        1.799
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0035_DOGFOOD_001_DOGFOOD",
+      "pallet_id": "P01",
+      "identifier": "DOGFOOD-001",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        775.0
+      ],
+      "size_mm": [
+        110.0,
+        340.0,
+        230.0
+      ],
+      "world_position_m": [
+        0.655,
+        0.9700000000000001,
+        1.034
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_02_P02",
+      "pallet_id": "P02",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0001_EGGS_001_EGGS",
+      "pallet_id": "P02",
+      "identifier": "EGGS-001",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        1.465,
+        0.15,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0002_EGGS_002_EGGS",
+      "pallet_id": "P02",
+      "identifier": "EGGS-002",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        330.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        1.7950000000000002,
+        0.15,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0003_EGGS_003_EGGS",
+      "pallet_id": "P02",
+      "identifier": "EGGS-003",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        1.465,
+        0.44999999999999996,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0004_EGGS_004_EGGS",
+      "pallet_id": "P02",
+      "identifier": "EGGS-004",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        330.0,
+        300.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        1.7950000000000002,
+        0.44999999999999996,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0005_FLOUR_001_FLOUR",
+      "pallet_id": "P02",
+      "identifier": "FLOUR-001",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        480.0,
+        320.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.54,
+        0.76,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0006_FLOUR_002_FLOUR",
+      "pallet_id": "P02",
+      "identifier": "FLOUR-002",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        480.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        320.0,
+        480.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.94,
+        0.84,
+        0.254
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0007_FLOUR_003_FLOUR",
+      "pallet_id": "P02",
+      "identifier": "FLOUR-003",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        220.0
+      ],
+      "size_mm": [
+        480.0,
+        320.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.54,
+        0.76,
+        0.474
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0008_HONEY_001_HONEY",
+      "pallet_id": "P02",
+      "identifier": "HONEY-001",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        920.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        260.0,
+        170.0
+      ],
+      "world_position_m": [
+        1.465,
+        1.05,
+        0.22900000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0009_HONEY_002_HONEY",
+      "pallet_id": "P02",
+      "identifier": "HONEY-002",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        920.0,
+        170.0
+      ],
+      "size_mm": [
+        330.0,
+        260.0,
+        170.0
+      ],
+      "world_position_m": [
+        1.465,
+        1.05,
+        0.3990000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0010_ICECRM_001_ICECRM",
+      "pallet_id": "P02",
+      "identifier": "ICECRM-001",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        480.0,
+        600.0,
+        220.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.93,
+        0.8,
+        0.46399999999999997
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0011_ICECRM_002_ICECRM",
+      "pallet_id": "P02",
+      "identifier": "ICECRM-002",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        280.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.15,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0012_ICECRM_003_ICECRM",
+      "pallet_id": "P02",
+      "identifier": "ICECRM-003",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        280.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.44999999999999996,
+        0.524
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0013_ONION_001_ONION",
+      "pallet_id": "P02",
+      "identifier": "ONION-001",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        280.0
+      ],
+      "size_mm": [
+        350.0,
+        500.0,
+        250.0
+      ],
+      "world_position_m": [
+        1.8750000000000002,
+        0.25,
+        0.549
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0014_ONION_002_ONION",
+      "pallet_id": "P02",
+      "identifier": "ONION-002",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        530.0
+      ],
+      "size_mm": [
+        350.0,
+        500.0,
+        250.0
+      ],
+      "world_position_m": [
+        1.8750000000000002,
+        0.25,
+        0.799
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0015_POTATO_001_POTATO",
+      "pallet_id": "P02",
+      "identifier": "POTATO-001",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        480.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.3,
+        0.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0016_POTATO_002_POTATO",
+      "pallet_id": "P02",
+      "identifier": "POTATO-002",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        680.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.3,
+        0.924
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0017_POTATO_003_POTATO",
+      "pallet_id": "P02",
+      "identifier": "POTATO-003",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        440.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.8999999999999999,
+        0.684
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0018_RICE_001_RICE",
+      "pallet_id": "P02",
+      "identifier": "RICE-001",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        480.0,
+        560.0,
+        420.0
+      ],
+      "size_mm": [
+        300.0,
+        440.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.93,
+        0.78,
+        0.664
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0019_RICE_002_RICE",
+      "pallet_id": "P02",
+      "identifier": "RICE-002",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        480.0,
+        560.0,
+        620.0
+      ],
+      "size_mm": [
+        300.0,
+        440.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.93,
+        0.78,
+        0.864
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0020_RICE_003_RICE",
+      "pallet_id": "P02",
+      "identifier": "RICE-003",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        640.0
+      ],
+      "size_mm": [
+        440.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.52,
+        0.75,
+        0.884
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0021_RICE_004_RICE",
+      "pallet_id": "P02",
+      "identifier": "RICE-004",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        840.0
+      ],
+      "size_mm": [
+        440.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.52,
+        0.75,
+        1.084
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0022_SUGAR_001_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-001",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        780.0
+      ],
+      "size_mm": [
+        230.0,
+        310.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.8150000000000002,
+        0.155,
+        1.034
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0023_SUGAR_002_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-002",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        310.0,
+        780.0
+      ],
+      "size_mm": [
+        310.0,
+        230.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.8550000000000002,
+        0.425,
+        1.034
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0024_SUGAR_003_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-003",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        490.0,
+        600.0,
+        820.0
+      ],
+      "size_mm": [
+        310.0,
+        230.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.945,
+        0.715,
+        1.074
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0025_SUGAR_004_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-004",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        230.0,
+        310.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.8150000000000002,
+        0.155,
+        1.2540000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0026_TEA_001_TEA",
+      "pallet_id": "P02",
+      "identifier": "TEA-001",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        440.0,
+        830.0,
+        820.0
+      ],
+      "size_mm": [
+        360.0,
+        240.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.92,
+        0.9500000000000001,
+        1.064
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0027_TEA_002_TEA",
+      "pallet_id": "P02",
+      "identifier": "TEA-002",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        880.0
+      ],
+      "size_mm": [
+        360.0,
+        240.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.48,
+        0.12,
+        1.124
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0028_WINE_001_WINE",
+      "pallet_id": "P02",
+      "identifier": "WINE-001",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        880.0
+      ],
+      "size_mm": [
+        340.0,
+        320.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.47,
+        0.4,
+        1.154
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0029_WINE_002_WINE",
+      "pallet_id": "P02",
+      "identifier": "WINE-002",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        240.0,
+        1140.0
+      ],
+      "size_mm": [
+        340.0,
+        320.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.47,
+        0.4,
+        1.4140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0030_WINE_003_WINE",
+      "pallet_id": "P02",
+      "identifier": "WINE-003",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        560.0,
+        1040.0
+      ],
+      "size_mm": [
+        320.0,
+        340.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.46,
+        0.7300000000000001,
+        1.314
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0031_YOGURT_001_YOGURT",
+      "pallet_id": "P02",
+      "identifier": "YOGURT-001",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        1080.0,
+        0.0
+      ],
+      "size_mm": [
+        390.0,
+        100.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.8950000000000002,
+        1.1300000000000001,
+        0.274
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0032_YOGURT_002_YOGURT",
+      "pallet_id": "P02",
+      "identifier": "YOGURT-002",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        1080.0,
+        260.0
+      ],
+      "size_mm": [
+        390.0,
+        100.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.8950000000000002,
+        1.1300000000000001,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0033_YOGURT_003_YOGURT",
+      "pallet_id": "P02",
+      "identifier": "YOGURT-003",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        1080.0,
+        520.0
+      ],
+      "size_mm": [
+        390.0,
+        100.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.8950000000000002,
+        1.1300000000000001,
+        0.794
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0034_YOGURT_004_YOGURT",
+      "pallet_id": "P02",
+      "identifier": "YOGURT-004",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        1080.0,
+        780.0
+      ],
+      "size_mm": [
+        390.0,
+        100.0,
+        260.0
+      ],
+      "world_position_m": [
+        1.8950000000000002,
+        1.1300000000000001,
+        1.054
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0035_DIAPER_002_DIAPER",
+      "pallet_id": "P02",
+      "identifier": "DIAPER-002",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        320.0,
+        600.0,
+        1040.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        250.0
+      ],
+      "world_position_m": [
+        1.82,
+        0.8999999999999999,
+        1.3090000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0036_SUGAR_008_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-008",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        310.0,
+        1000.0
+      ],
+      "size_mm": [
+        310.0,
+        230.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.8550000000000002,
+        0.425,
+        1.2540000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0037_COFFEE_013_COFFEE",
+      "pallet_id": "P02",
+      "identifier": "COFFEE-013",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        340.0,
+        0.0,
+        1220.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        1.79,
+        0.2,
+        1.4889999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0038_APPLES_008_APPLES",
+      "pallet_id": "P02",
+      "identifier": "APPLES-008",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        320.0,
+        600.0,
+        1290.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.82,
+        0.8999999999999999,
+        1.5440000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0039_APPLES_007_APPLES",
+      "pallet_id": "P02",
+      "identifier": "APPLES-007",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        320.0,
+        600.0,
+        1510.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.82,
+        0.8999999999999999,
+        1.764
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0040_ICECRM_004_ICECRM",
+      "pallet_id": "P02",
+      "identifier": "ICECRM-004",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1080.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.45,
+        0.1,
+        1.4240000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0041_BEER24_005_BEER24",
+      "pallet_id": "P02",
+      "identifier": "BEER24-005",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        560.0,
+        1300.0
+      ],
+      "size_mm": [
+        260.0,
+        400.0,
+        130.0
+      ],
+      "world_position_m": [
+        1.4300000000000002,
+        0.76,
+        1.509
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0042_ICECRM_005_ICECRM",
+      "pallet_id": "P02",
+      "identifier": "ICECRM-005",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        340.0,
+        400.0,
+        1220.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        1.84,
+        0.5,
+        1.5139999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0043_HONEY_004_HONEY",
+      "pallet_id": "P02",
+      "identifier": "HONEY-004",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        1400.0
+      ],
+      "size_mm": [
+        330.0,
+        260.0,
+        170.0
+      ],
+      "world_position_m": [
+        1.465,
+        0.43,
+        1.629
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0044_CHOCO_004_CHOCO",
+      "pallet_id": "P02",
+      "identifier": "CHOCO-004",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        1430.0
+      ],
+      "size_mm": [
+        240.0,
+        290.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.42,
+        0.745,
+        1.674
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0045_SUGAR_005_SUGAR",
+      "pallet_id": "P02",
+      "identifier": "SUGAR-005",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1470.0
+      ],
+      "size_mm": [
+        230.0,
+        310.0,
+        220.0
+      ],
+      "world_position_m": [
+        1.8150000000000002,
+        0.155,
+        1.724
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0046_RICE_008_RICE",
+      "pallet_id": "P02",
+      "identifier": "RICE-008",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        0.0,
+        160.0,
+        1570.0
+      ],
+      "size_mm": [
+        300.0,
+        440.0,
+        200.0
+      ],
+      "world_position_m": [
+        1.45,
+        0.38,
+        1.814
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_03_P03",
+      "pallet_id": "P03",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0001_POTATO_005_POTATO",
+      "pallet_id": "P03",
+      "identifier": "POTATO-005",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        2.9,
+        0.2,
+        0.24400000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0002_BANANA_006_BANANA",
+      "pallet_id": "P03",
+      "identifier": "BANANA-006",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        230.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.6000000000000001,
+        0.259
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0003_CHIPS_004_CHIPS",
+      "pallet_id": "P03",
+      "identifier": "CHIPS-004",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_position_m": [
+        2.9,
+        1.0,
+        0.31900000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0004_BANANA_005_BANANA",
+      "pallet_id": "P03",
+      "identifier": "BANANA-005",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        230.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        230.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.6000000000000001,
+        0.489
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0005_YOGURT_009_YOGURT",
+      "pallet_id": "P03",
+      "identifier": "YOGURT-009",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        260.0,
+        390.0,
+        100.0
+      ],
+      "world_position_m": [
+        3.23,
+        0.595,
+        0.194
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0006_BUTTER_006_BUTTER",
+      "pallet_id": "P03",
+      "identifier": "BUTTER-006",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        100.0
+      ],
+      "size_mm": [
+        240.0,
+        360.0,
+        110.0
+      ],
+      "world_position_m": [
+        3.22,
+        0.5800000000000001,
+        0.29900000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0007_DIAPER_003_DIAPER",
+      "pallet_id": "P03",
+      "identifier": "DIAPER-003",
+      "sku": "DIAPER",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        2.9,
+        0.2,
+        0.46900000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0008_FLOUR_004_FLOUR",
+      "pallet_id": "P03",
+      "identifier": "FLOUR-004",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        350.0
+      ],
+      "size_mm": [
+        480.0,
+        320.0,
+        220.0
+      ],
+      "world_position_m": [
+        2.84,
+        0.9600000000000001,
+        0.6040000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0009_FLOUR_005_FLOUR",
+      "pallet_id": "P03",
+      "identifier": "FLOUR-005",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        570.0
+      ],
+      "size_mm": [
+        480.0,
+        320.0,
+        220.0
+      ],
+      "world_position_m": [
+        2.84,
+        0.9600000000000001,
+        0.8240000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0010_ONION_003_ONION",
+      "pallet_id": "P03",
+      "identifier": "ONION-003",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        450.0
+      ],
+      "size_mm": [
+        500.0,
+        350.0,
+        250.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.17500000000000002,
+        0.7190000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0011_BUTTER_005_BUTTER",
+      "pallet_id": "P03",
+      "identifier": "BUTTER-005",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        210.0
+      ],
+      "size_mm": [
+        240.0,
+        360.0,
+        110.0
+      ],
+      "world_position_m": [
+        3.22,
+        0.5800000000000001,
+        0.409
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0012_WINE_006_WINE",
+      "pallet_id": "P03",
+      "identifier": "WINE-006",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        320.0
+      ],
+      "size_mm": [
+        260.0,
+        340.0,
+        320.0
+      ],
+      "world_position_m": [
+        3.23,
+        0.5700000000000001,
+        0.624
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0013_POTATO_004_POTATO",
+      "pallet_id": "P03",
+      "identifier": "POTATO-004",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        600.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.2,
+        0.444
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0014_RICE_007_RICE",
+      "pallet_id": "P03",
+      "identifier": "RICE-007",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        600.0,
+        790.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        440.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.9400000000000001,
+        0.364
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0015_CHIPS_005_CHIPS",
+      "pallet_id": "P03",
+      "identifier": "CHIPS-005",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        460.0
+      ],
+      "size_mm": [
+        350.0,
+        400.0,
+        600.0
+      ],
+      "world_position_m": [
+        2.775,
+        0.6000000000000001,
+        0.9040000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0016_BUTTER_004_BUTTER",
+      "pallet_id": "P03",
+      "identifier": "BUTTER-004",
+      "sku": "BUTTER",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        480.0,
+        800.0,
+        350.0
+      ],
+      "size_mm": [
+        110.0,
+        360.0,
+        240.0
+      ],
+      "world_position_m": [
+        3.1350000000000002,
+        0.98,
+        0.6140000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0017_BREAD_008_BREAD",
+      "pallet_id": "P03",
+      "identifier": "BREAD-008",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        2.9,
+        0.2,
+        0.9440000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0018_POTATO_006_POTATO",
+      "pallet_id": "P03",
+      "identifier": "POTATO-006",
+      "sku": "POTATO",
+      "mass_kg": 25.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        600.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.2,
+        1.044
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0019_BREAD_010_BREAD",
+      "pallet_id": "P03",
+      "identifier": "BREAD-010",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        900.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        2.9,
+        0.2,
+        1.1440000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0020_SUGAR_006_SUGAR",
+      "pallet_id": "P03",
+      "identifier": "SUGAR-006",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        640.0
+      ],
+      "size_mm": [
+        230.0,
+        310.0,
+        220.0
+      ],
+      "world_position_m": [
+        3.2150000000000003,
+        0.555,
+        0.894
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0021_COFFEE_010_COFFEE",
+      "pallet_id": "P03",
+      "identifier": "COFFEE-010",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        790.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        250.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.9500000000000001,
+        1.0590000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0022_BREAD_007_BREAD",
+      "pallet_id": "P03",
+      "identifier": "BREAD-007",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        600.0,
+        740.0,
+        440.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        600.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.94,
+        0.8840000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0023_YOGURT_008_YOGURT",
+      "pallet_id": "P03",
+      "identifier": "YOGURT-008",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        350.0,
+        400.0,
+        460.0
+      ],
+      "size_mm": [
+        100.0,
+        390.0,
+        260.0
+      ],
+      "world_position_m": [
+        3.0,
+        0.595,
+        0.7340000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0024_BREAD_009_BREAD",
+      "pallet_id": "P03",
+      "identifier": "BREAD-009",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1100.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        2.9,
+        0.2,
+        1.3440000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0025_RICE_006_RICE",
+      "pallet_id": "P03",
+      "identifier": "RICE-006",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        350.0,
+        400.0,
+        860.0
+      ],
+      "size_mm": [
+        440.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        3.1700000000000004,
+        0.55,
+        1.104
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0026_APPLES_006_APPLES",
+      "pallet_id": "P03",
+      "identifier": "APPLES-006",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        1040.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        2.9,
+        1.0,
+        1.2940000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0027_HONEY_003_HONEY",
+      "pallet_id": "P03",
+      "identifier": "HONEY-003",
+      "sku": "HONEY",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1060.0
+      ],
+      "size_mm": [
+        330.0,
+        260.0,
+        170.0
+      ],
+      "world_position_m": [
+        2.765,
+        0.53,
+        1.2890000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0028_RICE_005_RICE",
+      "pallet_id": "P03",
+      "identifier": "RICE-005",
+      "sku": "RICE",
+      "mass_kg": 20.0,
+      "local_position_mm": [
+        350.0,
+        400.0,
+        1060.0
+      ],
+      "size_mm": [
+        440.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        3.1700000000000004,
+        0.55,
+        1.3040000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0029_APPLES_009_APPLES",
+      "pallet_id": "P03",
+      "identifier": "APPLES-009",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        1260.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        2.9,
+        1.0,
+        1.514
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0030_YOGURT_007_YOGURT",
+      "pallet_id": "P03",
+      "identifier": "YOGURT-007",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1060.0
+      ],
+      "size_mm": [
+        390.0,
+        100.0,
+        260.0
+      ],
+      "world_position_m": [
+        2.795,
+        0.7500000000000001,
+        1.334
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0031_FLOUR_006_FLOUR",
+      "pallet_id": "P03",
+      "identifier": "FLOUR-006",
+      "sku": "FLOUR",
+      "mass_kg": 15.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        480.0,
+        320.0,
+        220.0
+      ],
+      "world_position_m": [
+        2.84,
+        0.16,
+        1.554
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0032_BREAD_012_BREAD",
+      "pallet_id": "P03",
+      "identifier": "BREAD-012",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        600.0,
+        740.0,
+        1040.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        600.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.94,
+        1.4840000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0033_EGGS_005_EGGS",
+      "pallet_id": "P03",
+      "identifier": "EGGS-005",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1230.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        2.765,
+        0.55,
+        1.5140000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0034_WINE_004_WINE",
+      "pallet_id": "P03",
+      "identifier": "WINE-004",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        480.0,
+        400.0,
+        1260.0
+      ],
+      "size_mm": [
+        320.0,
+        340.0,
+        260.0
+      ],
+      "world_position_m": [
+        3.24,
+        0.5700000000000001,
+        1.5339999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0035_TEA_004_TEA",
+      "pallet_id": "P03",
+      "identifier": "TEA-004",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1200.0
+      ],
+      "size_mm": [
+        200.0,
+        360.0,
+        240.0
+      ],
+      "world_position_m": [
+        3.3000000000000003,
+        0.18,
+        1.464
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0036_COFFEE_014_COFFEE",
+      "pallet_id": "P03",
+      "identifier": "COFFEE-014",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        500.0,
+        0.0,
+        1440.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        3.25,
+        0.2,
+        1.709
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0037_BEER24_004_BEER24",
+      "pallet_id": "P03",
+      "identifier": "BEER24-004",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        1480.0
+      ],
+      "size_mm": [
+        400.0,
+        260.0,
+        130.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.93,
+        1.689
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0038_ICECRM_006_ICECRM",
+      "pallet_id": "P03",
+      "identifier": "ICECRM-006",
+      "sku": "ICECRM",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1520.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.15,
+        1.7640000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_04_P04",
+      "pallet_id": "P04",
+      "mass_kg": 25.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0001_BREAD_011_BREAD",
+      "pallet_id": "P04",
+      "identifier": "BREAD-011",
+      "sku": "BREAD",
+      "mass_kg": 4.5,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.2,
+        0.2,
+        0.24400000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0002_COFFEE_011_COFFEE",
+      "pallet_id": "P04",
+      "identifier": "COFFEE-011",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        250.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.55,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0003_YOGURT_005_YOGURT",
+      "pallet_id": "P04",
+      "identifier": "YOGURT-005",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        390.0,
+        260.0,
+        100.0
+      ],
+      "world_position_m": [
+        4.495,
+        0.53,
+        0.194
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0004_ONION_004_ONION",
+      "pallet_id": "P04",
+      "identifier": "ONION-004",
+      "sku": "ONION",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        0.0
+      ],
+      "size_mm": [
+        350.0,
+        500.0,
+        250.0
+      ],
+      "world_position_m": [
+        4.075,
+        0.9500000000000001,
+        0.269
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0005_YOGURT_006_YOGURT",
+      "pallet_id": "P04",
+      "identifier": "YOGURT-006",
+      "sku": "YOGURT",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        100.0
+      ],
+      "size_mm": [
+        390.0,
+        260.0,
+        100.0
+      ],
+      "world_position_m": [
+        4.495,
+        0.53,
+        0.29400000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0006_EGGS_007_EGGS",
+      "pallet_id": "P04",
+      "identifier": "EGGS-007",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        400.0,
+        660.0,
+        0.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.465,
+        0.81,
+        0.28400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0007_BEER24_006_BEER24",
+      "pallet_id": "P04",
+      "identifier": "BEER24-006",
+      "sku": "BEER24",
+      "mass_kg": 9.0,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        130.0,
+        400.0,
+        265.0
+      ],
+      "world_position_m": [
+        4.565,
+        0.2,
+        0.2765
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0008_WINE_005_WINE",
+      "pallet_id": "P04",
+      "identifier": "WINE-005",
+      "sku": "WINE",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        340.0,
+        320.0,
+        260.0
+      ],
+      "world_position_m": [
+        4.07,
+        0.16,
+        0.47400000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0009_CHOCO_003_CHOCO",
+      "pallet_id": "P04",
+      "identifier": "CHOCO-003",
+      "sku": "CHOCO",
+      "mass_kg": 6.0,
+      "local_position_mm": [
+        350.0,
+        960.0,
+        0.0
+      ],
+      "size_mm": [
+        290.0,
+        240.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.395,
+        1.08,
+        0.24400000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0010_COFFEE_009_COFFEE",
+      "pallet_id": "P04",
+      "identifier": "COFFEE-009",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        250.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        250.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.55,
+        0.519
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0011_DOGFOOD_003_DOGFOOD",
+      "pallet_id": "P04",
+      "identifier": "DOGFOOD-003",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        340.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        230.0,
+        340.0,
+        110.0
+      ],
+      "world_position_m": [
+        4.355,
+        0.17,
+        0.399
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0012_TEA_003_TEA",
+      "pallet_id": "P04",
+      "identifier": "TEA-003",
+      "sku": "TEA",
+      "mass_kg": 5.0,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "size_mm": [
+        360.0,
+        240.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.4799999999999995,
+        0.52,
+        0.44400000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0013_APPLES_005_APPLES",
+      "pallet_id": "P04",
+      "identifier": "APPLES-005",
+      "sku": "APPLES",
+      "mass_kg": 12.0,
+      "local_position_mm": [
+        200.0,
+        700.0,
+        280.0
+      ],
+      "size_mm": [
+        600.0,
+        400.0,
+        220.0
+      ],
+      "world_position_m": [
+        4.3999999999999995,
+        0.9000000000000001,
+        0.534
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0014_DOGFOOD_002_DOGFOOD",
+      "pallet_id": "P04",
+      "identifier": "DOGFOOD-002",
+      "sku": "DOGFOOD",
+      "mass_kg": 8.0,
+      "local_position_mm": [
+        340.0,
+        0.0,
+        310.0
+      ],
+      "size_mm": [
+        230.0,
+        340.0,
+        110.0
+      ],
+      "world_position_m": [
+        4.355,
+        0.17,
+        0.509
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0015_DETERG_004_DETERG",
+      "pallet_id": "P04",
+      "identifier": "DETERG-004",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        400.0,
+        340.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        320.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.5,
+        0.5,
+        0.684
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0016_CHIPS_006_CHIPS",
+      "pallet_id": "P04",
+      "identifier": "CHIPS-006",
+      "sku": "CHIPS",
+      "mass_kg": 3.5,
+      "local_position_mm": [
+        0.0,
+        100.0,
+        500.0
+      ],
+      "size_mm": [
+        400.0,
+        600.0,
+        350.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.4,
+        0.8190000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0017_EGGS_006_EGGS",
+      "pallet_id": "P04",
+      "identifier": "EGGS-006",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        420.0
+      ],
+      "size_mm": [
+        300.0,
+        330.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.45,
+        0.165,
+        0.7040000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0018_EGGS_008_EGGS",
+      "pallet_id": "P04",
+      "identifier": "EGGS-008",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        400.0,
+        660.0,
+        500.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.465,
+        0.81,
+        0.784
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0019_SUGAR_007_SUGAR",
+      "pallet_id": "P04",
+      "identifier": "SUGAR-007",
+      "sku": "SUGAR",
+      "mass_kg": 10.0,
+      "local_position_mm": [
+        400.0,
+        430.0,
+        680.0
+      ],
+      "size_mm": [
+        310.0,
+        230.0,
+        220.0
+      ],
+      "world_position_m": [
+        4.455,
+        0.545,
+        0.934
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0020_BANANA_004_BANANA",
+      "pallet_id": "P04",
+      "identifier": "BANANA-004",
+      "sku": "BANANA",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        400.0,
+        660.0,
+        780.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        230.0
+      ],
+      "world_position_m": [
+        4.5,
+        0.91,
+        1.0390000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0021_COFFEE_008_COFFEE",
+      "pallet_id": "P04",
+      "identifier": "COFFEE-008",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        250.0
+      ],
+      "world_position_m": [
+        4.45,
+        0.2,
+        0.9690000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0022_COFFEE_012_COFFEE",
+      "pallet_id": "P04",
+      "identifier": "COFFEE-012",
+      "sku": "COFFEE",
+      "mass_kg": 13.0,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        850.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        250.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.55,
+        1.119
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0023_DETERG_003_DETERG",
+      "pallet_id": "P04",
+      "identifier": "DETERG-003",
+      "sku": "DETERG",
+      "mass_kg": 7.0,
+      "local_position_mm": [
+        250.0,
+        0.0,
+        950.0
+      ],
+      "size_mm": [
+        320.0,
+        400.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.3100000000000005,
+        0.2,
+        1.234
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0024_EGGS_009_EGGS",
+      "pallet_id": "P04",
+      "identifier": "EGGS-009",
+      "sku": "EGGS",
+      "mass_kg": 18.0,
+      "local_position_mm": [
+        400.0,
+        660.0,
+        1010.0
+      ],
+      "size_mm": [
+        330.0,
+        300.0,
+        280.0
+      ],
+      "world_position_m": [
+        4.465,
+        0.81,
+        1.294
+      ]
+    }
+  ]
+}

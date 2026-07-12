@@ -1,0 +1,3009 @@
+{
+  "format_version": 1,
+  "units": {
+    "dimensions": "mm",
+    "weight": "kg"
+  },
+  "boxes": [
+    {
+      "identifier": "WINE-001",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-002",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-003",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-004",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-005",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-006",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-007",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "DETERG-001",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-002",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-003",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-004",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-005",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-006",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DETERG-007",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "APPLES-001",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-002",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-003",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-004",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-005",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-006",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-007",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "EGGS-001",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-002",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-003",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-004",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-005",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-006",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "EGGS-007",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "SUGAR-001",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-002",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-003",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-004",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-005",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-006",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "SUGAR-007",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "FLOUR-001",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-002",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-003",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-004",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-005",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-006",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "FLOUR-007",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "BREAD-001",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-002",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-003",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-004",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-005",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-006",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BREAD-007",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BANANA-001",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-002",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-003",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-004",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-005",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-006",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BANANA-007",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "COFFEE-001",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-002",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-003",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-004",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-005",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-006",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-007",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "CHOCO-001",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-002",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-003",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-004",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-005",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-006",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "CHOCO-007",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "ONION-001",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-002",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-003",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-004",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-005",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-006",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "ONION-007",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "HONEY-001",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-002",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-003",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-004",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-005",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-006",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "HONEY-007",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "YOGURT-001",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-002",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-003",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-004",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-005",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-006",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-007",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BUTTER-001",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-002",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-003",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-004",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-005",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-006",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BUTTER-007",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHIPS-001",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-002",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-003",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-004",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-005",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-006",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHIPS-007",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "POTATO-001",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "POTATO-002",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "POTATO-003",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "POTATO-004",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "POTATO-005",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "POTATO-006",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "ICECRM-001",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "ICECRM-002",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "ICECRM-003",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "ICECRM-004",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "ICECRM-005",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "ICECRM-006",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "RICE-001",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "RICE-002",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "RICE-003",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "RICE-004",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "RICE-005",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "RICE-006",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "DIAPER-001",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DIAPER-002",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DIAPER-003",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DIAPER-004",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DIAPER-005",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "DIAPER-006",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "TEA-001",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "TEA-002",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "TEA-003",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "TEA-004",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "TEA-005",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "TEA-006",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BEER24-001",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "BEER24-002",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "BEER24-003",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "BEER24-004",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "BEER24-005",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "BEER24-006",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "DOGFOOD-001",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "DOGFOOD-002",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "DOGFOOD-003",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "DOGFOOD-004",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "DOGFOOD-005",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "DOGFOOD-006",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "MILK12-001",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "MILK12-002",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "MILK12-003",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "MILK12-004",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "MILK12-005",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "MILK12-006",
+      "sku": "MILK12",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 12.5
+    },
+    {
+      "identifier": "WATER24-001",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER24-002",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER24-003",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER24-004",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER24-005",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER24-006",
+      "sku": "WATER24",
+      "dimensions_mm": [
+        400,
+        300,
+        270
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COLA24-001",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "COLA24-002",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "COLA24-003",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "COLA24-004",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "COLA24-005",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "COLA24-006",
+      "sku": "COLA24",
+      "dimensions_mm": [
+        400,
+        300,
+        260
+      ],
+      "weight_kg": 13.5
+    },
+    {
+      "identifier": "PASTA-001",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-002",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-003",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-004",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-005",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-006",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        390,
+        290,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "TOMATO-001",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "TOMATO-002",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "TOMATO-003",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "TOMATO-004",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "TOMATO-005",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "TOMATO-006",
+      "sku": "TOMATO",
+      "dimensions_mm": [
+        380,
+        280,
+        210
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "CEREAL-001",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-002",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-003",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-004",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-005",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-006",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "OATS-001",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "OATS-002",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "OATS-003",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "OATS-004",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "OATS-005",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "OATS-006",
+      "sku": "OATS",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "CHEESE-001",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "CHEESE-002",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "CHEESE-003",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "CHEESE-004",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "CHEESE-005",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "CHEESE-006",
+      "sku": "CHEESE",
+      "dimensions_mm": [
+        400,
+        300,
+        160
+      ],
+      "weight_kg": 9.5
+    },
+    {
+      "identifier": "FRZVEG-001",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "FRZVEG-002",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "FRZVEG-003",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "FRZVEG-004",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "FRZVEG-005",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "FRZVEG-006",
+      "sku": "FRZVEG",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "PIZZA-001",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "PIZZA-002",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "PIZZA-003",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "PIZZA-004",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "PIZZA-005",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "PIZZA-006",
+      "sku": "PIZZA",
+      "dimensions_mm": [
+        600,
+        400,
+        180
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "SALMON-001",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SALMON-002",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SALMON-003",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SALMON-004",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SALMON-005",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SALMON-006",
+      "sku": "SALMON",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "CHICKEN-001",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHICKEN-002",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHICKEN-003",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHICKEN-004",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHICKEN-005",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CHICKEN-006",
+      "sku": "CHICKEN",
+      "dimensions_mm": [
+        500,
+        300,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BEEF-001",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEEF-002",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEEF-003",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEEF-004",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEEF-005",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEEF-006",
+      "sku": "BEEF",
+      "dimensions_mm": [
+        400,
+        300,
+        170
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-001",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-002",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-003",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-004",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-005",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CARROT-006",
+      "sku": "CARROT",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CUCUMBER-001",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CUCUMBER-002",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CUCUMBER-003",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CUCUMBER-004",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CUCUMBER-005",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CUCUMBER-006",
+      "sku": "CUCUMBER",
+      "dimensions_mm": [
+        500,
+        300,
+        220
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "LETTUCE-001",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "LETTUCE-002",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "LETTUCE-003",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "LETTUCE-004",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "LETTUCE-005",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "LETTUCE-006",
+      "sku": "LETTUCE",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "ORANGE-001",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "ORANGE-002",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "ORANGE-003",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "ORANGE-004",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "ORANGE-005",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "ORANGE-006",
+      "sku": "ORANGE",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "PEAR-001",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "PEAR-002",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "PEAR-003",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "PEAR-004",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "PEAR-005",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "PEAR-006",
+      "sku": "PEAR",
+      "dimensions_mm": [
+        500,
+        400,
+        220
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "AVOCADO-001",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "AVOCADO-002",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "AVOCADO-003",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "AVOCADO-004",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "AVOCADO-005",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "AVOCADO-006",
+      "sku": "AVOCADO",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 6.5
+    },
+    {
+      "identifier": "SOUP-001",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "SOUP-002",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "SOUP-003",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "SOUP-004",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "SOUP-005",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "SOUP-006",
+      "sku": "SOUP",
+      "dimensions_mm": [
+        400,
+        300,
+        190
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "BEANS-001",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "BEANS-002",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "BEANS-003",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "BEANS-004",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "BEANS-005",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "BEANS-006",
+      "sku": "BEANS",
+      "dimensions_mm": [
+        400,
+        300,
+        180
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "TUNA-001",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TUNA-002",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TUNA-003",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TUNA-004",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TUNA-005",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TUNA-006",
+      "sku": "TUNA",
+      "dimensions_mm": [
+        340,
+        260,
+        160
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "PAPER-001",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "PAPER-002",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "PAPER-003",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "PAPER-004",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "PAPER-005",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "PAPER-006",
+      "sku": "PAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        300
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "OLIVEOIL-001",
+      "sku": "OLIVEOIL",
+      "dimensions_mm": [
+        300,
+        220,
+        260
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "VINEGAR-001",
+      "sku": "VINEGAR",
+      "dimensions_mm": [
+        300,
+        220,
+        250
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "MAYO-001",
+      "sku": "MAYO",
+      "dimensions_mm": [
+        360,
+        240,
+        170
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "KETCHUP-001",
+      "sku": "KETCHUP",
+      "dimensions_mm": [
+        360,
+        240,
+        180
+      ],
+      "weight_kg": 8.5
+    },
+    {
+      "identifier": "SPICES-001",
+      "sku": "SPICES",
+      "dimensions_mm": [
+        300,
+        220,
+        160
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "NUTS-001",
+      "sku": "NUTS",
+      "dimensions_mm": [
+        300,
+        220,
+        180
+      ],
+      "weight_kg": 5.5
+    },
+    {
+      "identifier": "JAM-001",
+      "sku": "JAM",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "CANDY-001",
+      "sku": "CANDY",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BISCUIT-001",
+      "sku": "BISCUIT",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "SOAP-001",
+      "sku": "SOAP",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "SHAMPOO-001",
+      "sku": "SHAMPOO",
+      "dimensions_mm": [
+        400,
+        300,
+        240
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "TOOTHP-001",
+      "sku": "TOOTHP",
+      "dimensions_mm": [
+        300,
+        220,
+        180
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "NAPKINS-001",
+      "sku": "NAPKINS",
+      "dimensions_mm": [
+        600,
+        400,
+        260
+      ],
+      "weight_kg": 3.0
+    },
+    {
+      "identifier": "PETLIT-001",
+      "sku": "PETLIT",
+      "dimensions_mm": [
+        450,
+        300,
+        250
+      ],
+      "weight_kg": 14.0
+    },
+    {
+      "identifier": "BABYFOOD-001",
+      "sku": "BABYFOOD",
+      "dimensions_mm": [
+        340,
+        260,
+        180
+      ],
+      "weight_kg": 9.0
+    }
+  ]
+}
