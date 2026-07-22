@@ -1,4 +1,7 @@
-def calculate_local_evaluation_score(state, box, drop_position, largest_box_volume, weights):
+from stable_stacking.box import Box
+from stable_stacking.utils.state import State
+
+def calculate_local_evaluation_score(state: State, box: Box, drop_position: tuple, weights: dict) -> float:
     """
     Calculates a local evaluation score for placing a box at a given drop position in the current state.
     The score is based on factors such as stability, weight distribution, and height constraints.
@@ -34,7 +37,11 @@ def calculate_local_evaluation_score(state, box, drop_position, largest_box_volu
     sides_supported = calculate_number_of_sides_supported(state, box, drop_position)
     surface_support_area = calculate_surface_support_area(state, box, drop_position)
     base_height = calculate_base_height(state, box, drop_position)
-    largest_box_volume = max(box.length * box.width * box.height for box in state._box_data)  # Assuming state has access to box data
+    all_boxes_in_state = state.get_all_boxes_in_state()
+    if len(all_boxes_in_state) == 0:
+        largest_box_volume = box.length * box.width * box.height
+    else:
+        largest_box_volume = max(box.length * box.width * box.height for box in all_boxes_in_state)  # Assuming state has access to box data
     volume_ratio = calculate_volume_ratio(state, largest_box_volume, box)
     score = (weights['weight_base_supports'] * base_supports +
              weights['weight_sides_supported'] * sides_supported +
@@ -72,14 +79,27 @@ def calculate_surface_support_area(state, box, drop_position):
 
 def calculate_base_height(state, box, drop_position):
     """
-    Calculates the normalized height of the base of the box relative to the pallet height.
-    The formula used is: (pallet height - box stacking height) / pallet height.
-    This metric helps assess how high the box is placed on the pallet.
+    Rewards lower placements.
+
+    Score is close to 1 when the box is placed low.
+    Score is close to 0 when the box is placed near the max stack height.
     """
-    pallet_height = state._height_map.shape[0]  # Assuming the height map's first dimension represents the pallet height
-    box_stacking_height = state._height_map[drop_position[0], drop_position[1]] + box.height  # Current height at drop position plus box height
-    base_height = (pallet_height - box_stacking_height) / pallet_height if pallet_height > 0 else 0
-    return base_height
+    x_start, y_start = drop_position
+    length, width = box.length, box.width
+
+    height_area = state._height_map[
+        x_start:x_start + length,
+        y_start:y_start + width
+    ]
+
+    base_z = height_area.max()
+
+    max_stack_height = state.get_max_stack_height()
+
+    if max_stack_height <= 0:
+        return 0.0
+
+    return max(0.0, (max_stack_height - base_z) / max_stack_height)
 
 def calculate_volume_ratio(state, largest_box_volume, box):
     """

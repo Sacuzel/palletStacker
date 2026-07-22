@@ -1,41 +1,89 @@
 from stable_stacking.utils.state import State
-from palletStacker_V2_Claude.models import Box
+from stable_stacking.box import Box
+from stable_stacking.local_search import create_local_k_states
+from stable_stacking.utils.global_evaluation_criterion import calculate_global_evaluation_score
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 class Algorithm:
-    def __init__(self, parameters, box_data: list ):
+    def __init__(self, parameters, box_data: list[Box] ):
         self._parameters = parameters
         self._box_data = box_data
         self._global_states = []  # List of Global state objects
-        self._remaining_box_types = list(set(box.sku for box in box_data))  # get all unique sku values from box_data
+        self._current_states = []  # List of current state objects
+        self._remaining_boxes = box_data.copy()  # List of remaining boxes to be placed
+        self._k_global = parameters.get('k_global', 5)  # Default to 5 if not provided
+        self._k_local = parameters.get('k_local', 5)  # Default to 5 if not provided
+        self._local_criterion_weights = parameters.get('local_criterion_weights')
 
-    def run(self):
+    def run(self) -> State:
         """
-        current_states = [empty pallet]
-        while packages remain and placements are still possible:
+        Main algorithm loop for the Stable Stacking problem.
+        Returns:
+            State: The best state found after processing all boxes.
+        """
+        logger.info("Starting the Stable Stacking Algorithm...")
+        self.initialize()
+        logger.info(f"Initial global states: {len(self._global_states)}")
 
+        self._current_states = self._global_states.copy()
+        best_state_so_far = self._current_states[0]
+
+        while self._remaining_boxes and self._current_states:
+            if len(self._remaining_boxes) % 10 == 0 or len(self._remaining_boxes) < 5:
+                logger.info(f"Remaining boxes: {len(self._remaining_boxes)}")
+
+            current_box = self._remaining_boxes[0]
             child_states = []
 
-            for each state in current_states:
+            for state in self._current_states:
+                k_local_states = create_local_k_states(
+                    current_box,
+                    state,
+                    self._k_local,
+                    self._local_criterion_weights,
+                )
+                child_states.extend(k_local_states)
 
-                candidate_drops = local_search(state)
+            if not child_states:
+                logger.info(
+                    f"No valid drops available for box {current_box.sku}. "
+                    "Returning best state so far."
+                )
+                return best_state_so_far
 
-                for each drop in candidate_drops:
-                    child = state + that box placement
-                    update child's height map, weight map, drop index map
-                    child_states.append(child)
+            states_with_scores = [
+                (state, calculate_global_evaluation_score(state))
+                for state in child_states
+            ]
 
-            remove duplicate child states
+            states_with_scores.sort(key=lambda x: x[1], reverse=True)
 
-            score each child state globally
+            self._current_states = [
+                state for state, score in states_with_scores[:self._k_global]
+            ]
 
-            current_states = best k_global child states
+            best_state_so_far = self._current_states[0]
 
-        return best completed or best remaining state
-        """
-        self.initialize()
+            self._remaining_boxes.pop(0)
+
+        return best_state_so_far
 
     def initialize(self):
-        # Start with empty pallet state
-        initial_state = State(pallette_discretization=self._parameters['pallette_size'])
-        initial_state.initialize_maps(pallette_size=self._parameters['pallette_size'])
+        pallet_size = self._parameters["pallet_size"]
+
+        max_stack_height = self._parameters.get(
+            "max_stack_height",
+            pallet_size,
+        )
+
+        initial_state = State(
+            pallet_discretization=pallet_size,
+            max_stack_height=max_stack_height,
+        )
+
+        initial_state.initialize_maps(pallet_size=pallet_size)
         self._global_states.append(initial_state)

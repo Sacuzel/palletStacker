@@ -1,83 +1,174 @@
-from stable_stacking.state import State
-from palletStacker_V2_Claude.models import Box
+from stable_stacking.utils.local_evaluation_crietrion import calculate_local_evaluation_score
+from stable_stacking.utils.state import State
+from stable_stacking.box import Box
+import logging
+import numpy as np
 
-def create_local_k_states(remaining_box_types, current_state, k):
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+def create_local_k_states(box: Box, current_state, k, weights):
     """
     Create k number of candidate local drops based on the remaining box types.
     Iterates through all possible drops for each box type and calculates the local evaluation score for each drop. 
     Returns the top k drops based on the local evaluation score.
 
     Args:
-        remaining_box_types (list): List of remaining box types (skus) to consider for placement.
+        box (Box): The box to consider for placement.
         current_state (State): The current state of the pallet.
-        k (int): The number of top candidate drops to return.    
+        k (int): The number of top candidate drops to return.
+        weights (dict): Weights for the local evaluation criterion.
     """
     candidate_drops = []
 
-    for box_type in remaining_box_types:
-        # for each box type, calculate all possible drops
-        # Get all possible drop position for each box
-        # Evaluate each drop and calculate local evaluation score
-        # Store k best drops based on local evaluation score
-        # Create a Box instance for the current box type
-        box = Box(identifier=box_type, sku=box_type, length=1.0, width=1.0, height=1.0, weight=1.0)  # Placeholder dimensions and weight
-        all_possible_drops = current_state.calculate_possible_drops(box)
-        # Evaluate each drop and calculate local evaluation score
-        for drop in all_possible_drops:
-            x, y = drop
-            local_evaluation_score = current_state.calculate_local_evaluation_score(box, (x, y))
-            candidate_drops.append((box, (x, y), local_evaluation_score))
+    # for each box type, calculate all possible drops
+    # Get all possible drop position for each box
+    # Evaluate each drop and calculate local evaluation score
+    # Store k best drops based on local evaluation score
+    all_possible_drops = calculate_possible_drops(box, current_state)
 
-    # if any valid drops are possible:
-    #   select k number of local drops
-    #   create states of each k drop
-    
-    if not candidate_drops:
-        return []  # No valid drops available
-    # select k best drops based on local evaluation score
-    candidate_drops.sort(key=lambda x: x[2], reverse=True)  # Sort by local evaluation score in descending order
-    top_k_drops = candidate_drops[:k]
-    return top_k_drops
+    for oriented_box, position in all_possible_drops:
+        local_evaluation_score = calculate_local_evaluation_score(
+            current_state,
+            oriented_box,
+            position,
+            weights,
+        )
 
+        candidate_drops.append(
+            (oriented_box, position, local_evaluation_score)
+        )
 
-def can_place_box(self, x, y, length, width):
-    """
-    Checks if a box of given length and width can be placed at the (x, y) position on the pallet.
-    Ensures that the box does not exceed the pallet boundaries and does not overlap with existing boxes.
-    """
-    # Check if the box exceeds pallet boundaries
-    if x + length > self._height_map.shape[0] or y + width > self._height_map.shape[1]:
+    # Remove duplicates based on box type, position, and orientation
+    unique_candidate_drops = {}
+
+    for oriented_box, position, score in candidate_drops:
+        key = (
+            oriented_box.sku,
+            position,
+            oriented_box.length,
+            oriented_box.width,
+        )
+
+        if key not in unique_candidate_drops or unique_candidate_drops[key][2] < score:
+            unique_candidate_drops[key] = (oriented_box, position, score)
+
+    unique_candidate_drops = list(unique_candidate_drops.values())
+    unique_candidate_drops.sort(key=lambda x: x[2], reverse=True)
+
+    top_k_drops = unique_candidate_drops[:k]
+
+    new_k_states = []
+
+    for oriented_box, position, score in top_k_drops:
+        new_state = current_state.clone()
+        new_state.add_box(oriented_box, position)
+        new_k_states.append(new_state)
+
+    return new_k_states
+
+def has_valid_support(
+    state,
+    x,
+    y,
+    length,
+    width,
+    base_z,
+    tol=1e-6,
+    min_edge_support_ratio=0.75,
+    min_base_support_ratio=0.50,
+):
+    footprint = state._height_map[x:x+length, y:y+width]
+
+    # Ground placement is valid.
+    if base_z == 0:
+        return True
+
+    contact = np.isclose(footprint, base_z, atol=tol)
+
+    base_support_ratio = contact.sum() / (length * width)
+
+    front_ratio = contact[0, :].sum() / width
+    back_ratio = contact[-1, :].sum() / width
+    left_ratio = contact[:, 0].sum() / length
+    right_ratio = contact[:, -1].sum() / length
+
+    opposite_edges_supported = (
+        (front_ratio >= min_edge_support_ratio and back_ratio >= min_edge_support_ratio)
+        or
+        (left_ratio >= min_edge_support_ratio and right_ratio >= min_edge_support_ratio)
+    )
+
+    enough_base_area_supported = base_support_ratio >= min_base_support_ratio
+
+    return opposite_edges_supported and enough_base_area_supported
+
+def can_place_box(state, x, y, length, width, box_height, max_height):
+    if x + length > state._height_map.shape[0]:
+        return False
+    if y + width > state._height_map.shape[1]:
         return False
 
-    # Check for overlap with existing boxes
-    for i in range(int(length)):
-        for j in range(int(width)):
-            if self._height_map[x + i, y + j] > 0:  # Assuming height > 0 means occupied
-                return False
+    footprint = state._height_map[x:x+length, y:y+width]
+    base_z = footprint.max()
+    top_z = base_z + box_height
 
-    # Check that the weight capacity is not exceeded
-    for i in range(int(length)):
-        for j in range(int(width)):
-            if self._weight_map[x + i, y + j] <= 0:  # Assuming weight capacity <= 0 means cannot place
-                return False
+    if top_z > max_height:
+        return False
 
-    return True
+    return has_valid_support(state, x, y, length, width, base_z)
 
-def calculate_possible_drops(self, box):
+def calculate_possible_drops(box: Box, state: State):
     """
-    Calculates all possible positions where the given box can be placed on the pallet based on the current height and weight maps.
-    A position is calculated from the top-left corner of the box.
-    Box can be rotated by 0 degreees or 90 degrees (length and width can be swapped).
-    Returns a list of tuples representing the (x, y) coordinates of the top-left corner of the box for each valid drop position.
+    Calculates all possible positions where the given box can be placed.
+
+    Returns:
+        list of tuples:
+            (oriented_box, (x, y))
+
+    The oriented_box has length/width swapped when rotated.
     """
     possible_drops = []
-    box_dimensions = [(box.length, box.width), (box.width, box.length)]  # Consider both orientations
 
-    for length, width in box_dimensions:
-        for x in range(self._height_map.shape[0] - int(length) + 1):
-            for y in range(self._height_map.shape[1] - int(width) + 1):
-                # Check if the box can be placed at (x, y)
-                if self.can_place_box(x, y, length, width):
-                    possible_drops.append((x, y))
+    orientations = [
+        (box.length, box.width, False),
+        (box.width, box.length, True),
+    ]
+
+    # Avoid duplicate orientation for square boxes
+    seen_orientations = set()
+
+    max_height = state.get_max_stack_height()
+
+    for length, width, rotated in orientations:
+        orientation_key = (length, width)
+
+        if orientation_key in seen_orientations:
+            continue
+
+        seen_orientations.add(orientation_key)
+
+        x_range = state._height_map.shape[0] - int(length) + 1
+        y_range = state._height_map.shape[1] - int(width) + 1
+
+        for x in range(x_range):
+            for y in range(y_range):
+                if can_place_box(
+                    state,
+                    x,
+                    y,
+                    length,
+                    width,
+                    box.height,
+                    max_height,
+                ):
+                    oriented_box = box.copy()
+                    oriented_box.length = length
+                    oriented_box.width = width
+
+                    # Optional but useful for debugging / visualization later
+                    oriented_box.rotated = rotated
+
+                    possible_drops.append((oriented_box, (x, y)))
 
     return possible_drops

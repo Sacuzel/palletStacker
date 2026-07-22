@@ -1,25 +1,32 @@
 import numpy as np
 
+from stable_stacking.box import Box
+
 class State:
-    """
-    Represents state of a pallet during the packing process. 
-    Contains three feature maps: height map, weight map, and drop index map.
-    """
-    def __init__(self, pallette_discretization=10):
-
-        # 2D matrix where each cell represents the height of the stack
-        self._height_map = np.zeros((pallette_discretization, pallette_discretization))
-
-        # 2D matrix where each cell represents the maximum weight that can be added
-        self._weight_map = np.zeros((pallette_discretization, pallette_discretization))
-
-        # 2D matrix where each cell represents the index of the topmost box
-        # the index / ID of the topmost box occupying that cell
-        self._drop_index_map = np.zeros((pallette_discretization, pallette_discretization))
+    def __init__(self, pallet_discretization=10, max_stack_height=None):
+        self._height_map = np.zeros((pallet_discretization, pallet_discretization))
+        self._weight_map = np.zeros((pallet_discretization, pallet_discretization))
+        self._drop_index_map = np.zeros((pallet_discretization, pallet_discretization))
 
         self._local_evaluation_score = 0
+        self._all_boxes_in_state = []
+        self._cell_size = 1.0
+
+        # Temporary default: same as pallet discretization.
+        # Better: read this from parameters.yaml.
+        self._max_stack_height = (
+            max_stack_height
+            if max_stack_height is not None
+            else pallet_discretization
+        )
 
     # getters
+    def get_current_stack_height(self):
+        return np.max(self._height_map)
+
+    def get_max_stack_height(self):
+        return self._max_stack_height
+
     def get_height_map(self):
         return self._height_map
 
@@ -32,12 +39,21 @@ class State:
     def get_local_evaluation_score(self):
         return self._local_evaluation_score
 
-    def initialize_maps(self, pallette_size):
-        self._height_map = np.zeros((pallette_size, pallette_size))
-        self._weight_map = np.ones((pallette_size, pallette_size)) * 1000  # Assuming a very high initial weight capacity
-        self._drop_index_map = np.zeros((pallette_size, pallette_size))
+    def get_all_boxes_in_state(self):
+        return self._all_boxes_in_state
 
-    def get_number_of_boxes_in_area(self, x_start, y_start, length, width):
+    def get_cell_size(self):
+        return self._cell_size
+
+    def get_max_height(self):
+        return np.max(self._height_map)
+
+    def initialize_maps(self, pallet_size):
+        self._height_map = np.zeros((pallet_size, pallet_size))
+        self._weight_map = np.ones((pallet_size, pallet_size)) * 1000  # Assuming a very high initial weight capacity
+        self._drop_index_map = np.zeros((pallet_size, pallet_size))
+
+    def get_number_of_boxes_in_area(self, x_start: int, y_start: int, length: int, width: int):
         """
         Counts the number of boxes in a specified area of the drop index map.
         The area is defined by the top-left corner (x_start, y_start) and the dimensions (length, width).
@@ -100,3 +116,103 @@ class State:
         side_support_percentage = side_supported_area / side_area if side_area > 0 else 0
 
         return (base_support_percentage + side_support_percentage) / 2  # Average support percentage
+
+    def calculate_support_ids_for_drop(self, box, drop_position, support_threshold=0.25, height_tolerance=1e-6):
+        """
+        Returns the IDs of boxes that support this new box.
+
+        A supporting box is counted only if:
+        1. it touches the base of the new box, and
+        2. its contact area is at least support_threshold of the new box base area.
+        """
+        x_start, y_start = drop_position
+        length, width = box.length, box.width
+
+        height_area = self._height_map[
+            x_start:x_start + length,
+            y_start:y_start + width
+        ]
+
+        index_area = self._drop_index_map[
+            x_start:x_start + length,
+            y_start:y_start + width
+        ]
+
+        # The box is dropped from above and rests on the highest surface
+        # inside its footprint.
+        base_z = np.max(height_area)
+
+        # Only cells exactly at the contact height are real supports.
+        # Lower cells are gaps underneath the box and should not count.
+        contact_mask = np.isclose(height_area, base_z, atol=height_tolerance)
+
+        # Ignore pallet / empty cells with ID 0.
+        contact_box_ids = index_area[contact_mask]
+        contact_box_ids = contact_box_ids[contact_box_ids > 0]
+
+        if contact_box_ids.size == 0:
+            return []
+
+        unique_ids, counts = np.unique(contact_box_ids, return_counts=True)
+
+        base_area = length * width
+
+        support_ids = [
+            box_id
+            for box_id, count in zip(unique_ids, counts)
+            if count / base_area >= support_threshold
+        ]
+
+        return support_ids
+
+    def add_box(self, box, drop_position):
+        x_start, y_start = drop_position
+        length, width = box.length, box.width
+
+        support_ids = self.calculate_support_ids_for_drop(box, drop_position)
+
+        height_area = self._height_map[
+            x_start:x_start + length,
+            y_start:y_start + width
+        ]
+
+        base_z = np.max(height_area)
+        top_z = base_z + box.height
+
+        new_box_id = len(self._all_boxes_in_state) + 1
+
+        self._height_map[
+            x_start:x_start + length,
+            y_start:y_start + width
+        ] = top_z
+
+        self._drop_index_map[
+            x_start:x_start + length,
+            y_start:y_start + width
+        ] = new_box_id
+
+        new_box = Box(
+            id=new_box_id,
+            sku=box.sku,
+            length=box.length,
+            width=box.width,
+            height=box.height,
+            weight=box.weight,
+            support_ids=support_ids,
+            support_count=len(support_ids),
+            position=(x_start, y_start, base_z)  # Store the (x, y, z) position of the box
+        )
+
+        self._all_boxes_in_state.append(new_box)
+
+    def clone(self):
+        new_state = State(
+            pallet_discretization=self._height_map.shape[0],
+            max_stack_height=self._max_stack_height,
+        )
+        new_state._height_map = np.copy(self._height_map)
+        new_state._weight_map = np.copy(self._weight_map)
+        new_state._drop_index_map = np.copy(self._drop_index_map)
+        new_state._local_evaluation_score = self._local_evaluation_score
+        new_state._all_boxes_in_state = [box.copy() for box in self._all_boxes_in_state]
+        return new_state

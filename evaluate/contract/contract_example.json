@@ -1,0 +1,78 @@
+{
+  "pallet_parameters": {
+    "pallet_base_width": 800,
+    "pallet_length": 1200,
+    "max_stack_height": 1500
+  },
+  "algorithm_results": {
+    "algorithm_name": "example_greedy_lowest_z",
+    "dataset_name": "contract_example_dataset",
+    "total_boxes": 5,
+    "runtime": 0.012,
+    "drops": [
+      {
+        "box": {
+          "id": "box_001",
+          "sku": "SKU-A",
+          "length": 400,
+          "width": 300,
+          "height": 200,
+          "weight": 8.5
+        },
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "box": {
+          "id": "box_002",
+          "sku": "SKU-A",
+          "length": 400,
+          "width": 300,
+          "height": 200,
+          "weight": 8.5
+        },
+        "position": {
+          "x": 400,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "box": {
+          "id": "box_003",
+          "sku": "SKU-B",
+          "length": 1000,
+          "width": 300,
+          "height": 150,
+          "weight": 10.0
+        },
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 200
+        }
+      },
+      {
+        "box": {
+          "id": "box_004",
+          "sku": "SKU-C",
+          "length": 200,
+          "width": 200,
+          "height": 300,
+          "weight": 6.0
+        },
+        "position": {
+          "x": 1000,
+          "y": 600,
+          "z": 0
+        }
+      }
+    ],
+    "unplaced_box_ids": [
+      "box_005"
+    ]
+  }
+}
