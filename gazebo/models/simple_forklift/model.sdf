@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <!--
+    Simplified electric indoor counterbalance forklift.
+
+    Coordinate convention:
+      X = forward, toward the forks
+      Y = left
+      Z = upward
+
+    Exactly three dynamic links are used: body, left_fork, right_fork.
+    The body link contains two rigid box members. Its rear member carries
+    twice the mass of its front member through the composite inertial model.
+  -->
+  <model name="simple_forklift" canonical_link="body">
+    <static>false</static>
+    <self_collide>false</self_collide>
+    <allow_auto_disable>false</allow_auto_disable>
+
+    <frame name="fork_tip_low" attached_to="body">
+      <pose relative_to="body">0.8 0 0.072 0 0 0</pose>
+    </frame>
+
+    <link name="body">
+      <gravity>true</gravity>
+      <kinematic>false</kinematic>
+      <inertial>
+        <pose>-1.134 0 1.0175 0 0 0</pose>
+        <mass>3007</mass>
+        <inertia>
+          <ixx>1340.37676517</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1905.79475258</iyy>
+          <iyz>0</iyz>
+          <izz>1170.72758858</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="front_body_collision">
+        <pose>-0.486 0 1.0175 0 0 0</pose>
+        <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
+        <surface>
+  <friction>
+    <ode>
+      <mu>0.02</mu>
+      <mu2>0.02</mu2>
+    </ode>
+    <bullet>
+      <friction>0.02</friction>
+      <friction2>0.02</friction2>
+      <rolling_friction>0.02</rolling_friction>
+    </bullet>
+  </friction>
+  <bounce>
+    <restitution_coefficient>0</restitution_coefficient>
+    <threshold>100000</threshold>
+  </bounce>
+  <contact>
+    <ode>
+      <kp>1000000</kp>
+      <kd>100</kd>
+      <max_vel>1</max_vel>
+      <min_depth>0.0005</min_depth>
+    </ode>
+  </contact>
+</surface>
+      </collision>
+      <visual name="front_body_visual">
+        <pose>-0.486 0 1.0175 0 0 0</pose>
+        <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
+        <material>
+          <ambient>0.95 0.45 0.02 1</ambient>
+          <diffuse>1.00 0.52 0.04 1</diffuse>
+          <specular>0.15 0.15 0.15 1</specular>
+        </material>
+      </visual>
+
+      <collision name="rear_body_collision">
+        <pose>-1.458 0 1.0175 0 0 0</pose>
+        <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
+        <surface>
+  <friction>
+    <ode>
+      <mu>0.02</mu>
+      <mu2>0.02</mu2>
+    </ode>
+    <bullet>
+      <friction>0.02</friction>
+      <friction2>0.02</friction2>
+      <rolling_friction>0.02</rolling_friction>
+    </bullet>
+  </friction>
+  <bounce>
+    <restitution_coefficient>0</restitution_coefficient>
+    <threshold>100000</threshold>
+  </bounce>
+  <contact>
+    <ode>
+      <kp>1000000</kp>
+      <kd>100</kd>
+      <max_vel>1</max_vel>
+      <min_depth>0.0005</min_depth>
+    </ode>
+  </contact>
+</surface>
+      </collision>
+      <visual name="rear_body_visual">
+        <pose>-1.458 0 1.0175 0 0 0</pose>
+        <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
+        <material>
+          <ambient>0.65 0.25 0.01 1</ambient>
+          <diffuse>0.78 0.31 0.02 1</diffuse>
+          <specular>0.12 0.12 0.12 1</specular>
+        </material>
+      </visual>
+    </link>
+
+    <link name="left_fork">
+      <pose>0.4 0.28 0.072 0 0 0</pose>
+      <gravity>true</gravity>
+      <inertial>
+        <mass>25</mass>
+        <inertia>
+          <ixx>0.0166666666667</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>1.33666666667</iyy><iyz>0</iyz><izz>1.34666666667</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
+        <surface>
+  <friction>
+    <ode>
+      <mu>0.4</mu>
+      <mu2>0.4</mu2>
+    </ode>
+    <bullet>
+      <friction>0.4</friction>
+      <friction2>0.4</friction2>
+      <rolling_friction>0.4</rolling_friction>
+    </bullet>
+  </friction>
+  <bounce>
+    <restitution_coefficient>0</restitution_coefficient>
+    <threshold>100000</threshold>
+  </bounce>
+  <contact>
+    <ode>
+      <kp>1000000</kp>
+      <kd>100</kd>
+      <max_vel>1</max_vel>
+      <min_depth>0.0005</min_depth>
+    </ode>
+  </contact>
+</surface>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
+        <material><ambient>0.22 0.24 0.27 1</ambient><diffuse>0.32 0.35 0.40 1</diffuse><specular>0.55 0.55 0.55 1</specular></material>
+      </visual>
+    </link>
+
+    <link name="right_fork">
+      <pose>0.4 -0.28 0.072 0 0 0</pose>
+      <gravity>true</gravity>
+      <inertial>
+        <mass>25</mass>
+        <inertia>
+          <ixx>0.0166666666667</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>1.33666666667</iyy><iyz>0</iyz><izz>1.34666666667</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
+        <surface>
+  <friction>
+    <ode>
+      <mu>0.4</mu>
+      <mu2>0.4</mu2>
+    </ode>
+    <bullet>
+      <friction>0.4</friction>
+      <friction2>0.4</friction2>
+      <rolling_friction>0.4</rolling_friction>
+    </bullet>
+  </friction>
+  <bounce>
+    <restitution_coefficient>0</restitution_coefficient>
+    <threshold>100000</threshold>
+  </bounce>
+  <contact>
+    <ode>
+      <kp>1000000</kp>
+      <kd>100</kd>
+      <max_vel>1</max_vel>
+      <min_depth>0.0005</min_depth>
+    </ode>
+  </contact>
+</surface>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
+        <material><ambient>0.22 0.24 0.27 1</ambient><diffuse>0.32 0.35 0.40 1</diffuse><specular>0.55 0.55 0.55 1</specular></material>
+      </visual>
+    </link>
+
+    <joint name="left_fork_lift_joint" type="prismatic">
+      <parent>body</parent><child>left_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.8</upper>
+          <effort>12000</effort>
+        </limit>
+        <dynamics><damping>50</damping><friction>10</friction></dynamics>
+      </axis>
+    </joint>
+    <joint name="right_fork_lift_joint" type="prismatic">
+      <parent>body</parent><child>right_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.8</upper>
+          <effort>12000</effort>
+        </limit>
+        <dynamics><damping>50</damping><friction>10</friction></dynamics>
+      </axis>
+    </joint>
+
+    <!-- Direct model velocity command. Teleop applies acceleration ramps. -->
+    <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl">
+      <topic>/forklift/cmd_vel</topic>
+    </plugin>
+
+    <!--
+      One position target drives both fork joints. ABS mode limits motion
+      with cmd_max but retains the final target after input is released.
+    -->
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>left_fork_lift_joint</joint_name>
+      <joint_name>right_fork_lift_joint</joint_name>
+      <topic>/forklift/fork_position</topic>
+      <initial_position>0</initial_position>
+      <use_velocity_commands>true</use_velocity_commands>
+      <cmd_max>0.5</cmd_max>
+      <cmd_min>-0.5</cmd_min>
+    </plugin>
+  </model>
+</sdf>

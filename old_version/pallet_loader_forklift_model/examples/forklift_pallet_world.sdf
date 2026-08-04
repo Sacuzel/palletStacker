@@ -1,0 +1,612 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="pallet_towers">
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="pallet_physics" type="ignored">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>500</real_time_update_rate>
+      <max_contacts>100</max_contacts>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+
+
+    <gui fullscreen="0">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>-6 -8 6 0 0.45 0.75</camera_pose>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager" />
+      <plugin filename="InteractiveViewControl" name="Interactive view control" />
+      <plugin filename="CameraTracking" name="Camera Tracking" />
+      <plugin filename="MarkerManager" name="Marker manager" />
+      <plugin filename="SelectEntities" name="Select entities" />
+      <plugin filename="EntityContextMenuPlugin" name="Entity context menu" />
+      <plugin filename="VisualizationCapabilities" name="Visualization capabilities" />
+      <plugin filename="WorldControl" name="World control">
+        <gz-gui>
+          <title>World control</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">72</property>
+          <property type="double" key="width">121</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="left" target="left" />
+            <line own="bottom" target="bottom" />
+          </anchors>
+        </gz-gui>
+        <play_pause>true</play_pause>
+        <step>true</step>
+        <start_paused>true</start_paused>
+      </plugin>
+      <plugin filename="WorldStats" name="World stats">
+        <gz-gui>
+          <title>World stats</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">110</property>
+          <property type="double" key="width">290</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right" />
+            <line own="bottom" target="bottom" />
+          </anchors>
+        </gz-gui>
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+      </plugin>
+      <plugin filename="ForkliftTeleop"
+              name="Forklift teleoperation">
+        <gz-gui>
+          <title>Forklift controls</title>
+          <property type="double" key="width">330</property>
+          <property type="double" key="height">230</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right" />
+            <line own="top" target="top" />
+          </anchors>
+        </gz-gui>
+        <drive_topic>/forklift/cmd_vel</drive_topic>
+        <left_fork_topic>/forklift/left_fork/cmd_vel</left_fork_topic>
+        <right_fork_topic>/forklift/right_fork/cmd_vel</right_fork_topic>
+        <world_stats_topic>/world/pallet_towers/stats</world_stats_topic>
+        <max_linear_speed>2</max_linear_speed>
+        <max_linear_acceleration>0.5</max_linear_acceleration>
+        <max_angular_speed>0.8</max_angular_speed>
+        <max_angular_acceleration>1</max_angular_acceleration>
+        <fork_speed>0.15</fork_speed>
+        <update_rate_hz>50</update_rate_hz>
+        <forward_key>16777235</forward_key>
+        <reverse_key>16777237</reverse_key>
+        <left_key>16777234</left_key>
+        <right_key>16777236</right_key>
+        <lift_key>16777235</lift_key>
+        <lower_key>16777237</lower_key>
+      </plugin>
+    </gui>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.2 -0.9</direction>
+    </light>
+
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.55</mu>
+                <mu2>0.55</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.65 0.65 0.65 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="pallet_01_P01">
+          <static>false</static>
+          <pose>0.4 0.6 0.002 0 0 0</pose>
+          <self_collide>false</self_collide>
+          <allow_auto_disable>false</allow_auto_disable>
+          <link name="body">
+                <gravity>true</gravity>
+                <kinematic>false</kinematic>
+                <inertial>
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <mass>25</mass>
+                      <inertia>
+                            <ixx>3.07216082</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>1.70896776</iyy>
+                            <iyz>0</iyz>
+                            <izz>4.63680694</izz>
+                      </inertia>
+                </inertial>
+                <collision name="bottom_deck_collision">
+                      <pose>0 0 0.011 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="bottom_deck_visual">
+                      <pose>0 0 0.011 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.46 0.28 0.10 1</ambient>
+                            <diffuse>0.64 0.42 0.18 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="left_stringer_collision">
+                      <pose>-0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="left_stringer_visual">
+                      <pose>-0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="centre_stringer_collision">
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="centre_stringer_visual">
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="right_stringer_collision">
+                      <pose>0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="right_stringer_visual">
+                      <pose>0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="top_deck_collision">
+                      <pose>0 0 0.133 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="top_deck_visual">
+                      <pose>0 0 0.133 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.50 0.31 0.11 1</ambient>
+                            <diffuse>0.70 0.47 0.20 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+          </link>
+    </model>
+
+    <model name="forklift">
+          <static>false</static>
+          <pose>0.4 -3.982 0 0 0 1.57079633</pose>
+          <self_collide>false</self_collide>
+          <allow_auto_disable>false</allow_auto_disable>
+          <canonical_link>base_link</canonical_link>
+          <link name="base_link">
+                <gravity>true</gravity>
+                <kinematic>false</kinematic>
+                <inertial>
+                      <pose>0 0 1.025 0 0 0</pose>
+                      <mass>2500</mass>
+                      <inertia>
+                            <ixx>1105.20833</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>1573.20833</iyy>
+                            <iyz>0</iyz>
+                            <izz>927.375</izz>
+                      </inertia>
+                </inertial>
+                <collision name="body_collision">
+                      <pose>0 0 1.025 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>1.83 1.05 2.05</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.9</mu>
+                                        <mu2>0.9</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>0.5</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="body_visual">
+                      <pose>0 0 1.025 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>1.83 1.05 2.05</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.82 0.55 0.02 1</ambient>
+                            <diffuse>0.95 0.68 0.04 1</diffuse>
+                            <specular>0.08 0.08 0.08 1</specular>
+                      </material>
+                </visual>
+          </link>
+          <link name="left_fork_link">
+                <pose>1.4485 0.275 0.05 0 0 0</pose>
+                <gravity>true</gravity>
+                <kinematic>false</kinematic>
+                <inertial>
+                      <mass>35</mass>
+                      <inertia>
+                            <ixx>0.0350116667</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>3.32525958</iyy>
+                            <iyz>0</iyz>
+                            <izz>3.35093792</izz>
+                      </inertia>
+                </inertial>
+                <collision name="left_fork_collision">
+                      <geometry>
+                            <box>
+                                  <size>1.067 0.102 0.04</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.85</mu>
+                                        <mu2>0.85</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>0.5</max_vel>
+                                        <min_depth>0.0002</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="left_fork_visual">
+                      <geometry>
+                            <box>
+                                  <size>1.067 0.102 0.04</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.18 0.18 0.18 1</ambient>
+                            <diffuse>0.30 0.30 0.30 1</diffuse>
+                            <specular>0.20 0.20 0.20 1</specular>
+                      </material>
+                </visual>
+          </link>
+          <link name="right_fork_link">
+                <pose>1.4485 -0.275 0.05 0 0 0</pose>
+                <gravity>true</gravity>
+                <kinematic>false</kinematic>
+                <inertial>
+                      <mass>35</mass>
+                      <inertia>
+                            <ixx>0.0350116667</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>3.32525958</iyy>
+                            <iyz>0</iyz>
+                            <izz>3.35093792</izz>
+                      </inertia>
+                </inertial>
+                <collision name="right_fork_collision">
+                      <geometry>
+                            <box>
+                                  <size>1.067 0.102 0.04</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.85</mu>
+                                        <mu2>0.85</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>0.5</max_vel>
+                                        <min_depth>0.0002</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="right_fork_visual">
+                      <geometry>
+                            <box>
+                                  <size>1.067 0.102 0.04</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.18 0.18 0.18 1</ambient>
+                            <diffuse>0.30 0.30 0.30 1</diffuse>
+                            <specular>0.20 0.20 0.20 1</specular>
+                      </material>
+                </visual>
+          </link>
+          <joint name="left_fork_joint" type="prismatic">
+                <parent>base_link</parent>
+                <child>left_fork_link</child>
+                <axis>
+                      <xyz>0 0 1</xyz>
+                      <limit>
+                            <lower>0</lower>
+                            <upper>1.98</upper>
+                            <effort>250000</effort>
+                            <velocity>0.15</velocity>
+                      </limit>
+                      <dynamics>
+                            <damping>50</damping>
+                            <friction>5</friction>
+                      </dynamics>
+                </axis>
+          </joint>
+          <joint name="right_fork_joint" type="prismatic">
+                <parent>base_link</parent>
+                <child>right_fork_link</child>
+                <axis>
+                      <xyz>0 0 1</xyz>
+                      <limit>
+                            <lower>0</lower>
+                            <upper>1.98</upper>
+                            <effort>250000</effort>
+                            <velocity>0.15</velocity>
+                      </limit>
+                      <dynamics>
+                            <damping>50</damping>
+                            <friction>5</friction>
+                      </dynamics>
+                </axis>
+          </joint>
+          <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl">
+                <topic>/forklift/cmd_vel</topic>
+          </plugin>
+          <plugin filename="gz-sim-joint-controller-system" name="gz::sim::systems::JointController">
+                <joint_name>left_fork_joint</joint_name>
+                <topic>/forklift/left_fork/cmd_vel</topic>
+                <use_force_commands>false</use_force_commands>
+          </plugin>
+          <plugin filename="gz-sim-joint-controller-system" name="gz::sim::systems::JointController">
+                <joint_name>right_fork_joint</joint_name>
+                <topic>/forklift/right_fork/cmd_vel</topic>
+                <use_force_commands>false</use_force_commands>
+          </plugin>
+    </model>
+
+  </world>
+</sdf>

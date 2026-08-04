@@ -1,0 +1,303 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="pallet_towers">
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="pallet_physics" type="ignored">
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <max_contacts>15</max_contacts>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.2 -0.9</direction>
+    </light>
+
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.55</mu>
+                <mu2>0.55</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.65 0.65 0.65 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="pallet_01_P01">
+          <static>false</static>
+          <pose>0.4 0.6 0.002 0 0 0</pose>
+          <self_collide>false</self_collide>
+          <allow_auto_disable>false</allow_auto_disable>
+          <link name="body">
+                <gravity>true</gravity>
+                <kinematic>false</kinematic>
+                <inertial>
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <mass>25</mass>
+                      <inertia>
+                            <ixx>3.07216082</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>1.70896776</iyy>
+                            <iyz>0</iyz>
+                            <izz>4.63680694</izz>
+                      </inertia>
+                </inertial>
+                <collision name="bottom_deck_collision">
+                      <pose>0 0 0.011 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="bottom_deck_visual">
+                      <pose>0 0 0.011 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.46 0.28 0.10 1</ambient>
+                            <diffuse>0.64 0.42 0.18 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="left_stringer_collision">
+                      <pose>-0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="left_stringer_visual">
+                      <pose>-0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="centre_stringer_collision">
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="centre_stringer_visual">
+                      <pose>0 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="right_stringer_collision">
+                      <pose>0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="right_stringer_visual">
+                      <pose>0.375 0 0.072 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.05 1.2 0.1</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.42 0.25 0.09 1</ambient>
+                            <diffuse>0.58 0.36 0.14 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+                <collision name="top_deck_collision">
+                      <pose>0 0 0.133 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <surface>
+                            <friction>
+                                  <ode>
+                                        <mu>0.55</mu>
+                                        <mu2>0.55</mu2>
+                                  </ode>
+                            </friction>
+                            <bounce>
+                                  <restitution_coefficient>0</restitution_coefficient>
+                                  <threshold>100000</threshold>
+                            </bounce>
+                            <contact>
+                                  <ode>
+                                        <kp>1000000</kp>
+                                        <kd>100</kd>
+                                        <max_vel>1</max_vel>
+                                        <min_depth>0.0005</min_depth>
+                                  </ode>
+                            </contact>
+                      </surface>
+                </collision>
+                <visual name="top_deck_visual">
+                      <pose>0 0 0.133 0 0 0</pose>
+                      <geometry>
+                            <box>
+                                  <size>0.8 1.2 0.022</size>
+                            </box>
+                      </geometry>
+                      <material>
+                            <ambient>0.50 0.31 0.11 1</ambient>
+                            <diffuse>0.70 0.47 0.20 1</diffuse>
+                            <specular>0.03 0.03 0.03 1</specular>
+                      </material>
+                </visual>
+          </link>
+    </model>
+    
+  </world>
+</sdf>

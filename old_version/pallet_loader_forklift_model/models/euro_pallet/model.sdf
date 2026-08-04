@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <!--
+    Simplified dynamic EUR pallet.
+
+    Coordinate convention:
+      X = 800 mm pallet dimension
+      Y = 1200 mm pallet dimension / fork insertion direction
+      Z = height, with model z=0 at the floor
+
+    Construction requested for the simulation:
+      - bottom deck slab: 800 x 1200 x 22 mm
+      - three longitudinal 2x4-style stringers: 50 x 1200 x 100 mm
+      - top deck slab: 800 x 1200 x 22 mm
+
+    Overall envelope: 800 x 1200 x 144 mm.
+    The single rigid link uses five primitive box collisions. This keeps
+    fork contact stable and inexpensive compared with triangle-mesh collision.
+  -->
+  <model name="euro_pallet">
+    <static>false</static>
+    <self_collide>false</self_collide>
+    <allow_auto_disable>false</allow_auto_disable>
+
+    <link name="body">
+      <gravity>true</gravity>
+      <kinematic>false</kinematic>
+
+      <!--
+        Total mass is 25 kg. The inertia below is the compound-box inertia
+        of the five wooden members, with mass distributed by member volume.
+        The resulting centre of mass is at the geometric centre, z=72 mm.
+      -->
+      <inertial>
+        <pose>0 0 0.072 0 0 0</pose>
+        <mass>25</mass>
+        <inertia>
+          <ixx>3.07216082337</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.70896776228</iyy>
+          <iyz>0</iyz>
+          <izz>4.63680693891</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Bottom deck: centre at 11 mm above the model origin. -->
+      <collision name="bottom_deck_collision">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
+          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
+          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
+        </surface>
+      </collision>
+      <visual name="bottom_deck_visual">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
+        <material>
+          <ambient>0.46 0.28 0.10 1</ambient>
+          <diffuse>0.64 0.42 0.18 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <!--
+        Three 50 x 100 mm longitudinal stringers. They run along Y, so
+        the two fork channels are open from either 1200 mm end of the pallet.
+      -->
+      <collision name="left_stringer_collision">
+        <pose>-0.375 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
+          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
+          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
+        </surface>
+      </collision>
+      <visual name="left_stringer_visual">
+        <pose>-0.375 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <collision name="centre_stringer_collision">
+        <pose>0 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
+          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
+          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
+        </surface>
+      </collision>
+      <visual name="centre_stringer_visual">
+        <pose>0 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <collision name="right_stringer_collision">
+        <pose>0.375 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
+          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
+          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
+        </surface>
+      </collision>
+      <visual name="right_stringer_visual">
+        <pose>0.375 0 0.072 0 0 0</pose>
+        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <!-- Top deck: top face is exactly z=144 mm. -->
+      <collision name="top_deck_collision">
+        <pose>0 0 0.133 0 0 0</pose>
+        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
+        <surface>
+          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
+          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
+          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
+        </surface>
+      </collision>
+      <visual name="top_deck_visual">
+        <pose>0 0 0.133 0 0 0</pose>
+        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
+        <material>
+          <ambient>0.50 0.31 0.11 1</ambient>
+          <diffuse>0.70 0.47 0.20 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

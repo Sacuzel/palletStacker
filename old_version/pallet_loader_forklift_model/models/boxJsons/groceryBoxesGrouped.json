@@ -1,0 +1,969 @@
+{
+  "format_version": 1,
+  "units": {
+    "dimensions": "mm",
+    "weight": "kg"
+  },
+  "boxes": [
+    {
+      "identifier": "BREAD-002",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "EGGS-010",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "POTATO-073",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "SUGAR-034",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "POTATO-071",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "EGGS-011",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BREAD-008",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "RICE-038",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "BREAD-003",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "SUGAR-031",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BREAD-006",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "EGGS-009",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BREAD-007",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "BUTTER-042",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "POTATO-074",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "BEER24-089",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "ICECRM-081",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "RICE-037",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "FLOUR-027",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "BANANA-069",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BREAD-001",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "CHIPS-056",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHOCO-053",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "SUGAR-033",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "HONEY-090",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "EGGS-013",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BUTTER-043",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TEA-024",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BEER24-088",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "DETERG-060",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "ICECRM-080",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "COFFEE-016",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-019",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-017",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-023",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-022",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-020",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "COFFEE-021",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "RICE-040",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "FLOUR-030",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "ONION-075",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BANANA-068",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "POTATO-072",
+      "sku": "POTATO",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 25.0
+    },
+    {
+      "identifier": "CHIPS-057",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHOCO-052",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "SUGAR-035",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "HONEY-092",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "EGGS-012",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "DOGFOOD-093",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "BUTTER-041",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TEA-025",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-050",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-046",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-048",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-045",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-047",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BEER24-086",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "DETERG-059",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "ICECRM-078",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "COFFEE-018",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "RICE-039",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "FLOUR-028",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "ONION-077",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BANANA-067",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BREAD-005",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "DIAPER-095",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "CHIPS-054",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "CHOCO-051",
+      "sku": "CHOCO",
+      "dimensions_mm": [
+        290,
+        240,
+        200
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "SUGAR-032",
+      "sku": "SUGAR",
+      "dimensions_mm": [
+        310,
+        220,
+        230
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "HONEY-091",
+      "sku": "HONEY",
+      "dimensions_mm": [
+        330,
+        260,
+        170
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "EGGS-014",
+      "sku": "EGGS",
+      "dimensions_mm": [
+        330,
+        300,
+        280
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "DOGFOOD-094",
+      "sku": "DOGFOOD",
+      "dimensions_mm": [
+        340,
+        230,
+        110
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "WINE-085",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-083",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-084",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "WINE-082",
+      "sku": "WINE",
+      "dimensions_mm": [
+        340,
+        260,
+        320
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BUTTER-044",
+      "sku": "BUTTER",
+      "dimensions_mm": [
+        360,
+        240,
+        110
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TEA-026",
+      "sku": "TEA",
+      "dimensions_mm": [
+        360,
+        240,
+        200
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "YOGURT-049",
+      "sku": "YOGURT",
+      "dimensions_mm": [
+        390,
+        260,
+        100
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "BEER24-087",
+      "sku": "BEER24",
+      "dimensions_mm": [
+        395,
+        265,
+        130
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "DETERG-058",
+      "sku": "DETERG",
+      "dimensions_mm": [
+        400,
+        280,
+        320
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "ICECRM-079",
+      "sku": "ICECRM",
+      "dimensions_mm": [
+        400,
+        300,
+        200
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "COFFEE-015",
+      "sku": "COFFEE",
+      "dimensions_mm": [
+        400,
+        300,
+        250
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "RICE-036",
+      "sku": "RICE",
+      "dimensions_mm": [
+        440,
+        300,
+        200
+      ],
+      "weight_kg": 20.0
+    },
+    {
+      "identifier": "FLOUR-029",
+      "sku": "FLOUR",
+      "dimensions_mm": [
+        480,
+        320,
+        220
+      ],
+      "weight_kg": 15.0
+    },
+    {
+      "identifier": "ONION-076",
+      "sku": "ONION",
+      "dimensions_mm": [
+        500,
+        350,
+        250
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "BANANA-070",
+      "sku": "BANANA",
+      "dimensions_mm": [
+        500,
+        400,
+        230
+      ],
+      "weight_kg": 18.0
+    },
+    {
+      "identifier": "BREAD-004",
+      "sku": "BREAD",
+      "dimensions_mm": [
+        600,
+        400,
+        200
+      ],
+      "weight_kg": 4.5
+    },
+    {
+      "identifier": "APPLES-063",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-061",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-064",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-066",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-062",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "APPLES-065",
+      "sku": "APPLES",
+      "dimensions_mm": [
+        600,
+        400,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "DIAPER-096",
+      "sku": "DIAPER",
+      "dimensions_mm": [
+        600,
+        400,
+        250
+      ],
+      "weight_kg": 7.0
+    },
+    {
+      "identifier": "CHIPS-055",
+      "sku": "CHIPS",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 3.5
+    }
+  ]
+}

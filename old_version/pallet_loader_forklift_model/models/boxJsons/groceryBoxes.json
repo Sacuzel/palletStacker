@@ -1,0 +1,489 @@
+{
+  "format_version": 1,
+  "units": {
+    "dimensions": "mm",
+    "weight": "kg"
+  },
+  "boxes": [
+    {
+      "identifier": "MILK-001",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-002",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-003",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-004",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-005",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-006",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-007",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-008",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-009",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "MILK-010",
+      "sku": "MILK",
+      "dimensions_mm": [
+        400,
+        300,
+        220
+      ],
+      "weight_kg": 12.0
+    },
+    {
+      "identifier": "CEREAL-011",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-012",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-013",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-014",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-015",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CEREAL-016",
+      "sku": "CEREAL",
+      "dimensions_mm": [
+        500,
+        300,
+        240
+      ],
+      "weight_kg": 4.0
+    },
+    {
+      "identifier": "CANS-017",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-018",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-019",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-020",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-021",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-022",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-023",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "CANS-024",
+      "sku": "CANS",
+      "dimensions_mm": [
+        300,
+        250,
+        180
+      ],
+      "weight_kg": 10.0
+    },
+    {
+      "identifier": "TISSUE-M1",
+      "sku": "TISSUE",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "SAUCE-M1",
+      "sku": "SAUCE",
+      "dimensions_mm": [
+        250,
+        200,
+        160
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-M1",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        450,
+        280,
+        220
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "OIL-M1",
+      "sku": "OIL",
+      "dimensions_mm": [
+        350,
+        260,
+        300
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "PET-M1",
+      "sku": "PET",
+      "dimensions_mm": [
+        500,
+        350,
+        260
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "SNACK-M1",
+      "sku": "SNACK",
+      "dimensions_mm": [
+        550,
+        320,
+        220
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "TISSUE-M2",
+      "sku": "TISSUE",
+      "dimensions_mm": [
+        600,
+        400,
+        350
+      ],
+      "weight_kg": 5.0
+    },
+    {
+      "identifier": "SAUCE-M2",
+      "sku": "SAUCE",
+      "dimensions_mm": [
+        250,
+        200,
+        160
+      ],
+      "weight_kg": 8.0
+    },
+    {
+      "identifier": "PASTA-M2",
+      "sku": "PASTA",
+      "dimensions_mm": [
+        450,
+        280,
+        220
+      ],
+      "weight_kg": 6.0
+    },
+    {
+      "identifier": "OIL-M2",
+      "sku": "OIL",
+      "dimensions_mm": [
+        350,
+        260,
+        300
+      ],
+      "weight_kg": 9.0
+    },
+    {
+      "identifier": "PET-M2",
+      "sku": "PET",
+      "dimensions_mm": [
+        500,
+        350,
+        260
+      ],
+      "weight_kg": 11.0
+    },
+    {
+      "identifier": "SNACK-M2",
+      "sku": "SNACK",
+      "dimensions_mm": [
+        550,
+        320,
+        220
+      ],
+      "weight_kg": 3.5
+    },
+    {
+      "identifier": "JARS-037",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-038",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-039",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-040",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-041",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-042",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "JARS-043",
+      "sku": "JARS",
+      "dimensions_mm": [
+        260,
+        220,
+        170
+      ],
+      "weight_kg": 7.5
+    },
+    {
+      "identifier": "WATER-044",
+      "sku": "WATER",
+      "dimensions_mm": [
+        420,
+        280,
+        240
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER-045",
+      "sku": "WATER",
+      "dimensions_mm": [
+        420,
+        280,
+        240
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER-046",
+      "sku": "WATER",
+      "dimensions_mm": [
+        420,
+        280,
+        240
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER-047",
+      "sku": "WATER",
+      "dimensions_mm": [
+        420,
+        280,
+        240
+      ],
+      "weight_kg": 13.0
+    },
+    {
+      "identifier": "WATER-048",
+      "sku": "WATER",
+      "dimensions_mm": [
+        420,
+        280,
+        240
+      ],
+      "weight_kg": 13.0
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+--- /mnt/data/config.py	2026-07-20 18:02:31.138275685 +0000
++++ /mnt/data/pallet_loader_pallet_model/config.py	2026-07-20 18:04:05.230341166 +0000
+@@ -30,6 +30,20 @@
+ PALLET_BASE_HEIGHT: float = 144.0      # EUR pallet height [mm]
+ PALLET_WEIGHT_KG: float = 25.0         # EUR pallet mass  [kg]
+ 
++# Use the self-contained dynamic pallet SDF instead of the old solid cuboid.
++# The path is resolved relative to gazebo_exporter.py, so the project can be
++# moved without changing an absolute path.
++USE_EURO_PALLET_MODEL: bool = True
++EURO_PALLET_MODEL_SDF: str = "models/euro_pallet/model.sdf"
++
++# The model origin is at the centre of the footprint and at floor level.
++# A small spawn clearance avoids initial collision penetration with the floor.
++EURO_PALLET_SPAWN_CLEARANCE_MM: float = 2.0
++
++# Default spacing used by the Gazebo exporter. This remains modest for the
++# pallet-only stage; it can be increased to a forklift aisle later.
++GAZEBO_PALLET_GAP_MM: float = 500.0
++
+ # Optional payload limit of one pallet. EUR pallets are rated for
+ # ~1500 kg in motion. Set to None to disable the check.
+ MAX_PALLET_PAYLOAD_KG: float = None # = 1500.0
+--- /mnt/data/gazebo_exporter.py	2026-07-20 18:02:32.108151143 +0000
++++ /mnt/data/pallet_loader_pallet_model/gazebo_exporter.py	2026-07-20 18:04:54.722585708 +0000
+@@ -11,6 +11,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import copy
+ import hashlib
+ import json
+ import re
+@@ -18,6 +19,7 @@
+ import subprocess
+ import time
+ from pathlib import Path
++import xml.etree.ElementTree as ET
+ from typing import Any, List, Sequence, Tuple
+ from xml.sax.saxutils import escape
+ 
+@@ -187,6 +189,93 @@
+     </model>"""
+ 
+ 
++def _ensure_xml_path(parent: ET.Element, path: str) -> ET.Element:
++    """Return an XML descendant, creating missing elements on the path."""
++    node = parent
++    for tag in path.split("/"):
++        child = node.find(tag)
++        if child is None:
++            child = ET.SubElement(node, tag)
++        node = child
++    return node
++
++
++def _project_path(path_value: str | Path) -> Path:
++    """Resolve a project-relative resource beside this exporter module."""
++    path = Path(path_value)
++    if path.is_absolute():
++        return path
++    return Path(__file__).resolve().parent / path
++
++
++def dynamic_pallet_model_xml(
++    *,
++    model_name: str,
++    pose_xyz_m: Tuple[float, float, float],
++    model_sdf_path: str | Path,
++    mass_kg: float,
++    friction: float,
++    restitution: float,
++    contact_kp: float,
++    contact_kd: float,
++) -> str:
++    """Load the standalone pallet model and inline one configured copy.
++
++    Inlining makes the generated world self-contained: the customer does not
++    need to set GZ_SIM_RESOURCE_PATH or download a Fuel model. The standalone
++    models/euro_pallet/model.sdf file remains directly usable as a Gazebo model.
++    """
++    source_path = _project_path(model_sdf_path)
++    if not source_path.is_file():
++        raise FileNotFoundError(f"Euro pallet model not found: {source_path}")
++
++    source_root = ET.parse(source_path).getroot()
++    source_model = source_root if source_root.tag == "model" else source_root.find("model")
++    if source_model is None:
++        raise ValueError(f"No <model> element found in {source_path}")
++
++    model = copy.deepcopy(source_model)
++    model.set("name", safe_name(model_name))
++    _ensure_xml_path(model, "static").text = "false"
++
++    px, py, pz = pose_xyz_m
++    pose = model.find("pose")
++    if pose is None:
++        pose = ET.Element("pose")
++        model.insert(1, pose)
++    pose.text = f"{fmt(px)} {fmt(py)} {fmt(pz)} 0 0 0"
++
++    # Preserve the compound mass distribution if PALLET_WEIGHT_KG is tuned.
++    inertial = model.find("./link/inertial")
++    if inertial is None:
++        raise ValueError(f"Pallet model has no link/inertial block: {source_path}")
++    mass_node = _ensure_xml_path(inertial, "mass")
++    source_mass = float(mass_node.text or 0.0)
++    target_mass = max(float(mass_kg), 0.001)
++    inertia_scale = target_mass / source_mass if source_mass > 0.0 else 1.0
++    mass_node.text = fmt(target_mass)
++    inertia = _ensure_xml_path(inertial, "inertia")
++    for component in ("ixx", "ixy", "ixz", "iyy", "iyz", "izz"):
++        node = _ensure_xml_path(inertia, component)
++        node.text = fmt(float(node.text or 0.0) * inertia_scale)
++
++    # Apply the export-time contact parameters to all five primitive members.
++    for collision in model.findall("./link/collision"):
++        _ensure_xml_path(collision, "surface/friction/ode/mu").text = fmt(max(friction, 0.0))
++        _ensure_xml_path(collision, "surface/friction/ode/mu2").text = fmt(max(friction, 0.0))
++        _ensure_xml_path(collision, "surface/bounce/restitution_coefficient").text = fmt(
++            max(restitution, 0.0)
++        )
++        _ensure_xml_path(collision, "surface/bounce/threshold").text = "100000"
++        _ensure_xml_path(collision, "surface/contact/ode/kp").text = fmt(contact_kp)
++        _ensure_xml_path(collision, "surface/contact/ode/kd").text = fmt(contact_kd)
++        _ensure_xml_path(collision, "surface/contact/ode/max_vel").text = "1"
++        _ensure_xml_path(collision, "surface/contact/ode/min_depth").text = "0.0005"
++
++    ET.indent(model, space="      " , level=0)
++    return "\n    " + ET.tostring(model, encoding="unicode").replace("\n", "\n    ")
++
++
+ def _prepare_output_path(
+     output_path: str | Path | None,
+     output_dir: str | Path,
+@@ -227,6 +316,11 @@
+     pallet_l_m = mm_to_m(config.PALLET_LENGTH)
+     pallet_w_m = mm_to_m(config.PALLET_WIDTH)
+     pallet_h_m = mm_to_m(config.PALLET_BASE_HEIGHT)
++    pallet_spawn_clearance_m = (
++        mm_to_m(config.EURO_PALLET_SPAWN_CLEARANCE_MM)
++        if config.USE_EURO_PALLET_MODEL
++        else 0.005
++    )
+ 
+     for pallet_index, pallet in enumerate(pallets, start=1):
+         x_offset_mm = (pallet_index - 1) * (pallet.length + pallet_gap_mm)
+@@ -234,24 +328,46 @@
+ 
+         pallet_model_name = f"pallet_{pallet_index:02d}_{safe_name(pallet.pallet_id)}"
+ 
+-        models.append(
+-            cuboid_model_xml(
+-                model_name=pallet_model_name,
+-                pose_xyz_m=(
+-                    x_offset_m + pallet_l_m / 2.0,
+-                    pallet_w_m / 2.0,
+-                    pallet_h_m / 2.0 + 0.005,
+-                ),
+-                size_xyz_m=(pallet_l_m, pallet_w_m, pallet_h_m),
+-                mass_kg=float(config.PALLET_WEIGHT_KG),
+-                color_rgba=(0.50, 0.34, 0.16, 1.0),
+-                friction=pallet_friction,
+-                restitution=restitution,
+-                contact_kp=contact_kp,
+-                contact_kd=contact_kd,
+-                static=False,
++        if config.USE_EURO_PALLET_MODEL:
++            # The standalone pallet model uses a floor-level origin at the
++            # centre of its 800 x 1200 mm footprint. The channels therefore
++            # run parallel to world Y and are open from both 1200 mm ends.
++            models.append(
++                dynamic_pallet_model_xml(
++                    model_name=pallet_model_name,
++                    pose_xyz_m=(
++                        x_offset_m + pallet_l_m / 2.0,
++                        pallet_w_m / 2.0,
++                        pallet_spawn_clearance_m,
++                    ),
++                    model_sdf_path=config.EURO_PALLET_MODEL_SDF,
++                    mass_kg=float(config.PALLET_WEIGHT_KG),
++                    friction=pallet_friction,
++                    restitution=restitution,
++                    contact_kp=contact_kp,
++                    contact_kd=contact_kd,
++                )
++            )
++        else:
++            # Backward-compatible fallback for quick exporter diagnostics.
++            models.append(
++                cuboid_model_xml(
++                    model_name=pallet_model_name,
++                    pose_xyz_m=(
++                        x_offset_m + pallet_l_m / 2.0,
++                        pallet_w_m / 2.0,
++                        pallet_h_m / 2.0 + 0.005,
++                    ),
++                    size_xyz_m=(pallet_l_m, pallet_w_m, pallet_h_m),
++                    mass_kg=float(config.PALLET_WEIGHT_KG),
++                    color_rgba=(0.50, 0.34, 0.16, 1.0),
++                    friction=pallet_friction,
++                    restitution=restitution,
++                    contact_kp=contact_kp,
++                    contact_kd=contact_kd,
++                    static=False,
++                )
+             )
+-        )
+ 
+         manifest.append(
+             {
+@@ -259,6 +375,11 @@
+                 "model_name": pallet_model_name,
+                 "pallet_id": pallet.pallet_id,
+                 "mass_kg": float(config.PALLET_WEIGHT_KG),
++                "geometry": (
++                    str(config.EURO_PALLET_MODEL_SDF)
++                    if config.USE_EURO_PALLET_MODEL
++                    else "solid_cuboid_fallback"
++                ),
+             }
+         )
+ 
+@@ -269,7 +390,12 @@
+ 
+             px = x_offset_m + mm_to_m(placement.x) + sx / 2.0
+             py = mm_to_m(placement.y) + sy / 2.0
+-            pz = pallet_h_m + mm_to_m(placement.z + settle_lift_mm) + sz / 2.0
++            pz = (
++                pallet_spawn_clearance_m
++                + pallet_h_m
++                + mm_to_m(placement.z + settle_lift_mm)
++                + sz / 2.0
++            )
+ 
+             box_id = safe_name(placement.box.identifier, f"box_{box_index}")
+             sku = safe_name(placement.box.sku, "sku")
+@@ -312,7 +438,7 @@
+ def create_world_sdf(
+     pallets: Sequence[Pallet],
+     *,
+-    pallet_gap_mm: float = 500.0,
++    pallet_gap_mm: float = config.GAZEBO_PALLET_GAP_MM,
+     friction: float = config.SIM_FRICTION_COEFF,
+     pallet_friction: float | None = None,
+     floor_friction: float | None = None,
+@@ -381,7 +507,7 @@
+     output_dir: str | Path = "gazebo_runs",
+     run_name: str | None = "latest",
+     overwrite: bool = True,
+-    pallet_gap_mm: float = 500.0,
++    pallet_gap_mm: float = config.GAZEBO_PALLET_GAP_MM,
+     friction: float = config.SIM_FRICTION_COEFF,
+     pallet_friction: float | None = None,
+     floor_friction: float | None = None,
+@@ -465,7 +591,9 @@
+     parser.add_argument("--run-name", default="latest")
+     parser.add_argument("--timestamped", action="store_true")
+     parser.add_argument("--friction", type=float, default=config.SIM_FRICTION_COEFF)
+-    parser.add_argument("--pallet-gap-mm", type=float, default=500.0)
++    parser.add_argument(
++        "--pallet-gap-mm", type=float, default=config.GAZEBO_PALLET_GAP_MM
++    )
+     parser.add_argument("--settle-lift-mm", type=float, default=0.0)
+     parser.add_argument("--unpaused", action="store_true")
+     parser.add_argument("--run-gazebo", action="store_true")
+--- /dev/null	2026-07-20 18:02:21.892401084 +0000
++++ /mnt/data/pallet_loader_pallet_model/models/euro_pallet/model.config	2026-07-20 18:05:50.186085930 +0000
+@@ -0,0 +1,14 @@
++<?xml version="1.0"?>
++<model>
++  <name>Simplified EUR pallet</name>
++  <version>1.0</version>
++  <sdf version="1.10">model.sdf</sdf>
++  <author>
++    <name>JIS Automation pallet loader project</name>
++  </author>
++  <description>
++    Dynamic 800 x 1200 x 144 mm EUR-pallet approximation made from
++    two 22 mm deck slabs and three 50 x 100 mm longitudinal stringers.
++    The two channels are open through the 1200 mm direction for fork entry.
++  </description>
++</model>
+--- /dev/null	2026-07-20 18:02:21.892401084 +0000
++++ /mnt/data/pallet_loader_pallet_model/models/euro_pallet/model.sdf	2026-07-20 18:04:32.825791845 +0000
+@@ -0,0 +1,149 @@
++<?xml version="1.0"?>
++<sdf version="1.10">
++  <!--
++    Simplified dynamic EUR pallet.
++
++    Coordinate convention:
++      X = 800 mm pallet dimension
++      Y = 1200 mm pallet dimension / fork insertion direction
++      Z = height, with model z=0 at the floor
++
++    Construction requested for the simulation:
++      - bottom deck slab: 800 x 1200 x 22 mm
++      - three longitudinal 2x4-style stringers: 50 x 1200 x 100 mm
++      - top deck slab: 800 x 1200 x 22 mm
++
++    Overall envelope: 800 x 1200 x 144 mm.
++    The single rigid link uses five primitive box collisions. This keeps
++    fork contact stable and inexpensive compared with triangle-mesh collision.
++  -->
++  <model name="euro_pallet">
++    <static>false</static>
++    <self_collide>false</self_collide>
++    <allow_auto_disable>false</allow_auto_disable>
++
++    <link name="body">
++      <gravity>true</gravity>
++      <kinematic>false</kinematic>
++
++      <!--
++        Total mass is 25 kg. The inertia below is the compound-box inertia
++        of the five wooden members, with mass distributed by member volume.
++        The resulting centre of mass is at the geometric centre, z=72 mm.
++      -->
++      <inertial>
++        <pose>0 0 0.072 0 0 0</pose>
++        <mass>25</mass>
++        <inertia>
++          <ixx>3.07216082337</ixx>
++          <ixy>0</ixy>
++          <ixz>0</ixz>
++          <iyy>1.70896776228</iyy>
++          <iyz>0</iyz>
++          <izz>4.63680693891</izz>
++        </inertia>
++      </inertial>
++
++      <!-- Bottom deck: centre at 11 mm above the model origin. -->
++      <collision name="bottom_deck_collision">
++        <pose>0 0 0.011 0 0 0</pose>
++        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
++        <surface>
++          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
++          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
++          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
++        </surface>
++      </collision>
++      <visual name="bottom_deck_visual">
++        <pose>0 0 0.011 0 0 0</pose>
++        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
++        <material>
++          <ambient>0.46 0.28 0.10 1</ambient>
++          <diffuse>0.64 0.42 0.18 1</diffuse>
++          <specular>0.03 0.03 0.03 1</specular>
++        </material>
++      </visual>
++
++      <!--
++        Three 50 x 100 mm longitudinal stringers. They run along Y, so
++        the two fork channels are open from either 1200 mm end of the pallet.
++      -->
++      <collision name="left_stringer_collision">
++        <pose>-0.375 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <surface>
++          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
++          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
++          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
++        </surface>
++      </collision>
++      <visual name="left_stringer_visual">
++        <pose>-0.375 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <material>
++          <ambient>0.42 0.25 0.09 1</ambient>
++          <diffuse>0.58 0.36 0.14 1</diffuse>
++          <specular>0.03 0.03 0.03 1</specular>
++        </material>
++      </visual>
++
++      <collision name="centre_stringer_collision">
++        <pose>0 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <surface>
++          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
++          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
++          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
++        </surface>
++      </collision>
++      <visual name="centre_stringer_visual">
++        <pose>0 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <material>
++          <ambient>0.42 0.25 0.09 1</ambient>
++          <diffuse>0.58 0.36 0.14 1</diffuse>
++          <specular>0.03 0.03 0.03 1</specular>
++        </material>
++      </visual>
++
++      <collision name="right_stringer_collision">
++        <pose>0.375 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <surface>
++          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
++          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
++          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
++        </surface>
++      </collision>
++      <visual name="right_stringer_visual">
++        <pose>0.375 0 0.072 0 0 0</pose>
++        <geometry><box><size>0.05 1.2 0.1</size></box></geometry>
++        <material>
++          <ambient>0.42 0.25 0.09 1</ambient>
++          <diffuse>0.58 0.36 0.14 1</diffuse>
++          <specular>0.03 0.03 0.03 1</specular>
++        </material>
++      </visual>
++
++      <!-- Top deck: top face is exactly z=144 mm. -->
++      <collision name="top_deck_collision">
++        <pose>0 0 0.133 0 0 0</pose>
++        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
++        <surface>
++          <friction><ode><mu>0.65</mu><mu2>0.65</mu2></ode></friction>
++          <bounce><restitution_coefficient>0</restitution_coefficient><threshold>100000</threshold></bounce>
++          <contact><ode><kp>1000000</kp><kd>100</kd><max_vel>1</max_vel><min_depth>0.0005</min_depth></ode></contact>
++        </surface>
++      </collision>
++      <visual name="top_deck_visual">
++        <pose>0 0 0.133 0 0 0</pose>
++        <geometry><box><size>0.8 1.2 0.022</size></box></geometry>
++        <material>
++          <ambient>0.50 0.31 0.11 1</ambient>
++          <diffuse>0.70 0.47 0.20 1</diffuse>
++          <specular>0.03 0.03 0.03 1</specular>
++        </material>
++      </visual>
++    </link>
++  </model>
++</sdf>

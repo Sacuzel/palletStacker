@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <!--
+    Simplified dynamic EUR / EPAL pallet for Gazebo Harmonic.
+
+    Model coordinate convention:
+      X = 1200 mm pallet length
+      Y = 800 mm pallet width
+      Z = height, with model z=0 at the floor contact plane
+
+    This matches the pallet-loader Python convention:
+      X = pallet.length_mm
+      Y = pallet.width_mm
+
+    The packing algorithm uses z=0 at the top loading surface. Therefore,
+    when exporting boxes to Gazebo, add 0.144 m to every algorithm-local
+    box Z coordinate relative to this model.
+
+    Simplified construction:
+      - bottom deck slab: 1200 x 800 x 22 mm
+      - three longitudinal stringers: 1200 x 50 x 100 mm
+      - top deck slab: 1200 x 800 x 22 mm
+
+    Overall envelope: 1200 x 800 x 144 mm.
+    One rigid link and five primitive box collisions keep contact simulation
+    substantially cheaper and more stable than a triangle-mesh collision.
+  -->
+  <model name="euro_pallet" canonical_link="body">
+    <static>false</static>
+    <self_collide>false</self_collide>
+
+    <!-- Permit the physics engine to sleep the pallet when it is at rest. -->
+    <allow_auto_disable>true</allow_auto_disable>
+
+    <!-- Named reference frame for the box-loading surface. -->
+    <frame name="loading_surface" attached_to="body">
+      <pose relative_to="body">0 0 0.144 0 0 0</pose>
+    </frame>
+
+    <link name="body">
+      <gravity>true</gravity>
+      <kinematic>false</kinematic>
+
+      <!--
+        Total mass: 25 kg.
+        The inertia is calculated from the five compound box members with
+        mass distributed in proportion to their volume. The centre of mass
+        is at the geometric centre, z=72 mm.
+      -->
+      <inertial>
+        <pose>0 0 0.072 0 0 0</pose>
+        <mass>25</mass>
+        <inertia>
+          <ixx>1.70896776228</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>3.07216082337</iyy>
+          <iyz>0</iyz>
+          <izz>4.63680693891</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Bottom deck: centre at 11 mm above the model origin. -->
+      <collision name="bottom_deck_collision">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.8 0.022</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.65</mu>
+              <mu2>0.65</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.0005</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="bottom_deck_visual">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.8 0.022</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.46 0.28 0.10 1</ambient>
+          <diffuse>0.64 0.42 0.18 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <!--
+        Three 50 x 100 mm longitudinal stringers. They run along X, so the
+        two fork channels are open from either 800 mm end of the pallet.
+      -->
+      <collision name="left_stringer_collision">
+        <pose>0 -0.375 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.65</mu>
+              <mu2>0.65</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.0005</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="left_stringer_visual">
+        <pose>0 -0.375 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <collision name="centre_stringer_collision">
+        <pose>0 0 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.65</mu>
+              <mu2>0.65</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.0005</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="centre_stringer_visual">
+        <pose>0 0 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <collision name="right_stringer_collision">
+        <pose>0 0.375 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.65</mu>
+              <mu2>0.65</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.0005</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="right_stringer_visual">
+        <pose>0 0.375 0.072 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.05 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.42 0.25 0.09 1</ambient>
+          <diffuse>0.58 0.36 0.14 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+
+      <!-- Top deck: top face is exactly z=144 mm. -->
+      <collision name="top_deck_collision">
+        <pose>0 0 0.133 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.8 0.022</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.65</mu>
+              <mu2>0.65</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.0005</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="top_deck_visual">
+        <pose>0 0 0.133 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2 0.8 0.022</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.50 0.31 0.11 1</ambient>
+          <diffuse>0.70 0.47 0.20 1</diffuse>
+          <specular>0.03 0.03 0.03 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
