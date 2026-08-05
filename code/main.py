@@ -29,8 +29,14 @@ def main() -> int:
     # 0. WORKSPACE: establish predictable input/output directories
     # ------------------------------------------------------------------
     if settings.CREATE_MISSING_PROJECT_DIRECTORIES:
-        settings.INPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
-        settings.OUTPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
+        for directory in (
+            settings.INPUT_DIRECTORY,
+            settings.OUTPUT_DIRECTORY,
+            settings.GAZEBO_MODELS_DIRECTORY,
+            settings.GAZEBO_BRIDGE_DIRECTORY,
+            settings.GAZEBO_WORLDS_DIRECTORY,
+        ):
+            directory.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
     # 1. INPUT: select and parse JSON into Box objects
@@ -50,15 +56,15 @@ def main() -> int:
     pallets = loader(box_data.boxes)
 
     # ------------------------------------------------------------------
-    # 3. OUTPUT: create optional visualizations and exports
+    # 3. OUTPUT: create optional visualizations and simulations
     # ------------------------------------------------------------------
-    output_path = None
+    plotly_output: Path | None = None
     if settings.GENERATE_PLOTLY_OUTPUT:
         # Imported only when this output stage is enabled. This keeps the core
         # loader runnable even when Plotly is not installed.
         from pallet_stacker.plotlyVisualizer import write_layout_html
 
-        output_path = write_layout_html(
+        plotly_output = write_layout_html(
             pallets,
             output_path=settings.PLOTLY_OUTPUT_FILE,
             title=settings.PLOTLY_TITLE,
@@ -70,11 +76,19 @@ def main() -> int:
             edge_expand_mm=settings.PLOTLY_EDGE_EXPAND_MM,
         )
 
+    gazebo_world: Path | None = None
+    gazebo_process_id: int | None = None
     if settings.GENERATE_GAZEBO_OUTPUT:
-        raise NotImplementedError(
-            "Gazebo output is enabled, but the Gazebo exporter has not been "
-            "implemented yet. Set GENERATE_GAZEBO_OUTPUT = False in settings.py."
+        from pallet_stacker.gzSimulator import create_simulation
+
+        gazebo_result = create_simulation(
+            pallets,
+            output_path=settings.GAZEBO_WORLD_FILE,
+            launch=settings.GAZEBO_LAUNCH_SIMULATION,
+            wait=settings.GAZEBO_WAIT_FOR_SIMULATION_EXIT,
         )
+        gazebo_world = gazebo_result.world_path
+        gazebo_process_id = gazebo_result.process_id
 
     # ------------------------------------------------------------------
     # 4. STATUS: report the completed run
@@ -84,7 +98,9 @@ def main() -> int:
             source_file=box_data.source_path,
             input_box_count=box_data.box_count,
             pallets=pallets,
-            plotly_output=output_path,
+            plotly_output=plotly_output,
+            gazebo_world=gazebo_world,
+            gazebo_process_id=gazebo_process_id,
         )
 
     return 0
@@ -107,6 +123,8 @@ def _print_summary(
     input_box_count: int,
     pallets: Sequence[Pallet],
     plotly_output: Path | None,
+    gazebo_world: Path | None,
+    gazebo_process_id: int | None,
 ) -> None:
     placed_count = sum(pallet.box_count for pallet in pallets)
     total_weight = sum(pallet.current_load_kg for pallet in pallets)
@@ -130,6 +148,12 @@ def _print_summary(
 
     if plotly_output is not None:
         print(f"  Plotly output: {plotly_output}")
+    if gazebo_world is not None:
+        print(f"  Gazebo world: {gazebo_world}")
+        if gazebo_process_id is not None:
+            print(f"  Gazebo process ID: {gazebo_process_id}")
+        else:
+            print("  Gazebo launch: disabled; world file generated only")
 
 
 if __name__ == "__main__":

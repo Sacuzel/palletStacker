@@ -386,21 +386,36 @@ def build_bridge_yaml() -> str:
 
 
 def build_test_world() -> str:
+    """Build a minimal forklift-only world using shared Gazebo settings."""
+
+    cast_shadows = "false" if settings.GAZEBO_DISABLE_SHADOWS else "true"
+    ambient = " ".join(_fmt(value) for value in settings.GAZEBO_AMBIENT_LIGHT_RGBA)
+    background = " ".join(_fmt(value) for value in settings.GAZEBO_BACKGROUND_RGBA)
+    ground_color = " ".join(_fmt(value) for value in settings.GAZEBO_GROUND_RGBA)
+    gravity = " ".join(_fmt(value) for value in settings.GAZEBO_GRAVITY_MPS2)
+    ground_size = _fmt(settings.GAZEBO_GROUND_MIN_SIZE_M)
+
     return dedent(
         f'''\
         <?xml version="1.0"?>
         <sdf version="1.10">
-          <!-- Minimal development harness, not the future pallet scene exporter. -->
+          <!-- Minimal development harness, separate from gzSimulator.py output. -->
           <world name="forklift_test">
+            <gravity>{gravity}</gravity>
             <physics name="default_physics" type="ignored">
-              <max_step_size>0.001</max_step_size>
-              <real_time_factor>1.0</real_time_factor>
+              <max_step_size>{_fmt(settings.GAZEBO_PHYSICS_MAX_STEP_SIZE_S)}</max_step_size>
+              <real_time_factor>{_fmt(settings.GAZEBO_REAL_TIME_FACTOR)}</real_time_factor>
             </physics>
             <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
             <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
             <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+            <scene>
+              <ambient>{ambient}</ambient>
+              <background>{background}</background>
+              <shadows>{cast_shadows}</shadows>
+            </scene>
             <light type="directional" name="sun">
-              <pose>0 0 10 0 0 0</pose><cast_shadows>true</cast_shadows>
+              <pose>0 0 10 0 0 0</pose><cast_shadows>{cast_shadows}</cast_shadows>
               <direction>-0.5 0.2 -1</direction>
               <diffuse>0.9 0.9 0.9 1</diffuse><specular>0.2 0.2 0.2 1</specular>
             </light>
@@ -408,18 +423,18 @@ def build_test_world() -> str:
               <static>true</static>
               <link name="link">
                 <collision name="collision">
-                  <geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry>
-                  <surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface>
+                  <geometry><plane><normal>0 0 1</normal><size>{ground_size} {ground_size}</size></plane></geometry>
+                  <surface><friction><ode><mu>{_fmt(settings.GAZEBO_GROUND_FRICTION)}</mu><mu2>{_fmt(settings.GAZEBO_GROUND_FRICTION)}</mu2></ode></friction></surface>
                 </collision>
                 <visual name="visual">
-                  <geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry>
-                  <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+                  <geometry><plane><normal>0 0 1</normal><size>{ground_size} {ground_size}</size></plane></geometry>
+                  <material><ambient>{ground_color}</ambient><diffuse>{ground_color}</diffuse></material>
                 </visual>
               </link>
             </model>
             <include>
               <uri>model://{settings.FORKLIFT_MODEL_NAME}</uri>
-              <pose>0 0 0.001 0 0 0</pose>
+              <pose>0 0 {_fmt(settings.GAZEBO_FORKLIFT_SPAWN_CLEARANCE_M)} 0 0 0</pose>
             </include>
           </world>
         </sdf>
