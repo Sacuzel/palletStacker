@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import shlex
 import sys
 from collections.abc import Callable, Sequence
 from pathlib import Path
@@ -35,6 +36,7 @@ def main() -> int:
             settings.GAZEBO_MODELS_DIRECTORY,
             settings.GAZEBO_BRIDGE_DIRECTORY,
             settings.GAZEBO_WORLDS_DIRECTORY,
+            settings.GAZEBO_PLUGINS_DIRECTORY,
         ):
             directory.mkdir(parents=True, exist_ok=True)
 
@@ -56,7 +58,7 @@ def main() -> int:
     pallets = loader(box_data.boxes)
 
     # ------------------------------------------------------------------
-    # 3. OUTPUT: create optional visualizations and simulations
+    # 3. OUTPUT: create optional visualizations and simulation assets
     # ------------------------------------------------------------------
     plotly_output: Path | None = None
     if settings.GENERATE_PLOTLY_OUTPUT:
@@ -77,21 +79,27 @@ def main() -> int:
         )
 
     gazebo_world: Path | None = None
-    gazebo_process_id: int | None = None
+    gazebo_manifest: Path | None = None
+    gazebo_gui_plugin: Path | None = None
+    gazebo_gui_plugin_rebuilt = False
+    gazebo_gui_plugin_installed = False
+
     if settings.GENERATE_GAZEBO_OUTPUT:
         from pallet_stacker.gzSimulator import create_simulation
 
         gazebo_result = create_simulation(
             pallets,
             output_path=settings.GAZEBO_WORLD_FILE,
-            launch=settings.GAZEBO_LAUNCH_SIMULATION,
-            wait=settings.GAZEBO_WAIT_FOR_SIMULATION_EXIT,
+            manifest_path=settings.GAZEBO_MANIFEST_FILE,
         )
         gazebo_world = gazebo_result.world_path
-        gazebo_process_id = gazebo_result.process_id
+        gazebo_manifest = gazebo_result.manifest_path
+        gazebo_gui_plugin = gazebo_result.gui_plugin_path
+        gazebo_gui_plugin_rebuilt = gazebo_result.gui_plugin_rebuilt
+        gazebo_gui_plugin_installed = gazebo_result.gui_plugin_installed
 
     # ------------------------------------------------------------------
-    # 4. STATUS: report the completed run
+    # 4. STATUS: report the completed run and the next manual command
     # ------------------------------------------------------------------
     if settings.PRINT_RUN_SUMMARY:
         _print_summary(
@@ -100,7 +108,10 @@ def main() -> int:
             pallets=pallets,
             plotly_output=plotly_output,
             gazebo_world=gazebo_world,
-            gazebo_process_id=gazebo_process_id,
+            gazebo_manifest=gazebo_manifest,
+            gazebo_gui_plugin=gazebo_gui_plugin,
+            gazebo_gui_plugin_rebuilt=gazebo_gui_plugin_rebuilt,
+            gazebo_gui_plugin_installed=gazebo_gui_plugin_installed,
         )
 
     return 0
@@ -124,7 +135,10 @@ def _print_summary(
     pallets: Sequence[Pallet],
     plotly_output: Path | None,
     gazebo_world: Path | None,
-    gazebo_process_id: int | None,
+    gazebo_manifest: Path | None,
+    gazebo_gui_plugin: Path | None,
+    gazebo_gui_plugin_rebuilt: bool,
+    gazebo_gui_plugin_installed: bool,
 ) -> None:
     placed_count = sum(pallet.box_count for pallet in pallets)
     total_weight = sum(pallet.current_load_kg for pallet in pallets)
@@ -148,12 +162,40 @@ def _print_summary(
 
     if plotly_output is not None:
         print(f"  Plotly output: {plotly_output}")
+
     if gazebo_world is not None:
         print(f"  Gazebo world: {gazebo_world}")
-        if gazebo_process_id is not None:
-            print(f"  Gazebo process ID: {gazebo_process_id}")
+        if gazebo_manifest is not None:
+            print(f"  Gazebo manifest: {gazebo_manifest}")
+        if gazebo_gui_plugin is not None:
+            if gazebo_gui_plugin_rebuilt and gazebo_gui_plugin_installed:
+                plugin_state = "rebuilt and installed"
+            elif gazebo_gui_plugin_rebuilt:
+                plugin_state = "rebuilt; installed copy already current"
+            elif gazebo_gui_plugin_installed:
+                plugin_state = "installed/updated"
+            else:
+                plugin_state = "current"
+            print(f"  Forklift GUI plugin ({plugin_state}): {gazebo_gui_plugin}")
         else:
-            print("  Gazebo launch: disabled; world file generated only")
+            print("  Integrated forklift controls: disabled")
+
+        print("  Gazebo launch: not started by main.py; generation is complete")
+        display_path = _project_relative_or_absolute(gazebo_world)
+        command = f"gz sim {shlex.quote(str(display_path))}"
+        print(f"  Run simulation: {command}")
+        if gazebo_gui_plugin is not None:
+            print(
+                "  Forklift controls: W/S drive, A/D turn, "
+                "arrows lift/lower, Space stop"
+            )
+
+
+def _project_relative_or_absolute(path: Path) -> Path:
+    try:
+        return path.resolve().relative_to(settings.PROJECT_ROOT.resolve())
+    except ValueError:
+        return path.resolve()
 
 
 if __name__ == "__main__":

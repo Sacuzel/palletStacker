@@ -1,4 +1,8 @@
-"""ROS 2 keyboard teleoperation for the simplified forklift.
+"""Optional ROS 2 diagnostic teleoperation for the simplified forklift.
+
+The normal pallet-stacker world uses the integrated ``ForkliftTeleop`` Gazebo
+GUI plugin and does not require this module, a ROS bridge, or another terminal.
+This file remains useful for isolated ROS / Gazebo topic testing.
 
 Controls
 --------

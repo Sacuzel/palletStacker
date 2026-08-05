@@ -1,0 +1,1275 @@
+{
+  "world_name": "pallet_stacker_world",
+  "pallet_count": 2,
+  "box_count": 48,
+  "simulation_start": {
+    "automatic": true,
+    "mechanism": "ForkliftTeleop GUI plugin requests pause=false",
+    "world_control_service": "/world/pallet_stacker_world/control"
+  },
+  "integrated_forklift_controls": {
+    "enabled": true,
+    "gui_plugin_filename": "ForkliftTeleop",
+    "transport_only": true,
+    "forward": "W",
+    "reverse": "S",
+    "turn_left": "A",
+    "turn_right": "D",
+    "forks_up": "Up",
+    "forks_down": "Down",
+    "stop": "Space"
+  },
+  "items": [
+    {
+      "type": "pallet",
+      "model_name": "pallet_01_PALLET_001",
+      "pallet_id": "PALLET-001",
+      "world_pose_m_rad": [
+        0.0,
+        0.0,
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "box_count": 24,
+      "load_kg": 224.0
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0001_MILK_001",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-001",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        0.256
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0002_MILK_002",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-002",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        220.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        0.476
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0003_MILK_003",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-003",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        440.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        0.696
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0004_MILK_004",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-004",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        660.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        0.916
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0005_MILK_005",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-005",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        880.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        1.136
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0006_MILK_006",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-006",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        1100.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        1.356
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0007_MILK_007",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-007",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        1320.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        1.576
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0008_MILK_008",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-008",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        1540.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        -0.39999999999999997,
+        -0.25,
+        1.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0009_MILK_009",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-009",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        5.551115123125783e-17,
+        -0.25,
+        0.256
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0010_MILK_010",
+      "pallet_id": "PALLET-001",
+      "identifier": "MILK-010",
+      "sku": "MILK",
+      "mass_kg": 12.0,
+      "simulation_mass_kg": 12.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        220.0
+      ],
+      "oriented_size_mm": [
+        400.0,
+        300.0,
+        220.0
+      ],
+      "world_center_m": [
+        5.551115123125783e-17,
+        -0.25,
+        0.476
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0011_CEREAL_011",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-011",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        440.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        300.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.050000000000000044,
+        -0.25,
+        0.706
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0012_CEREAL_012",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-012",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        680.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        300.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.050000000000000044,
+        -0.25,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0013_CEREAL_013",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-013",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        920.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        300.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.050000000000000044,
+        -0.25,
+        1.186
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0014_CEREAL_014",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-014",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        1160.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        300.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.050000000000000044,
+        -0.25,
+        1.4259999999999997
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0015_CEREAL_015",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-015",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        400.0,
+        0.0,
+        1400.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        300.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.050000000000000044,
+        -0.25,
+        1.666
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0016_CEREAL_016",
+      "pallet_id": "PALLET-001",
+      "identifier": "CEREAL-016",
+      "sku": "CEREAL",
+      "mass_kg": 4.0,
+      "simulation_mass_kg": 4.0,
+      "orientation": "yxz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        500.0,
+        240.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.15000000000000002,
+        0.266
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0017_CANS_017",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-017",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        240.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        0.476
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0018_CANS_018",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-018",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        420.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        0.6559999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0019_CANS_019",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-019",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        600.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        0.836
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0020_CANS_020",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-020",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        780.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        1.016
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0021_CANS_021",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-021",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        960.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        1.196
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0022_CANS_022",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-022",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        1140.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        1.3760000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0023_CANS_023",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-023",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        1320.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        1.556
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0024_CANS_024",
+      "pallet_id": "PALLET-001",
+      "identifier": "CANS-024",
+      "sku": "CANS",
+      "mass_kg": 10.0,
+      "simulation_mass_kg": 10.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        900.0,
+        0.0,
+        1500.0
+      ],
+      "oriented_size_mm": [
+        300.0,
+        250.0,
+        180.0
+      ],
+      "world_center_m": [
+        0.45000000000000007,
+        -0.275,
+        1.736
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_02_PALLET_002",
+      "pallet_id": "PALLET-002",
+      "world_pose_m_rad": [
+        1.7,
+        0.0,
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "box_count": 24,
+      "load_kg": 202.5
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0001_TISSUE_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "TISSUE-M1",
+      "sku": "TISSUE",
+      "mass_kg": 5.0,
+      "simulation_mass_kg": 5.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_center_m": [
+        1.4000000000000001,
+        -0.2,
+        0.32100000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0002_SAUCE_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "SAUCE-M1",
+      "sku": "SAUCE",
+      "mass_kg": 8.0,
+      "simulation_mass_kg": 8.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        350.0
+      ],
+      "oriented_size_mm": [
+        250.0,
+        200.0,
+        160.0
+      ],
+      "world_center_m": [
+        1.225,
+        -0.30000000000000004,
+        0.5760000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0003_PASTA_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "PASTA-M1",
+      "sku": "PASTA",
+      "mass_kg": 6.0,
+      "simulation_mass_kg": 6.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        510.0
+      ],
+      "oriented_size_mm": [
+        450.0,
+        280.0,
+        220.0
+      ],
+      "world_center_m": [
+        1.3250000000000002,
+        -0.26,
+        0.766
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0004_OIL_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "OIL-M1",
+      "sku": "OIL",
+      "mass_kg": 9.0,
+      "simulation_mass_kg": 9.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        730.0
+      ],
+      "oriented_size_mm": [
+        350.0,
+        260.0,
+        300.0
+      ],
+      "world_center_m": [
+        1.2750000000000001,
+        -0.27,
+        1.0259999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0005_PET_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "PET-M1",
+      "sku": "PET",
+      "mass_kg": 11.0,
+      "simulation_mass_kg": 11.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        1030.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        350.0,
+        260.0
+      ],
+      "world_center_m": [
+        1.35,
+        -0.225,
+        1.306
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0006_SNACK_M1",
+      "pallet_id": "PALLET-002",
+      "identifier": "SNACK-M1",
+      "sku": "SNACK",
+      "mass_kg": 3.5,
+      "simulation_mass_kg": 3.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        0.0,
+        1290.0
+      ],
+      "oriented_size_mm": [
+        550.0,
+        320.0,
+        220.0
+      ],
+      "world_center_m": [
+        1.375,
+        -0.24000000000000002,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0007_TISSUE_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "TISSUE-M2",
+      "sku": "TISSUE",
+      "mass_kg": 5.0,
+      "simulation_mass_kg": 5.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        600.0,
+        400.0,
+        350.0
+      ],
+      "world_center_m": [
+        2.0,
+        -0.2,
+        0.32100000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0008_SAUCE_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "SAUCE-M2",
+      "sku": "SAUCE",
+      "mass_kg": 8.0,
+      "simulation_mass_kg": 8.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        350.0
+      ],
+      "oriented_size_mm": [
+        250.0,
+        200.0,
+        160.0
+      ],
+      "world_center_m": [
+        1.8250000000000002,
+        -0.30000000000000004,
+        0.5760000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0009_PASTA_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "PASTA-M2",
+      "sku": "PASTA",
+      "mass_kg": 6.0,
+      "simulation_mass_kg": 6.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        510.0
+      ],
+      "oriented_size_mm": [
+        450.0,
+        280.0,
+        220.0
+      ],
+      "world_center_m": [
+        1.9250000000000003,
+        -0.26,
+        0.766
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0010_OIL_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "OIL-M2",
+      "sku": "OIL",
+      "mass_kg": 9.0,
+      "simulation_mass_kg": 9.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        730.0
+      ],
+      "oriented_size_mm": [
+        350.0,
+        260.0,
+        300.0
+      ],
+      "world_center_m": [
+        1.8750000000000002,
+        -0.27,
+        1.0259999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0011_PET_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "PET-M2",
+      "sku": "PET",
+      "mass_kg": 11.0,
+      "simulation_mass_kg": 11.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        1030.0
+      ],
+      "oriented_size_mm": [
+        500.0,
+        350.0,
+        260.0
+      ],
+      "world_center_m": [
+        1.9500000000000002,
+        -0.225,
+        1.306
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0012_SNACK_M2",
+      "pallet_id": "PALLET-002",
+      "identifier": "SNACK-M2",
+      "sku": "SNACK",
+      "mass_kg": 3.5,
+      "simulation_mass_kg": 3.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        1290.0
+      ],
+      "oriented_size_mm": [
+        550.0,
+        320.0,
+        220.0
+      ],
+      "world_center_m": [
+        1.975,
+        -0.24000000000000002,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0013_JARS_037",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-037",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        600.0,
+        0.0,
+        1510.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.83,
+        -0.29000000000000004,
+        1.7409999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0014_JARS_038",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-038",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        0.23100000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0015_JARS_039",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-039",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        170.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        0.4010000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0016_JARS_040",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-040",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        340.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        0.5710000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0017_JARS_041",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-041",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        510.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        0.741
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0018_JARS_042",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-042",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        680.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        0.911
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0019_JARS_043",
+      "pallet_id": "PALLET-002",
+      "identifier": "JARS-043",
+      "sku": "JARS",
+      "mass_kg": 7.5,
+      "simulation_mass_kg": 7.5,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        850.0
+      ],
+      "oriented_size_mm": [
+        260.0,
+        220.0,
+        170.0
+      ],
+      "world_center_m": [
+        1.23,
+        0.11,
+        1.081
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0020_WATER_044",
+      "pallet_id": "PALLET-002",
+      "identifier": "WATER-044",
+      "sku": "WATER",
+      "mass_kg": 13.0,
+      "simulation_mass_kg": 13.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        1020.0
+      ],
+      "oriented_size_mm": [
+        420.0,
+        280.0,
+        240.0
+      ],
+      "world_center_m": [
+        1.31,
+        0.14,
+        1.286
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0021_WATER_045",
+      "pallet_id": "PALLET-002",
+      "identifier": "WATER-045",
+      "sku": "WATER",
+      "mass_kg": 13.0,
+      "simulation_mass_kg": 13.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        1260.0
+      ],
+      "oriented_size_mm": [
+        420.0,
+        280.0,
+        240.0
+      ],
+      "world_center_m": [
+        1.31,
+        0.14,
+        1.5259999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0022_WATER_046",
+      "pallet_id": "PALLET-002",
+      "identifier": "WATER-046",
+      "sku": "WATER",
+      "mass_kg": 13.0,
+      "simulation_mass_kg": 13.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        0.0,
+        400.0,
+        1500.0
+      ],
+      "oriented_size_mm": [
+        420.0,
+        280.0,
+        240.0
+      ],
+      "world_center_m": [
+        1.31,
+        0.14,
+        1.766
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0023_WATER_047",
+      "pallet_id": "PALLET-002",
+      "identifier": "WATER-047",
+      "sku": "WATER",
+      "mass_kg": 13.0,
+      "simulation_mass_kg": 13.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        420.0,
+        400.0,
+        0.0
+      ],
+      "oriented_size_mm": [
+        420.0,
+        280.0,
+        240.0
+      ],
+      "world_center_m": [
+        1.73,
+        0.14,
+        0.266
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0024_WATER_048",
+      "pallet_id": "PALLET-002",
+      "identifier": "WATER-048",
+      "sku": "WATER",
+      "mass_kg": 13.0,
+      "simulation_mass_kg": 13.0,
+      "orientation": "xyz",
+      "local_min_corner_mm": [
+        420.0,
+        400.0,
+        240.0
+      ],
+      "oriented_size_mm": [
+        420.0,
+        280.0,
+        240.0
+      ],
+      "world_center_m": [
+        1.73,
+        0.14,
+        0.506
+      ]
+    },
+    {
+      "type": "forklift",
+      "model_name": "simple_forklift",
+      "world_pose_m_rad": [
+        -4.4,
+        0.0,
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fork_tip_clearance_m": 3.0,
+      "drive_topic": "/forklift/cmd_vel",
+      "fork_position_topic": "/forklift/fork_position"
+    }
+  ],
+  "world_file": "/home/abufarik/Projects/palletStackerWS/gazebo/worlds/pallet_stacker_world.sdf",
+  "gui_plugin_filename": "ForkliftTeleop",
+  "gui_plugin_library": "/home/abufarik/.gz/gui/plugins/libForkliftTeleop.so",
+  "gui_plugin_build_library": "/home/abufarik/Projects/palletStackerWS/gazebo/plugins/forklift_teleop/build/libForkliftTeleop.so",
+  "models_inlined": true,
+  "requires_ros2": false
+}

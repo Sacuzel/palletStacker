@@ -3,7 +3,7 @@
   <world name="pallet_stacker_world">
     <gravity>0 0 -9.81</gravity>
     <physics name="pallet_stacker_physics" type="ignored">
-      <max_step_size>0.001</max_step_size>
+      <max_step_size>0.005</max_step_size>
       <real_time_factor>1</real_time_factor>
     </physics>
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
@@ -33,7 +33,25 @@
         </camera_clip>
       </plugin>
       <plugin filename="GzSceneManager" name="Scene Manager"/>
+      <plugin filename="InteractiveViewControl" name="Interactive view control"/>
+      <plugin filename="CameraTracking" name="Camera tracking"/>
+      <plugin filename="MarkerManager" name="Marker manager"/>
+      <plugin filename="SelectEntities" name="Select entities"/>
+      <plugin filename="EntityContextMenuPlugin" name="Entity context menu"/>
+      <plugin filename="VisualizationCapabilities" name="Visualization capabilities"/>
       <plugin filename="WorldControl" name="World control">
+        <gz-gui>
+          <title>World control</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">72</property>
+          <property type="double" key="width">121</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="left" target="left"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </gz-gui>
         <play_pause>true</play_pause>
         <step>true</step>
         <start_paused>false</start_paused>
@@ -41,6 +59,18 @@
         <stats_topic>/world/pallet_stacker_world/stats</stats_topic>
       </plugin>
       <plugin filename="WorldStats" name="World stats">
+        <gz-gui>
+          <title>World stats</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="resizable">false</property>
+          <property type="double" key="height">110</property>
+          <property type="double" key="width">290</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </gz-gui>
         <sim_time>true</sim_time>
         <real_time>true</real_time>
         <real_time_factor>true</real_time_factor>
@@ -48,6 +78,48 @@
         <topic>/world/pallet_stacker_world/stats</topic>
       </plugin>
       <plugin filename="EntityTree" name="Entity tree"/>
+      <plugin filename="ForkliftTeleop" name="Forklift controls">
+        <gz-gui>
+          <title>Forklift controls</title>
+          <property type="double" key="width">360</property>
+          <property type="double" key="height">245</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right"/>
+            <line own="top" target="top"/>
+          </anchors>
+        </gz-gui>
+        <drive_topic>/forklift/cmd_vel</drive_topic>
+        <fork_topic>/forklift/fork_position</fork_topic>
+        <world_control_service>/world/pallet_stacker_world/control</world_control_service>
+        <max_linear_velocity>3</max_linear_velocity>
+        <max_angular_velocity>0.75</max_angular_velocity>
+        <max_linear_acceleration>1</max_linear_acceleration>
+        <max_angular_acceleration>1.5</max_angular_acceleration>
+        <max_fork_velocity>0.5</max_fork_velocity>
+        <fork_minimum>0</fork_minimum>
+        <fork_maximum>1.8</fork_maximum>
+        <fork_initial>0</fork_initial>
+        <update_rate_hz>50</update_rate_hz>
+        <auto_start>true</auto_start>
+        <auto_start_retry_interval_ms>250</auto_start_retry_interval_ms>
+        <auto_start_request_timeout_ms>100</auto_start_request_timeout_ms>
+        <auto_start_max_attempts>60</auto_start_max_attempts>
+        <forward_key>87</forward_key>
+        <forward_label>W</forward_label>
+        <reverse_key>83</reverse_key>
+        <reverse_label>S</reverse_label>
+        <left_key>65</left_key>
+        <left_label>A</left_label>
+        <right_key>68</right_key>
+        <right_label>D</right_label>
+        <lift_key>16777235</lift_key>
+        <lift_label>Up</lift_label>
+        <lower_key>16777237</lower_key>
+        <lower_label>Down</lower_label>
+        <stop_key>32</stop_key>
+        <stop_label>Space</stop_label>
+      </plugin>
     </gui>
     <light type="directional" name="sun">
       <pose>0 0 10 0 0 0</pose>
@@ -61,23 +133,293 @@
       <pose>-2.022 0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+        <max_contacts>4</max_contacts>
+        <geometry>
+            <plane><normal>0 0 1</normal><size>20 20</size></plane>
+          </geometry>
           <surface>
-            <friction><ode><mu>0.8</mu><mu2>0.8</mu2></ode></friction>
+            <friction>
+              <ode><mu>0.8</mu><mu2>0.8</mu2></ode>
+              <bullet><friction>0.8</friction><friction2>0.8</friction2></bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+          <geometry>
+            <plane><normal>0 0 1</normal><size>20 20</size></plane>
+          </geometry>
           <material><ambient>0.58 0.6 0.62 1</ambient><diffuse>0.58 0.6 0.62 1</diffuse></material>
         </visual>
       </link>
     </model>
-    <include>
-      <uri>model://euro_pallet</uri>
-      <name>pallet_1_PALLET_001</name>
+    <model name="pallet_01_PALLET_001" canonical_link="body">
       <pose>0 0 0.001 0 0 0</pose>
-    </include>
-    <model name="box_PALLET_001_1_MILK_001">
+      <static>false</static>
+      <self_collide>false</self_collide>
+      <allow_auto_disable>true</allow_auto_disable>
+      <frame name="loading_surface" attached_to="body">
+        <pose relative_to="body">0 0 0.144 0 0 0</pose>
+      </frame>
+      <link name="body">
+        <gravity>true</gravity>
+        <kinematic>false</kinematic>
+        <inertial>
+          <pose>0 0 0.072 0 0 0</pose>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.70896776228</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.07216082337</iyy>
+            <iyz>0</iyz>
+            <izz>4.63680693891</izz>
+          </inertia>
+        </inertial>
+        <collision name="bottom_deck_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.011 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="bottom_deck_visual">
+          <pose>0 0 0.011 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.46 0.28 0.10 1</ambient>
+            <diffuse>0.64 0.42 0.18 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="left_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 -0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="left_stringer_visual">
+          <pose>0 -0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="centre_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="centre_stringer_visual">
+          <pose>0 0 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="right_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="right_stringer_visual">
+          <pose>0 0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="top_deck_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.133 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="top_deck_visual">
+          <pose>0 0 0.133 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.50 0.31 0.11 1</ambient>
+            <diffuse>0.70 0.47 0.20 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p01_0001_MILK_001">
       <pose>-0.4 -0.25 0.256 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -92,7 +434,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -113,7 +458,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -122,7 +469,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_2_MILK_002">
+    <model name="box_p01_0002_MILK_002">
       <pose>-0.4 -0.25 0.476 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -137,7 +484,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -158,7 +508,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -167,7 +519,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_3_MILK_003">
+    <model name="box_p01_0003_MILK_003">
       <pose>-0.4 -0.25 0.696 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -182,7 +534,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -203,7 +558,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -212,7 +569,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_4_MILK_004">
+    <model name="box_p01_0004_MILK_004">
       <pose>-0.4 -0.25 0.916 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -227,7 +584,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -248,7 +608,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -257,7 +619,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_5_MILK_005">
+    <model name="box_p01_0005_MILK_005">
       <pose>-0.4 -0.25 1.136 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -272,7 +634,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -293,7 +658,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -302,7 +669,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_6_MILK_006">
+    <model name="box_p01_0006_MILK_006">
       <pose>-0.4 -0.25 1.356 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -317,7 +684,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -338,7 +708,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -347,7 +719,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_7_MILK_007">
+    <model name="box_p01_0007_MILK_007">
       <pose>-0.4 -0.25 1.576 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -362,7 +734,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -383,7 +758,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -392,7 +769,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_8_MILK_008">
+    <model name="box_p01_0008_MILK_008">
       <pose>-0.4 -0.25 1.796 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -407,7 +784,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -428,7 +808,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -437,7 +819,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_9_MILK_009">
+    <model name="box_p01_0009_MILK_009">
       <pose>5.55111512313e-17 -0.25 0.256 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -452,7 +834,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -473,7 +858,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -482,7 +869,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_10_MILK_010">
+    <model name="box_p01_0010_MILK_010">
       <pose>5.55111512313e-17 -0.25 0.476 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -497,7 +884,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.4 0.3 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -518,7 +908,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.4 0.3 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.4 0.3 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.370588235294 0.344117647059 0.317647058824 1</ambient>
             <diffuse>0.494117647059 0.458823529412 0.423529411765 1</diffuse>
@@ -527,7 +919,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_11_CEREAL_011">
+    <model name="box_p01_0011_CEREAL_011">
       <pose>0.05 -0.25 0.706 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -542,7 +934,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.3 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -563,7 +958,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.3 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -572,7 +969,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_12_CEREAL_012">
+    <model name="box_p01_0012_CEREAL_012">
       <pose>0.05 -0.25 0.946 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -587,7 +984,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.3 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -608,7 +1008,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.3 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -617,7 +1019,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_13_CEREAL_013">
+    <model name="box_p01_0013_CEREAL_013">
       <pose>0.05 -0.25 1.186 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -632,7 +1034,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.3 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -653,7 +1058,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.3 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -662,7 +1069,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_14_CEREAL_014">
+    <model name="box_p01_0014_CEREAL_014">
       <pose>0.05 -0.25 1.426 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -677,7 +1084,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.3 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -698,7 +1108,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.3 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -707,7 +1119,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_15_CEREAL_015">
+    <model name="box_p01_0015_CEREAL_015">
       <pose>0.05 -0.25 1.666 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -722,7 +1134,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.3 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -743,7 +1158,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.3 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.3 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -752,7 +1169,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_16_CEREAL_016">
+    <model name="box_p01_0016_CEREAL_016">
       <pose>0.45 -0.15 0.266 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -767,7 +1184,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.5 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.5 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -788,7 +1208,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.5 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.5 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.45 0.208823529412 0.302941176471 1</ambient>
             <diffuse>0.6 0.278431372549 0.403921568627 1</diffuse>
@@ -797,7 +1219,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_17_CANS_017">
+    <model name="box_p01_0017_CANS_017">
       <pose>0.45 -0.275 0.476 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -812,7 +1234,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -833,7 +1258,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -842,7 +1269,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_18_CANS_018">
+    <model name="box_p01_0018_CANS_018">
       <pose>0.45 -0.275 0.656 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -857,7 +1284,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -878,7 +1308,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -887,7 +1319,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_19_CANS_019">
+    <model name="box_p01_0019_CANS_019">
       <pose>0.45 -0.275 0.836 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -902,7 +1334,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -923,7 +1358,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -932,7 +1369,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_20_CANS_020">
+    <model name="box_p01_0020_CANS_020">
       <pose>0.45 -0.275 1.016 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -947,7 +1384,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -968,7 +1408,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -977,7 +1419,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_21_CANS_021">
+    <model name="box_p01_0021_CANS_021">
       <pose>0.45 -0.275 1.196 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -992,7 +1434,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1013,7 +1458,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -1022,7 +1469,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_22_CANS_022">
+    <model name="box_p01_0022_CANS_022">
       <pose>0.45 -0.275 1.376 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1037,7 +1484,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1058,7 +1508,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -1067,7 +1519,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_23_CANS_023">
+    <model name="box_p01_0023_CANS_023">
       <pose>0.45 -0.275 1.556 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1082,7 +1534,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1103,7 +1558,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -1112,7 +1569,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_001_24_CANS_024">
+    <model name="box_p01_0024_CANS_024">
       <pose>0.45 -0.275 1.736 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1127,7 +1584,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.3 0.25 0.18</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1148,7 +1608,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.3 0.25 0.18</size></box></geometry>
+          <geometry>
+            <box><size>0.3 0.25 0.18</size></box>
+          </geometry>
           <material>
             <ambient>0.211764705882 0.229411764706 0.411764705882 1</ambient>
             <diffuse>0.282352941176 0.305882352941 0.549019607843 1</diffuse>
@@ -1157,12 +1619,262 @@
         </visual>
       </link>
     </model>
-    <include>
-      <uri>model://euro_pallet</uri>
-      <name>pallet_2_PALLET_002</name>
+    <model name="pallet_02_PALLET_002" canonical_link="body">
       <pose>1.7 0 0.001 0 0 0</pose>
-    </include>
-    <model name="box_PALLET_002_1_TISSUE_M1">
+      <static>false</static>
+      <self_collide>false</self_collide>
+      <allow_auto_disable>true</allow_auto_disable>
+      <frame name="loading_surface" attached_to="body">
+        <pose relative_to="body">0 0 0.144 0 0 0</pose>
+      </frame>
+      <link name="body">
+        <gravity>true</gravity>
+        <kinematic>false</kinematic>
+        <inertial>
+          <pose>0 0 0.072 0 0 0</pose>
+          <mass>25</mass>
+          <inertia>
+            <ixx>1.70896776228</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.07216082337</iyy>
+            <iyz>0</iyz>
+            <izz>4.63680693891</izz>
+          </inertia>
+        </inertial>
+        <collision name="bottom_deck_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.011 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="bottom_deck_visual">
+          <pose>0 0 0.011 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.46 0.28 0.10 1</ambient>
+            <diffuse>0.64 0.42 0.18 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="left_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 -0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="left_stringer_visual">
+          <pose>0 -0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="centre_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="centre_stringer_visual">
+          <pose>0 0 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="right_stringer_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="right_stringer_visual">
+          <pose>0 0.375 0.072 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.05 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.42 0.25 0.09 1</ambient>
+            <diffuse>0.58 0.36 0.14 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+        <collision name="top_deck_collision">
+          <max_contacts>4</max_contacts>
+          <pose>0 0 0.133 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+              <bullet>
+                <friction>0.65</friction>
+                <friction2>0.65</friction2>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="top_deck_visual">
+          <pose>0 0 0.133 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.022</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.50 0.31 0.11 1</ambient>
+            <diffuse>0.70 0.47 0.20 1</diffuse>
+            <specular>0.03 0.03 0.03 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="box_p02_0001_TISSUE_M1">
       <pose>1.4 -0.2 0.321 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1177,7 +1889,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.6 0.4 0.35</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.6 0.4 0.35</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1198,7 +1913,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.6 0.4 0.35</size></box></geometry>
+          <geometry>
+            <box><size>0.6 0.4 0.35</size></box>
+          </geometry>
           <material>
             <ambient>0.405882352941 0.620588235294 0.482352941176 1</ambient>
             <diffuse>0.541176470588 0.827450980392 0.643137254902 1</diffuse>
@@ -1207,7 +1924,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_2_SAUCE_M1">
+    <model name="box_p02_0002_SAUCE_M1">
       <pose>1.225 -0.3 0.576 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1222,7 +1939,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.25 0.2 0.16</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.25 0.2 0.16</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1243,7 +1963,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.25 0.2 0.16</size></box></geometry>
+          <geometry>
+            <box><size>0.25 0.2 0.16</size></box>
+          </geometry>
           <material>
             <ambient>0.294117647059 0.411764705882 0.564705882353 1</ambient>
             <diffuse>0.392156862745 0.549019607843 0.752941176471 1</diffuse>
@@ -1252,7 +1974,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_3_PASTA_M1">
+    <model name="box_p02_0003_PASTA_M1">
       <pose>1.325 -0.26 0.766 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1267,7 +1989,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.45 0.28 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.45 0.28 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1288,7 +2013,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.45 0.28 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.45 0.28 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.347058823529 0.405882352941 0.367647058824 1</ambient>
             <diffuse>0.462745098039 0.541176470588 0.490196078431 1</diffuse>
@@ -1297,7 +2024,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_4_OIL_M1">
+    <model name="box_p02_0004_OIL_M1">
       <pose>1.275 -0.27 1.026 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1312,7 +2039,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.35 0.26 0.3</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.35 0.26 0.3</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1333,7 +2063,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.35 0.26 0.3</size></box></geometry>
+          <geometry>
+            <box><size>0.35 0.26 0.3</size></box>
+          </geometry>
           <material>
             <ambient>0.394117647059 0.514705882353 0.558823529412 1</ambient>
             <diffuse>0.525490196078 0.686274509804 0.745098039216 1</diffuse>
@@ -1342,7 +2074,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_5_PET_M1">
+    <model name="box_p02_0005_PET_M1">
       <pose>1.35 -0.225 1.306 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1357,7 +2089,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.35 0.26</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.35 0.26</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1378,7 +2113,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.35 0.26</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.35 0.26</size></box>
+          </geometry>
           <material>
             <ambient>0.402941176471 0.552941176471 0.288235294118 1</ambient>
             <diffuse>0.537254901961 0.737254901961 0.38431372549 1</diffuse>
@@ -1387,7 +2124,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_6_SNACK_M1">
+    <model name="box_p02_0006_SNACK_M1">
       <pose>1.375 -0.24 1.546 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1402,7 +2139,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.55 0.32 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.55 0.32 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1423,7 +2163,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.55 0.32 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.55 0.32 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.3 0.444117647059 0.370588235294 1</ambient>
             <diffuse>0.4 0.592156862745 0.494117647059 1</diffuse>
@@ -1432,7 +2174,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_7_TISSUE_M2">
+    <model name="box_p02_0007_TISSUE_M2">
       <pose>2 -0.2 0.321 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1447,7 +2189,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.6 0.4 0.35</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.6 0.4 0.35</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1468,7 +2213,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.6 0.4 0.35</size></box></geometry>
+          <geometry>
+            <box><size>0.6 0.4 0.35</size></box>
+          </geometry>
           <material>
             <ambient>0.405882352941 0.620588235294 0.482352941176 1</ambient>
             <diffuse>0.541176470588 0.827450980392 0.643137254902 1</diffuse>
@@ -1477,7 +2224,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_8_SAUCE_M2">
+    <model name="box_p02_0008_SAUCE_M2">
       <pose>1.825 -0.3 0.576 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1492,7 +2239,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.25 0.2 0.16</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.25 0.2 0.16</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1513,7 +2263,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.25 0.2 0.16</size></box></geometry>
+          <geometry>
+            <box><size>0.25 0.2 0.16</size></box>
+          </geometry>
           <material>
             <ambient>0.294117647059 0.411764705882 0.564705882353 1</ambient>
             <diffuse>0.392156862745 0.549019607843 0.752941176471 1</diffuse>
@@ -1522,7 +2274,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_9_PASTA_M2">
+    <model name="box_p02_0009_PASTA_M2">
       <pose>1.925 -0.26 0.766 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1537,7 +2289,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.45 0.28 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.45 0.28 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1558,7 +2313,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.45 0.28 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.45 0.28 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.347058823529 0.405882352941 0.367647058824 1</ambient>
             <diffuse>0.462745098039 0.541176470588 0.490196078431 1</diffuse>
@@ -1567,7 +2324,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_10_OIL_M2">
+    <model name="box_p02_0010_OIL_M2">
       <pose>1.875 -0.27 1.026 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1582,7 +2339,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.35 0.26 0.3</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.35 0.26 0.3</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1603,7 +2363,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.35 0.26 0.3</size></box></geometry>
+          <geometry>
+            <box><size>0.35 0.26 0.3</size></box>
+          </geometry>
           <material>
             <ambient>0.394117647059 0.514705882353 0.558823529412 1</ambient>
             <diffuse>0.525490196078 0.686274509804 0.745098039216 1</diffuse>
@@ -1612,7 +2374,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_11_PET_M2">
+    <model name="box_p02_0011_PET_M2">
       <pose>1.95 -0.225 1.306 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1627,7 +2389,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.5 0.35 0.26</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.5 0.35 0.26</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1648,7 +2413,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.5 0.35 0.26</size></box></geometry>
+          <geometry>
+            <box><size>0.5 0.35 0.26</size></box>
+          </geometry>
           <material>
             <ambient>0.402941176471 0.552941176471 0.288235294118 1</ambient>
             <diffuse>0.537254901961 0.737254901961 0.38431372549 1</diffuse>
@@ -1657,7 +2424,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_12_SNACK_M2">
+    <model name="box_p02_0012_SNACK_M2">
       <pose>1.975 -0.24 1.546 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1672,7 +2439,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.55 0.32 0.22</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.55 0.32 0.22</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1693,7 +2463,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.55 0.32 0.22</size></box></geometry>
+          <geometry>
+            <box><size>0.55 0.32 0.22</size></box>
+          </geometry>
           <material>
             <ambient>0.3 0.444117647059 0.370588235294 1</ambient>
             <diffuse>0.4 0.592156862745 0.494117647059 1</diffuse>
@@ -1702,7 +2474,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_13_JARS_037">
+    <model name="box_p02_0013_JARS_037">
       <pose>1.83 -0.29 1.741 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1717,7 +2489,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1738,7 +2513,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1747,7 +2524,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_14_JARS_038">
+    <model name="box_p02_0014_JARS_038">
       <pose>1.23 0.11 0.231 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1762,7 +2539,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1783,7 +2563,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1792,7 +2574,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_15_JARS_039">
+    <model name="box_p02_0015_JARS_039">
       <pose>1.23 0.11 0.401 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1807,7 +2589,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1828,7 +2613,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1837,7 +2624,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_16_JARS_040">
+    <model name="box_p02_0016_JARS_040">
       <pose>1.23 0.11 0.571 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1852,7 +2639,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1873,7 +2663,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1882,7 +2674,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_17_JARS_041">
+    <model name="box_p02_0017_JARS_041">
       <pose>1.23 0.11 0.741 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1897,7 +2689,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1918,7 +2713,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1927,7 +2724,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_18_JARS_042">
+    <model name="box_p02_0018_JARS_042">
       <pose>1.23 0.11 0.911 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1942,7 +2739,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -1963,7 +2763,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -1972,7 +2774,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_19_JARS_043">
+    <model name="box_p02_0019_JARS_043">
       <pose>1.23 0.11 1.081 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -1987,7 +2789,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.26 0.22 0.17</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2008,7 +2813,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.26 0.22 0.17</size></box></geometry>
+          <geometry>
+            <box><size>0.26 0.22 0.17</size></box>
+          </geometry>
           <material>
             <ambient>0.329411764706 0.441176470588 0.382352941176 1</ambient>
             <diffuse>0.439215686275 0.588235294118 0.509803921569 1</diffuse>
@@ -2017,7 +2824,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_20_WATER_044">
+    <model name="box_p02_0020_WATER_044">
       <pose>1.31 0.14 1.286 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -2032,7 +2839,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.42 0.28 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2053,7 +2863,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.42 0.28 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.455882352941 0.508823529412 0.323529411765 1</ambient>
             <diffuse>0.607843137255 0.678431372549 0.43137254902 1</diffuse>
@@ -2062,7 +2874,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_21_WATER_045">
+    <model name="box_p02_0021_WATER_045">
       <pose>1.31 0.14 1.526 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -2077,7 +2889,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.42 0.28 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2098,7 +2913,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.42 0.28 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.455882352941 0.508823529412 0.323529411765 1</ambient>
             <diffuse>0.607843137255 0.678431372549 0.43137254902 1</diffuse>
@@ -2107,7 +2924,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_22_WATER_046">
+    <model name="box_p02_0022_WATER_046">
       <pose>1.31 0.14 1.766 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -2122,7 +2939,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.42 0.28 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2143,7 +2963,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.42 0.28 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.455882352941 0.508823529412 0.323529411765 1</ambient>
             <diffuse>0.607843137255 0.678431372549 0.43137254902 1</diffuse>
@@ -2152,7 +2974,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_23_WATER_047">
+    <model name="box_p02_0023_WATER_047">
       <pose>1.73 0.14 0.266 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -2167,7 +2989,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.42 0.28 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2188,7 +3013,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.42 0.28 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.455882352941 0.508823529412 0.323529411765 1</ambient>
             <diffuse>0.607843137255 0.678431372549 0.43137254902 1</diffuse>
@@ -2197,7 +3024,7 @@
         </visual>
       </link>
     </model>
-    <model name="box_PALLET_002_24_WATER_048">
+    <model name="box_p02_0024_WATER_048">
       <pose>1.73 0.14 0.506 0 0 0</pose>
       <static>false</static>
       <self_collide>false</self_collide>
@@ -2212,7 +3039,10 @@
           </inertia>
         </inertial>
         <collision name="collision">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+            <max_contacts>4</max_contacts>
+            <geometry>
+                <box><size>0.42 0.28 0.24</size></box>
+            </geometry>
           <surface>
             <friction>
               <ode><mu>0.55</mu><mu2>0.55</mu2></ode>
@@ -2233,7 +3063,9 @@
           </surface>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.42 0.28 0.24</size></box></geometry>
+          <geometry>
+            <box><size>0.42 0.28 0.24</size></box>
+          </geometry>
           <material>
             <ambient>0.455882352941 0.508823529412 0.323529411765 1</ambient>
             <diffuse>0.607843137255 0.678431372549 0.43137254902 1</diffuse>
@@ -2242,10 +3074,288 @@
         </visual>
       </link>
     </model>
-    <include>
-      <uri>model://simple_forklift</uri>
-      <name>simple_forklift</name>
+    <model name="simple_forklift" canonical_link="body">
       <pose>-4.4 0 0.001 0 0 0</pose>
-    </include>
+      <static>false</static>
+      <self_collide>false</self_collide>
+      <allow_auto_disable>false</allow_auto_disable>
+      <frame name="fork_tip_low" attached_to="body">
+        <pose relative_to="body">0.8 0 0.05 0 0 0</pose>
+      </frame>
+      <link name="body">
+        <gravity>true</gravity>
+        <kinematic>false</kinematic>
+        <inertial>
+          <pose>-1.134 0 1.0175 0 0 0</pose>
+          <mass>3007</mass>
+          <inertia>
+            <ixx>1340.37676517</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1905.79475258</iyy>
+            <iyz>0</iyz>
+            <izz>1170.72758858</izz>
+          </inertia>
+        </inertial>
+        <collision name="front_body_collision">
+          <max_contacts>4</max_contacts>
+          <pose>-0.486 0 1.0175 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.972 1.099 2.035</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.02</mu>
+                <mu2>0.02</mu2>
+              </ode>
+              <bullet>
+                <friction>0.02</friction>
+                <friction2>0.02</friction2>
+                <rolling_friction>0.02</rolling_friction>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="front_body_visual">
+          <pose>-0.486 0 1.0175 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.972 1.099 2.035</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.45 0.02 1</ambient>
+            <diffuse>1.00 0.52 0.04 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <collision name="rear_body_collision">
+          <max_contacts>4</max_contacts>
+          <pose>-1.458 0 1.0175 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.972 1.099 2.035</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.02</mu>
+                <mu2>0.02</mu2>
+              </ode>
+              <bullet>
+                <friction>0.02</friction>
+                <friction2>0.02</friction2>
+                <rolling_friction>0.02</rolling_friction>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="rear_body_visual">
+          <pose>-1.458 0 1.0175 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.972 1.099 2.035</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.65 0.25 0.01 1</ambient>
+            <diffuse>0.78 0.31 0.02 1</diffuse>
+            <specular>0.12 0.12 0.12 1</specular>
+          </material>
+        </visual>
+      </link>
+      <link name="left_fork">
+        <pose>0.4 0.225 0.05 0 0 0</pose>
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.0166666666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.33666666667</iyy>
+            <iyz>0</iyz>
+            <izz>1.34666666667</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <max_contacts>4</max_contacts>
+          <geometry>
+            <box>
+              <size>0.8 0.08 0.04</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <bullet>
+                <friction>0.5</friction>
+                <friction2>0.5</friction2>
+                <rolling_friction>0.5</rolling_friction>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.08 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.22 0.24 0.27 1</ambient>
+            <diffuse>0.32 0.35 0.40 1</diffuse>
+            <specular>0.55 0.55 0.55 1</specular>
+          </material>
+        </visual>
+      </link>
+      <link name="right_fork">
+        <pose>0.4 -0.225 0.05 0 0 0</pose>
+        <gravity>true</gravity>
+        <inertial>
+          <mass>25</mass>
+          <inertia>
+            <ixx>0.0166666666667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.33666666667</iyy>
+            <iyz>0</iyz>
+            <izz>1.34666666667</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <max_contacts>4</max_contacts>
+          <geometry>
+            <box>
+              <size>0.8 0.08 0.04</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <bullet>
+                <friction>0.5</friction>
+                <friction2>0.5</friction2>
+                <rolling_friction>0.5</rolling_friction>
+              </bullet>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>100000</threshold>
+            </bounce>
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.0005</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.08 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.22 0.24 0.27 1</ambient>
+            <diffuse>0.32 0.35 0.40 1</diffuse>
+            <specular>0.55 0.55 0.55 1</specular>
+          </material>
+        </visual>
+      </link>
+      <joint name="left_fork_lift_joint" type="prismatic">
+        <parent>body</parent>
+        <child>left_fork</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>1.8</upper>
+            <effort>12000</effort>
+          </limit>
+          <dynamics>
+            <damping>50</damping>
+            <friction>10</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <joint name="right_fork_lift_joint" type="prismatic">
+        <parent>body</parent>
+        <child>right_fork</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>1.8</upper>
+            <effort>12000</effort>
+          </limit>
+          <dynamics>
+            <damping>50</damping>
+            <friction>10</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl">
+        <topic>/forklift/cmd_vel</topic>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_fork_lift_joint</joint_name>
+        <joint_name>right_fork_lift_joint</joint_name>
+        <topic>/forklift/fork_position</topic>
+        <initial_position>0</initial_position>
+        <use_velocity_commands>true</use_velocity_commands>
+        <cmd_max>0.5</cmd_max>
+        <cmd_min>-0.5</cmd_min>
+      </plugin>
+    </model>
   </world>
 </sdf>

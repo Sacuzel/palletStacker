@@ -7,6 +7,10 @@ The generated SDF contains exactly three links:
 * ``right_fork``.
 
 All user-adjustable model values are read from :mod:`pallet_stacker.settings`.
+The normal generated world is controlled by the integrated Gazebo GUI plugin,
+which publishes directly through Gazebo Transport. The generated ROS bridge and
+forklift-only test world are retained only as optional diagnostics.
+
 Run from the project root with::
 
     PYTHONPATH=code python -m pallet_stacker.generateForkliftModel
@@ -113,6 +117,17 @@ def _validate_settings() -> None:
     for name, value in positive_values.items():
         if value <= 0.0:
             raise ValueError(f"{name} must be greater than zero.")
+
+    max_contacts = settings.GAZEBO_MAX_CONTACTS_PER_COLLISION
+
+    if (
+        isinstance(max_contacts, bool)
+        or not isinstance(max_contacts, int)
+        or max_contacts <= 0
+    ):
+        raise ValueError(
+            "GAZEBO_MAX_CONTACTS_PER_COLLISION must be a positive integer."
+        )
 
     if settings.FORKLIFT_FORK_MAX_POSITION_M <= settings.FORKLIFT_FORK_MIN_POSITION_M:
         raise ValueError("Fork maximum position must exceed minimum position.")
@@ -227,6 +242,7 @@ def build_model_sdf() -> str:
               </inertial>
 
               <collision name="front_body_collision">
+              <max_contacts>{settings.GAZEBO_MAX_CONTACTS_PER_COLLISION}</max_contacts>
                 <pose>{_fmt(front_x)} 0 {_fmt(body_z)} 0 0 0</pose>
                 <geometry><box><size>{_fmt(front_length)} {_fmt(settings.FORKLIFT_BODY_WIDTH_M)} {_fmt(settings.FORKLIFT_BODY_HEIGHT_M)}</size></box></geometry>
                 {body_surface}
@@ -242,6 +258,7 @@ def build_model_sdf() -> str:
               </visual>
 
               <collision name="rear_body_collision">
+              <max_contacts>{settings.GAZEBO_MAX_CONTACTS_PER_COLLISION}</max_contacts>
                 <pose>{_fmt(rear_x)} 0 {_fmt(body_z)} 0 0 0</pose>
                 <geometry><box><size>{_fmt(rear_length)} {_fmt(settings.FORKLIFT_BODY_WIDTH_M)} {_fmt(settings.FORKLIFT_BODY_HEIGHT_M)}</size></box></geometry>
                 {body_surface}
@@ -268,6 +285,7 @@ def build_model_sdf() -> str:
                 </inertia>
               </inertial>
               <collision name="collision">
+                <max_contacts>{settings.GAZEBO_MAX_CONTACTS_PER_COLLISION}</max_contacts>
                 <geometry><box><size>{_fmt(settings.FORKLIFT_FORK_LENGTH_M)} {_fmt(settings.FORKLIFT_FORK_WIDTH_M)} {_fmt(settings.FORKLIFT_FORK_THICKNESS_M)}</size></box></geometry>
                 {fork_surface}
               </collision>
@@ -288,6 +306,7 @@ def build_model_sdf() -> str:
                 </inertia>
               </inertial>
               <collision name="collision">
+                <max_contacts>{settings.GAZEBO_MAX_CONTACTS_PER_COLLISION}</max_contacts>
                 <geometry><box><size>{_fmt(settings.FORKLIFT_FORK_LENGTH_M)} {_fmt(settings.FORKLIFT_FORK_WIDTH_M)} {_fmt(settings.FORKLIFT_FORK_THICKNESS_M)}</size></box></geometry>
                 {fork_surface}
               </collision>
@@ -322,7 +341,7 @@ def build_model_sdf() -> str:
               </axis>
             </joint>
 
-            <!-- Direct model velocity command. Teleop applies acceleration ramps. -->
+            <!-- Direct model velocity command. The integrated GUI plugin applies acceleration ramps. -->
             <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl">
               <topic>{settings.FORKLIFT_CMD_VEL_TOPIC}</topic>
             </plugin>
@@ -364,6 +383,8 @@ def build_model_config() -> str:
 
 
 def build_bridge_yaml() -> str:
+    """Build the optional ROS-to-Gazebo diagnostic bridge configuration."""
+
     return dedent(
         f'''\
         - ros_topic_name: "{settings.FORKLIFT_CMD_VEL_TOPIC}"
@@ -423,6 +444,7 @@ def build_test_world() -> str:
               <static>true</static>
               <link name="link">
                 <collision name="collision">
+                  <max_contacts>{settings.GAZEBO_MAX_CONTACTS_PER_COLLISION}</max_contacts>
                   <geometry><plane><normal>0 0 1</normal><size>{ground_size} {ground_size}</size></plane></geometry>
                   <surface><friction><ode><mu>{_fmt(settings.GAZEBO_GROUND_FRICTION)}</mu><mu2>{_fmt(settings.GAZEBO_GROUND_FRICTION)}</mu2></ode></friction></surface>
                 </collision>
@@ -447,7 +469,7 @@ def write_forklift_assets(
     bridge_file: Path | None = None,
     test_world_file: Path | None = None,
 ) -> tuple[Path, Path, Path, Path]:
-    """Write the model, bridge configuration, and test world."""
+    """Write the model plus optional ROS diagnostic assets."""
 
     model_dir = (model_directory or settings.FORKLIFT_MODEL_DIRECTORY).resolve()
     bridge_path = (bridge_file or settings.FORKLIFT_BRIDGE_CONFIG_FILE).resolve()

@@ -18,7 +18,7 @@
     <allow_auto_disable>false</allow_auto_disable>
 
     <frame name="fork_tip_low" attached_to="body">
-      <pose relative_to="body">0.8 0 0.072 0 0 0</pose>
+      <pose relative_to="body">0.8 0 0.05 0 0 0</pose>
     </frame>
 
     <link name="body">
@@ -38,6 +38,7 @@
       </inertial>
 
       <collision name="front_body_collision">
+      <max_contacts>4</max_contacts>
         <pose>-0.486 0 1.0175 0 0 0</pose>
         <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
         <surface>
@@ -77,6 +78,7 @@
       </visual>
 
       <collision name="rear_body_collision">
+      <max_contacts>4</max_contacts>
         <pose>-1.458 0 1.0175 0 0 0</pose>
         <geometry><box><size>0.972 1.099 2.035</size></box></geometry>
         <surface>
@@ -117,7 +119,7 @@
     </link>
 
     <link name="left_fork">
-      <pose>0.4 0.28 0.072 0 0 0</pose>
+      <pose>0.4 0.225 0.05 0 0 0</pose>
       <gravity>true</gravity>
       <inertial>
         <mass>25</mass>
@@ -127,17 +129,18 @@
         </inertia>
       </inertial>
       <collision name="collision">
+        <max_contacts>4</max_contacts>
         <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
         <surface>
   <friction>
     <ode>
-      <mu>0.4</mu>
-      <mu2>0.4</mu2>
+      <mu>0.5</mu>
+      <mu2>0.5</mu2>
     </ode>
     <bullet>
-      <friction>0.4</friction>
-      <friction2>0.4</friction2>
-      <rolling_friction>0.4</rolling_friction>
+      <friction>0.5</friction>
+      <friction2>0.5</friction2>
+      <rolling_friction>0.5</rolling_friction>
     </bullet>
   </friction>
   <bounce>
@@ -161,7 +164,7 @@
     </link>
 
     <link name="right_fork">
-      <pose>0.4 -0.28 0.072 0 0 0</pose>
+      <pose>0.4 -0.225 0.05 0 0 0</pose>
       <gravity>true</gravity>
       <inertial>
         <mass>25</mass>
@@ -171,17 +174,18 @@
         </inertia>
       </inertial>
       <collision name="collision">
+        <max_contacts>4</max_contacts>
         <geometry><box><size>0.8 0.08 0.04</size></box></geometry>
         <surface>
   <friction>
     <ode>
-      <mu>0.4</mu>
-      <mu2>0.4</mu2>
+      <mu>0.5</mu>
+      <mu2>0.5</mu2>
     </ode>
     <bullet>
-      <friction>0.4</friction>
-      <friction2>0.4</friction2>
-      <rolling_friction>0.4</rolling_friction>
+      <friction>0.5</friction>
+      <friction2>0.5</friction2>
+      <rolling_friction>0.5</rolling_friction>
     </bullet>
   </friction>
   <bounce>
@@ -229,7 +233,7 @@
       </axis>
     </joint>
 
-    <!-- Direct model velocity command. Teleop applies acceleration ramps. -->
+    <!-- Direct model velocity command. The integrated GUI plugin applies acceleration ramps. -->
     <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl">
       <topic>/forklift/cmd_vel</topic>
     </plugin>

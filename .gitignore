@@ -10,3 +10,7 @@ temp/
 
 # Generated output
 results/
+
+gazebo/plugins/forklift_teleop/build/
+__pycache__/
+*.pyc
