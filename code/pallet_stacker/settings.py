@@ -41,7 +41,7 @@ INPUT_FILE_PATH: Path | None = None
 
 # Loader selected by main.py. Future values may include, for example,
 # "heuristic_v1", "layer", or "lookahead" after those loaders exist.
-ACTIVE_LOADER: str = "naive"
+ACTIVE_LOADER: str = "heuristic"
 
 # Output stages. Both can be enabled simultaneously.
 GENERATE_PLOTLY_OUTPUT: bool = True

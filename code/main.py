@@ -10,6 +10,7 @@ from pathlib import Path
 from pallet_stacker import settings
 from pallet_stacker.box import Box
 from pallet_stacker.naiveLoader import NaiveLoaderError, load_boxes as naive_load_boxes
+from pallet_stacker.heuristicLoader import HeuristicLoaderError, load_boxes as heuristic_load_boxes
 from pallet_stacker.pallet import Pallet
 from pallet_stacker.processBoxData import BoxDataError, process_box_data
 
@@ -20,6 +21,7 @@ LoaderFunction = Callable[[Sequence[Box]], list[Pallet]]
 # the same interface: load_boxes(boxes) -> list[Pallet].
 LOADER_REGISTRY: dict[str, LoaderFunction] = {
     "naive": naive_load_boxes,
+    "heuristic": heuristic_load_boxes,
 }
 
 
@@ -201,6 +203,6 @@ def _project_relative_or_absolute(path: Path) -> Path:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (BoxDataError, NaiveLoaderError, ValueError, RuntimeError) as exc:
+    except (BoxDataError, NaiveLoaderError, HeuristicLoaderError, ValueError, RuntimeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
