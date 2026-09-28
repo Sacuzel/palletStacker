@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
+import argparse
+import json
 import shlex
 import sys
+import tempfile
 from collections.abc import Callable, Sequence
 from pathlib import Path
+from typing import Any
 
 from pallet_stacker import settings
 from pallet_stacker.box import Box
@@ -23,13 +27,14 @@ LOADER_REGISTRY: dict[str, LoaderFunction] = {
 }
 
 
-def main() -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     """Execute the application stages in a visible, deterministic order."""
+    args = _parse_args(argv)
 
     # ------------------------------------------------------------------
     # 0. WORKSPACE: establish predictable input/output directories
     # ------------------------------------------------------------------
-    if settings.CREATE_MISSING_PROJECT_DIRECTORIES:
+    if settings.CREATE_MISSING_PROJECT_DIRECTORIES and not args.headless:
         for directory in (
             settings.INPUT_DIRECTORY,
             settings.OUTPUT_DIRECTORY,
@@ -41,15 +46,18 @@ def main() -> int:
             directory.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
-    # 1. INPUT: select and parse JSON into Box objects
+    # 1. INPUT: select/parse JSON into Box objects
     # ------------------------------------------------------------------
-    box_data = process_box_data(
-        settings.INPUT_FILE_PATH,
-        initial_directory=settings.INPUT_DIRECTORY,
-    )
-    if box_data is None:
-        print("File selection cancelled.")
-        return 0
+    if args.headless:
+        box_data = _process_stdin_json()
+    else:
+        box_data = process_box_data(
+            settings.INPUT_FILE_PATH,
+            initial_directory=settings.INPUT_DIRECTORY,
+        )
+        if box_data is None:
+            print("File selection cancelled.")
+            return 0
 
     # ------------------------------------------------------------------
     # 2. ALGORITHM: create pallets and place all boxes
@@ -58,7 +66,22 @@ def main() -> int:
     pallets = loader(box_data.boxes)
 
     # ------------------------------------------------------------------
-    # 3. OUTPUT: create optional visualizations and simulation assets
+    # 3. HEADLESS RESULT: machine-readable JSON to stdout
+    # ------------------------------------------------------------------
+    if args.headless:
+        json.dump(
+            _build_result(
+                input_box_count=box_data.box_count,
+                pallets=pallets,
+            ),
+            sys.stdout,
+            separators=(",", ":"),
+        )
+        sys.stdout.write("\n")
+        return 0
+
+    # ------------------------------------------------------------------
+    # 4. OUTPUT: create optional visualizations and simulation assets
     # ------------------------------------------------------------------
     plotly_output: Path | None = None
     if settings.GENERATE_PLOTLY_OUTPUT:
@@ -99,7 +122,7 @@ def main() -> int:
         gazebo_gui_plugin_installed = gazebo_result.gui_plugin_installed
 
     # ------------------------------------------------------------------
-    # 4. STATUS: report the completed run and the next manual command
+    # 5. STATUS: report the completed run and the next manual command
     # ------------------------------------------------------------------
     if settings.PRINT_RUN_SUMMARY:
         _print_summary(
@@ -115,6 +138,115 @@ def main() -> int:
         )
 
     return 0
+
+
+def _parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--headless",
+        action="store_true",
+        help="Read input JSON from stdin and write result JSON to stdout.",
+    )
+    return parser.parse_args(argv)
+
+
+def _process_stdin_json():
+    """Reuse the existing file parser while exposing JSON-over-stdin externally."""
+    input_text = sys.stdin.read()
+    if not input_text.strip():
+        raise ValueError("Headless mode requires JSON input on stdin.")
+
+    # Validate syntax before creating the temporary input file so malformed JSON
+    # produces an immediate, clear error.
+    json.loads(input_text)
+
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        suffix=".json",
+        encoding="utf-8",
+        delete=False,
+    ) as handle:
+        handle.write(input_text)
+        input_path = Path(handle.name)
+
+    try:
+        box_data = process_box_data(input_path)
+        if box_data is None:
+            raise ValueError("Headless input could not be processed.")
+        return box_data
+    finally:
+        input_path.unlink(missing_ok=True)
+
+
+def _build_result(*, input_box_count: int, pallets: Sequence[Pallet]) -> dict[str, Any]:
+    """Serialize the algorithm output without changing the packing algorithm."""
+    placed_count = sum(pallet.box_count for pallet in pallets)
+    total_weight = sum(pallet.current_load_kg for pallet in pallets)
+
+    placement_index = 0
+    pallet_results: list[dict[str, Any]] = []
+
+    for pallet in pallets:
+        boxes: list[dict[str, Any]] = []
+        for box in pallet.boxes:
+            placement = box.placement
+            if placement is None:
+                raise RuntimeError(f"Placed pallet contains box without placement: {box.box_id}")
+
+            boxes.append(
+                {
+                    "identifier": box.box_id,
+                    "sku": box.sku,
+                    "placement_index": placement_index,
+                    "position_mm": _xyz_values(placement.position),
+                    "orientation": _enum_value(placement.orientation),
+                    "placed_dimensions_mm": _xyz_values(box.placed_dimensions),
+                }
+            )
+            placement_index += 1
+
+        pallet_results.append(
+            {
+                "pallet_id": pallet.pallet_id,
+                "box_count": pallet.box_count,
+                "current_load_kg": pallet.current_load_kg,
+                "remaining_load_kg": pallet.remaining_load_kg,
+                "load_height_mm": pallet.load_height_mm,
+                "volume_utilization": pallet.volume_utilization,
+                "boxes": boxes,
+            }
+        )
+
+    return {
+        "format_version": 1,
+        "loader": settings.ACTIVE_LOADER,
+        "summary": {
+            "input_box_count": input_box_count,
+            "placed_box_count": placed_count,
+            "pallet_count": len(pallets),
+            "total_weight_kg": total_weight,
+        },
+        "pallets": pallet_results,
+    }
+
+
+def _xyz_values(value: Any) -> list[Any]:
+    if all(hasattr(value, name) for name in ("x", "y", "z")):
+        return [value.x, value.y, value.z]
+    return _sequence_values(value)
+
+
+def _sequence_values(value: Any) -> list[Any]:
+    if isinstance(value, (list, tuple)):
+        return list(value)
+    try:
+        return list(value)
+    except TypeError as exc:
+        raise RuntimeError(f"Expected a sequence-like value, got {value!r}.") from exc
+
+
+def _enum_value(value: Any) -> Any:
+    return getattr(value, "value", value)
 
 
 def _select_loader(loader_name: str) -> LoaderFunction:
@@ -201,6 +333,6 @@ def _project_relative_or_absolute(path: Path) -> Path:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (BoxDataError, NaiveLoaderError, ValueError, RuntimeError) as exc:
+    except (BoxDataError, NaiveLoaderError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
