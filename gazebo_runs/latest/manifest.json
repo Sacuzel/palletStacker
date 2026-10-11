@@ -1,0 +1,6156 @@
+{
+  "sdf_file": "pallet_towers.sdf",
+  "pallet_count": 9,
+  "box_count": 263,
+  "items": [
+    {
+      "type": "pallet",
+      "model_name": "pallet_01_P01",
+      "pallet_id": "P01",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0001_BOX_5X5X5_S0007_001_BOX_5X5X5",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X5X5-S0007-001",
+      "sku": "BOX-5X5X5",
+      "mass_kg": 29.371,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.25,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0002_BOX_5X5X4_S0008_001_BOX_5X5X4",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X5X4-S0008-001",
+      "sku": "BOX-5X5X4",
+      "mass_kg": 29.254,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.75,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0003_BOX_5X4X5_S0000_001_BOX_5X4X5",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X4X5-S0000-001",
+      "sku": "BOX-5X4X5",
+      "mass_kg": 29.254,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.7,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0004_BOX_5X4X5_S0000_002_BOX_5X4X5",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X4X5-S0000-002",
+      "sku": "BOX-5X4X5",
+      "mass_kg": 29.254,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        0.2,
+        0.25,
+        0.896
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0005_BOX_5X4X5_S0004_001_BOX_5X4X5",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X4X5-S0004-001",
+      "sku": "BOX-5X4X5",
+      "mass_kg": 29.254,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        900.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.7,
+        1.296
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0006_BOX_5X4X5_S0004_002_BOX_5X4X5",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X4X5-S0004-002",
+      "sku": "BOX-5X4X5",
+      "mass_kg": 29.254,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        0.2,
+        0.25,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p01_0007_BOX_5X4X4_S0000_001_BOX_5X4X4",
+      "pallet_id": "P01",
+      "identifier": "BOX-5X4X4-S0000-001",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        1400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        0.25,
+        0.7,
+        1.7460000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_02_P02",
+      "pallet_id": "P02",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0001_BOX_5X4X4_S0001_001_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0001-001",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.2,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0002_BOX_5X4X4_S0003_001_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0003-001",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.6000000000000001,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0003_BOX_5X4X4_S0005_001_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0005-001",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        1.0,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0004_BOX_5X4X4_S0008_001_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0008-001",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.2,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0005_BOX_5X4X4_S0008_002_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0008-002",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.6000000000000001,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0006_BOX_5X4X4_S0008_003_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0008-003",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        1.0,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0007_BOX_5X4X4_S0008_004_BOX_5X4X4",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X4X4-S0008-004",
+      "sku": "BOX-5X4X4",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.2,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0008_BOX_4X4X5_S0004_001_BOX_4X4X5",
+      "pallet_id": "P02",
+      "identifier": "BOX-4X4X5-S0004-001",
+      "sku": "BOX-4X4X5",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        1.5,
+        0.6000000000000001,
+        1.1960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0009_BOX_4X4X5_S0009_001_BOX_4X4X5",
+      "pallet_id": "P02",
+      "identifier": "BOX-4X4X5-S0009-001",
+      "sku": "BOX-4X4X5",
+      "mass_kg": 23.543,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        1.5,
+        1.0,
+        1.1960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p02_0010_BOX_5X5X3_S0006_001_BOX_5X5X3",
+      "pallet_id": "P02",
+      "identifier": "BOX-5X5X3-S0006-001",
+      "sku": "BOX-5X5X3",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1300.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        1.55,
+        0.9500000000000001,
+        1.596
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_03_P03",
+      "pallet_id": "P03",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0001_BOX_5X5X3_S0006_002_BOX_5X5X3",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X5X3-S0006-002",
+      "sku": "BOX-5X5X3",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.25,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0002_BOX_5X3X5_S0000_001_BOX_5X3X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X3X5-S0000-001",
+      "sku": "BOX-5X3X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        500.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        3.25,
+        0.25,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0003_BOX_5X3X5_S0000_002_BOX_5X3X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X3X5-S0000-002",
+      "sku": "BOX-5X3X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.65,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0004_BOX_5X3X5_S0007_001_BOX_5X3X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X3X5-S0007-001",
+      "sku": "BOX-5X3X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        500.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        3.25,
+        0.75,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0005_BOX_5X3X5_S0008_001_BOX_5X3X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X3X5-S0008-001",
+      "sku": "BOX-5X3X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.9500000000000001,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0006_BOX_3X5X5_S0006_001_BOX_3X5X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-3X5X5-S0006-001",
+      "sku": "BOX-3X5X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        2.75,
+        0.25,
+        0.696
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0007_BOX_3X5X5_S0007_001_BOX_3X5X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-3X5X5-S0007-001",
+      "sku": "BOX-3X5X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        500.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        3.25,
+        0.25,
+        0.896
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0008_BOX_3X5X5_S0007_002_BOX_3X5X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-3X5X5-S0007-002",
+      "sku": "BOX-3X5X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "world_position_m": [
+        2.75,
+        0.75,
+        0.896
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0009_BOX_3X5X5_S0007_003_BOX_3X5X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-3X5X5-S0007-003",
+      "sku": "BOX-3X5X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        300.0,
+        500.0,
+        500.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        3.15,
+        0.65,
+        0.896
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0010_BOX_3X5X5_S0007_004_BOX_3X5X5",
+      "pallet_id": "P03",
+      "identifier": "BOX-3X5X5-S0007-004",
+      "sku": "BOX-3X5X5",
+      "mass_kg": 21.71,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        500.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        3.15,
+        0.9500000000000001,
+        0.896
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0011_BOX_4X4X4_S0001_001_BOX_4X4X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-4X4X4-S0001-001",
+      "sku": "BOX-4X4X4",
+      "mass_kg": 20.466,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.2,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0012_BOX_4X4X4_S0001_002_BOX_4X4X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-4X4X4-S0001-002",
+      "sku": "BOX-4X4X4",
+      "mass_kg": 20.466,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        3.2,
+        0.2,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0013_BOX_4X4X4_S0002_001_BOX_4X4X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-4X4X4-S0002-001",
+      "sku": "BOX-4X4X4",
+      "mass_kg": 20.466,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        3.2,
+        0.6000000000000001,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0014_BOX_4X4X4_S0006_001_BOX_4X4X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-4X4X4-S0006-001",
+      "sku": "BOX-4X4X4",
+      "mass_kg": 20.466,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.7,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0015_BOX_4X4X4_S0009_001_BOX_4X4X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-4X4X4-S0009-001",
+      "sku": "BOX-4X4X4",
+      "mass_kg": 20.466,
+      "local_position_mm": [
+        400.0,
+        800.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        3.2,
+        1.0,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0016_BOX_5X4X3_S0004_001_BOX_5X4X3",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X4X3-S0004-001",
+      "sku": "BOX-5X4X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1200.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.25,
+        1.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0017_BOX_5X4X3_S0005_001_BOX_5X4X3",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X4X3-S0005-001",
+      "sku": "BOX-5X4X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        1400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        2.85,
+        0.7,
+        1.6960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0018_BOX_5X4X3_S0008_001_BOX_5X4X3",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X4X3-S0008-001",
+      "sku": "BOX-5X4X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1400.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        3.2,
+        0.25,
+        1.6960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0019_BOX_5X4X3_S0008_002_BOX_5X4X3",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X4X3-S0008-002",
+      "sku": "BOX-5X4X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1500.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        2.8000000000000003,
+        0.25,
+        1.7959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p03_0020_BOX_5X3X4_S0000_001_BOX_5X3X4",
+      "pallet_id": "P03",
+      "identifier": "BOX-5X3X4-S0000-001",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        500.0,
+        500.0,
+        1400.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        3.25,
+        0.75,
+        1.7460000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_04_P04",
+      "pallet_id": "P04",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0001_BOX_5X3X4_S0000_002_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0000-002",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.15,
+        0.15,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0002_BOX_5X3X4_S0000_003_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0000-003",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        500.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.550000000000001,
+        0.25,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0003_BOX_5X3X4_S0000_004_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0000-004",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.15,
+        0.44999999999999996,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0004_BOX_5X3X4_S0003_001_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0003-001",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        500.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.550000000000001,
+        0.75,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0005_BOX_5X3X4_S0003_002_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0003-002",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.15,
+        0.75,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0006_BOX_5X3X4_S0008_001_BOX_5X3X4",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X3X4-S0008-001",
+      "sku": "BOX-5X3X4",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        4.15,
+        1.05,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0007_BOX_4X5X3_S0006_001_BOX_4X5X3",
+      "pallet_id": "P04",
+      "identifier": "BOX-4X5X3-S0006-001",
+      "sku": "BOX-4X5X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.25,
+        0.6960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0008_BOX_4X5X3_S0006_002_BOX_4X5X3",
+      "pallet_id": "P04",
+      "identifier": "BOX-4X5X3-S0006-002",
+      "sku": "BOX-4X5X3",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        4.5,
+        0.25,
+        0.6960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0009_BOX_4X3X5_S0002_001_BOX_4X3X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-4X3X5-S0002-001",
+      "sku": "BOX-4X3X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.65,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0010_BOX_4X3X5_S0002_002_BOX_4X3X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-4X3X5-S0002-002",
+      "sku": "BOX-4X3X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        400.0,
+        500.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.5,
+        0.65,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0011_BOX_4X3X5_S0003_001_BOX_4X3X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-4X3X5-S0003-001",
+      "sku": "BOX-4X3X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.05,
+        1.0,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0012_BOX_3X4X5_S0003_001_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0003-001",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.3500000000000005,
+        1.0,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0013_BOX_3X4X5_S0003_002_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0003-002",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.05,
+        0.2,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0014_BOX_3X4X5_S0004_001_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0004-001",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.3500000000000005,
+        0.2,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0015_BOX_3X4X5_S0004_002_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0004-002",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        900.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.3500000000000005,
+        1.0,
+        1.296
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0016_BOX_3X4X5_S0004_003_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0004-003",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        900.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.05,
+        1.0,
+        1.296
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0017_BOX_3X4X5_S0004_004_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0004-004",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        900.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.1,
+        0.65,
+        1.296
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0018_BOX_3X4X5_S0007_001_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0007-001",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        400.0,
+        500.0,
+        900.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.5,
+        0.65,
+        1.296
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0019_BOX_3X4X5_S0007_002_BOX_3X4X5",
+      "pallet_id": "P04",
+      "identifier": "BOX-3X4X5-S0007-002",
+      "sku": "BOX-3X4X5",
+      "mass_kg": 20.425,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        4.05,
+        0.2,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0020_BOX_5X5X2_S0000_001_BOX_5X5X2",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X5X2-S0000-001",
+      "sku": "BOX-5X5X2",
+      "mass_kg": 20.32,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1200.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.45,
+        0.25,
+        1.4460000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0021_BOX_5X5X2_S0001_001_BOX_5X5X2",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X5X2-S0001-001",
+      "sku": "BOX-5X5X2",
+      "mass_kg": 20.32,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        1400.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.45,
+        0.25,
+        1.6460000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p04_0022_BOX_5X5X2_S0002_001_BOX_5X5X2",
+      "pallet_id": "P04",
+      "identifier": "BOX-5X5X2-S0002-001",
+      "sku": "BOX-5X5X2",
+      "mass_kg": 20.32,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        1400.0
+      ],
+      "size_mm": [
+        500.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        4.15,
+        0.75,
+        1.6460000000000004
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_05_P05",
+      "pallet_id": "P05",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0001_BOX_5X2X5_S0007_001_BOX_5X2X5",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X2X5-S0007-001",
+      "sku": "BOX-5X2X5",
+      "mass_kg": 20.32,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        5.45,
+        0.1,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0002_BOX_4X4X3_S0005_001_BOX_4X4X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-4X4X3-S0005-001",
+      "sku": "BOX-4X4X3",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        200.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.4,
+        0.4,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0003_BOX_4X4X3_S0005_002_BOX_4X4X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-4X4X3-S0005-002",
+      "sku": "BOX-4X4X3",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        400.0,
+        200.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.800000000000001,
+        0.4,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0004_BOX_4X3X4_S0003_001_BOX_4X3X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-4X3X4-S0003-001",
+      "sku": "BOX-4X3X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.4,
+        0.75,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0005_BOX_4X3X4_S0006_001_BOX_4X3X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-4X3X4-S0006-001",
+      "sku": "BOX-4X3X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        400.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.800000000000001,
+        0.75,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0006_BOX_4X3X4_S0006_002_BOX_4X3X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-4X3X4-S0006-002",
+      "sku": "BOX-4X3X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.4,
+        1.05,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0007_BOX_3X4X4_S0001_001_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0001-001",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        400.0,
+        900.0,
+        0.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.800000000000001,
+        1.05,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0008_BOX_3X4X4_S0001_002_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0001-002",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        400.0,
+        900.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.800000000000001,
+        1.05,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0009_BOX_3X4X4_S0001_003_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0001-003",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        200.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.3500000000000005,
+        0.4,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0010_BOX_3X4X4_S0002_001_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0002-001",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        300.0,
+        200.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.65,
+        0.4,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0011_BOX_3X4X4_S0005_001_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0005-001",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        400.0,
+        600.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.800000000000001,
+        0.75,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0012_BOX_3X4X4_S0005_002_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0005-002",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.4,
+        0.75,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0013_BOX_3X4X4_S0005_003_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0005-003",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.4,
+        1.05,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0014_BOX_3X4X4_S0006_001_BOX_3X4X4",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X4X4-S0006-001",
+      "sku": "BOX-3X4X4",
+      "mass_kg": 16.506,
+      "local_position_mm": [
+        0.0,
+        200.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        5.3500000000000005,
+        0.4,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0015_BOX_5X3X3_S0002_001_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0002-001",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        300.0,
+        100.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.65,
+        0.35,
+        0.9960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0016_BOX_5X3X3_S0003_001_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0003-001",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        800.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.45,
+        0.75,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0017_BOX_5X3X3_S0003_002_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0003-002",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        500.0,
+        600.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.8500000000000005,
+        0.85,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0018_BOX_5X3X3_S0005_001_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0005-001",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        800.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.45,
+        1.05,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0019_BOX_5X3X3_S0005_002_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0005-002",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        300.0,
+        100.0,
+        1000.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.65,
+        0.35,
+        1.2959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0020_BOX_5X3X3_S0008_001_BOX_5X3X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-5X3X3-S0008-001",
+      "sku": "BOX-5X3X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        1100.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.45,
+        0.75,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0021_BOX_3X5X3_S0002_001_BOX_3X5X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X5X3-S0002-001",
+      "sku": "BOX-3X5X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        500.0,
+        600.0,
+        1100.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.8500000000000005,
+        0.85,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0022_BOX_3X5X3_S0002_002_BOX_3X5X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X5X3-S0002-002",
+      "sku": "BOX-3X5X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        1100.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.45,
+        1.05,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0023_BOX_3X5X3_S0006_001_BOX_3X5X3",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X5X3-S0006-001",
+      "sku": "BOX-3X5X3",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        100.0,
+        1100.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        5.3500000000000005,
+        0.35,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p05_0024_BOX_3X3X5_S0006_001_BOX_3X3X5",
+      "pallet_id": "P05",
+      "identifier": "BOX-3X3X5-S0006-001",
+      "sku": "BOX-3X3X5",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        300.0,
+        300.0,
+        1300.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        5.65,
+        0.44999999999999996,
+        1.6960000000000002
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_06_P06",
+      "pallet_id": "P06",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0001_BOX_3X3X5_S0006_002_BOX_3X3X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-3X3X5-S0006-002",
+      "sku": "BOX-3X3X5",
+      "mass_kg": 15.176,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        6.65,
+        0.15,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0002_BOX_5X4X2_S0000_001_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0000-001",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        7.05,
+        0.2,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0003_BOX_5X4X2_S0000_002_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0000-002",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.6000000000000001,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0004_BOX_5X4X2_S0003_001_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0003-001",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.75,
+        1.0,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0005_BOX_5X4X2_S0003_002_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0003-002",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        7.05,
+        0.2,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0006_BOX_5X4X2_S0003_003_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0003-003",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        200.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.6000000000000001,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0007_BOX_5X4X2_S0008_001_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0008-001",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        200.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.75,
+        1.0,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0008_BOX_5X4X2_S0008_002_BOX_5X4X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X4X2-S0008-002",
+      "sku": "BOX-5X4X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        7.05,
+        0.2,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0009_BOX_5X2X4_S0001_001_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0001-001",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.1,
+        0.65,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0010_BOX_5X2X4_S0004_001_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0004-001",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.1,
+        0.65,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0011_BOX_5X2X4_S0004_002_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0004-002",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.5,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0012_BOX_5X2X4_S0008_001_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0008-001",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.7,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0013_BOX_5X2X4_S0008_002_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0008-002",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.9,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0014_BOX_5X2X4_S0009_001_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0009-001",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        400.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        6.75,
+        1.1,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0015_BOX_5X2X4_S0009_002_BOX_5X2X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-5X2X4-S0009-002",
+      "sku": "BOX-5X2X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.05,
+        0.1,
+        0.946
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0016_BOX_4X5X2_S0001_001_BOX_4X5X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X5X2-S0001-001",
+      "sku": "BOX-4X5X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.7,
+        0.9500000000000001,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0017_BOX_4X5X2_S0009_001_BOX_4X5X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X5X2-S0009-001",
+      "sku": "BOX-4X5X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        800.0
+      ],
+      "size_mm": [
+        500.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.5,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0018_BOX_4X5X2_S0009_002_BOX_4X5X2",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X5X2-S0009-002",
+      "sku": "BOX-4X5X2",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        6.7,
+        0.9500000000000001,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0019_BOX_4X2X5_S0009_001_BOX_4X2X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X2X5-S0009-001",
+      "sku": "BOX-4X2X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        7.1,
+        0.6000000000000001,
+        1.1960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0020_BOX_2X5X4_S0007_001_BOX_2X5X4",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X5X4-S0007-001",
+      "sku": "BOX-2X5X4",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        1000.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        6.75,
+        0.6,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0021_BOX_2X4X5_S0004_001_BOX_2X4X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X4X5-S0004-001",
+      "sku": "BOX-2X4X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        400.0,
+        800.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        500.0
+      ],
+      "world_position_m": [
+        7.0,
+        1.0,
+        1.1960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0022_BOX_2X4X5_S0004_002_BOX_2X4X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X4X5-S0004-002",
+      "sku": "BOX-2X4X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        7.1000000000000005,
+        0.1,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0023_BOX_2X4X5_S0007_001_BOX_2X4X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X4X5-S0007-001",
+      "sku": "BOX-2X4X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        1000.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        6.7,
+        0.4,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0024_BOX_2X4X5_S0007_002_BOX_2X4X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X4X5-S0007-002",
+      "sku": "BOX-2X4X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1200.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        6.7,
+        0.8,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0025_BOX_2X4X5_S0009_001_BOX_2X4X5",
+      "pallet_id": "P06",
+      "identifier": "BOX-2X4X5-S0009-001",
+      "sku": "BOX-2X4X5",
+      "mass_kg": 15.137,
+      "local_position_mm": [
+        0.0,
+        900.0,
+        1200.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        6.7,
+        1.0,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0026_BOX_4X3X3_S0002_001_BOX_4X3X3",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X3X3-S0002-001",
+      "sku": "BOX-4X3X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        500.0,
+        400.0,
+        1300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.15,
+        0.6000000000000001,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0027_BOX_4X3X3_S0003_001_BOX_4X3X3",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X3X3-S0003-001",
+      "sku": "BOX-4X3X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        400.0,
+        800.0,
+        1300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.050000000000001,
+        1.0,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0028_BOX_4X3X3_S0009_001_BOX_4X3X3",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X3X3-S0009-001",
+      "sku": "BOX-4X3X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1500.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.1000000000000005,
+        0.15,
+        1.7959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p06_0029_BOX_4X3X3_S0009_002_BOX_4X3X3",
+      "pallet_id": "P06",
+      "identifier": "BOX-4X3X3-S0009-002",
+      "sku": "BOX-4X3X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        200.0,
+        300.0,
+        1500.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        6.8500000000000005,
+        0.5,
+        1.7959999999999998
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_07_P07",
+      "pallet_id": "P07",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0001_BOX_3X4X3_S0002_001_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0002-001",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.95,
+        0.2,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0002_BOX_3X4X3_S0002_002_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0002-002",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.2,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0003_BOX_3X4X3_S0004_001_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0004-001",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.95,
+        0.6000000000000001,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0004_BOX_3X4X3_S0005_001_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0005-001",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.95,
+        1.0,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0005_BOX_3X4X3_S0005_002_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0005-002",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.6000000000000001,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0006_BOX_3X4X3_S0005_003_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0005-003",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.25,
+        1.0,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0007_BOX_3X4X3_S0005_004_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0005-004",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.95,
+        0.2,
+        0.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0008_BOX_3X4X3_S0006_001_BOX_3X4X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X4X3-S0006-001",
+      "sku": "BOX-3X4X3",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.2,
+        0.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0009_BOX_3X3X4_S0002_001_BOX_3X3X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X3X4-S0002-001",
+      "sku": "BOX-3X3X4",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.95,
+        0.55,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0010_BOX_3X3X4_S0003_001_BOX_3X3X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X3X4-S0003-001",
+      "sku": "BOX-3X3X4",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.55,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0011_BOX_3X3X4_S0006_001_BOX_3X3X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X3X4-S0006-001",
+      "sku": "BOX-3X3X4",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.95,
+        0.8500000000000001,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0012_BOX_3X3X4_S0006_002_BOX_3X3X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X3X4-S0006-002",
+      "sku": "BOX-3X3X4",
+      "mass_kg": 14.569,
+      "local_position_mm": [
+        300.0,
+        700.0,
+        300.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.8500000000000001,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0013_BOX_4X4X2_S0001_001_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0001-001",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.0,
+        0.2,
+        0.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0014_BOX_4X4X2_S0001_002_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0001-002",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.0,
+        0.2,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0015_BOX_4X4X2_S0002_001_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0002-001",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.399999999999999,
+        0.2,
+        0.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0016_BOX_4X4X2_S0002_002_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0002-002",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        700.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.0,
+        0.6000000000000001,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0017_BOX_4X4X2_S0004_001_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0004-001",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.399999999999999,
+        0.2,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0018_BOX_4X4X2_S0004_002_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0004-002",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        900.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.0,
+        0.6000000000000001,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0019_BOX_4X4X2_S0009_001_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0009-001",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        700.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.399999999999999,
+        0.6000000000000001,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0020_BOX_4X4X2_S0009_002_BOX_4X4X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X4X2-S0009-002",
+      "sku": "BOX-4X4X2",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        700.0
+      ],
+      "size_mm": [
+        400.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.0,
+        1.0,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0021_BOX_4X2X4_S0001_001_BOX_4X2X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X2X4-S0001-001",
+      "sku": "BOX-4X2X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.5,
+        1.0,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0022_BOX_4X2X4_S0005_001_BOX_4X2X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X2X4-S0005-001",
+      "sku": "BOX-4X2X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.5,
+        1.0,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0023_BOX_4X2X4_S0009_001_BOX_4X2X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-4X2X4-S0009-001",
+      "sku": "BOX-4X2X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.5,
+        1.0,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0024_BOX_2X4X4_S0001_001_BOX_2X4X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-2X4X4-S0001-001",
+      "sku": "BOX-2X4X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        400.0,
+        800.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.299999999999999,
+        1.0,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0025_BOX_2X4X4_S0003_001_BOX_2X4X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-2X4X4-S0003-001",
+      "sku": "BOX-2X4X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        900.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.299999999999999,
+        0.6000000000000001,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0026_BOX_2X4X4_S0005_001_BOX_2X4X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-2X4X4-S0005-001",
+      "sku": "BOX-2X4X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        900.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        8.0,
+        0.9,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0027_BOX_2X4X4_S0007_001_BOX_2X4X4",
+      "pallet_id": "P07",
+      "identifier": "BOX-2X4X4-S0007-001",
+      "sku": "BOX-2X4X4",
+      "mass_kg": 14.387,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        400.0
+      ],
+      "world_position_m": [
+        7.8999999999999995,
+        0.2,
+        1.3459999999999999
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0028_BOX_5X3X2_S0000_001_BOX_5X3X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X3X2-S0000-001",
+      "sku": "BOX-5X3X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.15,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0029_BOX_5X3X2_S0000_002_BOX_5X3X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X3X2-S0000-002",
+      "sku": "BOX-5X3X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1200.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.15,
+        1.4460000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0030_BOX_5X3X2_S0002_001_BOX_5X3X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X3X2-S0002-001",
+      "sku": "BOX-5X3X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1400.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.15,
+        1.6460000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0031_BOX_5X3X2_S0008_001_BOX_5X3X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X3X2-S0008-001",
+      "sku": "BOX-5X3X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1300.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.05,
+        0.8500000000000001,
+        1.5460000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0032_BOX_5X3X2_S0008_002_BOX_5X3X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X3X2-S0008-002",
+      "sku": "BOX-5X3X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        700.0,
+        1500.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.05,
+        0.8500000000000001,
+        1.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0033_BOX_5X2X3_S0005_001_BOX_5X2X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X2X3-S0005-001",
+      "sku": "BOX-5X2X3",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        600.0,
+        700.0,
+        1200.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.5,
+        0.9500000000000001,
+        1.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0034_BOX_5X2X3_S0008_001_BOX_5X2X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X2X3-S0008-001",
+      "sku": "BOX-5X2X3",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        600.0,
+        700.0,
+        1500.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        8.5,
+        0.9500000000000001,
+        1.7959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0035_BOX_5X2X3_S0008_002_BOX_5X2X3",
+      "pallet_id": "P07",
+      "identifier": "BOX-5X2X3-S0008-002",
+      "sku": "BOX-5X2X3",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1400.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        300.0
+      ],
+      "world_position_m": [
+        7.8999999999999995,
+        0.25,
+        1.6960000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0036_BOX_3X5X2_S0001_001_BOX_3X5X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X5X2-S0001-001",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        400.0,
+        1300.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.55,
+        1.5460000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0037_BOX_3X5X2_S0001_002_BOX_3X5X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X5X2-S0001-002",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        400.0,
+        1500.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.55,
+        1.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p07_0038_BOX_3X5X2_S0006_001_BOX_3X5X2",
+      "pallet_id": "P07",
+      "identifier": "BOX-3X5X2-S0006-001",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1600.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        8.25,
+        0.15,
+        1.846
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_08_P08",
+      "pallet_id": "P08",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0001_BOX_3X5X2_S0009_001_BOX_3X5X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X5X2-S0009-001",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.25,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0002_BOX_3X5X2_S0009_002_BOX_3X5X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X5X2-S0009-002",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.65,
+        0.15,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0003_BOX_3X5X2_S0009_003_BOX_3X5X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X5X2-S0009-003",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        300.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.65,
+        0.44999999999999996,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0004_BOX_3X5X2_S0009_004_BOX_3X5X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X5X2-S0009-004",
+      "sku": "BOX-3X5X2",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.75,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0005_BOX_3X2X5_S0002_001_BOX_3X2X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X5-S0002-001",
+      "sku": "BOX-3X2X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.25,
+        1.1,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0006_BOX_3X2X5_S0002_002_BOX_3X2X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X5-S0002-002",
+      "sku": "BOX-3X2X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.7,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0007_BOX_3X2X5_S0006_001_BOX_3X2X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X5-S0006-001",
+      "sku": "BOX-3X2X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.75,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0008_BOX_3X2X5_S0007_001_BOX_3X2X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X5-S0007-001",
+      "sku": "BOX-3X2X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.9,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0009_BOX_2X5X3_S0006_001_BOX_2X5X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X5X3-S0006-001",
+      "sku": "BOX-2X5X3",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        1000.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.65,
+        1.1,
+        0.29600000000000004
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0010_BOX_2X5X3_S0006_002_BOX_2X5X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X5X3-S0006-002",
+      "sku": "BOX-2X5X3",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        300.0,
+        1000.0,
+        300.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.65,
+        1.1,
+        0.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0011_BOX_2X3X5_S0003_001_BOX_2X3X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X5-S0003-001",
+      "sku": "BOX-2X3X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.9,
+        0.5960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0012_BOX_2X3X5_S0005_001_BOX_2X3X5",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X5-S0005-001",
+      "sku": "BOX-2X3X5",
+      "mass_kg": 14.284,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.7,
+        0.5960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0013_BOX_3X3X3_S0002_001_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0002-001",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.15,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0014_BOX_3X3X3_S0002_002_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0002-002",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.44999999999999996,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0015_BOX_3X3X3_S0002_003_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0002-003",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.15,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0016_BOX_3X3X3_S0002_004_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0002-004",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.44999999999999996,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0017_BOX_3X3X3_S0002_005_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0002-005",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.15,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0018_BOX_3X3X3_S0003_001_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0003-001",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.44999999999999996,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0019_BOX_3X3X3_S0003_002_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0003-002",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.15,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0020_BOX_3X3X3_S0006_001_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0006-001",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        300.0,
+        300.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.44999999999999996,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0021_BOX_3X3X3_S0006_002_BOX_3X3X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X3X3-S0006-002",
+      "sku": "BOX-3X3X3",
+      "mass_kg": 11.563,
+      "local_position_mm": [
+        300.0,
+        600.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.75,
+        0.796
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0022_BOX_4X3X2_S0003_001_BOX_4X3X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-4X3X2-S0003-001",
+      "sku": "BOX-4X3X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        900.0,
+        600.0
+      ],
+      "size_mm": [
+        400.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.6,
+        1.05,
+        0.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0023_BOX_4X2X3_S0005_001_BOX_4X2X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-4X2X3-S0005-001",
+      "sku": "BOX-4X2X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.2,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0024_BOX_3X4X2_S0001_001_BOX_3X4X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X4X2-S0001-001",
+      "sku": "BOX-3X4X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        700.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.8,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0025_BOX_3X4X2_S0001_002_BOX_3X4X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X4X2-S0001-002",
+      "sku": "BOX-3X4X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        900.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.8,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0026_BOX_3X4X2_S0001_003_BOX_3X4X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X4X2-S0001-003",
+      "sku": "BOX-3X4X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.2,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0027_BOX_3X4X2_S0001_004_BOX_3X4X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X4X2-S0001-004",
+      "sku": "BOX-3X4X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.2,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0028_BOX_3X4X2_S0002_001_BOX_3X4X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X4X2-S0002-001",
+      "sku": "BOX-3X4X2",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.6000000000000001,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0029_BOX_3X2X4_S0001_001_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0001-001",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        500.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.25,
+        1.1,
+        0.8460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0030_BOX_3X2X4_S0001_002_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0001-002",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.15,
+        0.8460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0031_BOX_3X2X4_S0001_003_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0001-003",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.75,
+        0.8460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0032_BOX_3X2X4_S0001_004_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0001-004",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        900.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.15,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0033_BOX_3X2X4_S0001_005_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0001-005",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        900.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.25,
+        1.1,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0034_BOX_3X2X4_S0002_001_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0002-001",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.5,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0035_BOX_3X2X4_S0002_002_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0002-002",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        900.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.75,
+        1.246
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0036_BOX_3X2X4_S0004_001_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0004-001",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        1000.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.55,
+        1.1,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0037_BOX_3X2X4_S0009_001_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0009-001",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        800.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.9,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0038_BOX_3X2X4_S0009_002_BOX_3X2X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-3X2X4-S0009-002",
+      "sku": "BOX-3X2X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        900.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        1.05,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0039_BOX_2X4X3_S0003_001_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0003-001",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.2,
+        0.2,
+        1.2959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0040_BOX_2X4X3_S0003_002_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0003-002",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.399999999999999,
+        0.2,
+        1.2959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0041_BOX_2X4X3_S0004_001_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0004-001",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1000.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.6,
+        0.2,
+        1.2959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0042_BOX_2X4X3_S0005_001_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0005-001",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        400.0,
+        1000.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.5,
+        0.6000000000000001,
+        1.2959999999999998
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0043_BOX_2X4X3_S0005_002_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0005-002",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        1100.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.2,
+        0.8,
+        1.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0044_BOX_2X4X3_S0005_003_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0005-003",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.2,
+        0.2,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0045_BOX_2X4X3_S0005_004_BOX_2X4X3",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X4X3-S0005-004",
+      "sku": "BOX-2X4X3",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        300.0
+      ],
+      "world_position_m": [
+        9.399999999999999,
+        0.2,
+        1.596
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0046_BOX_2X3X4_S0003_001_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0003-001",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.25,
+        0.5,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0047_BOX_2X3X4_S0005_001_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0005-001",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        1000.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.55,
+        1.1,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0048_BOX_2X3X4_S0005_002_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0005-002",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        1300.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.25,
+        1.1,
+        1.6460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0049_BOX_2X3X4_S0005_003_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0005-003",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        300.0,
+        800.0,
+        1200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.55,
+        0.9,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0050_BOX_2X3X4_S0007_001_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0007-001",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        900.0,
+        1200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        1.05,
+        1.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0051_BOX_2X3X4_S0007_002_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0007-002",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.75,
+        1.6460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0052_BOX_2X3X4_S0007_003_BOX_2X3X4",
+      "pallet_id": "P08",
+      "identifier": "BOX-2X3X4-S0007-003",
+      "sku": "BOX-2X3X4",
+      "mass_kg": 11.236,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        400.0
+      ],
+      "world_position_m": [
+        9.6,
+        0.15,
+        1.6460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0053_BOX_5X2X2_S0000_001_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-001",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        400.0,
+        300.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.6,
+        0.55,
+        1.5460000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0054_BOX_5X2X2_S0000_002_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-002",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        400.0,
+        300.0,
+        1500.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.6,
+        0.55,
+        1.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0055_BOX_5X2X2_S0000_003_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-003",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1300.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.25,
+        1.5460000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0056_BOX_5X2X2_S0000_004_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-004",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        1500.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.799999999999999,
+        0.25,
+        1.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0057_BOX_5X2X2_S0000_005_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-005",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        1600.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.2,
+        0.25,
+        1.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0058_BOX_5X2X2_S0000_006_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-006",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        1600.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.399999999999999,
+        0.25,
+        1.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0059_BOX_5X2X2_S0000_007_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0000-007",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        300.0,
+        1000.0,
+        1600.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.65,
+        1.1,
+        1.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p08_0060_BOX_5X2X2_S0002_001_BOX_5X2X2",
+      "pallet_id": "P08",
+      "identifier": "BOX-5X2X2-S0002-001",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        100.0,
+        800.0,
+        1600.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        9.45,
+        0.9,
+        1.846
+      ]
+    },
+    {
+      "type": "pallet",
+      "model_name": "pallet_09_P09",
+      "pallet_id": "P09",
+      "mass_kg": 25.0,
+      "geometry": "models/euro_pallet/model.sdf"
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0001_BOX_5X2X2_S0004_001_BOX_5X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-5X2X2-S0004-001",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.65,
+        0.1,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0002_BOX_5X2X2_S0009_001_BOX_5X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-5X2X2-S0009-001",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        500.0,
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.0,
+        0.25,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0003_BOX_5X2X2_S0009_002_BOX_5X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-5X2X2-S0009-002",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        200.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.65,
+        0.30000000000000004,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0004_BOX_5X2X2_S0009_003_BOX_5X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-5X2X2-S0009-003",
+      "sku": "BOX-5X2X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        400.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.65,
+        0.5,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0005_BOX_2X5X2_S0001_001_BOX_2X5X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X5X2-S0001-001",
+      "sku": "BOX-2X5X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        500.0,
+        500.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.0,
+        0.75,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0006_BOX_2X5X2_S0007_001_BOX_2X5X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X5X2-S0007-001",
+      "sku": "BOX-2X5X2",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        0.0
+      ],
+      "size_mm": [
+        500.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.65,
+        0.7,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0007_BOX_2X2X5_S0007_001_BOX_2X2X5",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X5-S0007-001",
+      "sku": "BOX-2X2X5",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        600.0,
+        1000.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        11.1,
+        1.1,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0008_BOX_2X2X5_S0009_001_BOX_2X2X5",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X5-S0009-001",
+      "sku": "BOX-2X2X5",
+      "mass_kg": 7.602,
+      "local_position_mm": [
+        0.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        500.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.9,
+        0.396
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0009_BOX_3X3X2_S0001_001_BOX_3X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X3X2-S0001-001",
+      "sku": "BOX-3X3X2",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        200.0,
+        800.0,
+        0.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.75,
+        0.9500000000000001,
+        0.24600000000000002
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0010_BOX_3X3X2_S0001_002_BOX_3X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X3X2-S0001-002",
+      "sku": "BOX-3X3X2",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        200.0,
+        800.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.75,
+        0.9500000000000001,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0011_BOX_3X3X2_S0001_003_BOX_3X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X3X2-S0001-003",
+      "sku": "BOX-3X3X2",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.55,
+        0.15,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0012_BOX_3X3X2_S0003_001_BOX_3X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X3X2-S0003-001",
+      "sku": "BOX-3X3X2",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        300.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.850000000000001,
+        0.15,
+        0.44600000000000006
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0013_BOX_3X2X3_S0004_001_BOX_3X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X3-S0004-001",
+      "sku": "BOX-3X2X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.55,
+        0.4,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0014_BOX_3X2X3_S0004_002_BOX_3X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X3-S0004-002",
+      "sku": "BOX-3X2X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.65,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0015_BOX_3X2X3_S0006_001_BOX_3X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X3-S0006-001",
+      "sku": "BOX-3X2X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        200.0,
+        500.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.65,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0016_BOX_2X3X3_S0002_001_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0002-001",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        300.0,
+        300.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.850000000000001,
+        0.4,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0017_BOX_2X3X3_S0003_001_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0003-001",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        400.0,
+        500.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.9,
+        0.65,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0018_BOX_2X3X3_S0003_002_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0003-002",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        500.0,
+        800.0,
+        200.0
+      ],
+      "size_mm": [
+        300.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        11.05,
+        0.9,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0019_BOX_2X3X3_S0005_001_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0005-001",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.15,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0020_BOX_2X3X3_S0009_001_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0009-001",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        600.0,
+        300.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.44999999999999996,
+        0.496
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0021_BOX_2X3X3_S0009_002_BOX_2X3X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X3-S0009-002",
+      "sku": "BOX-2X3X3",
+      "mass_kg": 6.887,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.15,
+        0.6960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0022_BOX_4X2X2_S0009_001_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-001",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        400.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.799999999999999,
+        0.1,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0023_BOX_4X2X2_S0009_002_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-002",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        200.0,
+        800.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.7,
+        1.0,
+        0.646
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0024_BOX_4X2X2_S0009_003_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-003",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        600.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.799999999999999,
+        0.1,
+        0.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0025_BOX_4X2X2_S0009_004_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-004",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        500.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.6,
+        0.4,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0026_BOX_4X2X2_S0009_005_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-005",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        0.0,
+        500.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.7,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0027_BOX_4X2X2_S0009_006_BOX_4X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-4X2X2-S0009-006",
+      "sku": "BOX-4X2X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        200.0,
+        500.0,
+        500.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.799999999999999,
+        0.6,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0028_BOX_2X4X2_S0002_001_BOX_2X4X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X4X2-S0002-001",
+      "sku": "BOX-2X4X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        400.0,
+        300.0,
+        500.0
+      ],
+      "size_mm": [
+        400.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.0,
+        0.4,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0029_BOX_2X4X2_S0004_001_BOX_2X4X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X4X2-S0004-001",
+      "sku": "BOX-2X4X2",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        600.0,
+        800.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        400.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        1.0,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0030_BOX_2X2X4_S0001_001_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0001-001",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        0.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        10.5,
+        1.1,
+        0.34600000000000003
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0031_BOX_2X2X4_S0004_001_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0004-001",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        10.5,
+        1.1,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0032_BOX_2X2X4_S0005_001_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0005-001",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        200.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.7,
+        0.546
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0033_BOX_2X2X4_S0007_001_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0007-001",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        400.0,
+        1000.0,
+        400.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        10.9,
+        1.1,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0034_BOX_2X2X4_S0009_001_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0009-001",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        600.0,
+        600.0,
+        600.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.7,
+        0.946
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0035_BOX_2X2X4_S0009_002_BOX_2X2X4",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X4-S0009-002",
+      "sku": "BOX-2X2X4",
+      "mass_kg": 4.779,
+      "local_position_mm": [
+        400.0,
+        700.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        400.0
+      ],
+      "world_position_m": [
+        10.9,
+        0.8,
+        0.8460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0036_BOX_3X2X2_S0001_001_BOX_3X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X2-S0001-001",
+      "sku": "BOX-3X2X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        500.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.15,
+        0.746
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0037_BOX_3X2X2_S0001_002_BOX_3X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X2-S0001-002",
+      "sku": "BOX-3X2X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        200.0,
+        800.0,
+        600.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.9500000000000001,
+        0.846
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0038_BOX_3X2X2_S0006_001_BOX_3X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X2-S0006-001",
+      "sku": "BOX-3X2X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        600.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.15,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0039_BOX_3X2X2_S0009_001_BOX_3X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-3X2X2-S0009-001",
+      "sku": "BOX-3X2X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        0.0,
+        0.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.15,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0040_BOX_2X3X2_S0002_001_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0002-001",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        600.0,
+        900.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        1.05,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0041_BOX_2X3X2_S0002_002_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0002-002",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        0.0,
+        300.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.44999999999999996,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0042_BOX_2X3X2_S0003_001_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0003-001",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        0.0,
+        600.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.5,
+        0.75,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0043_BOX_2X3X2_S0003_002_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0003-002",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        400.0,
+        400.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.9,
+        0.55,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0044_BOX_2X3X2_S0005_001_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0005-001",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        200.0,
+        300.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.44999999999999996,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0045_BOX_2X3X2_S0007_001_BOX_2X3X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X3X2-S0007-001",
+      "sku": "BOX-2X3X2",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        600.0,
+        900.0,
+        900.0
+      ],
+      "size_mm": [
+        200.0,
+        300.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        1.05,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0046_BOX_2X2X3_S0004_001_BOX_2X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X3-S0004-001",
+      "sku": "BOX-2X2X3",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        400.0,
+        200.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.9,
+        0.30000000000000004,
+        0.9960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0047_BOX_2X2X3_S0004_002_BOX_2X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X3-S0004-002",
+      "sku": "BOX-2X2X3",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        200.0,
+        600.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.7,
+        0.9960000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0048_BOX_2X2X3_S0005_001_BOX_2X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X3-S0005-001",
+      "sku": "BOX-2X2X3",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        400.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.9,
+        0.1,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0049_BOX_2X2X3_S0005_002_BOX_2X2X3",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X3-S0005-002",
+      "sku": "BOX-2X2X3",
+      "mass_kg": 3.875,
+      "local_position_mm": [
+        200.0,
+        0.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        300.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.1,
+        1.096
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0050_BOX_2X2X2_S0007_001_BOX_2X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X2-S0007-001",
+      "sku": "BOX-2X2X2",
+      "mass_kg": 2.181,
+      "local_position_mm": [
+        600.0,
+        300.0,
+        700.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.4,
+        0.9460000000000001
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0051_BOX_2X2X2_S0009_001_BOX_2X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X2-S0009-001",
+      "sku": "BOX-2X2X2",
+      "mass_kg": 2.181,
+      "local_position_mm": [
+        200.0,
+        800.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.7,
+        0.9,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0052_BOX_2X2X2_S0009_002_BOX_2X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X2-S0009-002",
+      "sku": "BOX-2X2X2",
+      "mass_kg": 2.181,
+      "local_position_mm": [
+        0.0,
+        1000.0,
+        800.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        10.5,
+        1.1,
+        1.046
+      ]
+    },
+    {
+      "type": "box",
+      "model_name": "box_p09_0053_BOX_2X2X2_S0009_003_BOX_2X2X2",
+      "pallet_id": "P09",
+      "identifier": "BOX-2X2X2-S0009-003",
+      "sku": "BOX-2X2X2",
+      "mass_kg": 2.181,
+      "local_position_mm": [
+        600.0,
+        300.0,
+        900.0
+      ],
+      "size_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "world_position_m": [
+        11.1,
+        0.4,
+        1.1460000000000001
+      ]
+    },
+    {
+      "type": "forklift",
+      "model_name": "forklift",
+      "geometry": "models/forklift/model.sdf",
+      "world_pose_m_rad": [
+        0.3999999999999998,
+        -3.982,
+        0.0,
+        0.0,
+        0.0,
+        1.5707963267948966
+      ],
+      "body_size_m": [
+        1.83,
+        1.05,
+        2.05
+      ],
+      "fork_size_m": [
+        1.067,
+        0.102,
+        0.04
+      ],
+      "max_speed_m_s": 2.0,
+      "max_acceleration_m_s2": 0.5,
+      "spawn_distance_reference": "fork_tips_to_first_pallet_open_face",
+      "spawn_distance_m": 2.0,
+      "gui_plugin": "ForkliftTeleop",
+      "controls": {
+        "up": "forward",
+        "down": "reverse",
+        "left": "counterclockwise_turn",
+        "right": "clockwise_turn",
+        "shift_up": "forks_up",
+        "shift_down": "forks_down",
+        "space": "stop"
+      }
+    }
+  ]
+}

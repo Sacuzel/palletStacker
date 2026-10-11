@@ -61,6 +61,25 @@ def main() -> int:
     loader = _select_loader(settings.ACTIVE_LOADER)
     pallets = loader(box_data.boxes)
 
+
+    # ------------------------------------------------------------------
+    # 2b. ANALYSIS: loader-independent verification, stability and metrics
+    # ------------------------------------------------------------------
+    layout_report = None
+    layout_report_file: Path | None = None
+    if settings.RUN_LAYOUT_ANALYSIS:
+        from pallet_stacker import layoutAnalyzer
+
+        layout_report = layoutAnalyzer.analyze_layout(
+            pallets,
+            input_boxes=box_data.boxes,
+        )
+        if layoutAnalyzer.ANALYSIS_WRITE_JSON:
+            layout_report_file = layoutAnalyzer.write_report_json(
+                layout_report,
+                layoutAnalyzer.ANALYSIS_JSON_FILE,
+            )
+
     # ------------------------------------------------------------------
     # 3. OUTPUT: create optional visualizations and simulation assets
     # ------------------------------------------------------------------
@@ -117,6 +136,14 @@ def main() -> int:
             gazebo_gui_plugin_rebuilt=gazebo_gui_plugin_rebuilt,
             gazebo_gui_plugin_installed=gazebo_gui_plugin_installed,
         )
+
+        if layout_report is not None:
+            from pallet_stacker.layoutAnalyzer import format_report
+
+            print()
+            print(format_report(layout_report))
+            if layout_report_file is not None:
+                print(f"  Analysis report: {layout_report_file}")
 
     return 0
 

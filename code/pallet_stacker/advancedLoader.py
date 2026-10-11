@@ -1,74 +1,147 @@
-"""Online advanced pallet loader (incremental successor of heuristicLoader).
+"""Online advanced pallet loader: heightmap scoring with optional LBCP stability.
 
-Stage 0: behaviourally identical to heuristicLoader except for bug fixes.
+Successor of the old ``algorithm.py`` and ``stability.py``, rebuilt for the
+modular pallet_stacker pipeline (``Box`` / ``Pallet`` domain model,
+``settings.py`` and the common loader interface
+``load_boxes(boxes) -> list[Pallet]``).
 
-Heuristics
-----------
-1. Candidate Positions (edge-coordinate grid):
-   Cartesian product of X and Y coordinates taken from pallet walls, placed-box
-   edges, and flush offsets. Each candidate is dropped under gravity to find its
-   natural resting Z height.
-2. Support & Height Validation:
-   Computes under-support ratio at the resting level and checks pallet limits.
-3. Multi-term Scoring (Lower is better):
-   - Top Height (minimisation): Keeps load surface low, implicitly building layers.
-   - Support Ratio (maximisation): Rewards fully supported resting surfaces.
-   - Lateral Snugness (maximisation): Rewards touching walls and neighbors.
-   - Same-SKU Column Bonus: Encourages clean vertical alignment for identical SKUs.
-   - Deepest-Bottom-Left: Deterministic tie-breaking favoring low y, then low x.
+Loading model
+-------------
+* Boxes arrive one at a time in input order (grouped by SKU) and every
+  decision is final: no look-ahead, no backtracking.
+* Exactly one pallet is open. When the open pallet cannot take the next box,
+  it is closed for good and a new pallet is opened.
+* Boxes are loaded from above. A box drops vertically onto the highest surface
+  under its footprint (heightmap), so nothing lies above a box at the moment
+  it is placed and every placement is reachable from the top.
+* Every box is packed. A box that does not fit even on an empty pallet stops
+  the run with ``UnplaceableBoxError`` instead of being skipped.
 
-Changes vs heuristicLoader
---------------------------
-- FIX: Support-ratio threshold no longer subtracts a millimetre tolerance from a
-  dimensionless ratio (with tol >= 0.5 mm the support constraint was disabled).
-- FIX: Weight check no longer adds a millimetre tolerance to kilograms.
-- FIX: Degenerate-footprint check compares area against a numeric epsilon
-  instead of a millimetre tolerance.
-- FIX: Snugness now requires the neighbor to overlap the candidate's vertical
-  span. Previously a box resting entirely above the candidate's top face
-  counted as lateral contact.
-- CLEANUP: Unused local removed; bounds() cached once per call in _snugness
-  (no behaviour change).
-- DOC: Candidate generation described accurately (it is not Martello corner
-  points or Crainic extreme points).
+Per box
+-------
+1. Orientations    allowed orientations with distinct footprints.
+2. Candidates      x/y positions aligned with the pallet edges and with the
+                   edges of placed boxes: min edge, max edge, and max edge
+                   minus the box size (right/back alignment on top of a box).
+3. Gravity drop    resting height = highest heightmap value under the
+                   footprint.
+4. Feasibility     height limit, load limit, MIN_SUPPORT_RATIO and, when
+                   USE_LBCP_STABILITY is True, the LBCP stability check.
+5. Scoring         lower is better:
+                       W_TOP_HEIGHT     * resulting top height   [mm]
+                     - W_SUPPORT        * support ratio          [0..1]
+                     - W_SNUGNESS       * snugness               [0..1]
+                     - W_SAME_SKU_ALIGN * same-SKU column bonus  {0, 1}
+                     + TIE_BREAK_Y * y + TIE_BREAK_X * x         [mm]
+6. Commit          the cheapest candidate; heightmap and feasibility map are
+                   updated.
+
+Scoring terms
+-------------
+* Top height keeps the load surface low, so the pallet is built in layers.
+* Support ratio prefers well-supported positions. With LBCP enabled it counts
+  only load-bearable contact; otherwise all contact at the resting level.
+* Snugness is the fraction of the four side faces backed by a pallet edge or
+  by a neighbouring column higher than the box bottom. It reduces gaps.
+* The same-SKU column bonus applies when the candidate sits exactly on an
+  identical same-SKU box. Because boxes arrive in SKU groups, each group turns
+  into aligned columns with full-area support.
+* Low y, then low x, breaks remaining ties deterministically.
+
+LBCP stability (USE_LBCP_STABILITY)
+-----------------------------------
+Load Bearable Convex Polygon method of Gao, Wang, Kong, Chong: "Online 3D Bin
+Packing with Fast Stability Validation and Stable Rearrangement Planning",
+arXiv:2507.09123 (2025). Only the stability part is used:
+
+* Heightmap (HM): top height of the load in every grid cell [mm].
+* Feasibility map (FM): True where the top surface is load-bearable, i.e. can
+  carry any vertical load without anything below toppling. The pallet deck is
+  load-bearable everywhere, so FM starts all True.
+* Algorithm 1 (check): the support polygon is the convex hull of the contact
+  cells that are also True in FM. The placement is stable when the box's
+  centre of gravity, widened by COG_TOLERANCE, lies inside that polygon.
+* Algorithm 2 (update): after commit, the footprint is raised in HM; in FM it
+  becomes non-bearable except for the cells whose centres lie inside the
+  support polygon.
+
+The paper's heightmap is a camera distance field; this heightmap measures
+height upward from the deck, so the paper's "min HM" corresponds to "max HM".
+The support polygon is computed with Andrew's monotone-chain convex hull.
+
+Grid
+----
+Heightmap and feasibility map are cell grids. The grid must represent every
+footprint exactly, otherwise neighbouring boxes would appear to share cells.
+With GRID_RESOLUTION_MM = None the resolution is the greatest common divisor
+of the pallet size and all box footprint dimensions in the input (whole
+millimetres). Only the set of dimensions is used, solely to choose this grid;
+the arrival order is never looked at. A small divisor (e.g. 1 mm) is exact
+but slower than 5 or 10 mm.
 """
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
-from math import isfinite
-from typing import Iterable, Sequence
+from functools import reduce
+from math import gcd, isfinite
+
+import numpy as np
+from numpy.typing import NDArray
 
 from . import settings
-from .box import Box, Dimensions3D, Orientation, Point3D
+from .box import Box, Orientation, Point3D
 from .pallet import Pallet
 
+FloatArray = NDArray[np.float64]
+BoolArray = NDArray[np.bool_]
+Point2D = tuple[float, float]
+
 
 # ============================================================================
-# ALGORITHM SETTINGS & SCORING WEIGHTS
+# ALGORITHM SETTINGS
 # ============================================================================
 
-# Scoring weights (tuned for grocery box palletising)
-W_TOP_HEIGHT: float = 1.0        # Penalises higher resting heights [mm]
-W_SUPPORT: float = 250.0         # Rewards high under-support ratio [0..1]
-W_SNUGNESS: float = 100.0        # Rewards touching walls/neighbor boxes [0..1]
-W_SAME_SKU_ALIGN: float = 150.0  # Rewards identical column stacking {0, 1}
+# --- Stability --------------------------------------------------------------
 
-# Minimum fraction of box bottom that must be supported (0.0 .. 1.0)
-MIN_SUPPORT_RATIO: float = 0.50
+# True: only LBCP-stable placements are scored (Algorithms 1 and 2).
+# False: only MIN_SUPPORT_RATIO is checked. Keep MIN_SUPPORT_RATIO above 0.5
+# in that case; at or below 0.5 the centre of gravity is no longer guaranteed
+# to lie inside the contact area.
+USE_LBCP_STABILITY: bool = False
 
-# Grid snapping resolution in mm (1.0 = 1mm discrete grid)
-GRID_RESOLUTION_MM: float = 1.0
+# Relative centre-of-gravity uncertainty (0.0 .. 0.5). 0.0 = CoG exactly at
+# the geometric centre. Raise (e.g. 0.1) for loads whose contents can shift.
+# Used only when USE_LBCP_STABILITY is True.
+COG_TOLERANCE: float = 0.0
 
-# Set False to strictly close pallets when a box cannot fit (no backtracking).
-# Set True to allow first-fit across all currently open pallets.
-FIRST_FIT_OPEN_PALLETS: bool = False
+# Minimum fraction of the footprint that must rest on (load-bearable) contact.
+# 0.0 disables the check and relies on LBCP alone.
+MIN_SUPPORT_RATIO: float = 0.51
 
-# Unit-correct numeric tolerances (FIX: previously PLACEMENT_TOLERANCE_MM was
-# reused for dimensionless ratios, kilograms, and areas).
-SUPPORT_RATIO_EPS: float = 1e-6  # [-]   dimensionless ratio tolerance
-WEIGHT_EPS_KG: float = 1e-6      # [kg]  weight-limit tolerance
-AREA_EPS_MM2: float = 1e-9       # [mm²] degenerate-footprint guard
+# --- Scoring weights (score is minimised; 1.0 ~ 1 mm of height) -------------
+
+W_TOP_HEIGHT: float = 1.0        # heightmap minimisation
+W_SUPPORT: float = 200.0         # reward for high support ratio
+W_SNUGNESS: float = 100.0        # reward for touching walls / neighbours
+W_SAME_SKU_ALIGN: float = 150.0  # reward for an exact same-SKU column
+
+# Deterministic tie-break per mm of position: prefer low y, then low x.
+TIE_BREAK_Y: float = 1e-3
+TIE_BREAK_X: float = 1e-6
+
+# --- Grid ---------------------------------------------------------------------
+
+# Cell size [mm]. None = automatic exact resolution (see module docstring).
+# A fixed value must divide the pallet size and every footprint dimension.
+GRID_RESOLUTION_MM: float | None = 10
+
+# --- Numeric tolerances -------------------------------------------------------
+
+CONTACT_HEIGHT_TOL_MM: float = 1e-6  # cells this close to the resting height touch
+WEIGHT_EPS_KG: float = 1e-6          # weight-limit tolerance [kg]
+_GRID_EPS: float = 1e-6              # divisibility tolerance [cells]
 
 
 class AdvancedLoaderError(RuntimeError):
@@ -79,15 +152,50 @@ class UnplaceableBoxError(AdvancedLoaderError):
     """Raised when a box cannot fit even on an empty pallet."""
 
 
+# ============================================================================
+# INTERNAL TYPES
+# ============================================================================
+
+@dataclass(frozen=True, slots=True)
+class _Orient:
+    """One distinct orientation of the current box, in grid cells."""
+
+    orientation: Orientation
+    nx: int               # footprint along X [cells]
+    ny: int               # footprint along Y [cells]
+    height_mm: float      # vertical size [mm]
+
+
+@dataclass(frozen=True, slots=True)
+class _Evaluation:
+    """Algorithm 1 output for one feasible candidate."""
+
+    support_z: float                      # resting height of the box bottom [mm]
+    support_ratio: float                  # (bearable) contact cells / footprint cells
+    support_polygon: tuple[Point2D, ...]  # LBCP support polygon (empty if LBCP off)
+
+
 @dataclass(frozen=True, slots=True)
 class _Candidate:
-    """A fully evaluated, valid candidate placement."""
+    """One fully evaluated candidate placement."""
 
-    position: Point3D
-    orientation: Orientation
-    dimensions: Dimensions3D
-    support_ratio: float
-    score: float
+    ix: int
+    iy: int
+    orient: _Orient
+    evaluation: _Evaluation
+    score: float          # lower = better
+
+
+@dataclass(frozen=True, slots=True)
+class _PlacedRecord:
+    """Grid footprint of a placed box (candidate edges and column detection)."""
+
+    column_key: tuple[object, ...]
+    ix: int
+    iy: int
+    nx: int
+    ny: int
+    top_z: float
 
 
 # ============================================================================
@@ -95,7 +203,7 @@ class _Candidate:
 # ============================================================================
 
 def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
-    """Load all boxes sequentially using edge-grid candidates and heuristic scoring."""
+    """Load all boxes one by one in arrival order onto one open pallet at a time."""
     _validate_settings()
     box_sequence = tuple(boxes)
 
@@ -112,335 +220,404 @@ def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
         joined = ", ".join(already_placed)
         raise AdvancedLoaderError(f"Boxes are already placed: {joined}")
 
+    grid_mm = _grid_resolution(box_sequence)
+
     pallets: list[Pallet] = []
+    state: _PalletState | None = None
 
     for box in box_sequence:
-        placed = False
+        orients = _orientations(box, grid_mm)
 
-        # Determine which pallets can be considered
-        if FIRST_FIT_OPEN_PALLETS:
-            eligible_pallets = pallets
-        else:
-            eligible_pallets = pallets[-1:] if pallets else []
+        # ---- try the open pallet ---------------------------------------------
+        candidate = None if state is None else _find_best_placement(state, box, orients)
 
-        # Try to place on eligible existing pallets
-        for pallet in eligible_pallets:
-            candidate = _find_best_placement(pallet, box)
-            if candidate is not None:
-                pallet.place_box(
-                    box,
-                    candidate.position,
-                    candidate.orientation,
-                    tolerance_mm=settings.PLACEMENT_TOLERANCE_MM,
-                )
-                placed = True
-                break
-
-        # Open a new pallet if not placed
-        if not placed:
+        # ---- close it and open a new pallet if it cannot take the box --------
+        if candidate is None:
             new_pallet = _create_new_pallet(len(pallets) + 1)
             pallets.append(new_pallet)
-
-            candidate = _find_best_placement(new_pallet, box)
-            if candidate is not None:
-                new_pallet.place_box(
-                    box,
-                    candidate.position,
-                    candidate.orientation,
-                    tolerance_mm=settings.PLACEMENT_TOLERANCE_MM,
-                )
-                placed = True
-            else:
-                # Box cannot fit on a completely clean pallet
+            state = _PalletState(new_pallet, grid_mm)
+            candidate = _find_best_placement(state, box, orients)
+            if candidate is None:
                 raise UnplaceableBoxError(_unplaceable_message(box, new_pallet))
+
+        # ---- commit (online: irrevocable) -----------------------------------
+        state.commit(box, candidate)
 
     return pallets
 
 
 # ============================================================================
-# CANDIDATE SEARCH & SCORING
+# CANDIDATE SEARCH AND SCORING
 # ============================================================================
 
-def _find_best_placement(pallet: Pallet, box: Box) -> _Candidate | None:
-    """Evaluate all edge-grid candidates on the pallet and return the best one."""
-    if not _weight_fits(pallet, box):
+def _find_best_placement(
+    state: _PalletState,
+    box: Box,
+    orients: Sequence[_Orient],
+) -> _Candidate | None:
+    """Evaluate every candidate position and orientation on the open pallet and
+    return the cheapest feasible one, or None if the pallet cannot take the box."""
+    if not _weight_fits(state.pallet, box):
         return None
 
+    res = state.grid_mm
+    column_key = _column_key(box)
     best: _Candidate | None = None
 
-    for orientation, length_mm, width_mm, height_mm in _orientations(box):
-        xs, ys = _candidate_coordinates(pallet, length_mm, width_mm)
+    for orient in orients:
+        if orient.nx > state.nx or orient.ny > state.ny:
+            continue
+        xs, ys = _candidate_cells(state, orient)
 
-        for x_mm in xs:
-            for y_mm in ys:
-                eval_result = _evaluate_placement(
-                    pallet, box, x_mm, y_mm, orientation, length_mm, width_mm, height_mm
-                )
-                if eval_result is None:
-                    continue
+        for ix in xs:
+            for iy in ys:
+                evaluation = _validate_placement(state, ix, iy, orient)
+                if evaluation is None:
+                    continue  # too high / not enough support / unstable
 
-                support_z, support_ratio = eval_result
-                top_height = support_z + height_mm
-
-                # Calculate composite heuristic score (lower is better)
-                score = W_TOP_HEIGHT * top_height
-                score -= W_SUPPORT * support_ratio
-                score -= W_SNUGNESS * _snugness(
-                    pallet, x_mm, y_mm, length_mm, width_mm, height_mm, support_z
-                )
-
-                if _is_same_sku_column(pallet, box, x_mm, y_mm, length_mm, width_mm, support_z):
+                support_z = evaluation.support_z
+                score = W_TOP_HEIGHT * (support_z + orient.height_mm)
+                score -= W_SUPPORT * evaluation.support_ratio
+                score -= W_SNUGNESS * _snugness(state, ix, iy, orient.nx, orient.ny, support_z)
+                if _is_same_sku_column(state, column_key, ix, iy, orient, support_z):
                     score -= W_SAME_SKU_ALIGN
-
-                # Deepest-bottom-left deterministic tie-breaker
-                score += 1e-3 * y_mm + 1e-6 * x_mm
+                score += TIE_BREAK_Y * iy * res + TIE_BREAK_X * ix * res
 
                 if best is None or score < best.score:
-                    best = _Candidate(
-                        position=Point3D(x=x_mm, y=y_mm, z=support_z),
-                        orientation=orientation,
-                        dimensions=Dimensions3D(x=length_mm, y=width_mm, z=height_mm),
-                        support_ratio=support_ratio,
-                        score=score,
-                    )
+                    best = _Candidate(ix, iy, orient, evaluation, score)
 
     return best
 
 
-# ============================================================================
-# GEOMETRY, GRAVITY & CANDIDATE COORDINATES
-# ============================================================================
+def _candidate_cells(state: _PalletState, orient: _Orient) -> tuple[list[int], list[int]]:
+    """Candidate X and Y cell indices for one oriented footprint.
 
-def _orientations(box: Box) -> list[tuple[Orientation, float, float, float]]:
-    """Return unique (orientation, length_x, width_y, height_z) configurations."""
-    unique: list[tuple[Orientation, float, float, float]] = []
-    seen_dims: set[tuple[float, float, float]] = set()
-
-    for orientation in box.allowed_orientations:
-        dim = box.oriented_dimensions(orientation)
-        key = (round(dim.x, 2), round(dim.y, 2), round(dim.z, 2))
-        if key not in seen_dims:
-            seen_dims.add(key)
-            unique.append((orientation, dim.x, dim.y, dim.z))
-
-    return unique
-
-
-def _candidate_coordinates(
-    pallet: Pallet,
-    length_mm: float,
-    width_mm: float,
-) -> tuple[list[float], list[float]]:
-    """Build candidate X and Y coordinates based on walls and existing box edges."""
-    xs: set[float] = {0.0, pallet.length_mm - length_mm}
-    ys: set[float] = {0.0, pallet.width_mm - width_mm}
-
-    for placed in pallet.boxes:
-        p_min, p_max = placed.bounds()
-        xs.update((p_min.x, p_max.x, p_max.x - length_mm))
-        ys.update((p_min.y, p_max.y, p_max.y - width_mm))
-
-    grid = GRID_RESOLUTION_MM
-    tol = settings.PLACEMENT_TOLERANCE_MM
-    max_x = pallet.length_mm - length_mm + tol
-    max_y = pallet.width_mm - width_mm + tol
-
-    xs_ok = sorted(
-        {round(v / grid) * grid for v in xs if -tol <= v <= max_x}
-    )
-    ys_ok = sorted(
-        {round(v / grid) * grid for v in ys if -tol <= v <= max_y}
-    )
-    return xs_ok, ys_ok
-
-
-def _evaluate_placement(
-    pallet: Pallet,
-    box: Box,
-    x_mm: float,
-    y_mm: float,
-    orientation: Orientation,
-    length_mm: float,
-    width_mm: float,
-    height_mm: float,
-) -> tuple[float, float] | None:
-    """Drop the box under gravity at (x, y) and calculate under-support.
-
-    Returns (support_z, support_ratio) or None if placement violates limits.
+    Per axis: both pallet edges, and for every placed box its min edge (stack
+    exactly on top / align with it), its max edge (place flush next to it) and
+    its max edge minus the box size (align the far sides on top of it).
     """
-    tol = settings.PLACEMENT_TOLERANCE_MM
-    cand_x0 = x_mm
-    cand_x1 = x_mm + length_mm
-    cand_y0 = y_mm
-    cand_y1 = y_mm + width_mm
+    xs = {0, state.nx - orient.nx}
+    ys = {0, state.ny - orient.ny}
+    for placed in state.placed:
+        xs.update((placed.ix, placed.ix + placed.nx, placed.ix + placed.nx - orient.nx))
+        ys.update((placed.iy, placed.iy + placed.ny, placed.iy + placed.ny - orient.ny))
 
-    # Find the natural resting level: max top Z of all boxes overlapping in XY
-    support_z = 0.0
-    overlapping_boxes: list[Box] = []
+    max_ix = state.nx - orient.nx
+    max_iy = state.ny - orient.ny
+    return (
+        sorted(v for v in xs if 0 <= v <= max_ix),
+        sorted(v for v in ys if 0 <= v <= max_iy),
+    )
 
-    for placed in pallet.boxes:
-        b_min, b_max = placed.bounds()
-        if (
-            cand_x0 < b_max.x - tol
-            and cand_x1 > b_min.x + tol
-            and cand_y0 < b_max.y - tol
-            and cand_y1 > b_min.y + tol
-        ):
-            overlapping_boxes.append(placed)
-            if b_max.z > support_z:
-                support_z = b_max.z
-
-    # Check max load height limit
-    if support_z + height_mm > pallet.max_height_mm + tol:
-        return None
-
-    # Calculate support ratio at the resting level
-    cand_area = length_mm * width_mm
-    if cand_area <= AREA_EPS_MM2:  # FIX: was compared against a mm tolerance
-        return None
-
-    if support_z <= tol:
-        # Resting directly on the pallet floor
-        support_ratio = 1.0
-    else:
-        supported_area = 0.0
-        for placed in overlapping_boxes:
-            b_min, b_max = placed.bounds()
-            # Supporting boxes must have their top face flush with support_z
-            if abs(b_max.z - support_z) <= max(tol, 0.5):
-                ox = max(0.0, min(cand_x1, b_max.x) - max(cand_x0, b_min.x))
-                oy = max(0.0, min(cand_y1, b_max.y) - max(cand_y0, b_min.y))
-                supported_area += ox * oy
-        support_ratio = supported_area / cand_area
-
-    # Enforce minimum support requirement
-    # FIX: was `MIN_SUPPORT_RATIO - tol` (mm subtracted from a ratio).
-    if support_ratio < MIN_SUPPORT_RATIO - SUPPORT_RATIO_EPS:
-        return None
-
-    # Validate boundaries, load capacity, and 3D collision via Pallet API
-    position = Point3D(x=x_mm, y=y_mm, z=support_z)
-    check = pallet.check_placement(box, position, orientation, tolerance_mm=tol)
-    if not check:
-        return None
-
-    return support_z, support_ratio
-
-
-# ============================================================================
-# SNUGNESS & COLUMN INTERLOCK
-# ============================================================================
 
 def _snugness(
-    pallet: Pallet,
-    x_mm: float,
-    y_mm: float,
-    length_mm: float,
-    width_mm: float,
-    height_mm: float,
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    nx: int,
+    ny: int,
     support_z: float,
 ) -> float:
-    """Fraction (0..1) of the 4 lateral side faces supported by walls or neighbors.
-
-    A neighbor counts only if it is flush with the face, overlaps the face
-    laterally, and overlaps the candidate's vertical span [support_z, top].
-    """
-    tol = settings.PLACEMENT_TOLERANCE_MM
+    """Fraction (0..1) of the four side faces backed by a pallet edge or by a
+    neighbouring column higher than the box bottom."""
+    hm = state.heightmap
+    level = support_z + CONTACT_HEIGHT_TOL_MM
     touching = 0
 
-    cand_x0 = x_mm
-    cand_x1 = x_mm + length_mm
-    cand_y0 = y_mm
-    cand_y1 = y_mm + width_mm
-    cand_z0 = support_z
-    cand_z1 = support_z + height_mm
-
-    # Cache bounds once (no behaviour change).
-    # FIX: vertical overlap now requires b_min.z < cand_z1 as well as
-    # b_max.z > cand_z0. Previously a box sitting entirely above the
-    # candidate's top face was counted as lateral contact.
-    neighbors = [
-        (b_min, b_max)
-        for b_min, b_max in (b.bounds() for b in pallet.boxes)
-        if b_max.z > cand_z0 + tol and b_min.z < cand_z1 - tol
-    ]
-
-    def overlaps_y(b_min: Point3D, b_max: Point3D) -> bool:
-        return b_max.y > cand_y0 + tol and b_min.y < cand_y1 - tol
-
-    def overlaps_x(b_min: Point3D, b_max: Point3D) -> bool:
-        return b_max.x > cand_x0 + tol and b_min.x < cand_x1 - tol
-
-    # -X side: pallet wall or neighbor box
-    if cand_x0 <= tol or any(
-        abs(b_max.x - cand_x0) <= tol and overlaps_y(b_min, b_max)
-        for b_min, b_max in neighbors
-    ):
+    if ix == 0 or float(hm[ix - 1, iy:iy + ny].max()) > level:                 # -X
         touching += 1
-
-    # +X side: pallet wall or neighbor box
-    if cand_x1 >= pallet.length_mm - tol or any(
-        abs(b_min.x - cand_x1) <= tol and overlaps_y(b_min, b_max)
-        for b_min, b_max in neighbors
-    ):
+    if ix + nx == state.nx or float(hm[ix + nx, iy:iy + ny].max()) > level:    # +X
         touching += 1
-
-    # -Y side: pallet wall or neighbor box
-    if cand_y0 <= tol or any(
-        abs(b_max.y - cand_y0) <= tol and overlaps_x(b_min, b_max)
-        for b_min, b_max in neighbors
-    ):
+    if iy == 0 or float(hm[ix:ix + nx, iy - 1].max()) > level:                 # -Y
         touching += 1
-
-    # +Y side: pallet wall or neighbor box
-    if cand_y1 >= pallet.width_mm - tol or any(
-        abs(b_min.y - cand_y1) <= tol and overlaps_x(b_min, b_max)
-        for b_min, b_max in neighbors
-    ):
+    if iy + ny == state.ny or float(hm[ix:ix + nx, iy + ny].max()) > level:    # +Y
         touching += 1
 
     return touching / 4.0
 
 
 def _is_same_sku_column(
-    pallet: Pallet,
-    box: Box,
-    x_mm: float,
-    y_mm: float,
-    length_mm: float,
-    width_mm: float,
+    state: _PalletState,
+    column_key: tuple[object, ...],
+    ix: int,
+    iy: int,
+    orient: _Orient,
     support_z: float,
 ) -> bool:
-    """True if candidate sits flush on top of an identical same-SKU box."""
-    tol = settings.PLACEMENT_TOLERANCE_MM
-    box_sku = getattr(box, "sku", None) or getattr(box, "sku_id", None)
+    """True if the candidate sits exactly on top of an identical same-SKU box
+    (same footprint, same x/y, top face at the resting height)."""
+    return any(
+        placed.column_key == column_key
+        and placed.ix == ix
+        and placed.iy == iy
+        and placed.nx == orient.nx
+        and placed.ny == orient.ny
+        and abs(placed.top_z - support_z) <= CONTACT_HEIGHT_TOL_MM
+        for placed in state.placed
+    )
 
-    for placed in pallet.boxes:
-        p_min, p_max = placed.bounds()
-        p_len = p_max.x - p_min.x
-        p_wid = p_max.y - p_min.y
 
-        if (
-            abs(p_min.x - x_mm) <= tol
-            and abs(p_min.y - y_mm) <= tol
-            and abs(p_len - length_mm) <= tol
-            and abs(p_wid - width_mm) <= tol
-            and abs(p_max.z - support_z) <= tol
-        ):
-            placed_sku = getattr(placed, "sku", None) or getattr(placed, "sku_id", None)
-            if box_sku is not None and placed_sku is not None:
-                if box_sku == placed_sku:
-                    return True
-            else:
-                # Fallback to matching nominal dimensions
-                if (
-                    abs(placed.length_mm - box.length_mm) <= tol
-                    and abs(placed.width_mm - box.width_mm) <= tol
-                    and abs(placed.height_mm - box.height_mm) <= tol
-                ):
-                    return True
+def _column_key(box: Box) -> tuple[object, ...]:
+    """Identifies boxes that may form same-SKU columns."""
+    if box.sku:
+        return ("sku", box.sku)
+    return ("dims", round(box.length_mm, 6), round(box.width_mm, 6), round(box.height_mm, 6))
 
-    return False
+
+# ============================================================================
+# PER-PALLET STATE (heightmap + feasibility map)
+# ============================================================================
+
+class _PalletState:
+    """Loader-internal model of the open pallet."""
+
+    def __init__(self, pallet: Pallet, grid_mm: float) -> None:
+        self.pallet = pallet
+        self.grid_mm = grid_mm
+        self.nx = _cells(pallet.length_mm, grid_mm)
+        self.ny = _cells(pallet.width_mm, grid_mm)
+        self.max_height_mm = pallet.max_height_mm
+
+        # HM: top height of the load per cell [mm].
+        self.heightmap: FloatArray = np.zeros((self.nx, self.ny), dtype=np.float64)
+        # FM: True where the top surface is load-bearable. The deck is one
+        # load-bearable polygon, so the map starts all True.
+        self.feasibility_map: BoolArray = np.ones((self.nx, self.ny), dtype=bool)
+        self.placed: list[_PlacedRecord] = []
+
+    def commit(self, box: Box, candidate: _Candidate) -> None:
+        """Place the box on the pallet and update HM and FM (Algorithm 2)."""
+        res = self.grid_mm
+        orient = candidate.orient
+        support_z = candidate.evaluation.support_z
+
+        # Pallet.place_box re-validates bounds, height, load and overlap.
+        self.pallet.place_box(
+            box,
+            Point3D(x=candidate.ix * res, y=candidate.iy * res, z=support_z),
+            orient.orientation,
+            tolerance_mm=settings.PLACEMENT_TOLERANCE_MM,
+        )
+
+        top_z = support_z + orient.height_mm
+        _update_feasibility_map(
+            self, candidate.ix, candidate.iy, orient, top_z,
+            candidate.evaluation.support_polygon,
+        )
+        self.placed.append(
+            _PlacedRecord(
+                column_key=_column_key(box),
+                ix=candidate.ix,
+                iy=candidate.iy,
+                nx=orient.nx,
+                ny=orient.ny,
+                top_z=top_z,
+            )
+        )
+
+
+# ============================================================================
+# LBCP ALGORITHM 1 - STRUCTURAL STABILITY CHECK
+# ============================================================================
+
+def _validate_placement(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+) -> _Evaluation | None:
+    """Gravity drop, height limit, support ratio and (optionally) LBCP check.
+
+    Returns the evaluation for a feasible placement, otherwise None.
+    """
+    window_hm = state.heightmap[ix:ix + orient.nx, iy:iy + orient.ny]
+
+    # Resting height of the box bottom (gravity drop from above).
+    support_z = float(window_hm.max())
+    if support_z + orient.height_mm > state.max_height_mm + settings.PLACEMENT_TOLERANCE_MM:
+        return None
+
+    # Contact cells at the resting level.
+    contact = window_hm >= support_z - CONTACT_HEIGHT_TOL_MM
+
+    # Load-bearable contact: contact cells that belong to an LBCP.
+    if USE_LBCP_STABILITY:
+        window_fm = state.feasibility_map[ix:ix + orient.nx, iy:iy + orient.ny]
+        bearable = contact & window_fm
+    else:
+        bearable = contact
+
+    if not bearable.any():
+        return None
+
+    support_ratio = float(bearable.sum()) / float(bearable.size)
+    if support_ratio < MIN_SUPPORT_RATIO - 1e-12:
+        return None
+
+    if not USE_LBCP_STABILITY:
+        return _Evaluation(support_z, support_ratio, ())
+
+    # Support polygon = convex hull of the load-bearable contact cells.
+    res = state.grid_mm
+    hull = _convex_hull(_mask_corner_points(bearable, ix, iy, res))
+
+    # Centre-of-gravity uncertainty rectangle; its four corners are enough
+    # because both the rectangle and the polygon are convex.
+    cx = (ix + orient.nx / 2.0) * res
+    cy = (iy + orient.ny / 2.0) * res
+    dx = COG_TOLERANCE * orient.nx * res
+    dy = COG_TOLERANCE * orient.ny * res
+    cog_x = np.array([cx - dx, cx + dx, cx + dx, cx - dx])
+    cog_y = np.array([cy - dy, cy - dy, cy + dy, cy + dy])
+    if not _points_in_convex_polygon(cog_x, cog_y, hull).all():
+        return None
+
+    return _Evaluation(support_z, support_ratio, tuple(hull))
+
+
+# ============================================================================
+# LBCP ALGORITHM 2 - STRUCTURAL STABILITY UPDATE
+# ============================================================================
+
+def _update_feasibility_map(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    top_z: float,
+    support_polygon: Sequence[Point2D],
+) -> None:
+    """Raise HM over the footprint. With LBCP enabled, the footprint in FM
+    becomes non-bearable except above the support polygon, which is itself an
+    LBCP on the new top face."""
+    window = (slice(ix, ix + orient.nx), slice(iy, iy + orient.ny))
+    state.heightmap[window] = top_z
+
+    if not USE_LBCP_STABILITY:
+        return
+
+    res = state.grid_mm
+    centres_x = (np.arange(ix, ix + orient.nx) + 0.5) * res
+    centres_y = (np.arange(iy, iy + orient.ny) + 0.5) * res
+    grid_x, grid_y = np.meshgrid(centres_x, centres_y, indexing="ij")
+    state.feasibility_map[window] = _points_in_convex_polygon(
+        grid_x.ravel(), grid_y.ravel(), support_polygon
+    ).reshape(orient.nx, orient.ny)
+
+
+# ============================================================================
+# GEOMETRY HELPERS
+# ============================================================================
+
+def _mask_corner_points(mask: BoolArray, ix0: int, iy0: int, res: float) -> list[Point2D]:
+    """Corners of the first and last True cell in every grid row [mm].
+
+    Only these cells can contribute to the convex hull, which keeps the hull
+    input proportional to the number of rows instead of the number of cells.
+    """
+    rows = np.nonzero(mask.any(axis=0))[0]
+    first = np.argmax(mask[:, rows], axis=0)
+    last = mask.shape[0] - 1 - np.argmax(mask[::-1, rows], axis=0)
+
+    points: list[Point2D] = []
+    for row, a, b in zip(rows.tolist(), first.tolist(), last.tolist(), strict=True):
+        y0 = (iy0 + row) * res
+        y1 = y0 + res
+        for column in {a, b}:
+            x0 = (ix0 + column) * res
+            x1 = x0 + res
+            points.extend(((x0, y0), (x1, y0), (x0, y1), (x1, y1)))
+    return points
+
+
+def _convex_hull(points: Sequence[Point2D]) -> list[Point2D]:
+    """Andrew's monotone chain; counter-clockwise vertices, collinear removed."""
+    pts = sorted(set(points))
+    if len(pts) <= 2:
+        return list(pts)
+
+    def cross(o: Point2D, a: Point2D, b: Point2D) -> float:
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    lower: list[Point2D] = []
+    for p in pts:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper: list[Point2D] = []
+    for p in reversed(pts):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    return lower[:-1] + upper[:-1]
+
+
+def _points_in_convex_polygon(
+    px: FloatArray,
+    py: FloatArray,
+    hull: Sequence[Point2D],
+) -> BoolArray:
+    """Vectorised inclusion test for a CCW hull; the border counts as inside."""
+    if len(hull) < 3:
+        return np.zeros(np.shape(px), dtype=bool)
+    inside = np.ones(np.shape(px), dtype=bool)
+    for k in range(len(hull)):
+        ax, ay = hull[k]
+        bx, by = hull[(k + 1) % len(hull)]
+        inside &= (bx - ax) * (py - ay) - (by - ay) * (px - ax) >= -1e-9
+    return inside
+
+
+# ============================================================================
+# GRID AND ORIENTATIONS
+# ============================================================================
+
+def _grid_resolution(boxes: Sequence[Box]) -> float:
+    """Cell size that represents the pallet and every footprint exactly."""
+    values = [settings.PALLET_LENGTH_MM, settings.PALLET_WIDTH_MM]
+    for box in boxes:
+        for orientation in box.allowed_orientations:
+            d = box.oriented_dimensions(orientation)
+            values.extend((d.x, d.y))
+
+    if GRID_RESOLUTION_MM is not None:
+        res = float(GRID_RESOLUTION_MM)
+        bad = sorted({v for v in values if abs(v / res - round(v / res)) > _GRID_EPS})
+        if bad:
+            shown = ", ".join(f"{v:g}" for v in bad[:5])
+            raise AdvancedLoaderError(
+                f"GRID_RESOLUTION_MM={res:g} does not divide footprint dimension(s) "
+                f"{shown} mm. Use a divisor of all dimensions or None (automatic)."
+            )
+        return res
+
+    non_integer = sorted({v for v in values if abs(v - round(v)) > _GRID_EPS})
+    if non_integer:
+        shown = ", ".join(f"{v:g}" for v in non_integer[:5])
+        raise AdvancedLoaderError(
+            f"Automatic grid needs whole-millimetre footprints; found {shown} mm. "
+            "Set GRID_RESOLUTION_MM to a value that divides all dimensions."
+        )
+    return float(reduce(gcd, (int(round(v)) for v in values)))
+
+
+def _orientations(box: Box, grid_mm: float) -> list[_Orient]:
+    """Allowed orientations with distinct oriented dimensions."""
+    unique: list[_Orient] = []
+    seen: set[tuple[int, int, float]] = set()
+    for orientation in box.allowed_orientations:
+        d = box.oriented_dimensions(orientation)
+        nx = _cells(d.x, grid_mm)
+        ny = _cells(d.y, grid_mm)
+        key = (nx, ny, round(d.z, 6))
+        if key not in seen:
+            seen.add(key)
+            unique.append(_Orient(orientation, nx, ny, d.z))
+    return unique
+
+
+def _cells(value_mm: float, grid_mm: float) -> int:
+    return int(round(value_mm / grid_mm))
 
 
 # ============================================================================
@@ -466,11 +643,7 @@ def _create_new_pallet(pallet_number: int) -> Pallet:
 def _weight_fits(pallet: Pallet, box: Box) -> bool:
     if pallet.max_load_kg is None:
         return True
-    # FIX: was `+ settings.PLACEMENT_TOLERANCE_MM` (mm added to kg).
-    return (
-        pallet.current_load_kg + box.weight_kg
-        <= pallet.max_load_kg + WEIGHT_EPS_KG
-    )
+    return pallet.current_load_kg + box.weight_kg <= pallet.max_load_kg + WEIGHT_EPS_KG
 
 
 def _unplaceable_message(box: Box, pallet: Pallet) -> str:
@@ -510,3 +683,25 @@ def _validate_settings() -> None:
 
     if settings.PLACEMENT_TOLERANCE_MM < 0 or not isfinite(settings.PLACEMENT_TOLERANCE_MM):
         raise AdvancedLoaderError("settings.PLACEMENT_TOLERANCE_MM must be non-negative.")
+
+    if not 0.0 <= COG_TOLERANCE <= 0.5:
+        raise AdvancedLoaderError("COG_TOLERANCE must be within 0.0..0.5.")
+    if not 0.0 <= MIN_SUPPORT_RATIO <= 1.0:
+        raise AdvancedLoaderError("MIN_SUPPORT_RATIO must be within 0.0..1.0.")
+
+    if GRID_RESOLUTION_MM is not None and (
+        not isfinite(GRID_RESOLUTION_MM) or GRID_RESOLUTION_MM <= 0
+    ):
+        raise AdvancedLoaderError("GRID_RESOLUTION_MM must be positive or None.")
+
+    for name, value in (
+        ("W_TOP_HEIGHT", W_TOP_HEIGHT),
+        ("W_SUPPORT", W_SUPPORT),
+        ("W_SNUGNESS", W_SNUGNESS),
+        ("W_SAME_SKU_ALIGN", W_SAME_SKU_ALIGN),
+        ("TIE_BREAK_Y", TIE_BREAK_Y),
+        ("TIE_BREAK_X", TIE_BREAK_X),
+        ("CONTACT_HEIGHT_TOL_MM", CONTACT_HEIGHT_TOL_MM),
+    ):
+        if not isfinite(value) or value < 0:
+            raise AdvancedLoaderError(f"{name} must be non-negative and finite.")

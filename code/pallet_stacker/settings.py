@@ -43,6 +43,11 @@ INPUT_FILE_PATH: Path | None = None
 # "heuristic_v1", "layer", or "lookahead" after those loaders exist.
 ACTIVE_LOADER: str = "advanced"
 
+
+# Loader-independent verification, LBCP stability replay and metrics
+# (pallet_stacker/layoutAnalyzer.py). Runs between loading and output.
+RUN_LAYOUT_ANALYSIS: bool = True
+
 # Output stages. Both can be enabled simultaneously.
 GENERATE_PLOTLY_OUTPUT: bool = True
 GENERATE_GAZEBO_OUTPUT: bool = True
@@ -89,7 +94,7 @@ PALLET_BASE_HEIGHT_MM: float = 144.0
 PALLET_MAX_HEIGHT_MM: float = 1800.0
 
 # Set to None to disable load-mass checking.
-PALLET_MAX_LOAD_KG: float | None = 1000.0
+PALLET_MAX_LOAD_KG: float | None = 3000.0
 
 # Numerical tolerance shared by all placement algorithms and pallet geometry
 # checks. Algorithm-specific behavior belongs in the respective *Loader module.

@@ -1,0 +1,2699 @@
+{
+  "format_version": 1,
+  "units": {
+    "dimensions": "mm",
+    "weight": "kg"
+  },
+  "boxes": [
+    {
+      "identifier": "BOX-5X5X5-S0095-001",
+      "sku": "BOX-5X5X5",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        250.0
+      ],
+      "weight_kg": 27.67
+    },
+    {
+      "identifier": "BOX-5X5X5-S0095-002",
+      "sku": "BOX-5X5X5",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        250.0
+      ],
+      "weight_kg": 27.67
+    },
+    {
+      "identifier": "BOX-5X5X4-S0095-001",
+      "sku": "BOX-5X5X4",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 26.411
+    },
+    {
+      "identifier": "BOX-4X5X5-S0091-001",
+      "sku": "BOX-4X5X5",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        250.0
+      ],
+      "weight_kg": 26.411
+    },
+    {
+      "identifier": "BOX-4X5X5-S0099-001",
+      "sku": "BOX-4X5X5",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        250.0
+      ],
+      "weight_kg": 26.411
+    },
+    {
+      "identifier": "BOX-5X4X4-S0090-001",
+      "sku": "BOX-5X4X4",
+      "dimensions_mm": [
+        250.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0091-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0091-002",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0092-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0094-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0094-002",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0095-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0097-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X5X4-S0098-001",
+      "sku": "BOX-4X5X4",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X4X5-S0096-001",
+      "sku": "BOX-4X4X5",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-4X4X5-S0099-001",
+      "sku": "BOX-4X4X5",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 24.665
+    },
+    {
+      "identifier": "BOX-5X5X3-S0095-001",
+      "sku": "BOX-5X5X3",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 24.371
+    },
+    {
+      "identifier": "BOX-5X5X3-S0095-002",
+      "sku": "BOX-5X5X3",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 24.371
+    },
+    {
+      "identifier": "BOX-4X4X4-S0090-001",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-4X4X4-S0094-001",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-4X4X4-S0096-001",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-4X4X4-S0097-001",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-4X4X4-S0097-002",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-4X4X4-S0099-001",
+      "sku": "BOX-4X4X4",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 22.649
+    },
+    {
+      "identifier": "BOX-5X4X3-S0090-001",
+      "sku": "BOX-5X4X3",
+      "dimensions_mm": [
+        250.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-5X4X3-S0090-002",
+      "sku": "BOX-5X4X3",
+      "dimensions_mm": [
+        250.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0091-001",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0091-002",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0091-003",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0095-001",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0095-002",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0095-003",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0095-004",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0097-001",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0097-002",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X5X3-S0098-001",
+      "sku": "BOX-4X5X3",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0096-001",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0096-002",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0098-001",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0099-001",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0099-002",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-4X3X5-S0099-003",
+      "sku": "BOX-4X3X5",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X5X4-S0092-001",
+      "sku": "BOX-3X5X4",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X5X4-S0092-002",
+      "sku": "BOX-3X5X4",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X5X4-S0093-001",
+      "sku": "BOX-3X5X4",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X5X4-S0093-002",
+      "sku": "BOX-3X5X4",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X5X4-S0096-001",
+      "sku": "BOX-3X5X4",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-3X4X5-S0090-001",
+      "sku": "BOX-3X4X5",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 20.538
+    },
+    {
+      "identifier": "BOX-5X5X2-S0093-001",
+      "sku": "BOX-5X5X2",
+      "dimensions_mm": [
+        250.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 17.928
+    },
+    {
+      "identifier": "BOX-5X2X5-S0097-001",
+      "sku": "BOX-5X2X5",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 17.928
+    },
+    {
+      "identifier": "BOX-5X2X5-S0097-002",
+      "sku": "BOX-5X2X5",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 17.928
+    },
+    {
+      "identifier": "BOX-2X5X5-S0099-001",
+      "sku": "BOX-2X5X5",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        250.0
+      ],
+      "weight_kg": 17.928
+    },
+    {
+      "identifier": "BOX-4X4X3-S0090-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0094-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0094-002",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0096-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0096-002",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0097-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0097-002",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0097-003",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0097-004",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0098-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0099-001",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X4X3-S0099-002",
+      "sku": "BOX-4X4X3",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0092-001",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0094-001",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0094-002",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0097-001",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0097-002",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-4X3X4-S0098-001",
+      "sku": "BOX-4X3X4",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0090-001",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0094-001",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0094-002",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0094-003",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0096-001",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0096-002",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0096-003",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X4X4-S0096-004",
+      "sku": "BOX-3X4X4",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 17.549
+    },
+    {
+      "identifier": "BOX-3X5X3-S0093-001",
+      "sku": "BOX-3X5X3",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X5X3-S0093-002",
+      "sku": "BOX-3X5X3",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0098-001",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0098-002",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0099-001",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0099-002",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0099-003",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-3X3X5-S0099-004",
+      "sku": "BOX-3X3X5",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 16.154
+    },
+    {
+      "identifier": "BOX-5X4X2-S0092-001",
+      "sku": "BOX-5X4X2",
+      "dimensions_mm": [
+        250.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-5X2X4-S0090-001",
+      "sku": "BOX-5X2X4",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X5X2-S0091-001",
+      "sku": "BOX-4X5X2",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X5X2-S0093-001",
+      "sku": "BOX-4X5X2",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X5X2-S0095-001",
+      "sku": "BOX-4X5X2",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X5X2-S0095-002",
+      "sku": "BOX-4X5X2",
+      "dimensions_mm": [
+        200.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X2X5-S0096-001",
+      "sku": "BOX-4X2X5",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0091-001",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0092-001",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0092-002",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0092-003",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0092-004",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0092-005",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0095-001",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0095-002",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X5X4-S0097-001",
+      "sku": "BOX-2X5X4",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        200.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X4X5-S0093-001",
+      "sku": "BOX-2X4X5",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X4X5-S0093-002",
+      "sku": "BOX-2X4X5",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X4X5-S0093-003",
+      "sku": "BOX-2X4X5",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-2X4X5-S0099-001",
+      "sku": "BOX-2X4X5",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        250.0
+      ],
+      "weight_kg": 15.811
+    },
+    {
+      "identifier": "BOX-4X3X3-S0090-001",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0090-002",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0091-001",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0091-002",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0098-001",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0099-001",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X3X3-S0099-002",
+      "sku": "BOX-4X3X3",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X4X3-S0090-001",
+      "sku": "BOX-3X4X3",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X4X3-S0090-002",
+      "sku": "BOX-3X4X3",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X4X3-S0090-003",
+      "sku": "BOX-3X4X3",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0091-001",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0091-002",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0091-003",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0092-001",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0092-002",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0093-001",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0093-002",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0093-003",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0094-001",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0094-002",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0096-001",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0096-002",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0096-003",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0096-004",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-3X3X4-S0096-005",
+      "sku": "BOX-3X3X4",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 15.586
+    },
+    {
+      "identifier": "BOX-4X4X2-S0094-001",
+      "sku": "BOX-4X4X2",
+      "dimensions_mm": [
+        200.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0091-001",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0091-002",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0094-001",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0094-002",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0094-003",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0098-001",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0098-002",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0098-003",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-4X2X4-S0098-004",
+      "sku": "BOX-4X2X4",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0090-001",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0092-001",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0092-002",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0093-001",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0093-002",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-2X4X4-S0093-003",
+      "sku": "BOX-2X4X4",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        200.0
+      ],
+      "weight_kg": 15.134
+    },
+    {
+      "identifier": "BOX-5X3X2-S0092-001",
+      "sku": "BOX-5X3X2",
+      "dimensions_mm": [
+        250.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-5X2X3-S0090-001",
+      "sku": "BOX-5X2X3",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-5X2X3-S0098-001",
+      "sku": "BOX-5X2X3",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-5X2X3-S0098-002",
+      "sku": "BOX-5X2X3",
+      "dimensions_mm": [
+        250.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X5X2-S0093-001",
+      "sku": "BOX-3X5X2",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X5X2-S0094-001",
+      "sku": "BOX-3X5X2",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X5X2-S0094-002",
+      "sku": "BOX-3X5X2",
+      "dimensions_mm": [
+        150.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0090-001",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0090-002",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0092-001",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0097-001",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0097-002",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0099-001",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X2X5-S0099-002",
+      "sku": "BOX-3X2X5",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0091-001",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0091-002",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0097-001",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0097-002",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0097-003",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X5X3-S0097-004",
+      "sku": "BOX-2X5X3",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        150.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X3X5-S0092-001",
+      "sku": "BOX-2X3X5",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X3X5-S0098-001",
+      "sku": "BOX-2X3X5",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-2X3X5-S0099-001",
+      "sku": "BOX-2X3X5",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        250.0
+      ],
+      "weight_kg": 14.45
+    },
+    {
+      "identifier": "BOX-3X3X3-S0090-001",
+      "sku": "BOX-3X3X3",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 7.208
+    },
+    {
+      "identifier": "BOX-3X3X3-S0090-002",
+      "sku": "BOX-3X3X3",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 7.208
+    },
+    {
+      "identifier": "BOX-3X3X3-S0091-001",
+      "sku": "BOX-3X3X3",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 7.208
+    },
+    {
+      "identifier": "BOX-3X3X3-S0091-002",
+      "sku": "BOX-3X3X3",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 7.208
+    },
+    {
+      "identifier": "BOX-4X3X2-S0097-001",
+      "sku": "BOX-4X3X2",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X3X2-S0099-001",
+      "sku": "BOX-4X3X2",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X3X2-S0099-002",
+      "sku": "BOX-4X3X2",
+      "dimensions_mm": [
+        200.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X2X3-S0091-001",
+      "sku": "BOX-4X2X3",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X2X3-S0091-002",
+      "sku": "BOX-4X2X3",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X2X3-S0098-001",
+      "sku": "BOX-4X2X3",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X2X3-S0098-002",
+      "sku": "BOX-4X2X3",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-4X2X3-S0098-003",
+      "sku": "BOX-4X2X3",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0092-001",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0093-001",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0094-001",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0094-002",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0096-001",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0096-002",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0096-003",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0098-001",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X4X2-S0098-002",
+      "sku": "BOX-3X4X2",
+      "dimensions_mm": [
+        150.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0090-001",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0092-001",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0093-001",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0094-001",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0096-001",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-3X2X4-S0096-002",
+      "sku": "BOX-3X2X4",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X4X3-S0090-001",
+      "sku": "BOX-2X4X3",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X4X3-S0093-001",
+      "sku": "BOX-2X4X3",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X4X3-S0098-001",
+      "sku": "BOX-2X4X3",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X4X3-S0098-002",
+      "sku": "BOX-2X4X3",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X4X3-S0098-003",
+      "sku": "BOX-2X4X3",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        150.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X3X4-S0092-001",
+      "sku": "BOX-2X3X4",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X3X4-S0092-002",
+      "sku": "BOX-2X3X4",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X3X4-S0094-001",
+      "sku": "BOX-2X3X4",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X3X4-S0094-002",
+      "sku": "BOX-2X3X4",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X3X4-S0097-001",
+      "sku": "BOX-2X3X4",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        200.0
+      ],
+      "weight_kg": 6.896
+    },
+    {
+      "identifier": "BOX-2X5X2-S0092-001",
+      "sku": "BOX-2X5X2",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X5X2-S0092-002",
+      "sku": "BOX-2X5X2",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X5X2-S0093-001",
+      "sku": "BOX-2X5X2",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X5X2-S0093-002",
+      "sku": "BOX-2X5X2",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X5X2-S0095-001",
+      "sku": "BOX-2X5X2",
+      "dimensions_mm": [
+        100.0,
+        250.0,
+        100.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X2X5-S0093-001",
+      "sku": "BOX-2X2X5",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X2X5-S0098-001",
+      "sku": "BOX-2X2X5",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-2X2X5-S0098-002",
+      "sku": "BOX-2X2X5",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        250.0
+      ],
+      "weight_kg": 6.226
+    },
+    {
+      "identifier": "BOX-3X3X2-S0090-001",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0090-002",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0091-001",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0092-001",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0092-002",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0092-003",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0093-001",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0093-002",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0093-003",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0096-001",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X3X2-S0096-002",
+      "sku": "BOX-3X3X2",
+      "dimensions_mm": [
+        150.0,
+        150.0,
+        100.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0090-001",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0090-002",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0092-001",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0093-001",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0093-002",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0098-001",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-3X2X3-S0098-002",
+      "sku": "BOX-3X2X3",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-2X3X3-S0090-001",
+      "sku": "BOX-2X3X3",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-2X3X3-S0090-002",
+      "sku": "BOX-2X3X3",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-2X3X3-S0092-001",
+      "sku": "BOX-2X3X3",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-2X3X3-S0092-002",
+      "sku": "BOX-2X3X3",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-2X3X3-S0092-003",
+      "sku": "BOX-2X3X3",
+      "dimensions_mm": [
+        100.0,
+        150.0,
+        150.0
+      ],
+      "weight_kg": 5.663
+    },
+    {
+      "identifier": "BOX-4X2X2-S0091-001",
+      "sku": "BOX-4X2X2",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-4X2X2-S0094-001",
+      "sku": "BOX-4X2X2",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-4X2X2-S0098-001",
+      "sku": "BOX-4X2X2",
+      "dimensions_mm": [
+        200.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X4X2-S0093-001",
+      "sku": "BOX-2X4X2",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X4X2-S0093-002",
+      "sku": "BOX-2X4X2",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X4X2-S0093-003",
+      "sku": "BOX-2X4X2",
+      "dimensions_mm": [
+        100.0,
+        200.0,
+        100.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0090-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0091-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0093-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0094-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0094-002",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0097-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-2X2X4-S0098-001",
+      "sku": "BOX-2X2X4",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        200.0
+      ],
+      "weight_kg": 4.897
+    },
+    {
+      "identifier": "BOX-3X2X2-S0090-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0092-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0092-002",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0093-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0093-002",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0094-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0096-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0098-001",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-3X2X2-S0098-002",
+      "sku": "BOX-3X2X2",
+      "dimensions_mm": [
+        150.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0091-001",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0091-002",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0093-001",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0098-001",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0098-002",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X3-S0098-003",
+      "sku": "BOX-2X2X3",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        150.0
+      ],
+      "weight_kg": 3.554
+    },
+    {
+      "identifier": "BOX-2X2X2-S0093-001",
+      "sku": "BOX-2X2X2",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.25
+    },
+    {
+      "identifier": "BOX-2X2X2-S0093-002",
+      "sku": "BOX-2X2X2",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.25
+    },
+    {
+      "identifier": "BOX-2X2X2-S0093-003",
+      "sku": "BOX-2X2X2",
+      "dimensions_mm": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "weight_kg": 3.25
+    }
+  ]
+}

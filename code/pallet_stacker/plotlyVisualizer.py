@@ -457,7 +457,7 @@ def create_pallet_figure(
                 "range": [minimum_z - 20.0, maximum_z + padding_mm],
             },
             "aspectmode": "data",
-            "dragmode": "orbit",
+            "dragmode": "turntable",
             "camera": {
                 "eye": {"x": 1.7, "y": -1.9, "z": 1.25},
                 "up": {"x": 0.0, "y": 0.0, "z": 1.0},
