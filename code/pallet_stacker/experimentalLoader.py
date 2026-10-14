@@ -1,0 +1,964 @@
+"""Experimental loader: the R&D version of the advanced loader.
+
+Design: plateau-first online loading
+====================================
+
+Loading model
+-------------
+* Boxes arrive one at a time in input order (grouped by SKU); every decision
+  is final: no look-ahead, no backtracking.
+* Exactly one pallet is open. When it cannot take the next box it is closed
+  for good and a new pallet is opened.
+* Boxes are loaded from above and drop onto the highest surface under their
+  footprint (heightmap).
+* Every box is packed; a box that does not fit on an empty pallet raises
+  ``UnplaceableBoxError``.
+* Boxes are identical ("same SKU") when their dimensions are exactly equal.
+  Boxes are assumed strong enough to carry any load placed on them.
+
+Goal
+----
+Build the load as a sequence of flat plateaus:
+
+1. Spread on the lowest surface while the box fits there.
+2. When it no longer fits, start a new plateau on top.
+3. Low areas left behind by a started plateau are *holes*. A hole is only
+   filled when the box top ends level with the hole rim (flush fill), or when
+   nothing else fits on the pallet, or when the hole has aged (optional).
+4. Bridging two boxes below is rewarded, but is not required.
+
+Surface analysis (once per committed box)
+-----------------------------------------
+The heightmap is split into *regions*: 4-connected cells of equal height,
+labelled with ``scipy.ndimage.label``. Per region:
+
+* level   height of the region surface [mm]
+* rim     lowest in-pallet neighbour cell outside the region [mm]
+          (pallet edges are open: they are not walls and not part of the rim)
+* hole    rim > level            (the region is a pocket, not a ledge)
+          and level < frontier   (a higher plateau has already been started)
+          and area <= HOLE_MAX_AREA_FRACTION of the pallet (optional guard)
+
+The *frontier* is the highest resting level of any box on the pallet. Every
+time it rises, a new plateau has begun and the plateau counter (epoch) is
+incremented.
+
+Per candidate
+-------------
+1. Orientations    allowed orientations with distinct footprints.
+2. Candidates      x/y positions aligned with pallet edges and placed-box
+                   edges (min edge, max edge, max edge minus box size).
+3. Gravity drop    resting height = highest heightmap value under footprint.
+4. Feasibility     height limit, load limit, MIN_SUPPORT_RATIO and, when
+                   USE_LBCP_STABILITY is True, the LBCP stability check.
+5. Score           lower is better, in mm:
+
+       top_z
+     - h * ( A_SUPPORT  * support ratio            [0..1]
+           + A_WALL     * side-wall fraction       [0..1]
+           + A_FLUSH    * flush-neighbour fraction [0..1]
+           + A_SAME_SKU * exact identical column   {0, 1}
+           + A_BRIDGE   * rests on >= 2 boxes      {0, 1} )
+     + W_TRAPPED_VOID * mean gap depth under the footprint [mm]
+     + pit cost
+     + tie-break (low y, then low x)
+
+   h is the box height. All rewards are fractions of h and their weights sum
+   to less than 1, so a position whose top is a full box height higher can
+   never beat a lower one through rewards alone: the load spreads on the
+   lowest surface first, for short and tall boxes alike. Rewards decide
+   between positions on the same level and across small steps.
+
+   Side-wall and flush fractions use the ring of cells just outside the
+   footprint; the denominator is the full perimeter, so pallet edges count as
+   open (no lateral support on an open pallet).
+   * wall:  neighbour higher than the box bottom (lateral contact)
+   * flush: neighbour level with the box top within FLUSH_TOL_MM
+            (plateau continuation / flush hole fill)
+
+   Pit cost: the candidate rests in a hole and its top ends more than
+   FLUSH_TOL_MM below that hole's rim:
+
+       pit cost = hole weight * (pallet max height + (rim - resting level))
+
+   The rim term cancels the height advantage of going down into the hole and
+   the pallet-max-height term makes any non-pit placement on the pallet win.
+   Hole weight is 1.0, or less with hole aging. A box that protrudes above
+   the rim is not a pit.
+6. Commit          the cheapest candidate; HM, FM, owner map, epochs and the
+                   surface analysis are updated.
+
+Hole aging (USE_HOLE_AGING)
+---------------------------
+A hole's age is the number of plateaus started since its surface was last
+raised. Once HOLE_AGING_PLATEAUS plateaus have been started, the hole weight
+drops by HOLE_AGING_DECAY_PER_BOX for every further box placed on the pallet,
+down to 0.0, after which the hole is scored like any other surface.
+
+LBCP stability (USE_LBCP_STABILITY)
+-----------------------------------
+Load Bearable Convex Polygon method of Gao, Wang, Kong, Chong: "Online 3D Bin
+Packing with Fast Stability Validation and Stable Rearrangement Planning",
+arXiv:2507.09123 (2025). Only the stability part is used:
+
+* Heightmap (HM): top height of the load per grid cell [mm].
+* Feasibility map (FM): True where the top surface is load-bearable. The
+  pallet deck is load-bearable everywhere.
+* Algorithm 1 (check): the support polygon is the convex hull of contact
+  cells that are True in FM; the placement is stable when the centre of
+  gravity, widened by COG_TOLERANCE, lies inside that polygon.
+* Algorithm 2 (update): after commit the footprint is raised in HM; in FM it
+  becomes non-bearable except for cells whose centres lie inside the support
+  polygon.
+
+Grid
+----
+Heightmap, feasibility map, owner map and epoch map are cell grids that must
+represent every footprint exactly. With GRID_RESOLUTION_MM = None the
+resolution is the greatest common divisor of the pallet size and all
+footprint dimensions in the input (whole millimetres). Only the set of
+dimensions is used for this; the arrival order is never looked at.
+"""
+
+from __future__ import annotations
+
+from collections.abc import Iterable, Sequence
+from dataclasses import dataclass
+from functools import reduce
+from math import gcd, isfinite
+from typing import Any, cast
+
+import numpy as np
+from numpy.typing import NDArray
+from scipy import ndimage
+
+from . import settings
+from .box import Box, Orientation, Point3D
+from .pallet import Pallet
+
+FloatArray = NDArray[np.float64]
+AnyFloatArray = NDArray[np.floating[Any]]
+BoolArray = NDArray[np.bool_]
+IntArray = NDArray[np.int64]
+Point2D = tuple[float, float]
+
+
+# ============================================================================
+# ALGORITHM SETTINGS
+# ============================================================================
+
+# --- Stability --------------------------------------------------------------
+
+# True: only LBCP-stable placements are scored (Algorithms 1 and 2).
+# False: only MIN_SUPPORT_RATIO is checked. Keep MIN_SUPPORT_RATIO above 0.5
+# in that case; at or below 0.5 the centre of gravity is no longer guaranteed
+# to lie inside the contact area.
+USE_LBCP_STABILITY: bool = True
+
+# Relative centre-of-gravity uncertainty (0.0 .. 0.5). 0.0 = CoG exactly at
+# the geometric centre. Used only when USE_LBCP_STABILITY is True.
+COG_TOLERANCE: float = 0.0
+
+# Minimum fraction of the footprint that must rest on (load-bearable) contact.
+MIN_SUPPORT_RATIO: float = 0.51
+
+# --- Rewards (fractions of the box height; their sum must stay below 1.0) ---
+
+A_SUPPORT: float = 0.30   # support ratio
+A_WALL: float = 0.20      # side faces against higher neighbours
+A_FLUSH: float = 0.25     # neighbours level with the box top
+A_SAME_SKU: float = 0.15  # exactly on top of an identical box
+A_BRIDGE: float = 0.05    # resting on two or more boxes
+
+# --- Penalties ----------------------------------------------------------------
+
+# Per mm of mean gap depth under the footprint (void sealed below the box).
+W_TRAPPED_VOID: float = 0.5
+
+# --- Holes --------------------------------------------------------------------
+
+# A box top within this distance of a neighbour / rim height counts as level.
+FLUSH_TOL_MM: float = 10.0
+
+# Regions larger than this fraction of the pallet area are open surface, never
+# holes. None disables the guard.
+HOLE_MAX_AREA_FRACTION: float | None = 0.25
+
+# --- Hole aging ---------------------------------------------------------------
+
+USE_HOLE_AGING: bool = True
+HOLE_AGING_PLATEAUS: int = 3            # plateaus started before aging begins
+HOLE_AGING_DECAY_PER_BOX: float = 0.1   # hole weight lost per box after that
+
+# --- Tie-break ------------------------------------------------------------------
+
+# Deterministic tie-break per mm of position: prefer low y, then low x.
+TIE_BREAK_Y: float = 1e-3
+TIE_BREAK_X: float = 1e-6
+
+# --- Grid ---------------------------------------------------------------------
+
+# Cell size [mm]. None = automatic exact resolution (see module docstring).
+# A fixed value must divide the pallet size and every footprint dimension.
+GRID_RESOLUTION_MM: float | None = None
+
+# --- Numeric tolerances -------------------------------------------------------
+
+CONTACT_HEIGHT_TOL_MM: float = 1e-6  # cells this close to the resting height touch
+LEVEL_TOL_MM: float = 0.01           # heights closer than this are the same level
+WEIGHT_EPS_KG: float = 1e-6          # weight-limit tolerance [kg]
+_GRID_EPS: float = 1e-6              # divisibility tolerance [cells]
+
+
+class ExperimentalLoaderError(RuntimeError):
+    """Base exception raised by the experimental loader."""
+
+
+class UnplaceableBoxError(ExperimentalLoaderError):
+    """Raised when a box cannot fit even on an empty pallet."""
+
+
+# ============================================================================
+# INTERNAL TYPES
+# ============================================================================
+
+@dataclass(frozen=True, slots=True)
+class _Orient:
+    """One distinct orientation of the current box, in grid cells."""
+
+    orientation: Orientation
+    nx: int               # footprint along X [cells]
+    ny: int               # footprint along Y [cells]
+    height_mm: float      # vertical size [mm]
+
+
+@dataclass(frozen=True, slots=True)
+class _Evaluation:
+    """Algorithm 1 output for one feasible candidate."""
+
+    support_z: float                      # resting height of the box bottom [mm]
+    support_ratio: float                  # (bearable) contact cells / footprint cells
+    support_polygon: tuple[Point2D, ...]  # LBCP support polygon (empty if LBCP off)
+
+
+@dataclass(frozen=True, slots=True)
+class _Candidate:
+    """One fully evaluated candidate placement."""
+
+    ix: int
+    iy: int
+    orient: _Orient
+    evaluation: _Evaluation
+    score: float          # lower = better
+
+
+@dataclass(frozen=True, slots=True)
+class _PlacedRecord:
+    """Grid footprint of a placed box (candidate edges and column detection)."""
+
+    column_key: tuple[float, ...]
+    ix: int
+    iy: int
+    nx: int
+    ny: int
+    height_mm: float
+    top_z: float
+
+
+@dataclass(frozen=True, slots=True)
+class _Surface:
+    """Region analysis of the current top surface. Arrays are indexed by
+    region id; id 0 is unused."""
+
+    labels: IntArray          # region id per cell
+    level: FloatArray         # region surface height [mm]
+    rim: FloatArray           # lowest in-pallet neighbour height [mm], inf if none
+    hole_weight: FloatArray   # 0.0 = not a hole; (0, 1] = hole penalty multiplier
+
+
+# ============================================================================
+# MAIN ENTRY POINT
+# ============================================================================
+
+def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
+    """Load all boxes one by one in arrival order onto one open pallet at a time."""
+    _validate_settings()
+    box_sequence = tuple(boxes)
+
+    if not box_sequence:
+        return []
+
+    duplicate_ids = _find_duplicate_ids(box_sequence)
+    if duplicate_ids:
+        joined = ", ".join(sorted(duplicate_ids))
+        raise ExperimentalLoaderError(f"Duplicate box IDs supplied to loader: {joined}")
+
+    already_placed = [box.box_id for box in box_sequence if box.is_placed]
+    if already_placed:
+        joined = ", ".join(already_placed)
+        raise ExperimentalLoaderError(f"Boxes are already placed: {joined}")
+
+    grid_mm = _grid_resolution(box_sequence)
+
+    pallets: list[Pallet] = []
+    state: _PalletState | None = None
+
+    for box in box_sequence:
+        orients = _orientations(box, grid_mm)
+
+        # ---- try the open pallet ---------------------------------------------
+        candidate = None
+        if state is not None:
+            candidate = _find_best_placement(state, box, orients)
+
+        # ---- close it and open a new pallet if it cannot take the box --------
+        if state is None or candidate is None:
+            new_pallet = _create_new_pallet(len(pallets) + 1)
+            pallets.append(new_pallet)
+            state = _PalletState(new_pallet, grid_mm)
+            candidate = _find_best_placement(state, box, orients)
+            if candidate is None:
+                raise UnplaceableBoxError(_unplaceable_message(box, new_pallet))
+
+        # ---- commit (online: irrevocable) -----------------------------------
+        state.commit(box, candidate)
+
+    return pallets
+
+
+# ============================================================================
+# CANDIDATE SEARCH
+# ============================================================================
+
+def _find_best_placement(
+    state: _PalletState,
+    box: Box,
+    orients: Sequence[_Orient],
+) -> _Candidate | None:
+    """Evaluate every candidate position and orientation on the open pallet and
+    return the cheapest feasible one, or None if the pallet cannot take the box."""
+    if not _weight_fits(state.pallet, box):
+        return None
+
+    column_key = _column_key(box)
+    best: _Candidate | None = None
+
+    for orient in orients:
+        if orient.nx > state.nx or orient.ny > state.ny:
+            continue
+        xs, ys = _candidate_cells(state, orient)
+
+        for ix in xs:
+            for iy in ys:
+                evaluation = _validate_placement(state, ix, iy, orient)
+                if evaluation is None:
+                    continue  # too high / not enough support / unstable
+
+                score = _score(state, ix, iy, orient, evaluation, column_key)
+                if best is None or score < best.score:
+                    best = _Candidate(ix, iy, orient, evaluation, score)
+
+    return best
+
+
+def _candidate_cells(state: _PalletState, orient: _Orient) -> tuple[list[int], list[int]]:
+    """Candidate X and Y cell indices for one oriented footprint.
+
+    Per axis: both pallet edges, and for every placed box its min edge (stack
+    exactly on top / align with it), its max edge (place flush next to it) and
+    its max edge minus the box size (align the far sides on top of it).
+    """
+    xs = {0, state.nx - orient.nx}
+    ys = {0, state.ny - orient.ny}
+    for placed in state.placed:
+        xs.update((placed.ix, placed.ix + placed.nx, placed.ix + placed.nx - orient.nx))
+        ys.update((placed.iy, placed.iy + placed.ny, placed.iy + placed.ny - orient.ny))
+
+    max_ix = state.nx - orient.nx
+    max_iy = state.ny - orient.ny
+    return (
+        sorted(v for v in xs if 0 <= v <= max_ix),
+        sorted(v for v in ys if 0 <= v <= max_iy),
+    )
+
+
+# ============================================================================
+# SCORING
+# ============================================================================
+
+def _score(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    evaluation: _Evaluation,
+    column_key: tuple[float, ...],
+) -> float:
+    """Plateau-first score of one feasible candidate (lower is better)."""
+    res = state.grid_mm
+    h = orient.height_mm
+    support_z = evaluation.support_z
+    top_z = support_z + h
+
+    window = (slice(ix, ix + orient.nx), slice(iy, iy + orient.ny))
+    window_hm = state.heightmap[window]
+    contact = window_hm >= support_z - CONTACT_HEIGHT_TOL_MM
+
+    wall, flush = _side_contact(state, ix, iy, orient.nx, orient.ny, support_z, top_z)
+    same_sku = _is_same_sku_column(state, column_key, ix, iy, orient, support_z)
+
+    owners = state.owner_map[window][contact]
+    supporters = int(np.unique(owners[owners >= 0]).size)
+    bridge = supporters >= 2
+
+    reward = (
+        A_SUPPORT * evaluation.support_ratio
+        + A_WALL * wall
+        + A_FLUSH * flush
+        + A_SAME_SKU * float(same_sku)
+        + A_BRIDGE * float(bridge)
+    )
+
+    void_depth = float((support_z - window_hm).mean())
+
+    score = top_z - h * reward
+    score += W_TRAPPED_VOID * void_depth
+    score += _pit_cost(state, window, contact, support_z, top_z)
+    score += TIE_BREAK_Y * iy * res + TIE_BREAK_X * ix * res
+    return score
+
+
+def _side_contact(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    nx: int,
+    ny: int,
+    support_z: float,
+    top_z: float,
+) -> tuple[float, float]:
+    """(wall, flush) fractions of the footprint perimeter.
+
+    wall:  ring cells higher than the box bottom (lateral contact).
+    flush: ring cells level with the box top within FLUSH_TOL_MM.
+    Pallet edges are part of the perimeter but never count (open pallet).
+    """
+    hm = state.heightmap
+    parts: list[FloatArray] = []
+    if ix > 0:
+        parts.append(hm[ix - 1, iy:iy + ny])
+    if ix + nx < state.nx:
+        parts.append(hm[ix + nx, iy:iy + ny])
+    if iy > 0:
+        parts.append(hm[ix:ix + nx, iy - 1])
+    if iy + ny < state.ny:
+        parts.append(hm[ix:ix + nx, iy + ny])
+    if not parts:
+        return 0.0, 0.0
+
+    ring = np.concatenate(parts)
+    perimeter = float(2 * (nx + ny))
+    wall = float(np.count_nonzero(ring > support_z + CONTACT_HEIGHT_TOL_MM)) / perimeter
+    flush = float(np.count_nonzero(np.abs(ring - top_z) <= FLUSH_TOL_MM)) / perimeter
+    return wall, flush
+
+
+def _pit_cost(
+    state: _PalletState,
+    window: tuple[slice, slice],
+    contact: BoolArray,
+    support_z: float,
+    top_z: float,
+) -> float:
+    """Penalty for resting in a hole without reaching its rim (see docstring)."""
+    surface = state.surface
+    regions = np.unique(surface.labels[window][contact])
+    weights = surface.hole_weight[regions]
+    rims = surface.rim[regions]
+
+    pit = (weights > 0.0) & (top_z < rims - FLUSH_TOL_MM)
+    if not pit.any():
+        return 0.0
+    depth = rims[pit] - support_z
+    return float((weights[pit] * (state.max_height_mm + depth)).max())
+
+
+def _is_same_sku_column(
+    state: _PalletState,
+    column_key: tuple[float, ...],
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    support_z: float,
+) -> bool:
+    """True if the candidate sits exactly on top of an identical box in the same
+    orientation (same footprint, same x/y, same height, top at resting level)."""
+    return any(
+        placed.column_key == column_key
+        and placed.ix == ix
+        and placed.iy == iy
+        and placed.nx == orient.nx
+        and placed.ny == orient.ny
+        and abs(placed.height_mm - orient.height_mm) <= CONTACT_HEIGHT_TOL_MM
+        and abs(placed.top_z - support_z) <= CONTACT_HEIGHT_TOL_MM
+        for placed in state.placed
+    )
+
+
+def _column_key(box: Box) -> tuple[float, ...]:
+    """Boxes are identical when their dimensions are exactly equal."""
+    return tuple(sorted((box.length_mm, box.width_mm, box.height_mm)))
+
+
+# ============================================================================
+# PER-PALLET STATE
+# ============================================================================
+
+class _PalletState:
+    """Loader-internal model of the open pallet."""
+
+    def __init__(self, pallet: Pallet, grid_mm: float) -> None:
+        self.pallet = pallet
+        self.grid_mm = grid_mm
+        self.nx = _cells(pallet.length_mm, grid_mm)
+        self.ny = _cells(pallet.width_mm, grid_mm)
+        self.max_height_mm = pallet.max_height_mm
+        shape = (self.nx, self.ny)
+
+        # HM: top height of the load per cell [mm].
+        self.heightmap: FloatArray = np.zeros(shape, dtype=np.float64)
+        # FM: True where the top surface is load-bearable (deck: everywhere).
+        self.feasibility_map: BoolArray = np.ones(shape, dtype=bool)
+        # Index into self.placed of the box forming the surface; -1 = deck.
+        self.owner_map: IntArray = np.full(shape, -1, dtype=np.int64)
+        # Plateau epoch in which each cell was last raised.
+        self.cell_epoch: IntArray = np.zeros(shape, dtype=np.int64)
+
+        # Plateau bookkeeping: frontier = highest resting level so far.
+        self.frontier_z: float = 0.0
+        self.epoch: int = 0
+        # Boxes on the pallet (including the opener) when each epoch began.
+        self.epoch_start_box: list[int] = [0]
+
+        self.placed: list[_PlacedRecord] = []
+        self.surface: _Surface = _analyse_surface(self)
+
+    def commit(self, box: Box, candidate: _Candidate) -> None:
+        """Place the box, update HM/FM (Algorithm 2), owners, epochs and surface."""
+        res = self.grid_mm
+        orient = candidate.orient
+        support_z = candidate.evaluation.support_z
+
+        # Pallet.place_box re-validates bounds, height, load and overlap.
+        self.pallet.place_box(
+            box,
+            Point3D(x=candidate.ix * res, y=candidate.iy * res, z=support_z),
+            orient.orientation,
+            tolerance_mm=settings.PLACEMENT_TOLERANCE_MM,
+        )
+
+        top_z = support_z + orient.height_mm
+        window = (
+            slice(candidate.ix, candidate.ix + orient.nx),
+            slice(candidate.iy, candidate.iy + orient.ny),
+        )
+
+        _update_feasibility_map(
+            self, candidate.ix, candidate.iy, orient, top_z,
+            candidate.evaluation.support_polygon,
+        )
+        self.owner_map[window] = len(self.placed)
+
+        if support_z > self.frontier_z + LEVEL_TOL_MM:
+            self.frontier_z = support_z
+            self.epoch += 1
+            self.epoch_start_box.append(len(self.placed) + 1)
+        self.cell_epoch[window] = self.epoch
+
+        self.placed.append(
+            _PlacedRecord(
+                column_key=_column_key(box),
+                ix=candidate.ix,
+                iy=candidate.iy,
+                nx=orient.nx,
+                ny=orient.ny,
+                height_mm=orient.height_mm,
+                top_z=top_z,
+            )
+        )
+        self.surface = _analyse_surface(self)
+
+
+# ============================================================================
+# SURFACE ANALYSIS (regions, rims, holes, aging)
+# ============================================================================
+
+def _analyse_surface(state: _PalletState) -> _Surface:
+    """Label equal-height regions and classify holes (see module docstring)."""
+    hm = state.heightmap
+    quantised = np.round(hm / LEVEL_TOL_MM).astype(np.int64)
+
+    # ---- regions: 4-connected cells of equal height ----------------------------
+    labels: IntArray = np.zeros(hm.shape, dtype=np.int64)
+    count = 0
+    for value in np.unique(quantised):
+        region_labels, n = cast(
+            "tuple[NDArray[np.int32], int]", ndimage.label(quantised == value)
+        )
+        mask = region_labels > 0
+        labels[mask] = region_labels[mask].astype(np.int64) + count
+        count += n
+
+    flat_labels = labels.ravel()
+    level: FloatArray = np.zeros(count + 1, dtype=np.float64)
+    level[flat_labels] = hm.ravel()
+    area = np.bincount(flat_labels, minlength=count + 1)
+
+    # ---- rim: lowest in-pallet neighbour outside the region ------------------
+    rim: FloatArray = np.full(count + 1, np.inf, dtype=np.float64)
+    for own, other, other_h in (
+        (labels[:-1, :], labels[1:, :], hm[1:, :]),
+        (labels[1:, :], labels[:-1, :], hm[:-1, :]),
+        (labels[:, :-1], labels[:, 1:], hm[:, 1:]),
+        (labels[:, 1:], labels[:, :-1], hm[:, :-1]),
+    ):
+        boundary = own != other
+        np.minimum.at(rim, own[boundary], other_h[boundary])
+
+    # ---- holes ------------------------------------------------------------------
+    hole = np.isfinite(rim) & (rim > level + LEVEL_TOL_MM)
+    hole &= level < state.frontier_z - LEVEL_TOL_MM
+    if HOLE_MAX_AREA_FRACTION is not None:
+        hole &= area <= HOLE_MAX_AREA_FRACTION * state.nx * state.ny
+    hole[0] = False
+    hole_weight: FloatArray = hole.astype(np.float64)
+
+    # ---- aging --------------------------------------------------------------------
+    if USE_HOLE_AGING:
+        region_epoch = np.zeros(count + 1, dtype=np.int64)
+        np.maximum.at(region_epoch, flat_labels, state.cell_epoch.ravel())
+        aging_epoch = region_epoch + HOLE_AGING_PLATEAUS
+        aging = hole & (aging_epoch <= state.epoch)
+        if aging.any():
+            start_boxes = np.asarray(state.epoch_start_box, dtype=np.int64)[aging_epoch[aging]]
+            boxes_since = len(state.placed) - start_boxes
+            hole_weight[aging] = np.clip(
+                1.0 - HOLE_AGING_DECAY_PER_BOX * boxes_since, 0.0, 1.0
+            )
+
+    return _Surface(labels=labels, level=level, rim=rim, hole_weight=hole_weight)
+
+
+# ============================================================================
+# LBCP ALGORITHM 1 - STRUCTURAL STABILITY CHECK
+# ============================================================================
+
+def _validate_placement(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+) -> _Evaluation | None:
+    """Gravity drop, height limit, support ratio and (optionally) LBCP check.
+
+    Returns the evaluation for a feasible placement, otherwise None.
+    """
+    window_hm = state.heightmap[ix:ix + orient.nx, iy:iy + orient.ny]
+
+    # Resting height of the box bottom (gravity drop from above).
+    support_z = float(window_hm.max())
+    if support_z + orient.height_mm > state.max_height_mm + settings.PLACEMENT_TOLERANCE_MM:
+        return None
+
+    # Contact cells at the resting level.
+    contact = window_hm >= support_z - CONTACT_HEIGHT_TOL_MM
+
+    # Load-bearable contact: contact cells that belong to an LBCP.
+    if USE_LBCP_STABILITY:
+        window_fm = state.feasibility_map[ix:ix + orient.nx, iy:iy + orient.ny]
+        bearable = contact & window_fm
+    else:
+        bearable = contact
+
+    if not bearable.any():
+        return None
+
+    support_ratio = float(bearable.sum()) / float(bearable.size)
+    if support_ratio < MIN_SUPPORT_RATIO - 1e-12:
+        return None
+
+    if not USE_LBCP_STABILITY:
+        return _Evaluation(support_z, support_ratio, ())
+
+    # Support polygon = convex hull of the load-bearable contact cells.
+    res = state.grid_mm
+    hull = _convex_hull(_mask_corner_points(bearable, ix, iy, res))
+
+    # Centre-of-gravity uncertainty rectangle; its four corners are enough
+    # because both the rectangle and the polygon are convex.
+    cx = (ix + orient.nx / 2.0) * res
+    cy = (iy + orient.ny / 2.0) * res
+    dx = COG_TOLERANCE * orient.nx * res
+    dy = COG_TOLERANCE * orient.ny * res
+    cog_x = np.array([cx - dx, cx + dx, cx + dx, cx - dx])
+    cog_y = np.array([cy - dy, cy - dy, cy + dy, cy + dy])
+    if not _points_in_convex_polygon(cog_x, cog_y, hull).all():
+        return None
+
+    return _Evaluation(support_z, support_ratio, tuple(hull))
+
+
+# ============================================================================
+# LBCP ALGORITHM 2 - STRUCTURAL STABILITY UPDATE
+# ============================================================================
+
+def _update_feasibility_map(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    top_z: float,
+    support_polygon: Sequence[Point2D],
+) -> None:
+    """Raise HM over the footprint. With LBCP enabled, the footprint in FM
+    becomes non-bearable except above the support polygon, which is itself an
+    LBCP on the new top face."""
+    window = (slice(ix, ix + orient.nx), slice(iy, iy + orient.ny))
+    state.heightmap[window] = top_z
+
+    if not USE_LBCP_STABILITY:
+        return
+
+    res = state.grid_mm
+    centres_x = (np.arange(ix, ix + orient.nx) + 0.5) * res
+    centres_y = (np.arange(iy, iy + orient.ny) + 0.5) * res
+    grid_x, grid_y = np.meshgrid(centres_x, centres_y, indexing="ij")
+    state.feasibility_map[window] = _points_in_convex_polygon(
+        grid_x.ravel(), grid_y.ravel(), support_polygon
+    ).reshape(orient.nx, orient.ny)
+
+
+# ============================================================================
+# GEOMETRY HELPERS
+# ============================================================================
+
+def _mask_corner_points(mask: BoolArray, ix0: int, iy0: int, res: float) -> list[Point2D]:
+    """Corners of the first and last True cell in every grid row [mm].
+
+    Only these cells can contribute to the convex hull, which keeps the hull
+    input proportional to the number of rows instead of the number of cells.
+    """
+    rows = np.nonzero(mask.any(axis=0))[0]
+    first = np.argmax(mask[:, rows], axis=0)
+    last = mask.shape[0] - 1 - np.argmax(mask[::-1, rows], axis=0)
+
+    points: list[Point2D] = []
+    for row, a, b in zip(rows.tolist(), first.tolist(), last.tolist(), strict=True):
+        y0 = (iy0 + row) * res
+        y1 = y0 + res
+        for column in {a, b}:
+            x0 = (ix0 + column) * res
+            x1 = x0 + res
+            points.extend(((x0, y0), (x1, y0), (x0, y1), (x1, y1)))
+    return points
+
+
+def _convex_hull(points: Sequence[Point2D]) -> list[Point2D]:
+    """Andrew's monotone chain; counter-clockwise vertices, collinear removed."""
+    pts = sorted(set(points))
+    if len(pts) <= 2:
+        return list(pts)
+
+    def cross(o: Point2D, a: Point2D, b: Point2D) -> float:
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    lower: list[Point2D] = []
+    for p in pts:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper: list[Point2D] = []
+    for p in reversed(pts):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    return lower[:-1] + upper[:-1]
+
+
+def _points_in_convex_polygon(
+    px: AnyFloatArray,
+    py: AnyFloatArray,
+    hull: Sequence[Point2D],
+) -> BoolArray:
+    """Vectorised inclusion test for a CCW hull; the border counts as inside."""
+    if len(hull) < 3:
+        return np.zeros(np.shape(px), dtype=bool)
+    inside = np.ones(np.shape(px), dtype=bool)
+    for k in range(len(hull)):
+        ax, ay = hull[k]
+        bx, by = hull[(k + 1) % len(hull)]
+        inside &= (bx - ax) * (py - ay) - (by - ay) * (px - ax) >= -1e-9
+    return inside
+
+
+# ============================================================================
+# GRID AND ORIENTATIONS
+# ============================================================================
+
+def _grid_resolution(boxes: Sequence[Box]) -> float:
+    """Cell size that represents the pallet and every footprint exactly."""
+    values = [settings.PALLET_LENGTH_MM, settings.PALLET_WIDTH_MM]
+    for box in boxes:
+        for orientation in box.allowed_orientations:
+            d = box.oriented_dimensions(orientation)
+            values.extend((d.x, d.y))
+
+    if GRID_RESOLUTION_MM is not None:
+        res = float(GRID_RESOLUTION_MM)
+        bad = sorted({v for v in values if abs(v / res - round(v / res)) > _GRID_EPS})
+        if bad:
+            shown = ", ".join(f"{v:g}" for v in bad[:5])
+            raise ExperimentalLoaderError(
+                f"GRID_RESOLUTION_MM={res:g} does not divide footprint dimension(s) "
+                f"{shown} mm. Use a divisor of all dimensions or None (automatic)."
+            )
+        return res
+
+    non_integer = sorted({v for v in values if abs(v - round(v)) > _GRID_EPS})
+    if non_integer:
+        shown = ", ".join(f"{v:g}" for v in non_integer[:5])
+        raise ExperimentalLoaderError(
+            f"Automatic grid needs whole-millimetre footprints; found {shown} mm. "
+            "Set GRID_RESOLUTION_MM to a value that divides all dimensions."
+        )
+    return float(reduce(gcd, (int(round(v)) for v in values)))
+
+
+def _orientations(box: Box, grid_mm: float) -> list[_Orient]:
+    """Allowed orientations with distinct oriented dimensions."""
+    unique: list[_Orient] = []
+    seen: set[tuple[int, int, float]] = set()
+    for orientation in box.allowed_orientations:
+        d = box.oriented_dimensions(orientation)
+        nx = _cells(d.x, grid_mm)
+        ny = _cells(d.y, grid_mm)
+        key = (nx, ny, round(d.z, 6))
+        if key not in seen:
+            seen.add(key)
+            unique.append(_Orient(orientation, nx, ny, d.z))
+    return unique
+
+
+def _cells(value_mm: float, grid_mm: float) -> int:
+    return int(round(value_mm / grid_mm))
+
+
+# ============================================================================
+# HELPERS & VALIDATION
+# ============================================================================
+
+def _create_new_pallet(pallet_number: int) -> Pallet:
+    pallet_id = (
+        f"{settings.PALLET_ID_PREFIX}-"
+        f"{pallet_number:0{settings.PALLET_ID_DIGITS}d}"
+    )
+    return Pallet(
+        pallet_id=pallet_id,
+        name=settings.PALLET_NAME,
+        length_mm=settings.PALLET_LENGTH_MM,
+        width_mm=settings.PALLET_WIDTH_MM,
+        base_height_mm=settings.PALLET_BASE_HEIGHT_MM,
+        max_height_mm=settings.PALLET_MAX_HEIGHT_MM,
+        max_load_kg=settings.PALLET_MAX_LOAD_KG,
+    )
+
+
+def _weight_fits(pallet: Pallet, box: Box) -> bool:
+    if pallet.max_load_kg is None:
+        return True
+    return pallet.current_load_kg + box.weight_kg <= pallet.max_load_kg + WEIGHT_EPS_KG
+
+
+def _unplaceable_message(box: Box, pallet: Pallet) -> str:
+    return (
+        f"Box {box.box_id!r} cannot fit on an empty pallet {pallet.pallet_id!r}. "
+        f"Box dimensions are {box.length_mm:g} x {box.width_mm:g} x "
+        f"{box.height_mm:g} mm, weight is {box.weight_kg:g} kg. Pallet limits are "
+        f"{pallet.length_mm:g} x {pallet.width_mm:g} x "
+        f"{pallet.max_height_mm:g} mm with maximum load {pallet.max_load_kg!r} kg."
+    )
+
+
+def _find_duplicate_ids(boxes: Sequence[Box]) -> set[str]:
+    seen: set[str] = set()
+    duplicates: set[str] = set()
+    for box in boxes:
+        if box.box_id in seen:
+            duplicates.add(box.box_id)
+        seen.add(box.box_id)
+    return duplicates
+
+
+def _validate_settings() -> None:
+    for name, value in (
+        ("PALLET_LENGTH_MM", settings.PALLET_LENGTH_MM),
+        ("PALLET_WIDTH_MM", settings.PALLET_WIDTH_MM),
+        ("PALLET_BASE_HEIGHT_MM", settings.PALLET_BASE_HEIGHT_MM),
+        ("PALLET_MAX_HEIGHT_MM", settings.PALLET_MAX_HEIGHT_MM),
+    ):
+        if not isfinite(value) or value <= 0:
+            raise ExperimentalLoaderError(f"settings.{name} must be positive and finite.")
+
+    if settings.PALLET_MAX_LOAD_KG is not None and (
+        not isfinite(settings.PALLET_MAX_LOAD_KG) or settings.PALLET_MAX_LOAD_KG <= 0
+    ):
+        raise ExperimentalLoaderError("settings.PALLET_MAX_LOAD_KG must be positive or None.")
+
+    if settings.PLACEMENT_TOLERANCE_MM < 0 or not isfinite(settings.PLACEMENT_TOLERANCE_MM):
+        raise ExperimentalLoaderError("settings.PLACEMENT_TOLERANCE_MM must be non-negative.")
+
+    if not 0.0 <= COG_TOLERANCE <= 0.5:
+        raise ExperimentalLoaderError("COG_TOLERANCE must be within 0.0..0.5.")
+    if not 0.0 <= MIN_SUPPORT_RATIO <= 1.0:
+        raise ExperimentalLoaderError("MIN_SUPPORT_RATIO must be within 0.0..1.0.")
+
+    if GRID_RESOLUTION_MM is not None and (
+        not isfinite(GRID_RESOLUTION_MM) or GRID_RESOLUTION_MM <= 0
+    ):
+        raise ExperimentalLoaderError("GRID_RESOLUTION_MM must be positive or None.")
+
+    rewards = (
+        ("A_SUPPORT", A_SUPPORT),
+        ("A_WALL", A_WALL),
+        ("A_FLUSH", A_FLUSH),
+        ("A_SAME_SKU", A_SAME_SKU),
+        ("A_BRIDGE", A_BRIDGE),
+    )
+    for name, value in rewards:
+        if not isfinite(value) or value < 0:
+            raise ExperimentalLoaderError(f"{name} must be non-negative and finite.")
+    if sum(value for _, value in rewards) >= 1.0:
+        raise ExperimentalLoaderError(
+            "A_SUPPORT + A_WALL + A_FLUSH + A_SAME_SKU + A_BRIDGE must be below 1.0, "
+            "otherwise rewards can outweigh a full box height."
+        )
+
+    for name, value in (
+        ("W_TRAPPED_VOID", W_TRAPPED_VOID),
+        ("FLUSH_TOL_MM", FLUSH_TOL_MM),
+        ("HOLE_AGING_DECAY_PER_BOX", HOLE_AGING_DECAY_PER_BOX),
+        ("TIE_BREAK_Y", TIE_BREAK_Y),
+        ("TIE_BREAK_X", TIE_BREAK_X),
+        ("CONTACT_HEIGHT_TOL_MM", CONTACT_HEIGHT_TOL_MM),
+    ):
+        if not isfinite(value) or value < 0:
+            raise ExperimentalLoaderError(f"{name} must be non-negative and finite.")
+
+    if not isfinite(LEVEL_TOL_MM) or LEVEL_TOL_MM <= 0:
+        raise ExperimentalLoaderError("LEVEL_TOL_MM must be positive and finite.")
+
+    if HOLE_MAX_AREA_FRACTION is not None and not 0.0 < HOLE_MAX_AREA_FRACTION <= 1.0:
+        raise ExperimentalLoaderError("HOLE_MAX_AREA_FRACTION must be within (0, 1] or None.")
+
+    if HOLE_AGING_PLATEAUS < 0:
+        raise ExperimentalLoaderError("HOLE_AGING_PLATEAUS must be non-negative.")

@@ -41,8 +41,9 @@ Scoring terms
 * Top height keeps the load surface low, so the pallet is built in layers.
 * Support ratio prefers well-supported positions. With LBCP enabled it counts
   only load-bearable contact; otherwise all contact at the resting level.
-* Snugness is the fraction of the four side faces backed by a pallet edge or
-  by a neighbouring column higher than the box bottom. It reduces gaps.
+* Snugness is the fraction of the four side faces backed by a neighbouring
+  column higher than the box bottom. Pallet edges do not count: the pallet is
+  open, so a box at the edge leans on nothing. It reduces gaps.
 * The same-SKU column bonus applies when the candidate sits exactly on an
   identical same-SKU box. Because boxes arrive in SKU groups, each group turns
   into aligned columns with full-area support.
@@ -86,6 +87,7 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from functools import reduce
 from math import gcd, isfinite
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -95,6 +97,7 @@ from .box import Box, Orientation, Point3D
 from .pallet import Pallet
 
 FloatArray = NDArray[np.float64]
+AnyFloatArray = NDArray[np.floating[Any]]
 BoolArray = NDArray[np.bool_]
 Point2D = tuple[float, float]
 
@@ -109,7 +112,7 @@ Point2D = tuple[float, float]
 # False: only MIN_SUPPORT_RATIO is checked. Keep MIN_SUPPORT_RATIO above 0.5
 # in that case; at or below 0.5 the centre of gravity is no longer guaranteed
 # to lie inside the contact area.
-USE_LBCP_STABILITY: bool = False
+USE_LBCP_STABILITY: bool = True
 
 # Relative centre-of-gravity uncertainty (0.0 .. 0.5). 0.0 = CoG exactly at
 # the geometric centre. Raise (e.g. 0.1) for loads whose contents can shift.
@@ -135,7 +138,7 @@ TIE_BREAK_X: float = 1e-6
 
 # Cell size [mm]. None = automatic exact resolution (see module docstring).
 # A fixed value must divide the pallet size and every footprint dimension.
-GRID_RESOLUTION_MM: float | None = 10
+GRID_RESOLUTION_MM: float | None = None
 
 # --- Numeric tolerances -------------------------------------------------------
 
@@ -229,10 +232,12 @@ def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
         orients = _orientations(box, grid_mm)
 
         # ---- try the open pallet ---------------------------------------------
-        candidate = None if state is None else _find_best_placement(state, box, orients)
+        candidate = None
+        if state is not None:
+            candidate = _find_best_placement(state, box, orients)
 
         # ---- close it and open a new pallet if it cannot take the box --------
-        if candidate is None:
+        if state is None or candidate is None:
             new_pallet = _create_new_pallet(len(pallets) + 1)
             pallets.append(new_pallet)
             state = _PalletState(new_pallet, grid_mm)
@@ -318,19 +323,20 @@ def _snugness(
     ny: int,
     support_z: float,
 ) -> float:
-    """Fraction (0..1) of the four side faces backed by a pallet edge or by a
-    neighbouring column higher than the box bottom."""
+    """Fraction (0..1) of the four side faces backed by a neighbouring column
+    higher than the box bottom. Pallet edges give no lateral support (open
+    pallet, not a container), so a face on the pallet boundary is unbacked."""
     hm = state.heightmap
     level = support_z + CONTACT_HEIGHT_TOL_MM
     touching = 0
 
-    if ix == 0 or float(hm[ix - 1, iy:iy + ny].max()) > level:                 # -X
+    if ix > 0 and float(hm[ix - 1, iy:iy + ny].max()) > level:                 # -X
         touching += 1
-    if ix + nx == state.nx or float(hm[ix + nx, iy:iy + ny].max()) > level:    # +X
+    if ix + nx < state.nx and float(hm[ix + nx, iy:iy + ny].max()) > level:    # +X
         touching += 1
-    if iy == 0 or float(hm[ix:ix + nx, iy - 1].max()) > level:                 # -Y
+    if iy > 0 and float(hm[ix:ix + nx, iy - 1].max()) > level:                 # -Y
         touching += 1
-    if iy + ny == state.ny or float(hm[ix:ix + nx, iy + ny].max()) > level:    # +Y
+    if iy + ny < state.ny and float(hm[ix:ix + nx, iy + ny].max()) > level:    # +Y
         touching += 1
 
     return touching / 4.0
@@ -553,8 +559,8 @@ def _convex_hull(points: Sequence[Point2D]) -> list[Point2D]:
 
 
 def _points_in_convex_polygon(
-    px: FloatArray,
-    py: FloatArray,
+    px: AnyFloatArray,
+    py: AnyFloatArray,
     hull: Sequence[Point2D],
 ) -> BoolArray:
     """Vectorised inclusion test for a CCW hull; the border counts as inside."""

@@ -41,7 +41,7 @@ INPUT_FILE_PATH: Path | None = None
 
 # Loader selected by main.py. Future values may include, for example,
 # "heuristic_v1", "layer", or "lookahead" after those loaders exist.
-ACTIVE_LOADER: str = "advanced"
+ACTIVE_LOADER: str = "experimental"
 
 
 # Loader-independent verification, LBCP stability replay and metrics
