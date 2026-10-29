@@ -43,8 +43,8 @@ from pallet_stacker.processBoxData import BoxDataError, parse_box_json, select_j
 
 # --- Loaders ------------------------------------------------------------------
 
-BASE_LOADER: str = "experimental"            # reference algorithm
-COMPARISON_LOADER: str = "advanced"  # candidate algorithm
+BASE_LOADER: str = "advanced"            # reference algorithm
+COMPARISON_LOADER: str = "ems"  # candidate algorithm
 
 # --- Input / output -----------------------------------------------------------
 

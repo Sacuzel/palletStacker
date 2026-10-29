@@ -13,6 +13,7 @@ from pallet_stacker.naiveLoader import NaiveLoaderError, load_boxes as naive_loa
 from pallet_stacker.heuristicLoader import HeuristicLoaderError, load_boxes as heuristic_load_boxes
 from pallet_stacker.advancedLoader import AdvancedLoaderError, load_boxes as advanced_load_boxes
 from pallet_stacker.experimentalLoader import ExperimentalLoaderError, load_boxes as experimental_load_boxes
+from pallet_stacker.emsLoader import EmsLoaderError, load_boxes as ems_load_boxes
 from pallet_stacker.pallet import Pallet
 from pallet_stacker.processBoxData import BoxDataError, process_box_data
 
@@ -26,6 +27,7 @@ LOADER_REGISTRY: dict[str, LoaderFunction] = {
     "heuristic": heuristic_load_boxes,
     "advanced": advanced_load_boxes,
     "experimental": experimental_load_boxes,
+    "ems": ems_load_boxes,
 }
 
 
@@ -235,6 +237,6 @@ if __name__ == "__main__":
     try:
         raise SystemExit(main())
     except (BoxDataError, NaiveLoaderError, HeuristicLoaderError, AdvancedLoaderError,
-            ExperimentalLoaderError, ValueError, RuntimeError) as exc:
+            EmsLoaderError, ValueError, RuntimeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc

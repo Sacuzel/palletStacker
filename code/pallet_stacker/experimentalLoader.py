@@ -1,99 +1,56 @@
-"""Experimental loader: the R&D version of the advanced loader.
+"""Experimental loader: the advanced loader with several open pallets.
 
-Design: plateau-first online loading
-====================================
+Identical to ``advancedLoader.py`` (heightmap scoring with optional LBCP
+stability), extended with the pallet policy of ``emsLoader.py``: several
+pallets can stay open, so a later box may fill a gap on an earlier pallet.
+With MAX_OPEN_PALLETS = 1 this loader behaves exactly like advancedLoader.
 
 Loading model
 -------------
-* Boxes arrive one at a time in input order (grouped by SKU); every decision
-  is final: no look-ahead, no backtracking.
-* Exactly one pallet is open. When it cannot take the next box it is closed
-  for good and a new pallet is opened.
-* Boxes are loaded from above and drop onto the highest surface under their
-  footprint (heightmap).
-* Every box is packed; a box that does not fit on an empty pallet raises
-  ``UnplaceableBoxError``.
-* Boxes are identical ("same SKU") when their dimensions are exactly equal.
-  Boxes are assumed strong enough to carry any load placed on them.
+* Boxes arrive one at a time in input order (grouped by SKU) and every
+  decision is final: no look-ahead, no backtracking.
+* Up to MAX_OPEN_PALLETS pallets are open (None = all). BIN_SELECTION_RULE
+  decides which open pallet gets the box. When no open pallet can take it,
+  a new pallet is opened; with a limit, the oldest open pallet is then
+  closed for good.
+* Boxes are loaded from above. A box drops vertically onto the highest surface
+  under its footprint (heightmap), so nothing lies above a box at the moment
+  it is placed and every placement is reachable from the top.
+* Every box is packed. A box that does not fit even on an empty pallet stops
+  the run with ``UnplaceableBoxError`` instead of being skipped.
 
-Goal
-----
-Build the load as a sequence of flat plateaus:
-
-1. Spread on the lowest surface while the box fits there.
-2. When it no longer fits, start a new plateau on top.
-3. Low areas left behind by a started plateau are *holes*. A hole is only
-   filled when the box top ends level with the hole rim (flush fill), or when
-   nothing else fits on the pallet, or when the hole has aged (optional).
-4. Bridging two boxes below is rewarded, but is not required.
-
-Surface analysis (once per committed box)
------------------------------------------
-The heightmap is split into *regions*: 4-connected cells of equal height,
-labelled with ``scipy.ndimage.label``. Per region:
-
-* level   height of the region surface [mm]
-* rim     lowest in-pallet neighbour cell outside the region [mm]
-          (pallet edges are open: they are not walls and not part of the rim)
-* hole    rim > level            (the region is a pocket, not a ledge)
-          and level < frontier   (a higher plateau has already been started)
-          and area <= HOLE_MAX_AREA_FRACTION of the pallet (optional guard)
-
-The *frontier* is the highest resting level of any box on the pallet. Every
-time it rises, a new plateau has begun and the plateau counter (epoch) is
-incremented.
-
-Per candidate
--------------
-1. Orientations    allowed orientations with distinct footprints.
-2. Candidates      x/y positions aligned with pallet edges and placed-box
-                   edges (min edge, max edge, max edge minus box size).
-3. Gravity drop    resting height = highest heightmap value under footprint.
-4. Feasibility     height limit, load limit, MIN_SUPPORT_RATIO and, when
+Per box
+-------
+1. Pallet          open pallets in BIN_SELECTION_RULE order.
+2. Orientations    allowed orientations with distinct footprints.
+3. Candidates      x/y positions aligned with the pallet edges and with the
+                   edges of placed boxes: min edge, max edge, and max edge
+                   minus the box size (right/back alignment on top of a box).
+4. Gravity drop    resting height = highest heightmap value under the
+                   footprint.
+5. Feasibility     height limit, load limit, MIN_SUPPORT_RATIO and, when
                    USE_LBCP_STABILITY is True, the LBCP stability check.
-5. Score           lower is better, in mm:
+6. Scoring         lower is better:
+                       W_TOP_HEIGHT     * resulting top height   [mm]
+                     - W_SUPPORT        * support ratio          [0..1]
+                     - W_SNUGNESS       * snugness               [0..1]
+                     - W_SAME_SKU_ALIGN * same-SKU column bonus  {0, 1}
+                     + TIE_BREAK_Y * y + TIE_BREAK_X * x         [mm]
+7. Commit          the cheapest candidate on the chosen pallet; that pallet's
+                   heightmap and feasibility map are updated.
 
-       top_z
-     - h * ( A_SUPPORT  * support ratio            [0..1]
-           + A_WALL     * side-wall fraction       [0..1]
-           + A_FLUSH    * flush-neighbour fraction [0..1]
-           + A_SAME_SKU * exact identical column   {0, 1}
-           + A_BRIDGE   * rests on >= 2 boxes      {0, 1} )
-     + W_TRAPPED_VOID * mean gap depth under the footprint [mm]
-     + pit cost
-     + tie-break (low y, then low x)
-
-   h is the box height. All rewards are fractions of h and their weights sum
-   to less than 1, so a position whose top is a full box height higher can
-   never beat a lower one through rewards alone: the load spreads on the
-   lowest surface first, for short and tall boxes alike. Rewards decide
-   between positions on the same level and across small steps.
-
-   Side-wall and flush fractions use the ring of cells just outside the
-   footprint; the denominator is the full perimeter, so pallet edges count as
-   open (no lateral support on an open pallet).
-   * wall:  neighbour higher than the box bottom (lateral contact)
-   * flush: neighbour level with the box top within FLUSH_TOL_MM
-            (plateau continuation / flush hole fill)
-
-   Pit cost: the candidate rests in a hole and its top ends more than
-   FLUSH_TOL_MM below that hole's rim:
-
-       pit cost = hole weight * (pallet max height + (rim - resting level))
-
-   The rim term cancels the height advantage of going down into the hole and
-   the pallet-max-height term makes any non-pit placement on the pallet win.
-   Hole weight is 1.0, or less with hole aging. A box that protrudes above
-   the rim is not a pit.
-6. Commit          the cheapest candidate; HM, FM, owner map, epochs and the
-                   surface analysis are updated.
-
-Hole aging (USE_HOLE_AGING)
----------------------------
-A hole's age is the number of plateaus started since its surface was last
-raised. Once HOLE_AGING_PLATEAUS plateaus have been started, the hole weight
-drops by HOLE_AGING_DECAY_PER_BOX for every further box placed on the pallet,
-down to 0.0, after which the hole is scored like any other surface.
+Scoring terms
+-------------
+* Top height keeps the load surface low, so the pallet is built in layers.
+* Support ratio prefers well-supported positions. With LBCP enabled it counts
+  only load-bearable contact; otherwise all contact at the resting level.
+* Snugness is the fraction of the four side faces backed by a neighbouring
+  column higher than the box bottom. Pallet edges do not count: the pallet is
+  open, so a box at the edge leans on nothing. It reduces gaps.
+* The same-SKU column bonus applies when the candidate sits exactly on an
+  identical same-SKU box. Because boxes arrive in SKU groups, each group turns
+  into aligned columns with full-area support.
+* Low y, then low x, breaks remaining ties deterministically.
 
 LBCP stability (USE_LBCP_STABILITY)
 -----------------------------------
@@ -101,23 +58,30 @@ Load Bearable Convex Polygon method of Gao, Wang, Kong, Chong: "Online 3D Bin
 Packing with Fast Stability Validation and Stable Rearrangement Planning",
 arXiv:2507.09123 (2025). Only the stability part is used:
 
-* Heightmap (HM): top height of the load per grid cell [mm].
-* Feasibility map (FM): True where the top surface is load-bearable. The
-  pallet deck is load-bearable everywhere.
-* Algorithm 1 (check): the support polygon is the convex hull of contact
-  cells that are True in FM; the placement is stable when the centre of
-  gravity, widened by COG_TOLERANCE, lies inside that polygon.
-* Algorithm 2 (update): after commit the footprint is raised in HM; in FM it
-  becomes non-bearable except for cells whose centres lie inside the support
-  polygon.
+* Heightmap (HM): top height of the load in every grid cell [mm].
+* Feasibility map (FM): True where the top surface is load-bearable, i.e. can
+  carry any vertical load without anything below toppling. The pallet deck is
+  load-bearable everywhere, so FM starts all True.
+* Algorithm 1 (check): the support polygon is the convex hull of the contact
+  cells that are also True in FM. The placement is stable when the box's
+  centre of gravity, widened by COG_TOLERANCE, lies inside that polygon.
+* Algorithm 2 (update): after commit, the footprint is raised in HM; in FM it
+  becomes non-bearable except for the cells whose centres lie inside the
+  support polygon.
+
+The paper's heightmap is a camera distance field; this heightmap measures
+height upward from the deck, so the paper's "min HM" corresponds to "max HM".
+The support polygon is computed with Andrew's monotone-chain convex hull.
 
 Grid
 ----
-Heightmap, feasibility map, owner map and epoch map are cell grids that must
-represent every footprint exactly. With GRID_RESOLUTION_MM = None the
-resolution is the greatest common divisor of the pallet size and all
-footprint dimensions in the input (whole millimetres). Only the set of
-dimensions is used for this; the arrival order is never looked at.
+Heightmap and feasibility map are cell grids. The grid must represent every
+footprint exactly, otherwise neighbouring boxes would appear to share cells.
+With GRID_RESOLUTION_MM = None the resolution is the greatest common divisor
+of the pallet size and all box footprint dimensions in the input (whole
+millimetres). Only the set of dimensions is used, solely to choose this grid;
+the arrival order is never looked at. A small divisor (e.g. 1 mm) is exact
+but slower than 5 or 10 mm.
 """
 
 from __future__ import annotations
@@ -126,11 +90,10 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from functools import reduce
 from math import gcd, isfinite
-from typing import Any, cast
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
-from scipy import ndimage
 
 from . import settings
 from .box import Box, Orientation, Point3D
@@ -139,13 +102,27 @@ from .pallet import Pallet
 FloatArray = NDArray[np.float64]
 AnyFloatArray = NDArray[np.floating[Any]]
 BoolArray = NDArray[np.bool_]
-IntArray = NDArray[np.int64]
 Point2D = tuple[float, float]
 
 
 # ============================================================================
 # ALGORITHM SETTINGS
 # ============================================================================
+
+# --- Pallet policy ------------------------------------------------------------
+
+# How many pallets stay open. None = every pallet stays open until the end of
+# the run. 1 = only the newest pallet is open (identical to advancedLoader).
+# k = the k most recently opened pallets are open; older ones are closed.
+MAX_OPEN_PALLETS: int | None = None
+
+# Which open pallet gets the box:
+#   "first_fit"  oldest open pallet that can take the box
+#   "best_fit"   fullest open pallet (packed volume) that can take the box
+#   "worst_fit"  emptiest open pallet that can take the box
+#   "all_bins"   every open pallet is evaluated; the lowest score wins
+#                (equal scores: the older pallet)
+BIN_SELECTION_RULE: str = "first_fit"
 
 # --- Stability --------------------------------------------------------------
 
@@ -156,41 +133,20 @@ Point2D = tuple[float, float]
 USE_LBCP_STABILITY: bool = True
 
 # Relative centre-of-gravity uncertainty (0.0 .. 0.5). 0.0 = CoG exactly at
-# the geometric centre. Used only when USE_LBCP_STABILITY is True.
+# the geometric centre. Raise (e.g. 0.1) for loads whose contents can shift.
+# Used only when USE_LBCP_STABILITY is True.
 COG_TOLERANCE: float = 0.0
 
 # Minimum fraction of the footprint that must rest on (load-bearable) contact.
+# 0.0 disables the check and relies on LBCP alone.
 MIN_SUPPORT_RATIO: float = 0.51
 
-# --- Rewards (fractions of the box height; their sum must stay below 1.0) ---
+# --- Scoring weights (score is minimised; 1.0 ~ 1 mm of height) -------------
 
-A_SUPPORT: float = 0.30   # support ratio
-A_WALL: float = 0.20      # side faces against higher neighbours
-A_FLUSH: float = 0.25     # neighbours level with the box top
-A_SAME_SKU: float = 0.15  # exactly on top of an identical box
-A_BRIDGE: float = 0.05    # resting on two or more boxes
-
-# --- Penalties ----------------------------------------------------------------
-
-# Per mm of mean gap depth under the footprint (void sealed below the box).
-W_TRAPPED_VOID: float = 0.5
-
-# --- Holes --------------------------------------------------------------------
-
-# A box top within this distance of a neighbour / rim height counts as level.
-FLUSH_TOL_MM: float = 10.0
-
-# Regions larger than this fraction of the pallet area are open surface, never
-# holes. None disables the guard.
-HOLE_MAX_AREA_FRACTION: float | None = 0.25
-
-# --- Hole aging ---------------------------------------------------------------
-
-USE_HOLE_AGING: bool = True
-HOLE_AGING_PLATEAUS: int = 3            # plateaus started before aging begins
-HOLE_AGING_DECAY_PER_BOX: float = 0.1   # hole weight lost per box after that
-
-# --- Tie-break ------------------------------------------------------------------
+W_TOP_HEIGHT: float = 1.0        # heightmap minimisation
+W_SUPPORT: float = 200.0         # reward for high support ratio
+W_SNUGNESS: float = 100.0        # reward for touching neighbours
+W_SAME_SKU_ALIGN: float = 150.0  # reward for an exact same-SKU column
 
 # Deterministic tie-break per mm of position: prefer low y, then low x.
 TIE_BREAK_Y: float = 1e-3
@@ -205,9 +161,10 @@ GRID_RESOLUTION_MM: float | None = None
 # --- Numeric tolerances -------------------------------------------------------
 
 CONTACT_HEIGHT_TOL_MM: float = 1e-6  # cells this close to the resting height touch
-LEVEL_TOL_MM: float = 0.01           # heights closer than this are the same level
 WEIGHT_EPS_KG: float = 1e-6          # weight-limit tolerance [kg]
 _GRID_EPS: float = 1e-6              # divisibility tolerance [cells]
+
+_BIN_RULES = ("first_fit", "best_fit", "worst_fit", "all_bins")
 
 
 class ExperimentalLoaderError(RuntimeError):
@@ -243,8 +200,9 @@ class _Evaluation:
 
 @dataclass(frozen=True, slots=True)
 class _Candidate:
-    """One fully evaluated candidate placement."""
+    """One fully evaluated candidate placement on one pallet."""
 
+    state: _PalletState
     ix: int
     iy: int
     orient: _Orient
@@ -256,24 +214,12 @@ class _Candidate:
 class _PlacedRecord:
     """Grid footprint of a placed box (candidate edges and column detection)."""
 
-    column_key: tuple[float, ...]
+    column_key: tuple[object, ...]
     ix: int
     iy: int
     nx: int
     ny: int
-    height_mm: float
     top_z: float
-
-
-@dataclass(frozen=True, slots=True)
-class _Surface:
-    """Region analysis of the current top surface. Arrays are indexed by
-    region id; id 0 is unused."""
-
-    labels: IntArray          # region id per cell
-    level: FloatArray         # region surface height [mm]
-    rim: FloatArray           # lowest in-pallet neighbour height [mm], inf if none
-    hole_weight: FloatArray   # 0.0 = not a hole; (0, 1] = hole penalty multiplier
 
 
 # ============================================================================
@@ -281,7 +227,7 @@ class _Surface:
 # ============================================================================
 
 def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
-    """Load all boxes one by one in arrival order onto one open pallet at a time."""
+    """Load all boxes one by one in arrival order onto the open pallets."""
     _validate_settings()
     box_sequence = tuple(boxes)
 
@@ -301,33 +247,65 @@ def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
     grid_mm = _grid_resolution(box_sequence)
 
     pallets: list[Pallet] = []
-    state: _PalletState | None = None
+    states: list[_PalletState] = []
 
     for box in box_sequence:
         orients = _orientations(box, grid_mm)
 
-        # ---- try the open pallet ---------------------------------------------
-        candidate = None
-        if state is not None:
-            candidate = _find_best_placement(state, box, orients)
+        # ---- 1. pallet selection over the open pallets -----------------------
+        open_states = states if MAX_OPEN_PALLETS is None else states[-MAX_OPEN_PALLETS:]
+        candidate = _select_pallet(open_states, box, orients)
 
-        # ---- close it and open a new pallet if it cannot take the box --------
-        if state is None or candidate is None:
+        # ---- open a new pallet if no open pallet can take the box ------------
+        if candidate is None:
             new_pallet = _create_new_pallet(len(pallets) + 1)
             pallets.append(new_pallet)
-            state = _PalletState(new_pallet, grid_mm)
-            candidate = _find_best_placement(state, box, orients)
+            new_state = _PalletState(new_pallet, grid_mm, index=len(states))
+            states.append(new_state)
+            candidate = _find_best_placement(new_state, box, orients)
             if candidate is None:
                 raise UnplaceableBoxError(_unplaceable_message(box, new_pallet))
 
         # ---- commit (online: irrevocable) -----------------------------------
-        state.commit(box, candidate)
+        candidate.state.commit(box, candidate)
 
     return pallets
 
 
 # ============================================================================
-# CANDIDATE SEARCH
+# PALLET SELECTION
+# ============================================================================
+
+def _select_pallet(
+    states: Sequence[_PalletState],
+    box: Box,
+    orients: Sequence[_Orient],
+) -> _Candidate | None:
+    """Return the chosen placement over the open pallets, or None."""
+    if BIN_SELECTION_RULE == "all_bins":
+        best: _Candidate | None = None
+        for state in states:  # opening order: equal scores keep the older pallet
+            candidate = _find_best_placement(state, box, orients)
+            if candidate is not None and (best is None or candidate.score < best.score):
+                best = candidate
+        return best
+
+    if BIN_SELECTION_RULE == "first_fit":       # oldest open pallet first
+        ordered = list(states)
+    elif BIN_SELECTION_RULE == "best_fit":      # fullest open pallet first
+        ordered = sorted(states, key=lambda s: (-s.loaded_volume_mm3, s.index))
+    else:                                       # worst fit: emptiest first
+        ordered = sorted(states, key=lambda s: (s.loaded_volume_mm3, s.index))
+
+    for state in ordered:
+        candidate = _find_best_placement(state, box, orients)
+        if candidate is not None:
+            return candidate
+    return None
+
+
+# ============================================================================
+# CANDIDATE SEARCH AND SCORING
 # ============================================================================
 
 def _find_best_placement(
@@ -335,16 +313,25 @@ def _find_best_placement(
     box: Box,
     orients: Sequence[_Orient],
 ) -> _Candidate | None:
-    """Evaluate every candidate position and orientation on the open pallet and
+    """Evaluate every candidate position and orientation on one pallet and
     return the cheapest feasible one, or None if the pallet cannot take the box."""
     if not _weight_fits(state.pallet, box):
         return None
 
+    res = state.grid_mm
     column_key = _column_key(box)
+    lowest_surface_mm = float(state.heightmap.min())
     best: _Candidate | None = None
 
     for orient in orients:
         if orient.nx > state.nx or orient.ny > state.ny:
+            continue
+        # Fast reject: the box rests at least on the lowest surface cell, so a
+        # box that is too tall there is too tall everywhere on this pallet.
+        if (
+            lowest_surface_mm + orient.height_mm
+            > state.max_height_mm + settings.PLACEMENT_TOLERANCE_MM
+        ):
             continue
         xs, ys = _candidate_cells(state, orient)
 
@@ -354,9 +341,16 @@ def _find_best_placement(
                 if evaluation is None:
                     continue  # too high / not enough support / unstable
 
-                score = _score(state, ix, iy, orient, evaluation, column_key)
+                support_z = evaluation.support_z
+                score = W_TOP_HEIGHT * (support_z + orient.height_mm)
+                score -= W_SUPPORT * evaluation.support_ratio
+                score -= W_SNUGNESS * _snugness(state, ix, iy, orient.nx, orient.ny, support_z)
+                if _is_same_sku_column(state, column_key, ix, iy, orient, support_z):
+                    score -= W_SAME_SKU_ALIGN
+                score += TIE_BREAK_Y * iy * res + TIE_BREAK_X * ix * res
+
                 if best is None or score < best.score:
-                    best = _Candidate(ix, iy, orient, evaluation, score)
+                    best = _Candidate(state, ix, iy, orient, evaluation, score)
 
     return best
 
@@ -382,169 +376,86 @@ def _candidate_cells(state: _PalletState, orient: _Orient) -> tuple[list[int], l
     )
 
 
-# ============================================================================
-# SCORING
-# ============================================================================
-
-def _score(
-    state: _PalletState,
-    ix: int,
-    iy: int,
-    orient: _Orient,
-    evaluation: _Evaluation,
-    column_key: tuple[float, ...],
-) -> float:
-    """Plateau-first score of one feasible candidate (lower is better)."""
-    res = state.grid_mm
-    h = orient.height_mm
-    support_z = evaluation.support_z
-    top_z = support_z + h
-
-    window = (slice(ix, ix + orient.nx), slice(iy, iy + orient.ny))
-    window_hm = state.heightmap[window]
-    contact = window_hm >= support_z - CONTACT_HEIGHT_TOL_MM
-
-    wall, flush = _side_contact(state, ix, iy, orient.nx, orient.ny, support_z, top_z)
-    same_sku = _is_same_sku_column(state, column_key, ix, iy, orient, support_z)
-
-    owners = state.owner_map[window][contact]
-    supporters = int(np.unique(owners[owners >= 0]).size)
-    bridge = supporters >= 2
-
-    reward = (
-        A_SUPPORT * evaluation.support_ratio
-        + A_WALL * wall
-        + A_FLUSH * flush
-        + A_SAME_SKU * float(same_sku)
-        + A_BRIDGE * float(bridge)
-    )
-
-    void_depth = float((support_z - window_hm).mean())
-
-    score = top_z - h * reward
-    score += W_TRAPPED_VOID * void_depth
-    score += _pit_cost(state, window, contact, support_z, top_z)
-    score += TIE_BREAK_Y * iy * res + TIE_BREAK_X * ix * res
-    return score
-
-
-def _side_contact(
+def _snugness(
     state: _PalletState,
     ix: int,
     iy: int,
     nx: int,
     ny: int,
     support_z: float,
-    top_z: float,
-) -> tuple[float, float]:
-    """(wall, flush) fractions of the footprint perimeter.
-
-    wall:  ring cells higher than the box bottom (lateral contact).
-    flush: ring cells level with the box top within FLUSH_TOL_MM.
-    Pallet edges are part of the perimeter but never count (open pallet).
-    """
-    hm = state.heightmap
-    parts: list[FloatArray] = []
-    if ix > 0:
-        parts.append(hm[ix - 1, iy:iy + ny])
-    if ix + nx < state.nx:
-        parts.append(hm[ix + nx, iy:iy + ny])
-    if iy > 0:
-        parts.append(hm[ix:ix + nx, iy - 1])
-    if iy + ny < state.ny:
-        parts.append(hm[ix:ix + nx, iy + ny])
-    if not parts:
-        return 0.0, 0.0
-
-    ring = np.concatenate(parts)
-    perimeter = float(2 * (nx + ny))
-    wall = float(np.count_nonzero(ring > support_z + CONTACT_HEIGHT_TOL_MM)) / perimeter
-    flush = float(np.count_nonzero(np.abs(ring - top_z) <= FLUSH_TOL_MM)) / perimeter
-    return wall, flush
-
-
-def _pit_cost(
-    state: _PalletState,
-    window: tuple[slice, slice],
-    contact: BoolArray,
-    support_z: float,
-    top_z: float,
 ) -> float:
-    """Penalty for resting in a hole without reaching its rim (see docstring)."""
-    surface = state.surface
-    regions = np.unique(surface.labels[window][contact])
-    weights = surface.hole_weight[regions]
-    rims = surface.rim[regions]
+    """Fraction (0..1) of the four side faces backed by a neighbouring column
+    higher than the box bottom. Pallet edges give no lateral support (open
+    pallet, not a container), so a face on the pallet boundary is unbacked."""
+    hm = state.heightmap
+    level = support_z + CONTACT_HEIGHT_TOL_MM
+    touching = 0
 
-    pit = (weights > 0.0) & (top_z < rims - FLUSH_TOL_MM)
-    if not pit.any():
-        return 0.0
-    depth = rims[pit] - support_z
-    return float((weights[pit] * (state.max_height_mm + depth)).max())
+    if ix > 0 and float(hm[ix - 1, iy:iy + ny].max()) > level:                 # -X
+        touching += 1
+    if ix + nx < state.nx and float(hm[ix + nx, iy:iy + ny].max()) > level:    # +X
+        touching += 1
+    if iy > 0 and float(hm[ix:ix + nx, iy - 1].max()) > level:                 # -Y
+        touching += 1
+    if iy + ny < state.ny and float(hm[ix:ix + nx, iy + ny].max()) > level:    # +Y
+        touching += 1
+
+    return touching / 4.0
 
 
 def _is_same_sku_column(
     state: _PalletState,
-    column_key: tuple[float, ...],
+    column_key: tuple[object, ...],
     ix: int,
     iy: int,
     orient: _Orient,
     support_z: float,
 ) -> bool:
-    """True if the candidate sits exactly on top of an identical box in the same
-    orientation (same footprint, same x/y, same height, top at resting level)."""
+    """True if the candidate sits exactly on top of an identical same-SKU box
+    (same footprint, same x/y, top face at the resting height)."""
     return any(
         placed.column_key == column_key
         and placed.ix == ix
         and placed.iy == iy
         and placed.nx == orient.nx
         and placed.ny == orient.ny
-        and abs(placed.height_mm - orient.height_mm) <= CONTACT_HEIGHT_TOL_MM
         and abs(placed.top_z - support_z) <= CONTACT_HEIGHT_TOL_MM
         for placed in state.placed
     )
 
 
-def _column_key(box: Box) -> tuple[float, ...]:
-    """Boxes are identical when their dimensions are exactly equal."""
-    return tuple(sorted((box.length_mm, box.width_mm, box.height_mm)))
+def _column_key(box: Box) -> tuple[object, ...]:
+    """Identifies boxes that may form same-SKU columns."""
+    if box.sku:
+        return ("sku", box.sku)
+    return ("dims", round(box.length_mm, 6), round(box.width_mm, 6), round(box.height_mm, 6))
 
 
 # ============================================================================
-# PER-PALLET STATE
+# PER-PALLET STATE (heightmap + feasibility map)
 # ============================================================================
 
 class _PalletState:
-    """Loader-internal model of the open pallet."""
+    """Loader-internal model of one pallet."""
 
-    def __init__(self, pallet: Pallet, grid_mm: float) -> None:
+    def __init__(self, pallet: Pallet, grid_mm: float, index: int) -> None:
         self.pallet = pallet
         self.grid_mm = grid_mm
+        self.index = index                    # opening order (first fit, ties)
         self.nx = _cells(pallet.length_mm, grid_mm)
         self.ny = _cells(pallet.width_mm, grid_mm)
         self.max_height_mm = pallet.max_height_mm
-        shape = (self.nx, self.ny)
+        self.loaded_volume_mm3 = 0.0          # packed box volume (best/worst fit)
 
         # HM: top height of the load per cell [mm].
-        self.heightmap: FloatArray = np.zeros(shape, dtype=np.float64)
-        # FM: True where the top surface is load-bearable (deck: everywhere).
-        self.feasibility_map: BoolArray = np.ones(shape, dtype=bool)
-        # Index into self.placed of the box forming the surface; -1 = deck.
-        self.owner_map: IntArray = np.full(shape, -1, dtype=np.int64)
-        # Plateau epoch in which each cell was last raised.
-        self.cell_epoch: IntArray = np.zeros(shape, dtype=np.int64)
-
-        # Plateau bookkeeping: frontier = highest resting level so far.
-        self.frontier_z: float = 0.0
-        self.epoch: int = 0
-        # Boxes on the pallet (including the opener) when each epoch began.
-        self.epoch_start_box: list[int] = [0]
-
+        self.heightmap: FloatArray = np.zeros((self.nx, self.ny), dtype=np.float64)
+        # FM: True where the top surface is load-bearable. The deck is one
+        # load-bearable polygon, so the map starts all True.
+        self.feasibility_map: BoolArray = np.ones((self.nx, self.ny), dtype=bool)
         self.placed: list[_PlacedRecord] = []
-        self.surface: _Surface = _analyse_surface(self)
 
     def commit(self, box: Box, candidate: _Candidate) -> None:
-        """Place the box, update HM/FM (Algorithm 2), owners, epochs and surface."""
+        """Place the box on this pallet and update HM and FM (Algorithm 2)."""
         res = self.grid_mm
         orient = candidate.orient
         support_z = candidate.evaluation.support_z
@@ -558,23 +469,11 @@ class _PalletState:
         )
 
         top_z = support_z + orient.height_mm
-        window = (
-            slice(candidate.ix, candidate.ix + orient.nx),
-            slice(candidate.iy, candidate.iy + orient.ny),
-        )
-
         _update_feasibility_map(
             self, candidate.ix, candidate.iy, orient, top_z,
             candidate.evaluation.support_polygon,
         )
-        self.owner_map[window] = len(self.placed)
-
-        if support_z > self.frontier_z + LEVEL_TOL_MM:
-            self.frontier_z = support_z
-            self.epoch += 1
-            self.epoch_start_box.append(len(self.placed) + 1)
-        self.cell_epoch[window] = self.epoch
-
+        self.loaded_volume_mm3 += box.volume_mm3
         self.placed.append(
             _PlacedRecord(
                 column_key=_column_key(box),
@@ -582,71 +481,9 @@ class _PalletState:
                 iy=candidate.iy,
                 nx=orient.nx,
                 ny=orient.ny,
-                height_mm=orient.height_mm,
                 top_z=top_z,
             )
         )
-        self.surface = _analyse_surface(self)
-
-
-# ============================================================================
-# SURFACE ANALYSIS (regions, rims, holes, aging)
-# ============================================================================
-
-def _analyse_surface(state: _PalletState) -> _Surface:
-    """Label equal-height regions and classify holes (see module docstring)."""
-    hm = state.heightmap
-    quantised = np.round(hm / LEVEL_TOL_MM).astype(np.int64)
-
-    # ---- regions: 4-connected cells of equal height ----------------------------
-    labels: IntArray = np.zeros(hm.shape, dtype=np.int64)
-    count = 0
-    for value in np.unique(quantised):
-        region_labels, n = cast(
-            "tuple[NDArray[np.int32], int]", ndimage.label(quantised == value)
-        )
-        mask = region_labels > 0
-        labels[mask] = region_labels[mask].astype(np.int64) + count
-        count += n
-
-    flat_labels = labels.ravel()
-    level: FloatArray = np.zeros(count + 1, dtype=np.float64)
-    level[flat_labels] = hm.ravel()
-    area = np.bincount(flat_labels, minlength=count + 1)
-
-    # ---- rim: lowest in-pallet neighbour outside the region ------------------
-    rim: FloatArray = np.full(count + 1, np.inf, dtype=np.float64)
-    for own, other, other_h in (
-        (labels[:-1, :], labels[1:, :], hm[1:, :]),
-        (labels[1:, :], labels[:-1, :], hm[:-1, :]),
-        (labels[:, :-1], labels[:, 1:], hm[:, 1:]),
-        (labels[:, 1:], labels[:, :-1], hm[:, :-1]),
-    ):
-        boundary = own != other
-        np.minimum.at(rim, own[boundary], other_h[boundary])
-
-    # ---- holes ------------------------------------------------------------------
-    hole = np.isfinite(rim) & (rim > level + LEVEL_TOL_MM)
-    hole &= level < state.frontier_z - LEVEL_TOL_MM
-    if HOLE_MAX_AREA_FRACTION is not None:
-        hole &= area <= HOLE_MAX_AREA_FRACTION * state.nx * state.ny
-    hole[0] = False
-    hole_weight: FloatArray = hole.astype(np.float64)
-
-    # ---- aging --------------------------------------------------------------------
-    if USE_HOLE_AGING:
-        region_epoch = np.zeros(count + 1, dtype=np.int64)
-        np.maximum.at(region_epoch, flat_labels, state.cell_epoch.ravel())
-        aging_epoch = region_epoch + HOLE_AGING_PLATEAUS
-        aging = hole & (aging_epoch <= state.epoch)
-        if aging.any():
-            start_boxes = np.asarray(state.epoch_start_box, dtype=np.int64)[aging_epoch[aging]]
-            boxes_since = len(state.placed) - start_boxes
-            hole_weight[aging] = np.clip(
-                1.0 - HOLE_AGING_DECAY_PER_BOX * boxes_since, 0.0, 1.0
-            )
-
-    return _Surface(labels=labels, level=level, rim=rim, hole_weight=hole_weight)
 
 
 # ============================================================================
@@ -917,6 +754,11 @@ def _validate_settings() -> None:
     if settings.PLACEMENT_TOLERANCE_MM < 0 or not isfinite(settings.PLACEMENT_TOLERANCE_MM):
         raise ExperimentalLoaderError("settings.PLACEMENT_TOLERANCE_MM must be non-negative.")
 
+    if BIN_SELECTION_RULE not in _BIN_RULES:
+        raise ExperimentalLoaderError(f"BIN_SELECTION_RULE must be one of {_BIN_RULES}.")
+    if MAX_OPEN_PALLETS is not None and MAX_OPEN_PALLETS < 1:
+        raise ExperimentalLoaderError("MAX_OPEN_PALLETS must be None or at least 1.")
+
     if not 0.0 <= COG_TOLERANCE <= 0.5:
         raise ExperimentalLoaderError("COG_TOLERANCE must be within 0.0..0.5.")
     if not 0.0 <= MIN_SUPPORT_RATIO <= 1.0:
@@ -927,38 +769,14 @@ def _validate_settings() -> None:
     ):
         raise ExperimentalLoaderError("GRID_RESOLUTION_MM must be positive or None.")
 
-    rewards = (
-        ("A_SUPPORT", A_SUPPORT),
-        ("A_WALL", A_WALL),
-        ("A_FLUSH", A_FLUSH),
-        ("A_SAME_SKU", A_SAME_SKU),
-        ("A_BRIDGE", A_BRIDGE),
-    )
-    for name, value in rewards:
-        if not isfinite(value) or value < 0:
-            raise ExperimentalLoaderError(f"{name} must be non-negative and finite.")
-    if sum(value for _, value in rewards) >= 1.0:
-        raise ExperimentalLoaderError(
-            "A_SUPPORT + A_WALL + A_FLUSH + A_SAME_SKU + A_BRIDGE must be below 1.0, "
-            "otherwise rewards can outweigh a full box height."
-        )
-
     for name, value in (
-        ("W_TRAPPED_VOID", W_TRAPPED_VOID),
-        ("FLUSH_TOL_MM", FLUSH_TOL_MM),
-        ("HOLE_AGING_DECAY_PER_BOX", HOLE_AGING_DECAY_PER_BOX),
+        ("W_TOP_HEIGHT", W_TOP_HEIGHT),
+        ("W_SUPPORT", W_SUPPORT),
+        ("W_SNUGNESS", W_SNUGNESS),
+        ("W_SAME_SKU_ALIGN", W_SAME_SKU_ALIGN),
         ("TIE_BREAK_Y", TIE_BREAK_Y),
         ("TIE_BREAK_X", TIE_BREAK_X),
         ("CONTACT_HEIGHT_TOL_MM", CONTACT_HEIGHT_TOL_MM),
     ):
         if not isfinite(value) or value < 0:
             raise ExperimentalLoaderError(f"{name} must be non-negative and finite.")
-
-    if not isfinite(LEVEL_TOL_MM) or LEVEL_TOL_MM <= 0:
-        raise ExperimentalLoaderError("LEVEL_TOL_MM must be positive and finite.")
-
-    if HOLE_MAX_AREA_FRACTION is not None and not 0.0 < HOLE_MAX_AREA_FRACTION <= 1.0:
-        raise ExperimentalLoaderError("HOLE_MAX_AREA_FRACTION must be within (0, 1] or None.")
-
-    if HOLE_AGING_PLATEAUS < 0:
-        raise ExperimentalLoaderError("HOLE_AGING_PLATEAUS must be non-negative.")
