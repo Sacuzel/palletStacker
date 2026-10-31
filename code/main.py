@@ -96,7 +96,7 @@ def main() -> int:
         plotly_output = write_layout_html(
             pallets,
             output_path=settings.PLOTLY_OUTPUT_FILE,
-            title=settings.PLOTLY_TITLE,
+            title=f"{settings.PLOTLY_TITLE} - {settings.ACTIVE_LOADER.strip().lower()} loader",
             show_box_labels=settings.PLOTLY_SHOW_BOX_LABELS,
             open_in_browser=settings.PLOTLY_OPEN_IN_BROWSER,
             include_plotlyjs=settings.PLOTLY_INCLUDE_PLOTLYJS,

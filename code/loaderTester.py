@@ -11,6 +11,8 @@ tips). Finishes with a weighted verdict and the reasons behind it.
   which must provide ``load_boxes(boxes) -> list[Pallet]``.
 * Each loader receives its own freshly parsed boxes, so the runs cannot
   influence each other.
+* A partly filled last pallet (residual pallet) can be excluded from the
+  averaged and dynamic metrics, see EXCLUDE_RESIDUAL_PALLET.
 * The only files written are the two Plotly layouts
   ``<results>/test_results/<loaderName>_layout.html``. Plotly JS is embedded
   in each HTML file so no extra asset files are created. No Gazebo output.
@@ -43,8 +45,8 @@ from pallet_stacker.processBoxData import BoxDataError, parse_box_json, select_j
 
 # --- Loaders ------------------------------------------------------------------
 
-BASE_LOADER: str = "advanced"            # reference algorithm
-COMPARISON_LOADER: str = "ems"  # candidate algorithm
+BASE_LOADER: str = "ems"            # reference algorithm
+COMPARISON_LOADER: str = "experimental"  # candidate algorithm
 
 # --- Input / output -----------------------------------------------------------
 
@@ -101,6 +103,16 @@ CLEAR_WIN_FRACTION: float = 0.10
 VERDICT_REASONS: int = 6
 VERDICT_TRADEOFFS: int = 3
 
+# --- Residual pallet ----------------------------------------------------------
+
+# An online loader usually ends with a partly filled last pallet: low CoG,
+# nearly everything on the deck, few neighbours. When True, the last pallet is
+# left out of the averaged and dynamic metrics if its fill is below the mean
+# fill of all pallets before it. Pallet count, volume utilization and hard
+# defects (floating, CoG outside support, min support, min CoG margin) always
+# use all pallets. Fill = max(volume fill, mass / PALLET_MAX_LOAD_KG).
+EXCLUDE_RESIDUAL_PALLET: bool = True
+
 
 # ============================================================================
 # REPORT TYPES
@@ -139,6 +151,7 @@ class PalletReport:
     box_volume_mm3: float
     envelope_volume_mm3: float     # L * W * load height
     usable_volume_mm3: float       # L * W * max height
+    fill_ratio: float              # max(volume fill, mass fill)
     skyline_volume_mm3: float      # volume under the top surface
     roughness_mm: float
     support_ratios: list[float]
@@ -152,6 +165,7 @@ class PalletReport:
     crit_g: float
     box_crit_g: list[float]        # per box, worst direction
     exposed: int                   # boxes unrestrained in >= 1 direction
+    excluded: bool = False         # residual pallet left out of averaged metrics
 
 
 @dataclass(slots=True)
@@ -232,6 +246,7 @@ def _run_loader(name: str, source: Path) -> RunReport:
 
     run = RunReport(name=name, ok=True, runtime_s=runtime, pallets=pallets)
     run.pallet_reports = [_analyse_pallet(p) for p in pallets]
+    _mark_residual(run.pallet_reports)
     run.metrics = _aggregate(run, len(boxes))
     return run
 
@@ -387,15 +402,21 @@ def _analyse_pallet(pallet: Pallet) -> PalletReport:
 
     box_volume = sum(b.volume for b in bodies)
     skyline_volume, roughness = _surface_metrics(bodies, length, width)
+    mass_kg = sum(box.weight_kg for box in pallet.boxes)
+    usable = pallet.usable_volume_mm3
+    fill = box_volume / usable if usable > 0 else 0.0
+    if settings.PALLET_MAX_LOAD_KG:
+        fill = max(fill, mass_kg / settings.PALLET_MAX_LOAD_KG)
 
     return PalletReport(
         pallet_id=pallet.pallet_id,
         box_count=n,
-        mass_kg=sum(box.weight_kg for box in pallet.boxes),
+        mass_kg=mass_kg,
         load_height_mm=load_height,
         box_volume_mm3=box_volume,
         envelope_volume_mm3=length * width * load_height,
-        usable_volume_mm3=pallet.usable_volume_mm3,
+        usable_volume_mm3=usable,
+        fill_ratio=fill,
         skyline_volume_mm3=skyline_volume,
         roughness_mm=roughness,
         support_ratios=support_ratios,
@@ -486,52 +507,70 @@ def _signed_margin(px: float, py: float, hull: Sequence[tuple[float, float]]) ->
 # RUN-LEVEL AGGREGATION
 # ============================================================================
 
+def _mark_residual(reports: list[PalletReport]) -> None:
+    """Flag the last pallet when it is less full than the pallets before it."""
+    if not EXCLUDE_RESIDUAL_PALLET or len(reports) < 2:
+        return
+    previous = reports[:-1]
+    mean_fill = sum(r.fill_ratio for r in previous) / len(previous)
+    if reports[-1].fill_ratio < mean_fill:
+        reports[-1].excluded = True
+
+
 def _aggregate(run: RunReport, input_count: int) -> dict[str, float]:
     reports = run.pallet_reports
     placed = sum(r.box_count for r in reports)
     m: dict[str, float] = {
         "boxes_placed": float(placed),
         "pallets": float(len(reports)),
+        "excluded": float(sum(1 for r in reports if r.excluded)),
         "runtime": run.runtime_s,
         "ms_per_box": 1000.0 * run.runtime_s / max(input_count, 1),
     }
     if not reports or placed == 0:
         return m
 
-    box_vol = sum(r.box_volume_mm3 for r in reports)
-    envelope = sum(r.envelope_volume_mm3 for r in reports)
-    skyline = sum(r.skyline_volume_mm3 for r in reports)
-    supports = [s for r in reports for s in r.support_ratios]
-    box_crit = [c for r in reports for c in r.box_crit_g]
-    total_mass = sum(r.mass_kg for r in reports)
-
-    m["vol_util"] = box_vol / sum(r.usable_volume_mm3 for r in reports)
-    m["fill_density"] = box_vol / envelope if envelope > 0 else 0.0
-    m["trapped_void"] = (skyline - box_vol) / skyline if skyline > 0 else 0.0
-    m["roughness"] = sum(r.roughness_mm for r in reports) / len(reports)
-    m["mean_height"] = sum(r.load_height_mm for r in reports) / len(reports)
-    m["mass_density"] = total_mass / (envelope * 1e-9) if envelope > 0 else 0.0
-
-    m["support_mean"] = sum(supports) / len(supports)
-    m["support_min"] = min(supports)
-    m["low_support"] = float(sum(1 for s in supports if s < LOW_SUPPORT_THRESHOLD))
+    # ---- all pallets: packing cost and hard defects ----------------------------
+    supports_all = [s for r in reports for s in r.support_ratios]
+    m["vol_util"] = (sum(r.box_volume_mm3 for r in reports)
+                     / sum(r.usable_volume_mm3 for r in reports))
+    m["support_min"] = min(supports_all)
+    m["low_support"] = float(sum(1 for s in supports_all if s < LOW_SUPPORT_THRESHOLD))
     m["floating"] = float(sum(r.floating for r in reports))
     m["static_fail"] = float(sum(r.static_failures for r in reports))
     m["static_margin"] = min(r.min_static_margin_mm for r in reports)
-    m["cog_ratio"] = sum(
-        r.cog_height_mm / r.load_height_mm for r in reports if r.load_height_mm > 0
-    ) / len(reports)
-    m["cog_height"] = sum(r.cog_height_mm for r in reports) / len(reports)
-    m["cog_offset"] = max(r.cog_offset_mm for r in reports)
 
-    m["acc_worst"] = min(r.crit_g for r in reports)
-    m["acc_x"] = min(r.crit_x_g for r in reports)
-    m["acc_y"] = min(r.crit_y_g for r in reports)
-    finite = [r.crit_g for r in reports if isfinite(r.crit_g)]
+    # ---- evaluated pallets: averaged geometry and stability ---------------------
+    ev = [r for r in reports if not r.excluded]
+    ev_boxes = max(sum(r.box_count for r in ev), 1)
+
+    box_vol = sum(r.box_volume_mm3 for r in ev)
+    envelope = sum(r.envelope_volume_mm3 for r in ev)
+    skyline = sum(r.skyline_volume_mm3 for r in ev)
+    supports = [s for r in ev for s in r.support_ratios]
+    box_crit = [c for r in ev for c in r.box_crit_g]
+    total_mass = sum(r.mass_kg for r in ev)
+    cog_ratios = [r.cog_height_mm / r.load_height_mm for r in ev if r.load_height_mm > 0]
+
+    m["fill_density"] = box_vol / envelope if envelope > 0 else 0.0
+    m["trapped_void"] = (skyline - box_vol) / skyline if skyline > 0 else 0.0
+    m["roughness"] = sum(r.roughness_mm for r in ev) / len(ev)
+    m["mean_height"] = sum(r.load_height_mm for r in ev) / len(ev)
+    m["mass_density"] = total_mass / (envelope * 1e-9) if envelope > 0 else 0.0
+
+    m["support_mean"] = sum(supports) / len(supports) if supports else 0.0
+    m["cog_ratio"] = sum(cog_ratios) / len(cog_ratios) if cog_ratios else 0.0
+    m["cog_height"] = sum(r.cog_height_mm for r in ev) / len(ev)
+    m["cog_offset"] = max(r.cog_offset_mm for r in ev)
+
+    m["acc_worst"] = min(r.crit_g for r in ev)
+    m["acc_x"] = min(r.crit_x_g for r in ev)
+    m["acc_y"] = min(r.crit_y_g for r in ev)
+    finite = [r.crit_g for r in ev if isfinite(r.crit_g)]
     m["acc_mean"] = sum(finite) / len(finite) if finite else inf
     for k, (_, ref_g) in enumerate(REFERENCE_ACCELERATIONS_G):
-        m[f"risk_{k}"] = float(sum(1 for c in box_crit if c < ref_g))
-    m["exposed"] = sum(r.exposed for r in reports) / placed
+        m[f"risk_{k}"] = sum(1 for c in box_crit if c < ref_g) / ev_boxes
+    m["exposed"] = sum(r.exposed for r in ev) / ev_boxes
     return m
 
 
@@ -602,6 +641,7 @@ def _metric_specs() -> list[_Metric]:
     specs = [
         _Metric("boxes_placed", "Boxes placed", pack, _f_int, _d_int, "higher", 0.0),
         _Metric("pallets", "Pallets used", pack, _f_int, _d_int, "lower", 6.0),
+        _Metric("excluded", "Residual pallets excluded", pack, _f_int, _d_int, None, 0.0),
         _Metric("vol_util", "Volume utilization (max-height volume)", pack, _f_pct, _d_pct, "higher", 4.0),
         _Metric("fill_density", "Fill density of loaded envelope", pack, _f_pct, _d_pct, "higher", 3.0),
         _Metric("trapped_void", "Voids trapped under top surface", pack, _f_pct, _d_pct, "lower", 2.0),
@@ -629,7 +669,7 @@ def _metric_specs() -> list[_Metric]:
     for k, (label, ref_g) in enumerate(REFERENCE_ACCELERATIONS_G):
         weight = risk_weights[k] if k < len(risk_weights) else 1.0
         specs.append(_Metric(f"risk_{k}", f"At risk @{ref_g:.2f} g ({label})",
-                             dynamic, _f_int, _d_int, "lower", weight))
+                             dynamic, _f_pct, _d_pct, "lower", weight))
     specs += [
         _Metric("exposed", "Boxes not side-restrained (>= 1 dir.)", dynamic, _f_pct, _d_pct, "lower", 1.0),
         _Metric("runtime", "Loader runtime", perf, _f_s, _d_s, "lower", 0.5),
@@ -702,6 +742,12 @@ def _print_intro(source: Path, boxes: Sequence) -> None:
         "",
         "Notes: no lashing or stretch wrap is modelled; boxes are rigid. Results rank",
         "       layouts against each other; they are not a load-securing certificate.",
+        "       Residual pallet: " + (
+            "the last pallet is excluded from averaged and dynamic metrics when its"
+            if EXCLUDE_RESIDUAL_PALLET else "exclusion disabled; all pallets are evaluated."),
+        *(["       fill is below the mean of the earlier pallets. Pallet count, volume",
+           "       utilization and hard defects always use all pallets. Risk counts and",
+           "       exposure are % of evaluated boxes."] if EXCLUDE_RESIDUAL_PALLET else []),
         "=" * 92,
         "",
     ]
@@ -800,7 +846,7 @@ def _print_pallet_table(run: RunReport) -> None:
                  if r.skyline_volume_mm3 else 0.0)
         cog = r.cog_height_mm / r.load_height_mm if r.load_height_mm else 0.0
         rows.append((
-            r.pallet_id,
+            r.pallet_id + (" *" if r.excluded else ""),
             str(r.box_count),
             f"{r.mass_kg:.1f}",
             f"{r.load_height_mm:.0f}",
@@ -815,6 +861,10 @@ def _print_pallet_table(run: RunReport) -> None:
     print()
     print(f"PER PALLET - {run.name}")
     print(_render_table(columns, rows))
+    for r in run.pallet_reports:
+        if r.excluded:
+            print(f"* {r.pallet_id}: residual pallet (fill {_f_pct(r.fill_ratio)}), "
+                  "excluded from averaged and dynamic metrics.")
 
 
 def _print_verdict(runs: Sequence[RunReport], metrics: Sequence[_Metric]) -> None:

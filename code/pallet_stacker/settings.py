@@ -94,7 +94,7 @@ PALLET_BASE_HEIGHT_MM: float = 144.0
 PALLET_MAX_HEIGHT_MM: float = 1800.0
 
 # Set to None to disable load-mass checking.
-PALLET_MAX_LOAD_KG: float | None = 3000.0
+PALLET_MAX_LOAD_KG: float | None = 5500.0
 
 # Numerical tolerance shared by all placement algorithms and pallet geometry
 # checks. Algorithm-specific behavior belongs in the respective *Loader module.

@@ -1,9 +1,17 @@
-"""Experimental loader: the advanced loader with several open pallets.
+"""Experimental loader: the advanced loader with several open pallets and
+selectable space rules.
 
 Identical to ``advancedLoader.py`` (heightmap scoring with optional LBCP
-stability), extended with the pallet policy of ``emsLoader.py``: several
-pallets can stay open, so a later box may fill a gap on an earlier pallet.
-With MAX_OPEN_PALLETS = 1 this loader behaves exactly like advancedLoader.
+stability), extended with two options of ``emsLoader.py``:
+
+* pallet policy: several pallets can stay open, so a later box may fill a gap
+  on an earlier pallet (MAX_OPEN_PALLETS, BIN_SELECTION_RULE);
+* space selection: the filling order can follow one of the eight space rules
+  of Ali, Ramos & Oliveira (2025) instead of the weighted score
+  (SPACE_SELECTION_RULE).
+
+With MAX_OPEN_PALLETS = 1 and SPACE_SELECTION_RULE = None this loader behaves
+exactly like advancedLoader.
 
 Loading model
 -------------
@@ -30,14 +38,18 @@ Per box
                    footprint.
 5. Feasibility     height limit, load limit, MIN_SUPPORT_RATIO and, when
                    USE_LBCP_STABILITY is True, the LBCP stability check.
-6. Scoring         lower is better:
+6. Score           lower is better:
                        W_TOP_HEIGHT     * resulting top height   [mm]
                      - W_SUPPORT        * support ratio          [0..1]
                      - W_SNUGNESS       * snugness               [0..1]
                      - W_SAME_SKU_ALIGN * same-SKU column bonus  {0, 1}
                      + TIE_BREAK_Y * y + TIE_BREAK_X * x         [mm]
-7. Commit          the cheapest candidate on the chosen pallet; that pallet's
-                   heightmap and feasibility map are updated.
+7. Ranking         SPACE_SELECTION_RULE = None: the lowest score wins.
+                   SPACE_SELECTION_RULE = 1..8: candidates are ranked by the
+                   space key first; the score only decides between candidates
+                   with an equal space key (e.g. orientations at one corner).
+8. Commit          the best candidate on the chosen pallet; that pallet's
+                   heightmap, feasibility map and owner map are updated.
 
 Scoring terms
 -------------
@@ -51,6 +63,28 @@ Scoring terms
   identical same-SKU box. Because boxes arrive in SKU groups, each group turns
   into aligned columns with full-area support.
 * Low y, then low x, breaks remaining ties deterministically.
+
+Space selection (SPACE_SELECTION_RULE)
+--------------------------------------
+Space rules of Table 1 in S. Ali, A. G. Ramos, J. F. Oliveira: "Static
+stability versus packing efficiency in online three-dimensional packing
+problems: A new approach and a computational study", Computers & Operations
+Research 178 (2025) 107005. The paper ranks Empty Maximal Spaces; here every
+candidate defines its own space, translated to the heightmap model:
+
+* Corner: the box's back-bottom-left corner (x, y, z) at its resting height.
+  X is depth from the back edge (x = 0), Y runs left to right, Z is up.
+* Back-bottom pallet corners: (0, 0, 0) on the left, (0, width, 0) on the
+  right. The distance of a candidate is measured from its own back-bottom-left
+  or back-bottom-right corner, whichever is nearer its pallet corner.
+* Volume: the free space around the footprint, open to the top. Starting from
+  the footprint, the rectangle is grown one cell row at a time (-X, +X, -Y,
+  +Y, repeated) over cells no higher than the resting level; its area times
+  the free height up to the pallet height limit is the volume. Spaces are
+  open to the top because boxes are loaded from above: there are no cavities
+  under overhangs as in the paper's container model.
+* Generated earlier: a space exists since the newest of the boxes it rests on
+  was placed (the deck is oldest). Every rule ends with this criterion.
 
 LBCP stability (USE_LBCP_STABILITY)
 -----------------------------------
@@ -75,13 +109,13 @@ The support polygon is computed with Andrew's monotone-chain convex hull.
 
 Grid
 ----
-Heightmap and feasibility map are cell grids. The grid must represent every
-footprint exactly, otherwise neighbouring boxes would appear to share cells.
-With GRID_RESOLUTION_MM = None the resolution is the greatest common divisor
-of the pallet size and all box footprint dimensions in the input (whole
-millimetres). Only the set of dimensions is used, solely to choose this grid;
-the arrival order is never looked at. A small divisor (e.g. 1 mm) is exact
-but slower than 5 or 10 mm.
+Heightmap, feasibility map and owner map are cell grids. The grid must
+represent every footprint exactly, otherwise neighbouring boxes would appear
+to share cells. With GRID_RESOLUTION_MM = None the resolution is the greatest
+common divisor of the pallet size and all box footprint dimensions in the
+input (whole millimetres). Only the set of dimensions is used, solely to
+choose this grid; the arrival order is never looked at. A small divisor
+(e.g. 1 mm) is exact but slower than 5 or 10 mm.
 """
 
 from __future__ import annotations
@@ -89,7 +123,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from functools import reduce
-from math import gcd, isfinite
+from math import gcd, hypot, isfinite
 from typing import Any
 
 import numpy as np
@@ -102,6 +136,7 @@ from .pallet import Pallet
 FloatArray = NDArray[np.float64]
 AnyFloatArray = NDArray[np.floating[Any]]
 BoolArray = NDArray[np.bool_]
+IntArray = NDArray[np.int64]
 Point2D = tuple[float, float]
 
 
@@ -114,15 +149,32 @@ Point2D = tuple[float, float]
 # How many pallets stay open. None = every pallet stays open until the end of
 # the run. 1 = only the newest pallet is open (identical to advancedLoader).
 # k = the k most recently opened pallets are open; older ones are closed.
-MAX_OPEN_PALLETS: int | None = None
+MAX_OPEN_PALLETS: int | None = 5
 
 # Which open pallet gets the box:
 #   "first_fit"  oldest open pallet that can take the box
 #   "best_fit"   fullest open pallet (packed volume) that can take the box
 #   "worst_fit"  emptiest open pallet that can take the box
-#   "all_bins"   every open pallet is evaluated; the lowest score wins
-#                (equal scores: the older pallet)
+#   "all_bins"   every open pallet is evaluated; the best-ranked candidate
+#                wins (equal rank: the older pallet)
 BIN_SELECTION_RULE: str = "first_fit"
+
+# --- Space selection ------------------------------------------------------------
+
+# None: candidates are ranked by the weighted score alone (advancedLoader).
+# 1..8: candidates are ranked by the space key first (Table 1 of Ali, Ramos &
+# Oliveira 2025, as in emsLoader); the score only breaks ties.
+#   1  min x, min z, min y
+#   2  min of (x, y, z), next min, next min
+#   3  min z, min of (x, y), next min
+#   4  smallest space volume
+#   5  min x, min z, nearest back-bottom pallet corner (left or right)
+#   6  nearest back-bottom pallet corner, largest space volume
+#   7  nearest back-bottom pallet corner, smallest space volume
+#   8  max distance from the box's back-bottom-left corner to the pallet's
+#      front-top-right corner
+# Every rule ends with "space generated earlier".
+SPACE_SELECTION_RULE: int | None = 3
 
 # --- Stability --------------------------------------------------------------
 
@@ -207,7 +259,8 @@ class _Candidate:
     iy: int
     orient: _Orient
     evaluation: _Evaluation
-    score: float          # lower = better
+    score: float                  # weighted score, lower = better
+    rank: tuple[float, ...]       # space key + (score,); lower = better
 
 
 @dataclass(frozen=True, slots=True)
@@ -284,9 +337,9 @@ def _select_pallet(
     """Return the chosen placement over the open pallets, or None."""
     if BIN_SELECTION_RULE == "all_bins":
         best: _Candidate | None = None
-        for state in states:  # opening order: equal scores keep the older pallet
+        for state in states:  # opening order: equal rank keeps the older pallet
             candidate = _find_best_placement(state, box, orients)
-            if candidate is not None and (best is None or candidate.score < best.score):
+            if candidate is not None and (best is None or candidate.rank < best.rank):
                 best = candidate
         return best
 
@@ -305,7 +358,7 @@ def _select_pallet(
 
 
 # ============================================================================
-# CANDIDATE SEARCH AND SCORING
+# CANDIDATE SEARCH, SCORING AND RANKING
 # ============================================================================
 
 def _find_best_placement(
@@ -314,7 +367,8 @@ def _find_best_placement(
     orients: Sequence[_Orient],
 ) -> _Candidate | None:
     """Evaluate every candidate position and orientation on one pallet and
-    return the cheapest feasible one, or None if the pallet cannot take the box."""
+    return the best-ranked feasible one, or None if the pallet cannot take
+    the box."""
     if not _weight_fits(state.pallet, box):
         return None
 
@@ -349,8 +403,9 @@ def _find_best_placement(
                     score -= W_SAME_SKU_ALIGN
                 score += TIE_BREAK_Y * iy * res + TIE_BREAK_X * ix * res
 
-                if best is None or score < best.score:
-                    best = _Candidate(state, ix, iy, orient, evaluation, score)
+                rank = _space_key(state, ix, iy, orient, support_z) + (score,)
+                if best is None or rank < best.rank:
+                    best = _Candidate(state, ix, iy, orient, evaluation, score, rank)
 
     return best
 
@@ -432,7 +487,132 @@ def _column_key(box: Box) -> tuple[object, ...]:
 
 
 # ============================================================================
-# PER-PALLET STATE (heightmap + feasibility map)
+# SPACE SELECTION (Table 1 of Ali, Ramos & Oliveira 2025)
+# ============================================================================
+
+def _space_key(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    support_z: float,
+) -> tuple[float, ...]:
+    """Space-rule sort key of one candidate (lower = higher priority).
+
+    Empty when SPACE_SELECTION_RULE is None, so the score alone ranks.
+    """
+    rule = SPACE_SELECTION_RULE
+    if rule is None:
+        return ()
+
+    res = state.grid_mm
+    x = ix * res
+    y = iy * res
+    z = support_z
+
+    if rule == 1:
+        key: tuple[float, ...] = (x, z, y)
+    elif rule == 2:
+        key = tuple(sorted((x, y, z)))
+    elif rule == 3:
+        key = (z, min(x, y), max(x, y))
+    elif rule == 4:
+        key = (_space_volume(state, ix, iy, orient, support_z),)
+    elif rule == 5:
+        key = (x, z, _back_corner_distance(state, x, y, z, orient.ny * res))
+    elif rule == 6:
+        key = (
+            _back_corner_distance(state, x, y, z, orient.ny * res),
+            -_space_volume(state, ix, iy, orient, support_z),
+        )
+    elif rule == 7:
+        key = (
+            _back_corner_distance(state, x, y, z, orient.ny * res),
+            _space_volume(state, ix, iy, orient, support_z),
+        )
+    else:  # rule 8
+        key = (
+            -hypot(
+                state.pallet.length_mm - x,
+                state.pallet.width_mm - y,
+                state.max_height_mm - z,
+            ),
+        )
+
+    # "Generated earlier" as the final space criterion.
+    return key + (float(_space_age(state, ix, iy, orient, support_z)),)
+
+
+def _back_corner_distance(
+    state: _PalletState,
+    x: float,
+    y: float,
+    z: float,
+    width_mm: float,
+) -> float:
+    """Distance to the nearer back-bottom pallet corner, measured from the
+    box's back-bottom-left corner to (0, 0, 0) or from its back-bottom-right
+    corner to (0, width, 0)."""
+    left = hypot(x, y, z)
+    right = hypot(x, state.pallet.width_mm - (y + width_mm), z)
+    return min(left, right)
+
+
+def _space_volume(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    support_z: float,
+) -> float:
+    """Volume of the open-top free space around the footprint [mm^3].
+
+    The rectangle grows from the footprint one cell row at a time in the order
+    -X, +X, -Y, +Y (repeated) while the new row is no higher than the resting
+    level. The result is a maximal rectangle; its area times the free height
+    up to the pallet height limit is the volume.
+    """
+    hm = state.heightmap
+    limit = support_z + CONTACT_HEIGHT_TOL_MM
+    x0, x1 = ix, ix + orient.nx
+    y0, y1 = iy, iy + orient.ny
+
+    grown = True
+    while grown:
+        grown = False
+        if x0 > 0 and float(hm[x0 - 1, y0:y1].max()) <= limit:
+            x0 -= 1
+            grown = True
+        if x1 < state.nx and float(hm[x1, y0:y1].max()) <= limit:
+            x1 += 1
+            grown = True
+        if y0 > 0 and float(hm[x0:x1, y0 - 1].max()) <= limit:
+            y0 -= 1
+            grown = True
+        if y1 < state.ny and float(hm[x0:x1, y1].max()) <= limit:
+            y1 += 1
+            grown = True
+
+    area_mm2 = (x1 - x0) * (y1 - y0) * state.grid_mm * state.grid_mm
+    return area_mm2 * (state.max_height_mm - support_z)
+
+
+def _space_age(
+    state: _PalletState,
+    ix: int,
+    iy: int,
+    orient: _Orient,
+    support_z: float,
+) -> int:
+    """Placement index of the newest box the candidate rests on (-1 = deck).
+    Lower means the space was generated earlier."""
+    window = (slice(ix, ix + orient.nx), slice(iy, iy + orient.ny))
+    contact = state.heightmap[window] >= support_z - CONTACT_HEIGHT_TOL_MM
+    return int(state.owner_map[window][contact].max())
+
+
+# ============================================================================
+# PER-PALLET STATE (heightmap + feasibility map + owner map)
 # ============================================================================
 
 class _PalletState:
@@ -446,16 +626,20 @@ class _PalletState:
         self.ny = _cells(pallet.width_mm, grid_mm)
         self.max_height_mm = pallet.max_height_mm
         self.loaded_volume_mm3 = 0.0          # packed box volume (best/worst fit)
+        shape = (self.nx, self.ny)
 
         # HM: top height of the load per cell [mm].
-        self.heightmap: FloatArray = np.zeros((self.nx, self.ny), dtype=np.float64)
+        self.heightmap: FloatArray = np.zeros(shape, dtype=np.float64)
         # FM: True where the top surface is load-bearable. The deck is one
         # load-bearable polygon, so the map starts all True.
-        self.feasibility_map: BoolArray = np.ones((self.nx, self.ny), dtype=bool)
+        self.feasibility_map: BoolArray = np.ones(shape, dtype=bool)
+        # Index into self.placed of the box forming the surface; -1 = deck.
+        self.owner_map: IntArray = np.full(shape, -1, dtype=np.int64)
         self.placed: list[_PlacedRecord] = []
 
     def commit(self, box: Box, candidate: _Candidate) -> None:
-        """Place the box on this pallet and update HM and FM (Algorithm 2)."""
+        """Place the box on this pallet and update HM and FM (Algorithm 2)
+        and the owner map."""
         res = self.grid_mm
         orient = candidate.orient
         support_z = candidate.evaluation.support_z
@@ -473,6 +657,11 @@ class _PalletState:
             self, candidate.ix, candidate.iy, orient, top_z,
             candidate.evaluation.support_polygon,
         )
+        window = (
+            slice(candidate.ix, candidate.ix + orient.nx),
+            slice(candidate.iy, candidate.iy + orient.ny),
+        )
+        self.owner_map[window] = len(self.placed)
         self.loaded_volume_mm3 += box.volume_mm3
         self.placed.append(
             _PlacedRecord(
@@ -758,6 +947,8 @@ def _validate_settings() -> None:
         raise ExperimentalLoaderError(f"BIN_SELECTION_RULE must be one of {_BIN_RULES}.")
     if MAX_OPEN_PALLETS is not None and MAX_OPEN_PALLETS < 1:
         raise ExperimentalLoaderError("MAX_OPEN_PALLETS must be None or at least 1.")
+    if SPACE_SELECTION_RULE is not None and SPACE_SELECTION_RULE not in range(1, 9):
+        raise ExperimentalLoaderError("SPACE_SELECTION_RULE must be None or within 1..8.")
 
     if not 0.0 <= COG_TOLERANCE <= 0.5:
         raise ExperimentalLoaderError("COG_TOLERANCE must be within 0.0..0.5.")

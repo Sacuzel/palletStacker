@@ -119,7 +119,7 @@ SUPPORT_FLUSH_TOL_MM: float = 0.5
 # --- Pallet policy -------------------------------------------------------------
 # None = every pallet stays open (paper). 1 = only the newest pallet is open
 # (single manual station). k = the k newest pallets are open.
-MAX_OPEN_PALLETS: int | None = 10
+MAX_OPEN_PALLETS: int | None = 2
 
 # Blocking constraint for door loading along +X (Section 4.2): newly generated
 # EMSs that do not reach the entrance (x2 < length) are discarded.
