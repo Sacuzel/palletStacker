@@ -50,7 +50,7 @@ RUN_LAYOUT_ANALYSIS: bool = True
 
 # Output stages. Both can be enabled simultaneously.
 GENERATE_PLOTLY_OUTPUT: bool = True
-GENERATE_GAZEBO_OUTPUT: bool = True
+GENERATE_GAZEBO_OUTPUT: bool = False
 PRINT_RUN_SUMMARY: bool = True
 
 
