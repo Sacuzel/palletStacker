@@ -46,7 +46,12 @@ from pallet_stacker.processBoxData import BoxDataError, parse_box_json, select_j
 # --- Loaders ------------------------------------------------------------------
 
 BASE_LOADER: str = "ems"            # reference algorithm
-COMPARISON_LOADER: str = "experimental"  # candidate algorithm
+COMPARISON_LOADER: str = "optimizer"  # candidate algorithm
+# Loaders that do not follow the pallet_stacker/<name>Loader.py convention.
+# The module must provide load_boxes(boxes) -> list[Pallet].
+LOADER_MODULES: dict[str, str] = {
+    "optimizer": "pallet_stacker.optimizer",
+}
 
 # --- Input / output -----------------------------------------------------------
 
@@ -226,7 +231,9 @@ def _run_loader(name: str, source: Path) -> RunReport:
     """Import, run and analyse one loader on freshly parsed boxes."""
     print(f"Running {name!r} ...", end=" ", flush=True)
     try:
-        module = importlib.import_module(f"pallet_stacker.{name}Loader")
+        module = importlib.import_module(
+            LOADER_MODULES.get(name, f"pallet_stacker.{name}Loader")
+        )
         load_boxes = getattr(module, "load_boxes")
     except (ImportError, AttributeError) as exc:
         print("FAILED (import)")

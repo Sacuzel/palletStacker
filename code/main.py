@@ -14,6 +14,7 @@ from pallet_stacker.heuristicLoader import HeuristicLoaderError, load_boxes as h
 from pallet_stacker.advancedLoader import AdvancedLoaderError, load_boxes as advanced_load_boxes
 from pallet_stacker.experimentalLoader import ExperimentalLoaderError, load_boxes as experimental_load_boxes
 from pallet_stacker.emsLoader import EmsLoaderError, load_boxes as ems_load_boxes
+from pallet_stacker.optimizer import load_boxes as optimizer_load_boxes
 from pallet_stacker.pallet import Pallet
 from pallet_stacker.processBoxData import BoxDataError, process_box_data
 
@@ -28,6 +29,7 @@ LOADER_REGISTRY: dict[str, LoaderFunction] = {
     "advanced": advanced_load_boxes,
     "experimental": experimental_load_boxes,
     "ems": ems_load_boxes,
+    "optimizer": optimizer_load_boxes,
 }
 
 
