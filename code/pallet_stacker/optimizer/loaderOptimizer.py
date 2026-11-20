@@ -92,6 +92,7 @@ _EMS_LOADER_SETTINGS: dict[str, str] = {
     "support_flush_tol_mm": "SUPPORT_FLUSH_TOL_MM",
     "max_open_pallets": "MAX_OPEN_PALLETS",
     "enforce_blocking": "ENFORCE_BLOCKING",
+    "guard_pass_through": "GUARD_PASS_THROUGH",
     "ems_min_side_mm": "EMS_MIN_SIDE_MM",
     "random_seed": "RANDOM_SEED",
     "score_rel_eps": "SCORE_REL_EPS",

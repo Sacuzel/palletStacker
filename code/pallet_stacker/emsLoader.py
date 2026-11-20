@@ -125,6 +125,12 @@ MAX_OPEN_PALLETS: int | None = 2
 # EMSs that do not reach the entrance (x2 < length) are discarded.
 ENFORCE_BLOCKING: bool = False
 
+# Pass-through guard. Boxes are lowered from above. If a placed box hangs over
+# the target footprint, the new box would pass through it on the way down.
+# Such a spot is accepted only if at least one side face of the box lies on a
+# pallet edge, so the loader can slide it in from that side.
+GUARD_PASS_THROUGH: bool = True
+
 # --- Empty maximal spaces -------------------------------------------------------
 # EMSs thinner than this on any axis are discarded [mm]. Performance setting;
 # keep it below the smallest box dimension you expect.
@@ -327,7 +333,10 @@ def _best_in_pallet(
                 continue
             x, y, z = _anchor(state, space, l, w)
             # ---- 4. stability assessment ---------------------------------
-            if _is_stable(state, x, y, z, l, w):
+            # ---- 4. stability assessment + pass-through guard ------------
+            if _is_stable(state, x, y, z, l, w) and (
+                not GUARD_PASS_THROUGH or _is_reachable(state, x, y, z, l, w)
+            ):
                 options.append(_Placement(space, orientation, (l, w, h), (x, y, z)))
         if options:
             groups.append((space, options))
@@ -536,6 +545,43 @@ def _is_stable(
 
     # Partial-base polygon: SP area must exceed the ratio of the base area.
     return _polygon_area(hull) > POLYGON_MIN_AREA_RATIO * base_area
+
+def _is_reachable(
+    state: _PalletState,
+    x: float,
+    y: float,
+    z: float,
+    l: float,
+    w: float,
+) -> bool:
+    """Pass-through guard for a box with footprint (x, y, l, w) at z.
+
+    True if nothing hangs over the footprint (the box drops straight in), or
+    if at least one side face lies on a pallet edge (side loading).
+    """
+    tol = settings.PLACEMENT_TOLERANCE_MM
+
+    # Side access: a box face flush with a pallet edge.
+    if (
+        x <= tol or y <= tol
+        or x + l >= state.length - tol
+        or y + w >= state.width - tol
+    ):
+        return True
+
+    # Overhang: a solid that overlaps the footprint in XY and starts above the
+    # box base. The box fits inside an empty EMS, so such a solid can only lie
+    # above the box, i.e. in the drop path.
+    xl = x + l
+    yw = y + w
+    for b in state.solids:
+        if (
+            b.z1 > z + tol
+            and b.x1 < xl - tol and b.x2 > x + tol
+            and b.y1 < yw - tol and b.y2 > y + tol
+        ):
+            return False
+    return True
 
 
 def _convex_hull(points: Sequence[Point2D]) -> list[Point2D]:

@@ -7,16 +7,18 @@ import sys
 from collections.abc import Callable, Sequence
 from pathlib import Path
 
-from pallet_stacker import settings
+from pallet_stacker import emsLoader, settings
 from pallet_stacker.box import Box
 from pallet_stacker.naiveLoader import NaiveLoaderError, load_boxes as naive_load_boxes
 from pallet_stacker.heuristicLoader import HeuristicLoaderError, load_boxes as heuristic_load_boxes
 from pallet_stacker.advancedLoader import AdvancedLoaderError, load_boxes as advanced_load_boxes
 from pallet_stacker.experimentalLoader import ExperimentalLoaderError, load_boxes as experimental_load_boxes
 from pallet_stacker.emsLoader import EmsLoaderError, load_boxes as ems_load_boxes
-from pallet_stacker.optimizer import load_boxes as optimizer_load_boxes
+from pallet_stacker.optimizer import LoaderOptimizerError, load_boxes as optimizer_load_boxes
+from pallet_stacker.optimizer import loaderOptimizer
 from pallet_stacker.pallet import Pallet
 from pallet_stacker.processBoxData import BoxDataError, process_box_data
+from pallet_stacker.resultLogger import ResultLoggerError, logResults
 
 LoaderFunction = Callable[[Sequence[Box]], list[Pallet]]
 
@@ -31,6 +33,13 @@ LOADER_REGISTRY: dict[str, LoaderFunction] = {
     "ems": ems_load_boxes,
     "optimizer": optimizer_load_boxes,
 }
+
+# Loaders whose pallets close first-in-first-out through an open-pallet window
+# (states[-K:]). Only these can be replayed; see resultLogger.py.
+RESULT_LOG_LOADERS: frozenset[str] = frozenset({"ems", "optimizer"})
+
+# The replay viewer lives next to this file.
+REPLAY_VIEWER_FILE: Path = Path(__file__).resolve().parent / "palletReplayViewer.py"
 
 
 def main() -> int:
@@ -64,9 +73,9 @@ def main() -> int:
     # ------------------------------------------------------------------
     # 2. ALGORITHM: create pallets and place all boxes
     # ------------------------------------------------------------------
-    loader = _select_loader(settings.ACTIVE_LOADER)
+    loader_name = _active_loader_name()
+    loader = _select_loader(loader_name)
     pallets = loader(box_data.boxes)
-
 
     # ------------------------------------------------------------------
     # 2b. ANALYSIS: loader-independent verification, stability and metrics
@@ -98,7 +107,7 @@ def main() -> int:
         plotly_output = write_layout_html(
             pallets,
             output_path=settings.PLOTLY_OUTPUT_FILE,
-            title=f"{settings.PLOTLY_TITLE} - {settings.ACTIVE_LOADER.strip().lower()} loader",
+            title=f"{settings.PLOTLY_TITLE} - {loader_name} loader",
             show_box_labels=settings.PLOTLY_SHOW_BOX_LABELS,
             open_in_browser=settings.PLOTLY_OPEN_IN_BROWSER,
             include_plotlyjs=settings.PLOTLY_INCLUDE_PLOTLYJS,
@@ -106,6 +115,22 @@ def main() -> int:
             edge_width_px=settings.PLOTLY_EDGE_WIDTH_PX,
             edge_expand_mm=settings.PLOTLY_EDGE_EXPAND_MM,
         )
+
+    # Result log for palletReplayViewer.py: final result, loading order and
+    # the step at which each pallet left the open-pallet window.
+    result_log: Path | None = None
+    result_log_note: str | None = None
+    if settings.GENERATE_RESULT_LOG:
+        if loader_name in RESULT_LOG_LOADERS:
+            result_log = logResults(
+                pallets,
+                max_open_pallets=_resolve_max_open_pallets(loader_name),
+                loader_name=loader_name,
+                source_file=box_data.source_path,
+                output_path=settings.RESULT_LOG_FILE,
+            )
+        else:
+            result_log_note = f"skipped (not supported for the {loader_name!r} loader)"
 
     gazebo_world: Path | None = None
     gazebo_manifest: Path | None = None
@@ -136,6 +161,8 @@ def main() -> int:
             input_box_count=box_data.box_count,
             pallets=pallets,
             plotly_output=plotly_output,
+            result_log=result_log,
+            result_log_note=result_log_note,
             gazebo_world=gazebo_world,
             gazebo_manifest=gazebo_manifest,
             gazebo_gui_plugin=gazebo_gui_plugin,
@@ -154,6 +181,11 @@ def main() -> int:
     return 0
 
 
+def _active_loader_name() -> str:
+    """Registry key of the active loader (normalized like the registry keys)."""
+    return settings.ACTIVE_LOADER.strip().lower()
+
+
 def _select_loader(loader_name: str) -> LoaderFunction:
     normalized_name = loader_name.strip().lower()
     try:
@@ -165,12 +197,32 @@ def _select_loader(loader_name: str) -> LoaderFunction:
         ) from exc
 
 
+def _resolve_max_open_pallets(loader_name: str) -> int | None:
+    """Open-pallet window K of the run that just finished. None = all open.
+
+    ems        emsLoader.MAX_OPEN_PALLETS
+    optimizer  the winning configuration (robust even if K is ever swept)
+    """
+    if loader_name == "ems":
+        return emsLoader.MAX_OPEN_PALLETS
+    if loader_name == "optimizer":
+        report = loaderOptimizer.LAST_REPORT
+        if report is None:
+            raise ResultLoggerError(
+                "The optimizer finished without a report (LAST_REPORT is None)."
+            )
+        return report.configs[report.best.config_index].max_open_pallets
+    raise ValueError(f"No result log support for loader {loader_name!r}.")
+
+
 def _print_summary(
     *,
     source_file: Path,
     input_box_count: int,
     pallets: Sequence[Pallet],
     plotly_output: Path | None,
+    result_log: Path | None,
+    result_log_note: str | None,
     gazebo_world: Path | None,
     gazebo_manifest: Path | None,
     gazebo_gui_plugin: Path | None,
@@ -199,6 +251,13 @@ def _print_summary(
 
     if plotly_output is not None:
         print(f"  Plotly output: {plotly_output}")
+
+    if result_log is not None:
+        print(f"  Result log: {result_log}")
+        viewer = _project_relative_or_absolute(REPLAY_VIEWER_FILE)
+        print(f"  Replay viewer: python {shlex.quote(str(viewer))}")
+    elif result_log_note is not None:
+        print(f"  Result log: {result_log_note}")
 
     if gazebo_world is not None:
         print(f"  Gazebo world: {gazebo_world}")
@@ -239,6 +298,7 @@ if __name__ == "__main__":
     try:
         raise SystemExit(main())
     except (BoxDataError, NaiveLoaderError, HeuristicLoaderError, AdvancedLoaderError,
-            EmsLoaderError, ValueError, RuntimeError) as exc:
+            ExperimentalLoaderError, EmsLoaderError, LoaderOptimizerError,
+            ResultLoggerError, ValueError, RuntimeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc

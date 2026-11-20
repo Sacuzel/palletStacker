@@ -26,6 +26,7 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 INPUT_DIRECTORY: Path = PROJECT_ROOT / "input"
 OUTPUT_DIRECTORY: Path = PROJECT_ROOT / "results"
 PLOTLY_OUTPUT_FILE: Path = OUTPUT_DIRECTORY / "pallet_layout.html"
+RESULT_LOG_FILE: Path = OUTPUT_DIRECTORY / "pallet_result_log.json"
 
 # Create common project directories when main.py starts.
 CREATE_MISSING_PROJECT_DIRECTORIES: bool = True
@@ -50,8 +51,9 @@ RUN_LAYOUT_ANALYSIS: bool = True
 
 # Output stages. Both can be enabled simultaneously.
 GENERATE_PLOTLY_OUTPUT: bool = True
-GENERATE_GAZEBO_OUTPUT: bool = True
+GENERATE_GAZEBO_OUTPUT: bool = False
 PRINT_RUN_SUMMARY: bool = True
+GENERATE_RESULT_LOG: bool = True
 
 
 # ============================================================================

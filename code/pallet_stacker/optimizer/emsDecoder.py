@@ -102,6 +102,7 @@ class DecoderConfig:
     support_flush_tol_mm: float = 0.5
     max_open_pallets: int | None = 2
     enforce_blocking: bool = False
+    guard_pass_through: bool = True
     ems_min_side_mm: float = 10.0
     random_seed: int = 0
     score_rel_eps: float = 1e-9
@@ -536,7 +537,11 @@ class _Run:
                     continue
                 x, y, z = self._anchor(space, w)
                 # ---- 4. stability assessment ------------------------------
-                if self._is_stable(state, x, y, z, l, w):
+                # ---- 4. stability assessment + pass-through guard ---------
+                if self._is_stable(state, x, y, z, l, w) and (
+                    not self.cfg.guard_pass_through
+                    or self._is_reachable(state, x, y, z, l, w)
+                ):
                     options.append(_Placement(space, orientation, (l, w, h), (x, y, z)))
             if options:
                 groups.append((space, options))
@@ -721,6 +726,38 @@ class _Run:
 
         # Partial-base polygon: SP area must exceed the ratio of the base area.
         return polygon_area(hull) > cfg.polygon_min_area_ratio * base_area
+
+    def _is_reachable(
+        self,
+        state: _PalletState,
+        x: float,
+        y: float,
+        z: float,
+        l: float,
+        w: float,
+    ) -> bool:
+        """Pass-through guard (see emsLoader._is_reachable)."""
+        tol = self.tol
+
+        # Side access: a box face flush with a pallet edge.
+        if (
+            x <= tol or y <= tol
+            or x + l >= state.length - tol
+            or y + w >= state.width - tol
+        ):
+            return True
+
+        # Overhang over the footprint = solid in the drop path.
+        xl = x + l
+        yw = y + w
+        for bx1, by1, bz1, bx2, by2, _bz2 in state.solids:
+            if (
+                bz1 > z + tol
+                and bx1 < xl - tol and bx2 > x + tol
+                and by1 < yw - tol and by2 > y + tol
+            ):
+                return False
+        return True
 
     # ------------------------------------------------------------------
     # 6. COMMIT
