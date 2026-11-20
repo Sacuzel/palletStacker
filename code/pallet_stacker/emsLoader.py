@@ -144,7 +144,6 @@ WEIGHT_EPS_KG: float = 1e-6       # weight-limit tolerance [kg]
 _BIN_RULES = ("first_fit", "best_fit", "worst_fit", "all_bins")
 _STABILITY_RULES = ("full_base", "partial_base", "cog_polygon", "partial_base_polygon")
 
-
 class EmsLoaderError(RuntimeError):
     """Base exception raised by the EMS loader."""
 

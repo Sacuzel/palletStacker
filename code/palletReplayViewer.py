@@ -104,6 +104,15 @@ ROW_BLINK_BACKGROUND: str = "#d32f2f"
 ROW_BLINK_FOREGROUND: str = "#ffffff"
 TRANSLUCENT_OPACITY: float = 0.15   # unticked boxes while any box is ticked
 
+# --- Click flash (box clicked in the 3D view) ---------------------------------------
+# The clicked box and its box-list row flash light green. The phase starts at
+# the click, so the flash always begins "on". It wins over the red blink.
+SELECT_BLINK_S: float = 3.0
+SELECT_TINT_RGB: tuple[float, float, float] = (0.56, 0.93, 0.56)    # light green
+SELECT_TINT_STRENGTH: float = 0.75  # 0 = SKU colour, 1 = pure tint
+SELECT_ROW_BACKGROUND: str = "#90ee90"
+SELECT_ROW_FOREGROUND: str = "#1e1e1e"
+
 # --- Box info popup (click on a box) --------------------------------------------
 CLICK_TOLERANCE_PX: int = 4         # press-release distance that still counts as a click
 INFO_POPUP_OFFSET_PX: int = 14      # popup appears this far right/below the cursor
@@ -661,9 +670,14 @@ def _sku_rgb(text: str) -> tuple[float, float, float]:
     return (r, g, b)
 
 
-def _tint(rgb: tuple[float, float, float]) -> tuple[float, float, float]:
-    s = BLINK_TINT_STRENGTH
-    r, g, b = (c * (1.0 - s) + t * s for c, t in zip(rgb, BLINK_TINT_RGB))
+def _tint(
+    rgb: tuple[float, float, float],
+    tint: tuple[float, float, float] = BLINK_TINT_RGB,
+    strength: float = BLINK_TINT_STRENGTH,
+) -> tuple[float, float, float]:
+    """Mix a box colour with a blink tint (red pass-through or green click)."""
+    s = strength
+    r, g, b = (c * (1.0 - s) + t * s for c, t in zip(rgb, tint))
     return (r, g, b)
 
 
@@ -816,7 +830,12 @@ class ReplayWindow(QtWidgets.QMainWindow):
         self.pass_through_active: set[int] = set()  # boxes inside offenders now
         self.row_blink_until: dict[int, float] = {}
         self._tinted: set[int] = set()              # boxes showing the tint now
-        self._rows_tinted: set[int] = set()
+        # Box-list rows showing a blink colour now: step -> (background, foreground).
+        self._rows_tinted: dict[int, tuple[str, str]] = {}
+        # Click flash: the box last clicked in the 3D view (one at a time).
+        self.select_step: int | None = None
+        self.select_start = 0.0                     # wall time of the click
+        self._select_tinted: int | None = None      # box showing the green tint now
         # Pass-through entries in the combobox: filled as the boxes are placed.
         self.listed_pass_throughs: set[int] = set()
 
@@ -1038,6 +1057,8 @@ class ReplayWindow(QtWidgets.QMainWindow):
         self.row_blink_until.clear()
         self._tinted.clear()
         self._rows_tinted.clear()
+        self.select_step = None
+        self._select_tinted = None
         self.listed_pass_throughs.clear()
         self.info_popup.hide()
 
@@ -1397,7 +1418,11 @@ class ReplayWindow(QtWidgets.QMainWindow):
         prop.SetOpacity(base * self.box_fade[step])
         self.box_actors[step].SetPickable(base >= 1.0)
         rgb = self.box_colors[step]
-        prop.SetColor(*(_tint(rgb) if step in self._tinted else rgb))
+        if step == self._select_tinted:            # click flash wins over red
+            rgb = _tint(rgb, SELECT_TINT_RGB, SELECT_TINT_STRENGTH)
+        elif step in self._tinted:
+            rgb = _tint(rgb)
+        prop.SetColor(*rgb)
 
     def _refresh_all_boxes(self) -> None:
         for step in range(len(self.box_actors)):
@@ -1757,6 +1782,31 @@ class ReplayWindow(QtWidgets.QMainWindow):
         step = self._actor_steps.get(_actor_key(actor))
         if step is not None:
             self._show_box_info(step)
+            self._start_select_flash(step)
+
+    def _start_select_flash(self, step: int) -> None:
+        """Flash the clicked box and its box-list row light green for
+        SELECT_BLINK_S. A new click replaces the previous flash."""
+        now = time.monotonic()
+        self.select_step = step
+        self.select_start = now
+        item = self.box_list.item(step)
+        if item is not None:                    # bring the row into view
+            self.box_list.scrollToItem(item, _SCROLL_CENTER)
+        self._update_blinks(now)
+        self._update_row_blinks(now)
+        self._needs_render = True
+
+    def _select_phase_on(self, now: float) -> bool:
+        """True while the click flash shows its colour. Ends the flash when
+        SELECT_BLINK_S has passed. Phase counted from the click."""
+        if self.select_step is None:
+            return False
+        elapsed = now - self.select_start
+        if elapsed >= SELECT_BLINK_S:
+            self.select_step = None
+            return False
+        return int(elapsed * BLINK_HZ * 2.0) % 2 == 0
 
     def _show_box_info(self, step: int) -> None:
         popup = self.info_popup
@@ -1825,29 +1875,48 @@ class ReplayWindow(QtWidgets.QMainWindow):
         active = set(self.blink_until) | self.pass_through_active
         phase_on = int(now * BLINK_HZ * 2.0) % 2 == 0
         tinted = active if phase_on else set()
-        if tinted != self._tinted:
-            changed = tinted ^ self._tinted
+        # Click flash (green), own phase counted from the click.
+        select_tinted = self.select_step if self._select_phase_on(now) else None
+
+        changed = tinted ^ self._tinted
+        if select_tinted != self._select_tinted:
+            changed |= {s for s in (select_tinted, self._select_tinted) if s is not None}
+        if changed:
             self._tinted = tinted
+            self._select_tinted = select_tinted
             for step in changed:
                 if step < len(self.box_actors):
                     self._refresh_box(step)
             self._needs_render = True
 
     def _update_row_blinks(self, now: float) -> None:
+        """Box-list row blink: red for clicked pass-through entries, light green
+        for the box clicked in the 3D view (green wins on the same row)."""
         for step in [s for s, until in self.row_blink_until.items() if until <= now]:
             del self.row_blink_until[step]
         phase_on = int(now * BLINK_HZ * 2.0) % 2 == 0
-        shown = set(self.row_blink_until) if phase_on else set()
+
+        shown: dict[int, tuple[str, str]] = {}
+        if phase_on:
+            for step in self.row_blink_until:
+                shown[step] = (ROW_BLINK_BACKGROUND, ROW_BLINK_FOREGROUND)
+        if self._select_phase_on(now) and self.select_step is not None:
+            shown[self.select_step] = (SELECT_ROW_BACKGROUND, SELECT_ROW_FOREGROUND)
+
         if shown == self._rows_tinted:
             return
         self.box_list.blockSignals(True)
-        for step in shown ^ self._rows_tinted:
+        for step in set(shown) | set(self._rows_tinted):
+            colors = shown.get(step)
+            if colors == self._rows_tinted.get(step):
+                continue
             item = self.box_list.item(step)
             if item is None:
                 continue
-            if step in shown:
-                item.setBackground(QtGui.QBrush(QtGui.QColor(ROW_BLINK_BACKGROUND)))
-                item.setForeground(QtGui.QBrush(QtGui.QColor(ROW_BLINK_FOREGROUND)))
+            if colors is not None:
+                background, foreground = colors
+                item.setBackground(QtGui.QBrush(QtGui.QColor(background)))
+                item.setForeground(QtGui.QBrush(QtGui.QColor(foreground)))
             else:
                 item.setData(_BACKGROUND_ROLE, None)
                 item.setData(_FOREGROUND_ROLE, None)

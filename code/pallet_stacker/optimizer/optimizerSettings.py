@@ -171,4 +171,4 @@ STABILITY_UNIT: str = "load_tree"
 #   "auto"      "spec" when plain emsLoader already meets the spec,
 #               otherwise "baseline".
 #   "off"       stability is reported only.
-STABILITY_GATE: str = "off"
+STABILITY_GATE: str = "auto"
