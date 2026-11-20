@@ -15,7 +15,9 @@ Program flow
 1. BASELINE  plain emsLoader behaviour; fixes the stability gate
 2. STAGE 1   rule sweep: every rule combination with default decisions
 3. STAGE 2   BRKGA: per-box steering keys on top of the best combinations,
-             stopped by the window criterion, generation limit or time limit
+             with an optional genetic extension (GENETIC_EXTENSION: "none",
+             "ladder" or "islands"), stopped by the window criterion,
+             generation limit or time limit
 4. REPLAY    the best solution is decoded once more and placed on the
              ORIGINAL Box objects through Pallet.place_box (normal validation)
 
@@ -41,7 +43,6 @@ import copy
 import multiprocessing
 from multiprocessing.context import BaseContext
 import os
-import random
 import time
 from collections.abc import Iterable, Sequence
 from concurrent.futures import ProcessPoolExecutor
@@ -141,6 +142,8 @@ class OptimizerReport:
     sweep_complete: bool = True
     brkga_generations: int = 0
     brkga_stop_reason: str = "not run"
+    brkga_extension: str = "none"
+    brkga_best_island: int | None = None              # "islands" only
     brkga_history: list[Trial] = field(default_factory=list)
     evaluations: int = 0
     workers: int = 1
@@ -307,6 +310,11 @@ def load_boxes(boxes: Iterable[Box]) -> list[Pallet]:
         sweep_complete=sweep_complete,
         brkga_generations=brkga_result.generations if brkga_result else 0,
         brkga_stop_reason=brkga_result.stop_reason if brkga_result else "not run",
+        brkga_extension=brkga_result.extension if brkga_result else opt.GENETIC_EXTENSION,
+        brkga_best_island=(
+            brkga_result.best_island
+            if brkga_result and brkga_result.extension == "islands" else None
+        ),
         brkga_history=(
             [t for t in brkga_result.history if isinstance(t, Trial)]
             if brkga_result else []
@@ -358,23 +366,19 @@ def _run_stage_two(
         [(k + 0.5) / n_configs] + [0.0] * n_box_genes for k in range(n_configs)
     ]
 
-    params = BrkgaParams(
-        population=opt.BRKGA_POPULATION,
-        elite_fraction=opt.BRKGA_ELITE_FRACTION,
-        mutant_fraction=opt.BRKGA_MUTANT_FRACTION,
-        elite_inheritance=opt.BRKGA_ELITE_INHERITANCE,
-        max_generations=opt.BRKGA_MAX_GENERATIONS,
-        stall_window=opt.STALL_WINDOW_GENERATIONS,
-    )
+    params = _brkga_params()
     labels = ", ".join(problem.configs[i].label for i in seed_configs)
     _log(
-        f"stage 2: BRKGA, population {params.population}, {n_genes} genes, "
+        f"stage 2: BRKGA, {_extension_text(params)}, {n_genes} genes, "
         f"seeded with {labels}, {runner.workers} worker process(es)"
     )
 
+    islands = params.extension == "islands"
     last_logged: list[tuple | None] = [None]
 
-    def on_generation(generation: int, best_of_generation: Scored, evaluations: int) -> None:
+    def on_generation(
+        generation: int, best_of_generation: Scored, evaluations: int, island: int
+    ) -> None:
         improved = best_of_generation.stall_key != last_logged[0]
         if improved or generation % _PROGRESS_EVERY_GENERATIONS == 0:
             last_logged[0] = best_of_generation.stall_key
@@ -383,33 +387,85 @@ def _run_stage_two(
                 if isinstance(best_of_generation, Trial)
                 else None
             )
+            where = f" | island {island}" if islands else ""
             _log(
                 f"  gen {generation:>4} | {time.monotonic() - started:>6.1f} s | "
                 f"{'new best' if improved and generation else '        '} | "
-                f"{format_metrics(metrics)}"
+                f"{format_metrics(metrics)}{where}"
             )
+
+    def on_escalation(generation: int, step: str) -> None:
+        what = {
+            "shake": f"shake ({opt.SHAKE_BLOCK_BOXES}-box blocks redrawn around the elite)",
+            "restart": "restart (best kept, seeds and new random chromosomes)",
+        }
+        _log(
+            f"  gen {generation:>4} | {time.monotonic() - started:>6.1f} s | "
+            f"stalled -> {what.get(step, step)}"
+        )
 
     result = run_brkga(
         n_genes,
         evaluate_chromosomes,
         params,
-        random.Random(opt.RANDOM_SEED),
+        opt.RANDOM_SEED,
         seeds=seeds,
+        fixed_genes=1,              # gene 0 selects the rule combination
         deadline=deadline,
         on_generation=on_generation,
+        on_escalation=on_escalation,
     )
-    reasons = {
-        "window": (
-            f"no meaningful improvement in {params.stall_window} generations"
-        ),
-        "max_generations": "generation limit reached",
-        "time_limit": "time limit reached",
-    }
-    _log(
-        f"stage 2 stopped after {result.generations} generations: "
-        f"{reasons.get(result.stop_reason, result.stop_reason)}"
-    )
+
+    if result.stop_reason == "window":
+        if params.extension == "ladder":
+            reason = (
+                f"no meaningful improvement after {params.max_restarts} "
+                f"restart(s) (ladder exhausted)"
+            )
+        elif islands:
+            reason = (
+                f"no meaningful improvement in {params.stall_window} "
+                f"generations on any island"
+            )
+        else:
+            reason = f"no meaningful improvement in {params.stall_window} generations"
+    elif result.stop_reason == "max_generations":
+        reason = "generation limit reached"
+    elif result.stop_reason == "time_limit":
+        reason = "time limit reached"
+    else:
+        reason = result.stop_reason
+
+    if params.extension == "ladder":
+        details = f" ({result.shakes} shake(s), {result.restarts} restart(s))"
+    elif islands:
+        details = f" (best found on island {result.best_island})"
+    else:
+        details = ""
+    _log(f"stage 2 stopped after {result.generations} generations{details}: {reason}")
     return result
+
+
+def _extension_text(params: BrkgaParams) -> str:
+    """Short description of the active genetic extension for the log."""
+    if params.extension == "islands":
+        migration = (
+            f"migration every {params.migration_interval} generations "
+            f"({params.migrants} migrants)"
+            if params.migration_interval > 0 and params.islands > 1
+            else "no migration"
+        )
+        return (
+            f"islands {params.islands} x {params.island_population} "
+            f"(seeds {opt.RANDOM_SEED}..{opt.RANDOM_SEED + params.islands - 1}), "
+            f"{migration}"
+        )
+    if params.extension == "ladder":
+        return (
+            f"population {params.population}, ladder ({params.shakes_per_restart} "
+            f"shake(s) per restart, up to {params.max_restarts} restart(s))"
+        )
+    return f"population {params.population}"
 
 
 # ============================================================================
@@ -583,6 +639,31 @@ def _steering_params() -> SteeringParams:
     params.validate()
     return params
 
+def _brkga_params() -> BrkgaParams:
+    """BRKGA parameters from optimizerSettings (used by validation and Stage 2).
+    BrkgaParams.validate() checks the common values and those of the
+    selected GENETIC_EXTENSION."""
+    return BrkgaParams(
+        population=opt.BRKGA_POPULATION,
+        elite_fraction=opt.BRKGA_ELITE_FRACTION,
+        mutant_fraction=opt.BRKGA_MUTANT_FRACTION,
+        elite_inheritance=opt.BRKGA_ELITE_INHERITANCE,
+        max_generations=opt.BRKGA_MAX_GENERATIONS,
+        stall_window=opt.STALL_WINDOW_GENERATIONS,
+        extension=opt.GENETIC_EXTENSION,
+        # "ladder"
+        shakes_per_restart=opt.LADDER_SHAKES_PER_RESTART,
+        max_restarts=opt.LADDER_MAX_RESTARTS,
+        shake_block_genes=KEYS_PER_BOX * opt.SHAKE_BLOCK_BOXES,
+        shake_intensity=opt.SHAKE_INTENSITY,
+        # A key at or above this value makes the decoder deviate.
+        shake_threshold=1.0 - opt.DEVIATION_RATE,
+        # "islands"
+        islands=opt.ISLAND_COUNT,
+        island_population=opt.ISLAND_POPULATION,
+        migration_interval=opt.ISLAND_MIGRATION_INTERVAL,
+        migrants=opt.ISLAND_MIGRANTS,
+    )
 
 # ============================================================================
 # REPLAY ON THE ORIGINAL BOXES
@@ -609,12 +690,12 @@ def _create_new_pallet(pallet_number: int) -> Pallet:
     )
     return Pallet(
         pallet_id=pallet_id,
-        name=settings.PALLET_NAME,
         length_mm=settings.PALLET_LENGTH_MM,
         width_mm=settings.PALLET_WIDTH_MM,
         base_height_mm=settings.PALLET_BASE_HEIGHT_MM,
         max_height_mm=settings.PALLET_MAX_HEIGHT_MM,
         max_load_kg=settings.PALLET_MAX_LOAD_KG,
+        name=settings.PALLET_NAME,
     )
 
 
@@ -737,14 +818,7 @@ def _validate_settings() -> None:
         if not isfinite(value) or value <= 0:
             raise LoaderOptimizerError(f"{name} must be positive and finite.")
     if opt.RUN_BRKGA:
-        BrkgaParams(
-            population=opt.BRKGA_POPULATION,
-            elite_fraction=opt.BRKGA_ELITE_FRACTION,
-            mutant_fraction=opt.BRKGA_MUTANT_FRACTION,
-            elite_inheritance=opt.BRKGA_ELITE_INHERITANCE,
-            max_generations=opt.BRKGA_MAX_GENERATIONS,
-            stall_window=opt.STALL_WINDOW_GENERATIONS,
-        ).validate()
+        _brkga_params().validate()
 
 
 # ============================================================================
@@ -791,6 +865,8 @@ def _log_result(report: OptimizerReport) -> None:
         origin = "baseline (no better solution found)"
     elif best.source == "sweep":
         origin = f"rule sweep, rule {config.label}"
+    elif report.brkga_best_island is not None:
+        origin = f"BRKGA island {report.brkga_best_island} on rule {config.label}"
     else:
         origin = f"BRKGA on rule {config.label}"
 

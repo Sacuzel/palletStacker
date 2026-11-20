@@ -27,12 +27,13 @@ VERBOSE: bool = True
 # Master seed of the optimizer (BRKGA). The same seed, order and settings
 # give the same result when the run stops by the window criterion or the
 # generation limit. A stop by TIME_LIMIT_S depends on machine speed.
+# With GENETIC_EXTENSION = "islands", island i uses RANDOM_SEED + i.
 RANDOM_SEED: int = 0
 
 # Wall-clock budget for the whole optimizer run [s]. None = no time limit.
 # The limit is checked between sweep batches and between BRKGA generations,
 # so a run can overshoot by one batch or generation.
-TIME_LIMIT_S: float | None = 300.0
+TIME_LIMIT_S: float | None = 1800.0
 
 # Worker processes for trial evaluation. 0 = automatic (CPU cores - 1),
 # 1 = no multiprocessing. Results do not depend on this value.
@@ -76,18 +77,65 @@ BRKGA_SEED_CONFIGS: int = 5
 
 # Population and the three BRKGA parameters (Goncalves & Resende 2012;
 # usual ranges: elite 0.10-0.25, mutants 0.10-0.30, inheritance 0.5-0.8).
-BRKGA_POPULATION: int = 40
+# BRKGA_POPULATION is used by GENETIC_EXTENSION "none" and "ladder";
+# "islands" uses ISLAND_POPULATION per island. The fractions apply to all.
+BRKGA_POPULATION: int = 100
 BRKGA_ELITE_FRACTION: float = 0.20
-BRKGA_MUTANT_FRACTION: float = 0.15
+BRKGA_MUTANT_FRACTION: float = 0.25
 BRKGA_ELITE_INHERITANCE: float = 0.70
 
 # Safety stop.
-BRKGA_MAX_GENERATIONS: int = 500
+BRKGA_MAX_GENERATIONS: int = 2000
 
 # Window stopping criterion: stop when the best solution is not meaningfully
 # better than the best solution this many generations ago. "Meaningfully"
 # is defined by DENSITY_RESOLUTION and COG_RESOLUTION_MM below.
-STALL_WINDOW_GENERATIONS: int = 25
+STALL_WINDOW_GENERATIONS: int = 75
+
+# Genetic extension: what the BRKGA does beyond the plain algorithm.
+#   "none"     one population of BRKGA_POPULATION; the first stall of the
+#              window criterion stops the run.
+#   "ladder"   one population of BRKGA_POPULATION; a stall does not stop the
+#              run at once. The BRKGA first shakes the population (keeps the
+#              best, replaces everyone else with elite copies that have one
+#              block of boxes redesigned), then restarts it (keeps the best,
+#              brings back the seeds, fills up with random chromosomes).
+#              Uses the LADDER_* and SHAKE_* settings below.
+#   "islands"  ISLAND_COUNT populations of ISLAND_POPULATION evolve side by
+#              side, each with its own seed (RANDOM_SEED + island number), all
+#              starting with the same rule-sweep seeds. They exchange their
+#              best chromosomes every ISLAND_MIGRATION_INTERVAL generations.
+#              The window watches the best over all islands; the first stall
+#              stops the run. Uses the ISLAND_* settings below.
+# Settings of an extension that is not selected are ignored.
+GENETIC_EXTENSION: str = "islands"
+
+# --- "ladder" ---------------------------------------------------------------
+# After LADDER_SHAKES_PER_RESTART shakes the ladder restarts. The run stops
+# when it stalls again after LADDER_MAX_RESTARTS restarts without a
+# meaningful improvement. Any meaningful improvement resets the ladder.
+LADDER_SHAKES_PER_RESTART: int = 1
+LADDER_MAX_RESTARTS: int = 2
+
+# Shake: keys of about this many consecutive boxes (arrival order) are
+# redrawn, and each redrawn key deviates from emsLoader's decision with this
+# probability. Normal chromosomes deviate with DEVIATION_RATE (0.03).
+SHAKE_BLOCK_BOXES: int = 25
+SHAKE_INTENSITY: float = 0.25
+
+# --- "islands" --------------------------------------------------------------
+# Number of islands and chromosomes per island. Evaluations per generation
+# grow with ISLAND_COUNT x ISLAND_POPULATION, so keep the product close to
+# BRKGA_POPULATION for a run of similar speed per generation.
+ISLAND_COUNT: int = 3
+ISLAND_POPULATION: int = 100
+
+# Every this many generations, the best ISLAND_MIGRANTS chromosomes of each
+# island replace the worst of the next island (ring 0 -> 1 -> ... -> 0).
+# 0 = no migration: fully independent islands (parallel multi-start, best
+# island wins).
+ISLAND_MIGRATION_INTERVAL: int = 20
+ISLAND_MIGRANTS: int = 2
 
 
 # ============================================================================
@@ -134,7 +182,7 @@ DENSITY_WEIGHT_ENVELOPE: float = 0.5
 DENSITY_RESOLUTION: float = 0.001
 
 # CoG heights closer than this count as equal [mm].
-COG_RESOLUTION_MM: float = 1.0
+COG_RESOLUTION_MM: float = 10.0
 
 
 # ============================================================================
